@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; MTG Card Maker Documentation
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-MTG+Card+Maker">MTG Card Maker</h1>
+<p align=center>
+<img src="images/mtgcm_card.png" width="300" />
+</p>
+<p>A Ruby gem for creating fan-made Magic: The Gathering cards. This tool allows you to generate custom MTG cards with proper formatting, mana costs, and card layouts. All you need to supply is the artwork image url/path, or simply overlay on top of an image of your choosing.</p>
+
+<p>Please note this gem is in early beta, and should not be used in any production application. <strong>Using it commercially is a violation of the license.</strong> Please suggest feature ideas you have after reviewing the open issues here: <a href="https://github.com/joe-sharp/mtg_card_maker/issues">github.com/joe-sharp/mtg_card_maker/issues</a></p>
+
+<h2 id="label-Features">Features</h2>
+
+<h4 id="label-F0-9F-8E-A8+Card+Customization">🎨 Card Customization</h4>
+
+<p><strong>Core Card Properties:</strong> - <strong>Card Name</strong>: Customizable card titles with optional font support - <strong>Mana Cost</strong>: Support for 0-9, X, and all MTG mana symbols (W, U, B, R, G, C), alternate icon sets coming soon! - <strong>Type Line</strong>: Customizable Card types and subtypes (Creature, Instant, Sorcery, etc.) - <strong>Description</strong>: Rules text with automatic word wrapping and formatting - <strong>Flavor Text</strong>: Optional italicized flavor text at the bottom of cards - <strong>Power/Toughness</strong>: For creature cards, customizable power and toughness values, frame hides when omitted</p>
+
+<p><strong>Visual Customization:</strong> - <strong>Color Schemes</strong>: 8 built-in colors (white, blue, black, red, green, colorless, gold, artifact), split colors coming soon! - <strong>Border Color</strong>: Customizable border colors (white, black, gold, silver) - <strong>Art Integration</strong>: Support for custom artwork via image URLs, or simply layer the svg over your art of choice</p>
+
+<h4 id="label-F0-9F-96-BC-EF-B8-8F+Sprite+Sheet+Features">🖼️ Sprite Sheet Features</h4>
+
+<p><strong>Efficiency Optimizations:</strong> - <strong>Shared Assets</strong>: Fonts, gradients, and masks defined once per sprite sheet - <strong>Reduced File Size</strong>: Significantly smaller file sizes compared to individual cards - <strong>Layout Optimization</strong>: Ideal for web applications, printing and digital displays</p>
+
+<p><strong>Layout Control:</strong> - <strong>Cards Per Row</strong>: Configurable number of cards per row (default: 4) - <strong>Spacing Control</strong>: Adjustable spacing between cards in pixels (default: 30) - <strong>Automatic Sizing</strong>: Dynamic sprite sheet dimensions based on card count</p>
+
+<p><strong>Batch Processing:</strong> - <strong>YAML Configuration</strong>: Define multiple cards in structured YAML files - <strong>CLI Integration</strong>: Command-line tools for adding cards to YAML files - <strong>Error Handling</strong>: Robust error handling for invalid configurations</p>
+
+<h4 id="label-F0-9F-9B-A0-EF-B8-8F+Technical+Features">🛠️ Technical Features</h4>
+
+<p><strong>SVG Generation:</strong> - <strong>Vector Graphics</strong>: High-quality SVG output suitable for any size - <strong>Print Ready</strong>: Optimized for both digital and print applications - <strong>Cross-Platform</strong>: Compatible with all modern browsers and design software</p>
+
+<p><strong>Development Tools:</strong> - <strong>Guard Integration</strong>: Automated testing and code quality monitoring - <strong>Status Summary</strong>: Real-time development status with integrity checks - <strong>Comprehensive Testing</strong>: 95%+ test coverage with RSpec - <strong>Code Quality</strong>: RuboCop integration for consistent code style</p>
+
+<p><strong>Documentation:</strong> - <strong>YARD Documentation</strong>: Comprehensive API documentation (95.96% documented) - <strong>CLI Help</strong>: Detailed command-line help and examples - <strong>Examples</strong>: Multiple example configurations and use cases</p>
+
+<h2 id="label-Installation">Installation</h2>
+
+<h3 id="label-Prerequisites">Prerequisites</h3>
+
+<p>This gem requires Ruby 3.2 or higher. The version of Ruby included with macOS is typically outdated and won’t work. You can install a newer version of Ruby using tools like <a href="https://asdf-vm.com/">asdf</a> (with the <a href="https://github.com/asdf-vm/asdf-ruby">Ruby plugin</a>), <a href="https://github.com/rbenv/rbenv">rbenv</a> or <a href="https://rvm.io/">RVM</a>. Note: This gem seems to work just fine on Ruby 3.5.0 but cannot be tested in CI currently.</p>
+
+<p>Install the gem:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span>
+</code></pre>
+
+<h2 id="label-Usage">Usage</h2>
+
+<h3 id="label-F0-9F-94-A7+Configuration+Options">🔧 Configuration Options</h3>
+
+<p><strong>Card Properties:</strong></p>
+
+<p>Optionals without a default hide when omitted.</p>
+
+<pre class="code ruby"><code class="ruby">name: &quot;Card Name&quot;                 # Required
+type_line: &quot;Creature - Dragon&quot;    # Required
+rules_text: &quot;Card rules text&quot;     # Required
+mana_cost: 2RR                    # Optional
+flavor_text: &quot;Flavor text&quot;        # Optional
+power: 4                          # Optional
+toughness: 4                      # Optional
+color: red                        # Optional (default: colorless)
+border_color: gold           # Optional (default: white)
+art: path/to/art.jpg        # Optional
+</code></pre>
+
+<p><strong>Color Schemes Available:</strong></p>
+
+<pre class="code ruby"><code class="ruby">`artifact`  =&gt; Artifact cards (Brown, legacy)
+`black`     =&gt; Black cards
+`blue`      =&gt; Blue cards
+`colorless` =&gt; Artifact/Land cards (Grey)
+`gold`      =&gt; Multicolor cards (Metallic Gold)
+`green`     =&gt; Green cards
+`red`       =&gt; Red cards
+`white`     =&gt; White cards
+</code></pre>
+
+<h3 id="label-F0-9F-9A-80+Usage+Examples">🚀 Usage Examples</h3>
+
+<h3 id="label-Single+Card">Single Card</h3>
+
+<p><strong>Generate:</strong></p>
+
+<pre class="code ruby"><code class="ruby">mtg_card_maker generate_card \
+  --name=&quot;Lightning Bolt&quot; \
+  --mana-cost=R \
+  --type-text=Instant \
+  --description=&quot;Deal 3 damage to any target.&quot; \
+  --color=red
+</code></pre>
+
+<p><strong>Add to YAML:</strong></p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> \
+  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counterspell</span><span class='tstring_end'>&quot;</span></span> \
+  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UU</span><span class='tstring_end'>&quot;</span></span> \
+  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> \
+  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_description'>description</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counter target spell.</span><span class='tstring_end'>&quot;</span></span> \
+  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>blue</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<p><em>Shortcuts:</em> - <code>g</code> or <code>gc</code> for <code>generate_card</code> - <code>a</code> or <code>ac</code> for <code>add_card</code></p>
+
+<h3 id="label-Generate+a+Sprite+Sheet">Generate a Sprite Sheet</h3>
+
+<p>For printing or displaying multiple cards on a webpage, using a sprite sheet is recommended. This approach embeds fonts and gradients once per sheet instead of repeating them for each individual card, improving file size and loading efficiency. Generate a sprite sheet from YAML configuration:</p>
+
+<p><strong>Required Arguments:</strong> - <code>YAML_FILE</code>: Path to YAML configuration file - <code>OUTPUT_FILE</code>: Output filename for the sprite sheet</p>
+
+<p><strong>Optional Options:</strong> - <code>--cards-per-row</code>: Number of cards per row in sprite (default: 4) - <code>--spacing</code>: Spacing between cards in pixels (default: 30)</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_generate_sprite'>generate_sprite</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='id identifier rubyid_sprite_sheet'>sprite_sheet</span><span class='period'>.</span><span class='id identifier rubyid_svg'>svg</span> \
+<span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_cards'>cards</span><span class='op'>-</span><span class='id identifier rubyid_per'>per</span><span class='op'>-</span><span class='id identifier rubyid_row'>row</span><span class='op'>=</span><span class='int'>3</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_spacing'>spacing</span><span class='op'>=</span><span class='int'>5</span>
+</code></pre>
+
+<p><em>Shortcuts:</em> - <code>gs</code> or <code>gcs</code> for <code>generate_sprite</code></p>
+
+<h3 id="label-Examples">Examples</h3>
+<p>
+<img align=right src="images/joe-sharp_card.png" alt="a sample card generated by the application" width="300" />
+</p>
+<p><strong>Generate a simple creature:</strong></p>
+
+<pre class="code ruby"><code class="ruby">mtg_card_maker generate_card \
+  --name=&quot;Joe Sharp&quot; \
+  --mana-cost=2UR \
+  --type-text=&quot;Engineer - Fullstack&quot; \
+  --description=&#39;When Joe Sharp enters the battlefield, create a 1/1 Code token with &quot;This token can debug any program.&quot;\n\nWhenever you cast a Red spell, draw a card.&#39; \
+  --flavor-text=&#39;&quot;I write code everyday.&quot; - Joe Sharp&#39; \
+  --power=3 \
+  --toughness=3 \
+  --border-color=gold \
+  --color=blue
+</code></pre>
+
+<p><strong>Add multiple cards to a YAML file:</strong></p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lightning Bolt</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>R</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_description'>description</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Deal 3 damage to any target.</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>red</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counterspell</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UU</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_description'>description</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counter target spell.</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>blue</span><span class='tstring_end'>&quot;</span></span>
+</code></pre>
+
+<p><strong>Generate a sprite sheet from YAML:</strong></p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_generate_sprite'>generate_sprite</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='id identifier rubyid_sprite_sheet'>sprite_sheet</span><span class='period'>.</span><span class='id identifier rubyid_svg'>svg</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_cards'>cards</span><span class='op'>-</span><span class='id identifier rubyid_per'>per</span><span class='op'>-</span><span class='id identifier rubyid_row'>row</span><span class='op'>=</span><span class='int'>3</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_spacing'>spacing</span><span class='op'>=</span><span class='int'>20</span>
+</code></pre>
+
+<h2 id="label-Development">Development</h2>
+
+<h3 id="label-Setup">Setup</h3>
+
+<p>After checking out the repo, run <code>bin/setup</code> to install dependencies. Then, run <code>bundle exec rspec</code> to run the tests. You can also run <code>bin/console</code> for an interactive prompt that will allow you to experiment.</p>
+
+<h3 id="label-Development+Workflow+with+Guard">Development Workflow with Guard</h3>
+
+<p>This project uses <a href="https://github.com/guard/guard">Guard</a> for automated testing and code quality checks during development. Guard monitors file changes and automatically runs relevant tests and checks.</p>
+
+<p><strong>Start Guard:</strong></p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_guard'>guard</span>
+</code></pre>
+
+<p><strong>What Guard monitors:</strong> - <strong>RuboCop</strong>: Automatically checks code style when Ruby files change - <strong>RSpec</strong>: Runs tests when spec files or corresponding lib files change - <strong>Status Summary</strong>: Monitors changes and runs <code>bin/status_summary</code> to check card generation integrity (end-to-end tests)</p>
+
+<p><strong>Guard Output:</strong> - RuboCop results are saved to <code>tmp/rubocop_status.txt</code> - RSpec results are saved to <code>tmp/rspec_status.txt</code> - Status summary provides real-time feedback on code quality and card generation</p>
+
+<h3 id="label-Status+Summary+Script">Status Summary Script</h3>
+
+<p>The <code>bin/status_summary</code> script provides a comprehensive development status overview, it is meant to only be run by guard.</p>
+
+<p><strong>What it does:</strong> - Generates test cards and sprite sheets to verify functionality - Compares generated output against expected fixtures - Checks for unexpected changes in SVG files - Displays status indicators, requires you run with guard: - ✅ RuboCop violations (with count if any) - ✅ RSpec test failures (with count if any) - ✅ Card generation integrity - ✅ Sprite sheet generation integrity</p>
+
+<p><strong>Status Indicators:</strong> - <code>✅</code> - All good - <code>⚠️</code> - Issues detected (with count) - <code>❌</code> - Failures - <code>🔄</code> - Unexpected changes detected</p>
+
+<h3 id="label-Interactive+Development">Interactive Development</h3>
+
+<p><strong>Console:</strong></p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bin'>bin</span><span class='op'>/</span><span class='id identifier rubyid_console'>console</span>
+</code></pre>
+
+<p>Start an interactive Ruby console with the gem loaded for experimentation.</p>
+
+<p><strong>Manual Testing:</strong> Note: just use guard</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># Run all tests
+</span><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_rspec'>rspec</span>
+
+<span class='comment'># Check code style
+</span><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_rubocop'>rubocop</span>
+
+<span class='comment'># Generate test cards
+</span>
+<span class='comment'># See examples above, but you will need to use bin/mtg_card_maker from the project root to use the in-development code.
+</span>
+<span class='comment'># Or run `bundle exec guard` and monitor output_card.svg and color_cards_sprite.svg for changes, it is far better, really.
+</span></code></pre>
+
+<h2 id="label-Documentation">Documentation</h2>
+
+<h3 id="label-API+Documentation">API Documentation</h3>
+
+<p>The gem includes comprehensive YARD documentation for all classes and methods. You can generate and view the documentation locally:</p>
+
+<p><strong>Generate Documentation:</strong></p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_yard'>yard</span> <span class='id identifier rubyid_doc'>doc</span>
+</code></pre>
+
+<p><strong>Serve Documentation Locally:</strong></p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_yard'>yard</span> <span class='id identifier rubyid_server'>server</span>
+</code></pre>
+
+<p>Then visit <code>http://localhost:8808</code> to browse the documentation.</p>
+
+<h3 id="label-Key+Classes">Key Classes</h3>
+<ul><li>
+<p><strong>MtgCardMaker</strong>: Main module with card generation examples</p>
+</li><li>
+<p><strong>BaseCard</strong>: High-level card creation interface</p>
+</li><li>
+<p><strong>Template</strong>: SVG canvas and layer management</p>
+</li><li>
+<p><strong>BaseLayer</strong>: Abstract base class for all card layers</p>
+</li><li>
+<p><strong>ColorScheme</strong>: Unified color system for all MTG colors</p>
+</li><li>
+<p><strong>LayerFactory</strong>: Factory pattern for creating card layers</p>
+</li><li>
+<p><strong>CLI</strong>: Command-line interface with Thor integration</p>
+</li></ul>
+
+<h3 id="label-Installation+and+Release">Installation and Release</h3>
+
+<p>To install this gem onto your local machine, run <code>bundle exec rake install</code>. To release a new version, update the version number in <code>version.rb</code>, and then run <code>bundle exec rake release</code>, which will create a git tag for the version, push git commits and the created tag, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>.</p>
+
+<h2 id="label-Contributing">Contributing</h2>
+
+<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/joe-sharp/mtg_card_maker">github.com/joe-sharp/mtg_card_maker</a>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the <a href="https://github.com/joe-sharp/mtg_card_maker/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+
+<h2 id="label-License">License</h2>
+
+<p>&lt;a href=“<a href="https://projects.joe-sharp.com/mtg_card_maker">projects.joe-sharp.com/mtg_card_maker</a>”&gt;MTG Card Maker&lt;/a&gt; © 2025 by &lt;a href=“<a href="https://github.com/joe-sharp/mtg_card_maker">github.com/joe-sharp/mtg_card_maker</a>”&gt;Joe Sharp&lt;/a&gt; is licensed under &lt;a href=“<a href="https://creativecommons.org/licenses/by-nc-nd/4.0">creativecommons.org/licenses/by-nc-nd/4.0</a>/”&gt;CC BY-NC-ND 4.0&lt;/a&gt; &lt;img src=“<a href="https://mirrors.creativecommons.org/presskit/icons/cc.svg">mirrors.creativecommons.org/presskit/icons/cc.svg</a>” width=“20” valign=bottom&gt;&lt;img src=“<a href="https://mirrors.creativecommons.org/presskit/icons/by.svg">mirrors.creativecommons.org/presskit/icons/by.svg</a>” width=“20” valign=bottom&gt;&lt;img src=“<a href="https://mirrors.creativecommons.org/presskit/icons/nc.svg">mirrors.creativecommons.org/presskit/icons/nc.svg</a>” width=“20” valign=bottom&gt;&lt;img src=“<a href="https://mirrors.creativecommons.org/presskit/icons/nd.svg">mirrors.creativecommons.org/presskit/icons/nd.svg</a>” width=“20” valign=bottom&gt;</p>
+
+<p>The gem is available as open source under the terms of this license.</p>
+
+<h2 id="label-Copyright">Copyright</h2>
+
+<p>© 2025 Joe Sharp. Some rights reserved. MTG Card Maker is unofficial Fan Content permitted under the <a href="https://company.wizards.com/en/legal/fancontentpolicy">Fan Content Policy.</a> Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC.</p>
+
+<p>The removal or alteration of copyright notices, attributions, and/or QR codes from generated images constitutes a material breach of the license agreement. All copyright notices and identifying marks must remain intact and unmodified in accordance with the terms of use.</p>
+
+<h2 id="label-Code+of+Conduct">Code of Conduct</h2>
+
+<p>Everyone interacting in the MTG Card Maker project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the <a href="https://github.com/joe-sharp/mtg_card_maker/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Sat Jul 12 23:17:56 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.4).
+</div>
+
+    </div>
+  </body>
+</html>

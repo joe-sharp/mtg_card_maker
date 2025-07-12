@@ -1,0 +1,106 @@
+plugins:
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  ExtraDetails: true
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Layout/HashAlignment:
+  EnforcedHashRocketStyle:
+    - key
+    - table
+  EnforcedColonStyle:
+    - table
+    - key
+
+Lint/AmbiguousBlockAssociation:
+  AllowedPatterns:
+    - change
+
+Metrics/AbcSize:
+  AllowedMethods:
+    - render
+
+Metrics/BlockLength:
+  CountAsOne:
+    - array
+    - hash
+    - heredoc
+    - method_call
+
+Metrics/ClassLength:
+  CountAsOne:
+    - array
+    - hash
+    - heredoc
+    - method_call
+
+Metrics/MethodLength:
+  CountAsOne:
+    - array
+    - hash
+    - heredoc
+    - method_call
+
+Metrics/ModuleLength:
+  CountAsOne:
+    - array
+    - hash
+    - heredoc
+    - method_call
+
+# Allow underscore to indicate private variable.
+Naming/MemoizedInstanceVariableName:
+  EnforcedStyleForLeadingUnderscores: optional
+
+Naming/MethodParameterName:
+  AllowedNames:
+    - 'x'
+    - 'y'
+    - 'r'
+
+Performance/RedundantMerge:
+  MaxKeyValuePairs: 1
+
+RSpec/ExampleLength:
+  Enabled: false
+  # CountAsOne:
+    # - array
+    # - hash
+    # - heredoc
+    # - method_call
+
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/AnyInstance:
+  Exclude:
+    - 'spec/mtg_card_maker/svg_gradient_service_spec.rb'
+
+RSpec/VerifiedDoubles:
+  Exclude:
+    - 'spec/mtg_card_maker/frame_layer_spec.rb'
+    - 'spec/mtg_card_maker/name_layer_spec.rb'
+    - 'spec/mtg_card_maker/svg_gradient_service_spec.rb'
+
+Style/Alias:
+  EnforcedStyle: prefer_alias_method
+
+Style/FormatStringToken:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Style/SymbolArray:
+  MinSize: 3
+
+Style/WordArray:
+  MinSize: 3

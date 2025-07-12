@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'fileutils'
+# Script to regenerate the cards shown in the README
+# This script generates both the MTG Card Maker card and Joe Sharp card
+
+puts '🪄 Regenerating README cards...'
+
+# Create tmp directory if it doesn't exist
+FileUtils.mkdir_p('tmp')
+
+# Generate MTG Card Maker card
+puts 'Generating MTG Card Maker card...'
+system(
+  'bin/mtg_card_maker generate_card ' \
+  '--name="MTG Card Maker" ' \
+  '--mana-cost=RRRRR ' \
+  '--type-line="Ruby - SVG - Shell" ' \
+  '--rules-text="⤵︎: Create a custom MTG card." ' \
+  '--flavor-text="Raw, untamed power and fiery creation, a testament to the passionate and dynamic nature of Ruby." ' \
+  '--power=7 ' \
+  '--toughness=12 ' \
+  '--border-color=silver ' \
+  '--color=red ' \
+  '--output=tmp/mtgcm_card.svg ' \
+  '--art=mtgcm.jpg'
+)
+
+# Generate Joe Sharp card
+puts 'Generating Joe Sharp card...'
+rules_text =
+  'When Joe Sharp enters the battlefield, create a 1/1 Code token with ' \
+  '"This token can debug any program."\n\n' \
+  'Whenever you cast a Red spell, draw a card.'
+system(
+  'bin/mtg_card_maker generate_card ' \
+  '--name="Joe Sharp" ' \
+  '--mana-cost=2UR ' \
+  '--type-line="Engineer - Fullstack" ' \
+  "--rules-text='#{rules_text}' " \
+  '--flavor-text="\"I write code everyday.\" - Joe Sharp" ' \
+  '--power=3 ' \
+  '--toughness=3 ' \
+  '--border-color=gold ' \
+  '--color=blue ' \
+  '--output=tmp/joe-sharp_card.svg ' \
+  '--art=joe.jpg'
+)
+
+# Convert SVG files to PNG
+puts 'Converting SVG files to PNG...'
+system('rsvg-convert --keep-aspect-ratio --width=300 --dpi-x=300 --dpi-y=300 ' \
+       'tmp/mtgcm_card.svg -o images/mtgcm_card.png')
+system('rsvg-convert --keep-aspect-ratio --width=300 --dpi-x=300 --dpi-y=300 ' \
+       'tmp/joe-sharp_card.svg -o images/joe-sharp_card.png')
+
+puts '✨ README cards regenerated successfully!'
+puts '📁 Generated files:'
+puts '  - tmp/mtgcm_card.svg'
+puts '  - tmp/joe-sharp_card.svg'
+puts '  - images/mtgcm_card.png'
+puts '  - images/joe-sharp_card.png'

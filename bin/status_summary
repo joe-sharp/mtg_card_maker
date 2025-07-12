@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+single_card = {
+  name:        'MTG Card Maker',
+  mana_cost:   '10RRGUBW',
+  type_line:   'Ruby - SVG - Shell',
+  rules_text:  'MTG Card Maker is a tool for creating fan-made MTG cards. ' \
+               'MTG Card Maker is unofficial Fan Content permitted under the Fan Content Policy. ' \
+               'Not approved/endorsed by Wizards. Portions of the materials used are property of ' \
+               'Wizards of the Coast. ©Wizards of the Coast LLC.',
+  flavor_text: 'MTG Card Maker is a tool for creating fan-made MTG cards\n -- Joe Sharp',
+  power:       '9999',
+  toughness:   '9999'
+}
+
+def card_args(config)
+  config.map { |key, value| "--#{key.to_s.tr('_', '-')}=\"#{value}\"" }.join(' ')
+end
+
+# Card and sprite diff
+system('bin/mtg_card_maker generate_sprite examples/color_cards.yml color_cards_sprite.svg')
+system("bin/mtg_card_maker generate_card #{card_args(single_card)}")
+
+# Check for changes after generation is complete
+sprite_changed = !`git --no-pager diff color_cards_sprite.svg 2>/dev/null`.empty?
+card_changed = !`diff output_card.svg spec/fixtures/complete_card.svg 2>/dev/null`.empty?
+
+# Print warnings after all generation output is complete
+puts "\e[33m⚠️  Warning: sprite file has changed from HEAD!\e[0m" if sprite_changed
+puts "\e[33m⚠️  Warning: output file has changed from fixtures!\e[0m" if card_changed
+
+# Read status files with defaults
+rubocop_status = File.exist?('tmp/rubocop_status.txt') ? File.read('tmp/rubocop_status.txt') : ''
+rspec_status = File.exist?('tmp/rspec_status.txt') ? File.read('tmp/rspec_status.txt') : ''
+
+# Extract RuboCop offense count
+rubocop_offenses = 0
+if rubocop_status.downcase.include?('no offenses detected')
+  rubo = '✅'
+else
+  rubo = '⚠️ '
+  # Extract number of offenses from RuboCop output
+  offense_match = rubocop_status.match(/(\d+) offense/)
+  rubocop_offenses = offense_match ? offense_match[1].to_i : 0
+end
+
+# Extract test failure count
+test_failures = 0
+rspec_failure_line = rspec_status.lines.grep(/failure/i).last.to_s.strip
+if rspec_failure_line.downcase.include?(', 0 failures')
+  test = '✅'
+else
+  test = '❌ '
+  # Extract number of failures from RSpec output
+  failure_match = rspec_failure_line.match(/(\d+) failure/)
+  test_failures = failure_match ? failure_match[1].to_i : 0
+end
+
+card = card_changed ? '🔄' : '✅'
+sprite = sprite_changed ? '🔄' : '✅'
+
+# Display counts only when there are issues
+rubo_display = rubocop_offenses.positive? ? "#{rubo}(#{rubocop_offenses})" : rubo
+test_display = test_failures.positive? ? "#{test}(#{test_failures})" : test
+
+puts "\n🔮\e[35mStatus:\e[0m  RuboCop: #{rubo_display} | Tests: #{test_display} | Card: #{card} | Sprite: #{sprite}"

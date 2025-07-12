@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'rqrcode'
+
+qr = RQRCode::QRCode.new('https://projects.joe-sharp.com/mtg_card_maker')
+svg = qr.as_svg(
+  color: '111',
+  shape_rendering: 'crispEdges',
+  module_size: 1.1,
+  standalone: true,
+  use_path: true,
+  offset_x: 40,
+  offset_y: 820
+)
+
+File.write('lib/mtg_card_maker/icons/qrcode.svg', svg)
+puts 'QR code generated as qrcode.svg'

@@ -1,0 +1,86 @@
+name: Ruby
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - '3.2'
+          - '3.3'
+          - '3.4'
+
+    env:
+      BUNDLE_WITHOUT: 'development'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Make tmp/
+        run: mkdir tmp/
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: RuboCop && RSpec
+        env:
+          COVERAGE: true
+        run: bundle exec rake
+
+  docs:
+    runs-on: ubuntu-latest
+    name: Generate Documentation
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+          bundler-cache: true
+      - name: Generate YARD Documentation
+        run: bundle exec yard doc
+      - name: Check for Documentation Changes
+        id: check-changes
+        run: |
+          git add docs/
+          if git diff --staged --quiet; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "No documentation changes to commit"
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "Documentation changes detected"
+          fi
+      - name: Create Documentation PR
+        if: steps.check-changes.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: update YARD documentation"
+          title: "docs: update YARD documentation"
+          body: |
+            🤖 Automated documentation update
+
+            This PR updates the YARD documentation to reflect the latest code changes.
+            Please review the changes, and close this PR if it lacks changes beyond datetime stamps.
+
+            **Changes:**
+            - Updated YARD documentation
+            - Generated fresh HTML docs
+
+            **Note:** This is an automated PR created by GitHub Actions.
+          branch: docs/update-yard-documentation
+          delete-branch: true
+          base: main

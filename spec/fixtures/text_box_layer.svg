@@ -1,0 +1,135 @@
+<svg width="630" height="880" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+@font-face {
+  font-family: 'Goudy Mediaeval DemiBold';
+  src: url('fonts/Goudy Mediaeval DemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+</style>
+<style>
+/* Font Classes */
+.card-name {
+  font-family: 'Goudy Mediaeval DemiBold', serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card-type {
+  font-family: 'Goudy Mediaeval DemiBold', serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card-description {
+  font-family: serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card-flavor-text {
+  font-family: serif;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.card-power-toughness {
+  font-family: serif;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.card-copyright {
+  font-family: sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mana-cost-text {
+  font-family: serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mana-cost-text-large {
+  font-family: serif;
+  font-weight: semibold;
+  font-style: normal;
+}
+
+</style>
+<defs>
+<linearGradient id="colorless_card_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#3D3D3D"/>
+<stop offset="50%" stop-color="#111"/>
+<stop offset="100%" stop-color="#1A1A1A"/>
+</linearGradient>
+<linearGradient id="colorless_frame_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8B8B8B"/>
+<stop offset="50%" stop-color="#6B6B6B"/>
+<stop offset="100%" stop-color="#4A4A4A"/>
+</linearGradient>
+<linearGradient id="colorless_name_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F5F5F5"/>
+<stop offset="50%" stop-color="#E8E8E8"/>
+<stop offset="100%" stop-color="#D4D4D4"/>
+</linearGradient>
+<linearGradient id="colorless_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F5F5F5"/>
+<stop offset="50%" stop-color="#E8E8E8"/>
+<stop offset="100%" stop-color="#D4D4D4"/>
+</linearGradient>
+<linearGradient id="colorless_metallic_highlight_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8B8B8B" stop-opacity="0.6"/>
+<stop offset="20%" stop-color="#E0E0E0" stop-opacity="0.9"/>
+<stop offset="38%" stop-color="#FFFFFF" stop-opacity="1.0"/>
+<stop offset="42%" stop-color="#E0E0E0" stop-opacity="0.7"/>
+<stop offset="62%" stop-color="#8B8B8B" stop-opacity="0.5"/>
+<stop offset="73%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+<stop offset="80%" stop-color="#E0E0E0" stop-opacity="0.6"/>
+<stop offset="100%" stop-color="#8B8B8B" stop-opacity="0.4"/>
+</linearGradient>
+<radialGradient id="colorless_metallic_shadow_gradient" cx="50%" cy="50%" r="70%">
+<stop offset="0%" stop-color="#B0B0B0" stop-opacity="0.3"/>
+<stop offset="50%" stop-color="#8B8B8B" stop-opacity="0.5"/>
+<stop offset="100%" stop-color="#6B6B6B" stop-opacity="0.7"/>
+</radialGradient>
+<pattern id="colorless_metallic_pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+<line x1="0" y1="0" x2="20" y2="20" stroke="#F5F5F5" stroke-width="0.5" opacity="0.3"/>
+<line x1="20" y1="0" x2="0" y2="20" stroke="#B0B0B0" stroke-width="0.5" opacity="0.2"/>
+<circle cx="5" cy="5" r="0.5" fill="#F5F5F5" opacity="0.6"/>
+<circle cx="15" cy="15" r="0.5" fill="#F5F5F5" opacity="0.6"/>
+<circle cx="10" cy="10" r="0.3" fill="#B0B0B0" opacity="0.4"/>
+</pattern>
+</defs>
+<g>
+<rect x="40" y="545" width="550" height="265" fill="url(#colorless_description_gradient)" stroke="#8B8B8B" stroke-width="2"/>
+<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+MTG Card Maker is a tool for creating fan-made MTG
+</text>
+<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+cards. MTG Card Maker is unofficial Fan Content
+</text>
+<text x="55" y="632" fill="#111" font-size="24" class="card-description">
+permitted under the Fan Content Policy. Not
+</text>
+<text x="55" y="661" fill="#111" font-size="24" class="card-description">
+approved/endorsed by Wizards. Portions of the
+</text>
+<text x="55" y="690" fill="#111" font-size="24" class="card-description">
+materials used are property of Wizards of the
+</text>
+<text x="55" y="719" fill="#111" font-size="24" class="card-description">
+Coast. ©Wizards of the Coast LLC.
+</text>
+<line x1="55" y1="740" x2="575" y2="740" stroke="#8B8B8B" stroke-width="1"/>
+<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
+MTG Card Maker is a tool for creating fan-made MTG cards
+</text>
+<text x="55" y="786" fill="#111" font-size="18" class="card-flavor-text">
+-- Joe Sharp
+</text>
+</g>
+</svg>

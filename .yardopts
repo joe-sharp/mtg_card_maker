@@ -1,0 +1,24 @@
+--readme README.md
+--title "MTG Card Maker Documentation"
+--markup markdown
+--output ./docs
+--exclude lib/mtg_card_maker/layers/
+--exclude lib/mtg_card_maker/icon_service.rb
+--exclude lib/mtg_card_maker/color_palette.rb
+--exclude lib/mtg_card_maker/color_scheme.rb
+--exclude lib/mtg_card_maker/layer_config.rb
+--exclude lib/mtg_card_maker/layer_factory.rb
+--exclude lib/mtg_card_maker/layer_initializer.rb
+--exclude lib/mtg_card_maker/mana_cost.rb
+--exclude lib/mtg_card_maker/metallic_renderer.rb
+--exclude lib/mtg_card_maker/sprite_sheet_assets.rb
+--exclude lib/mtg_card_maker/sprite_sheet_builder.rb
+--exclude lib/mtg_card_maker/sprite_sheet_service.rb
+--exclude lib/mtg_card_maker/svg_gradient_service.rb
+--exclude lib/mtg_card_maker/text_rendering_service.rb
+--exclude lib/mtg_card_maker/version.rb
+--exclude lib/core_ext/
+--exclude lib/mtg_card_maker.rb
+lib/mtg_card_maker/cli.rb
+lib/mtg_card_maker/base_card.rb
+bin/mtg_card_maker

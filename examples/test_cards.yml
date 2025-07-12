@@ -1,0 +1,38 @@
+---
+lightning_bolt:
+  name: Lightning Bolt
+  type_line: Instant
+  rules_text: Lightning Bolt deals 3 damage to any target.
+  mana_cost: R
+  flavor_text: The spark of lightning ignites the flame of destruction.
+  color: red
+giant_growth:
+  name: Giant Growth
+  type_line: Instant
+  rules_text: "+3/+3 until end of turn."
+  mana_cost: G
+  flavor_text: Nature's strength in a single moment.
+  color: green
+counterspell:
+  name: Counterspell
+  type_line: Instant
+  rules_text: Counter target spell.
+  mana_cost: UU
+  flavor_text: No.
+  color: blue
+dark_ritual:
+  name: Dark Ritual
+  type_line: Instant
+  rules_text: Add {B}{B}{B}.
+  mana_cost: B
+  flavor_text: Power at any price.
+  color: black
+serra_angel:
+  name: Serra Angel
+  type_line: Creature - Angel
+  rules_text: Flying, vigilance
+  mana_cost: 3WW
+  flavor_text: Her sword sings for hope.
+  power: '4'
+  toughness: '4'
+  color: white

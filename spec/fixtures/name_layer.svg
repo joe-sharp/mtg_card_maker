@@ -1,0 +1,116 @@
+<svg width="630" height="880" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+@font-face {
+  font-family: 'Goudy Mediaeval DemiBold';
+  src: url('fonts/Goudy Mediaeval DemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+</style>
+<style>
+/* Font Classes */
+.card-name {
+  font-family: 'Goudy Mediaeval DemiBold', serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card-type {
+  font-family: 'Goudy Mediaeval DemiBold', serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card-description {
+  font-family: serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card-flavor-text {
+  font-family: serif;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.card-power-toughness {
+  font-family: serif;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.card-copyright {
+  font-family: sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mana-cost-text {
+  font-family: serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mana-cost-text-large {
+  font-family: serif;
+  font-weight: semibold;
+  font-style: normal;
+}
+
+</style>
+<defs>
+<linearGradient id="colorless_card_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#3D3D3D"/>
+<stop offset="50%" stop-color="#111"/>
+<stop offset="100%" stop-color="#1A1A1A"/>
+</linearGradient>
+<linearGradient id="colorless_frame_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8B8B8B"/>
+<stop offset="50%" stop-color="#6B6B6B"/>
+<stop offset="100%" stop-color="#4A4A4A"/>
+</linearGradient>
+<linearGradient id="colorless_name_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F5F5F5"/>
+<stop offset="50%" stop-color="#E8E8E8"/>
+<stop offset="100%" stop-color="#D4D4D4"/>
+</linearGradient>
+<linearGradient id="colorless_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F5F5F5"/>
+<stop offset="50%" stop-color="#E8E8E8"/>
+<stop offset="100%" stop-color="#D4D4D4"/>
+</linearGradient>
+<linearGradient id="colorless_metallic_highlight_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8B8B8B" stop-opacity="0.6"/>
+<stop offset="20%" stop-color="#E0E0E0" stop-opacity="0.9"/>
+<stop offset="38%" stop-color="#FFFFFF" stop-opacity="1.0"/>
+<stop offset="42%" stop-color="#E0E0E0" stop-opacity="0.7"/>
+<stop offset="62%" stop-color="#8B8B8B" stop-opacity="0.5"/>
+<stop offset="73%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+<stop offset="80%" stop-color="#E0E0E0" stop-opacity="0.6"/>
+<stop offset="100%" stop-color="#8B8B8B" stop-opacity="0.4"/>
+</linearGradient>
+<radialGradient id="colorless_metallic_shadow_gradient" cx="50%" cy="50%" r="70%">
+<stop offset="0%" stop-color="#B0B0B0" stop-opacity="0.3"/>
+<stop offset="50%" stop-color="#8B8B8B" stop-opacity="0.5"/>
+<stop offset="100%" stop-color="#6B6B6B" stop-opacity="0.7"/>
+</radialGradient>
+<pattern id="colorless_metallic_pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+<line x1="0" y1="0" x2="20" y2="20" stroke="#F5F5F5" stroke-width="0.5" opacity="0.3"/>
+<line x1="20" y1="0" x2="0" y2="20" stroke="#B0B0B0" stroke-width="0.5" opacity="0.2"/>
+<circle cx="5" cy="5" r="0.5" fill="#F5F5F5" opacity="0.6"/>
+<circle cx="15" cy="15" r="0.5" fill="#F5F5F5" opacity="0.6"/>
+<circle cx="10" cy="10" r="0.3" fill="#B0B0B0" opacity="0.4"/>
+</pattern>
+</defs>
+<g>
+<rect x="30" y="40" width="570" height="50" fill="url(#colorless_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
+<text x="45" y="75" fill="#111" font-size="32" class="card-name">
+MTG Card Maker
+</text>
+<g transform="translate(435, 63)">
+<defs><filter id="mana-cost-drop-shadow"        x="-50%"        y="-50%"        width="200%"        height="200%"><feDropShadow dx="-2"              dy="2"              stdDeviation="1"              flood-color="black"              flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><circle cx='0' cy='0' r='15' fill='#DDD' /><text x='0' y='7' fill='#000' text-anchor='middle' font-weight='normal' font-size='24' font-family='serif'>X</text><circle cx='35' cy='0' r='15' fill='#EF9A9A' /><g transform='translate(23, -12)' opacity='0.7'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g><circle cx='70' cy='0' r='15' fill='#EF9A9A' /><g transform='translate(58, -12)' opacity='0.7'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g><circle cx='105' cy='0' r='15' fill='#A5D6A7' /><g transform='translate(93, -12)' opacity='0.7'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M584-31H376v-161H37l161-242h-82l364-521 364 521h-82l161 242H584v161Z"/></svg></g><circle cx='140' cy='0' r='15' fill='#90CAF9' /><g transform='translate(128, -12)' opacity='0.7'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M479-56q-150 0-257-104T115-414q0-71.79 28-137.89Q171-618 223-668l162-160q20-19 44.74-29 24.74-10 50.26-10t50.26 10Q555-847 575-828l162 160q52 50 80 116.11 28 66.1 28 137.89 0 150-107.5 254T479-56ZM251-414h458q0-44-18.5-85t-49.67-71.56L480-731 319.17-570.56Q288-540 269.5-498.93 251-457.86 251-414Z"/></svg></g></g>
+</g>
+</g>
+</svg>

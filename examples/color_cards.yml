@@ -1,0 +1,73 @@
+# Color Cards Configuration
+# Each color has unique card properties to showcase the MTG Card Maker capabilities
+
+white:
+  name: "White"
+  mana_cost: "WWW"
+  type_line: "Enchantment - Aura"
+  rules_text: "Enchanted creature gets +1/+1 and has vigilance. When this enchantment enters the battlefield, you gain 2 life."
+  flavor_text: "The light of justice never fades, even in the darkest of times."
+  color: white
+
+blue:
+  name: "Blue"
+  mana_cost: "UR"
+  type_line: "Instant"
+  rules_text: "Counter target spell unless its controller pays {1}. Draw a card."
+  flavor_text: "Knowledge flows like water, finding its way through any barrier."
+  border_color: black
+  color: blue
+
+black:
+  name: "Black"
+  type_line: "Sorcery"
+  rules_text: "Destroy target creature. You lose life equal to that creature's toughness."
+  flavor_text: "Death is not the end, but a transformation into something darker."
+  border_color: gold
+  color: black
+
+red:
+  name: "Red"
+  mana_cost: "XRR"
+  type_line: "Instant"
+  rules_text: "This spell deals X damage to any target. If a creature dealt damage this way would die this turn, exile it instead."
+  flavor_text: "Fire consumes all, leaving only ash and memory."
+  color: red
+
+green:
+  name: "Green"
+  mana_cost: "5G"
+  type_line: "Creature - Elemental"
+  rules_text: "Trample. When this creature enters the battlefield, search your library for a land card and put it onto the battlefield tapped."
+  flavor_text: "Nature's strength flows through every leaf and branch."
+  power: "4"
+  toughness: "12"
+  border_color: silver
+  color: green
+
+colorless:
+  name: "Colorless"
+  mana_cost: "C"
+  type_line: "Artifact"
+  rules_text: "When this artifact enters the battlefield, create two 1/1 colorless artifact creature tokens."
+  flavor_text: "Forged from the essence of the void itself."
+  color: colorless
+
+artifact:
+  name: "Artifact"
+  mana_cost: "2"
+  type_line: "Artifact - Equipment"
+  rules_text: "Equipped creature gets +2/+2 and has first strike. Equip {2}."
+  flavor_text: "A blade that has tasted the blood of countless battles."
+  color: artifact
+
+gold:
+  name: "Gold"
+  mana_cost: "BWRGUC"
+  type_line: "Legendary Creature - Dragon"
+  rules_text: "Flying, trample, haste. When this creature enters the battlefield, destroy all other creatures."
+  flavor_text: "The embodiment of all colors, a force beyond mortal comprehension."
+  power: "8"
+  toughness: "8"
+  border_color: silver
+  color: gold
