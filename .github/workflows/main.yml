@@ -55,13 +55,38 @@ jobs:
       - name: Check for Documentation Changes
         id: check-changes
         run: |
+          # Add docs directory to staging
           git add docs/
+
+          # Check if there are any staged changes
           if git diff --staged --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "No documentation changes to commit"
           else
-            echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo "Documentation changes detected"
+            # Create a temporary file to store meaningful changes
+            TEMP_DIFF=$(mktemp)
+
+            # Get all staged changes and filter out timestamp-only changes
+            git diff --staged > "$TEMP_DIFF"
+
+            # Remove common timestamp patterns and compare
+            # Filter out lines that contain only timestamp-related changes
+            FILTERED_DIFF=$(mktemp)
+            cat "$TEMP_DIFF" | grep -v -E "(generated|timestamp|date|time)" > "$FILTERED_DIFF" || true
+
+            # Check if filtered diff has meaningful content
+            if [ -s "$FILTERED_DIFF" ]; then
+              echo "has_changes=true" >> $GITHUB_OUTPUT
+              echo "Meaningful documentation changes detected"
+            else
+              echo "has_changes=false" >> $GITHUB_OUTPUT
+              echo "No meaningful documentation changes to commit"
+              # Unstage all changes since they're just timestamps
+              git reset HEAD docs/
+            fi
+
+            # Clean up temp files
+            rm -f "$TEMP_DIFF" "$FILTERED_DIFF"
           fi
       - name: Create Documentation PR
         if: steps.check-changes.outputs.has_changes == 'true'
@@ -74,7 +99,7 @@ jobs:
             🤖 Automated documentation update
 
             This PR updates the YARD documentation to reflect the latest code changes.
-            Please review the changes, and close this PR if it lacks changes beyond datetime stamps.
+            Please review the changes.
 
             **Changes:**
             - Updated YARD documentation
