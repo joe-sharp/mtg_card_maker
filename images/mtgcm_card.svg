@@ -1,0 +1,278 @@
+<svg width="630" height="880" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+@font-face {
+  font-family: 'Goudy Mediaeval DemiBold';
+  src: url('fonts/Goudy Mediaeval DemiBold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+</style>
+<style>
+/* Font Classes */
+.card-name {
+  font-family: 'Goudy Mediaeval DemiBold', serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card-type {
+  font-family: 'Goudy Mediaeval DemiBold', serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card-description {
+  font-family: serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.card-flavor-text {
+  font-family: serif;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.card-power-toughness {
+  font-family: serif;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.card-copyright {
+  font-family: sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mana-cost-text {
+  font-family: serif;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.mana-cost-text-large {
+  font-family: serif;
+  font-weight: semibold;
+  font-style: normal;
+}
+
+</style>
+<defs>
+<mask id="artWindowMask">
+<rect x="0" y="0" width="100%" height="100%" fill="#FFF"/>
+<rect x="40" y="95" width="550" height="400" fill="#000" rx="5" ry="5"/>
+</mask>
+</defs>
+<rect x="0" y="0" width="630" height="880" rx="25" ry="25" fill="#EEE" mask="url(#artWindowMask)"/>
+<defs>
+<linearGradient id="colorless_card_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#3D3D3D"/>
+<stop offset="50%" stop-color="#111"/>
+<stop offset="100%" stop-color="#1A1A1A"/>
+</linearGradient>
+<linearGradient id="colorless_frame_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8B8B8B"/>
+<stop offset="50%" stop-color="#6B6B6B"/>
+<stop offset="100%" stop-color="#4A4A4A"/>
+</linearGradient>
+<linearGradient id="colorless_name_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F5F5F5"/>
+<stop offset="50%" stop-color="#E8E8E8"/>
+<stop offset="100%" stop-color="#D4D4D4"/>
+</linearGradient>
+<linearGradient id="colorless_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F5F5F5"/>
+<stop offset="50%" stop-color="#E8E8E8"/>
+<stop offset="100%" stop-color="#D4D4D4"/>
+</linearGradient>
+<linearGradient id="colorless_metallic_highlight_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8B8B8B" stop-opacity="0.6"/>
+<stop offset="20%" stop-color="#E0E0E0" stop-opacity="0.9"/>
+<stop offset="38%" stop-color="#FFFFFF" stop-opacity="1.0"/>
+<stop offset="42%" stop-color="#E0E0E0" stop-opacity="0.7"/>
+<stop offset="62%" stop-color="#8B8B8B" stop-opacity="0.5"/>
+<stop offset="73%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+<stop offset="80%" stop-color="#E0E0E0" stop-opacity="0.6"/>
+<stop offset="100%" stop-color="#8B8B8B" stop-opacity="0.4"/>
+</linearGradient>
+<radialGradient id="colorless_metallic_shadow_gradient" cx="50%" cy="50%" r="70%">
+<stop offset="0%" stop-color="#B0B0B0" stop-opacity="0.3"/>
+<stop offset="50%" stop-color="#8B8B8B" stop-opacity="0.5"/>
+<stop offset="100%" stop-color="#6B6B6B" stop-opacity="0.7"/>
+</radialGradient>
+<pattern id="colorless_metallic_pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+<line x1="0" y1="0" x2="20" y2="20" stroke="#F5F5F5" stroke-width="0.5" opacity="0.3"/>
+<line x1="20" y1="0" x2="0" y2="20" stroke="#B0B0B0" stroke-width="0.5" opacity="0.2"/>
+<circle cx="5" cy="5" r="0.5" fill="#F5F5F5" opacity="0.6"/>
+<circle cx="15" cy="15" r="0.5" fill="#F5F5F5" opacity="0.6"/>
+<circle cx="10" cy="10" r="0.3" fill="#B0B0B0" opacity="0.4"/>
+</pattern>
+</defs>
+<rect x="0" y="0" width="630" height="880" mask="url(#artWindowMask)" rx="25" ry="25" fill="url(#colorless_metallic_highlight_gradient)" stroke="#8B8B8B" stroke-width="2"/>
+<rect x="0" y="0" width="630" height="880" mask="url(#artWindowMask)" rx="25" ry="25" fill="url(#colorless_metallic_pattern)" opacity="0.15"/>
+<rect x="2" y="2" width="626" height="876" mask="url(#artWindowMask)" rx="23" ry="23" fill="url(#colorless_metallic_shadow_gradient)" opacity="0.18"/>
+<path fill="#111" transform="translate(40,820) scale(1.1)" d="M0 0h7v7h-7zM8 0h3v1h-2v1h3v-2h1v1h1v-1h1v1h2v1h-1v2h1v1h1v-1h1v3h1v-1h1v-2h-1v-1h-2v-1h3v-1h-1v-1h2v2h2v-1h-1v-1h3v1h2v-1h1v2h-3v1h-1v-1h-1v1h-1v1h1v2h-1v3h-1v-1h-1v-1h-1v1h1v2h-2v-1h-2v-1h-1v2h2v2h-1v-1h-2v-4h-1v-1h1v1h1v-2h-1v-1h-1v1h-1v-2h-1v1h-1v-1h-1v1h1v1h1v1h-1v1h1v-1h1v1h-1v1h1v-1h1v1h-1v1h-3v-3h-1v4h-2v-1h-1v-1h1v1h1v-4h1v-2h-1zM30 0h3v1h-2v1h-1zM34 0h7v7h-7zM1 1v5h5v-5zM35 1v5h5v-5zM2 2h3v3h-3zM13 2v1h2v-1zM31 2h1v1h-1zM36 2h3v3h-3zM21 3v1h1v-1zM26 3h1v1h-1zM30 3h1v1h-1zM25 4h1v1h2v-1h1v3h-1v-1h-1v2h1v1h-1v1h1v-1h1v-1h1v-3h1v-1h2v1h-2v3h-1v1h-1v3h1v1h-2v1h1v1h-1v2h-1v-1h-2v-2h-1v-1h-1v-1h-1v-1h1v1h1v-1h1v1h-1v1h1v-1h2v-1h-1v-5h-1zM17 6v1h1v-1zM21 6v1h1v-1zM24 6h1v1h-1zM32 6h1v1h-1zM2 8h3v1h-3zM31 8h5v1h1v1h-1v1h2v1h1v-2h-1v-2h3v1h-1v2h1v1h-1v1h1v1h-1v1h-3v-1h-1v3h2v-1h1v3h-1v1h-1v1h-1v-3h-2v-1h-1v2h-1v-1h-1v-2h-1v-1h1v-1h1v-1h-1v-2h-1v-1h1zM1 9h1v2h-1zM5 9h1v1h-1zM13 9h1v2h-1v2h-1v-2h-1v3h-2v1h-1v1h-1v-1h-1v-1h2v-1h-2v-1h-1v-1h1v-1h1v1h-1v1h1v-1h2v1h-1v1h1v-1h1v-2h3zM24 9h1v1h-1zM33 9v1h1v1h-1v1h-1v1h1v-1h1v1h-1v1h-1v1h1v-1h1v1h-1v1h1v-1h1v-2h2v-1h-2v-3zM3 10h1v1h-1zM31 10v1h1v-1zM2 11h1v2h-1zM4 12h1v2h-1zM14 12h2v1h-1v1h-1v1h2v-1h1v-1h1v-1h2v1h1v-1h1v1h1v1h-1v2h-1v1h-1v1h-1v-2h-1v-2h-1v2h1v1h-1v2h-1v-2h-1v1h-2v-1h1v-1h-1v-3h1zM0 13h2v1h2v1h-4zM18 13v1h1v-1zM25 13v1h1v1h1v-2zM37 13v1h2v-1zM4 15h2v1h-1v1h-1zM9 15h2v2h-1v-1h-1zM19 15v1h1v-1zM6 16h1v1h-1zM8 16h1v1h-1zM24 16h1v1h2v1h1v-1h2v2h1v1h-2v-1h-1v2h-1v1h-1v2h-1v1h-3v1h-1v-2h3v-2h-1v1h-1v-3h1v1h2v-1h1v-2h-1v1h-1zM34 16v1h1v-1zM40 16h1v2h-1zM1 17h3v2h-1v1h-3v-2h1zM11 17h1v1h-1zM21 17h2v1h-1v1h-1zM6 18h1v1h-1zM8 18h1v1h1v-1h1v2h1v-1h2v2h-1v-1h-1v2h-5v-1h-1v-1h2zM15 19h1v2h-1zM17 19h1v1h-1zM19 19h2v1h-2zM39 19h1v1h-1zM3 20h1v2h1v-1h1v1h1v1h-2v1h-2v-2h-1v2h1v1h-2v1h-1v-2h1v-1h-1v-2h3zM8 20v1h2v-1zM18 20h1v1h-1zM33 20h1v1h2v1h-1v1h1v1h-2v-2h-1v1h-1v-1h-1v1h1v1h-2v-1h-1v-1h-1v-1h1v1h1v-1h3zM38 20h1v1h2v1h-2v2h-2v-1h1v-1h-1v-1h1zM14 21h1v1h1v-1h2v1h1v-1h2v2h-1v3h1v1h-2v1h1v2h-5v-1h-1v-3h-2v-1h-2v-1h-1v1h-1v-2h2v1h1v-1h1v-1h2zM16 22v1h-1v1h-1v1h1v-1h1v1h-1v4h2v-3h2v-2h-2v-2zM27 22h1v1h-1zM12 23v1h1v-1zM28 23h1v1h-1zM6 24h1v1h-1zM29 24h1v1h-1zM40 24h1v2h-1zM3 25h1v1h1v-1h1v1h-1v1h-1v2h-2v-2h-1v-1h1v1h1zM7 25h1v1h4v1h-1v1h2v1h-4v-1h-1v1h1v1h2v1h1v-1h1v-1h1v1h-1v4h1v-3h1v2h1v-2h1v1h1v1h-1v1h1v1h-1v1h-1v-1h-1v1h-1v3h1v-3h1v1h2v1h2v1h-3v-1h-1v1h-1v1h-2v-2h-1v-1h1v-2h-2v2h-1v-2h-1v-1h-1v-1h1v-1h1v-1h-2v-1h-1v-1h-1v-1h1v-1h-1v-1h1zM25 25h2v1h-1v1h1v-1h1v-1h1v1h-1v1h-1v1h-2zM30 25h2v1h-1v1h1v-1h1v-1h5v1h-1v1h1v1h1v1h2v1h-2v1h-1v-1h-3v-1h-1v-1h-1v1h-2v-1h-1v-1h-1v-1h1zM23 26h1v2h1v1h-1v2h-1v-1h-1v-1h-1v-1h1v-1h1zM33 26v1h1v-1zM35 26v1h1v-1zM0 27h1v6h-1zM22 28v1h1v-1zM29 28h1v3h-1v-1h-2v1h-1v-1h-1v-1h4zM35 28v1h2v-1zM4 29h1v1h2v1h-1v1h-1v-1h-3v-1h2zM33 29h1v1h1v2h2v-1h1v1h-1v1h1v-1h1v2h-1v2h2v-1h1v1h-1v1h1v1h-1v2h-1v-3h-3v1h2v1h-1v1h1v1h-3v-1h-1v-1h-1v-1h-2v-1h-1v-1h1v-1h-1v-2h-1v-1h-1v-1h1v1h1v1h1v1h1v-2h1v-1h-1v-1h1zM20 30h1v1h-1zM19 31h1v1h-1zM22 31h1v2h1v-1h1v1h-1v1h-1v1h2v1h2v-2h1v-1h1v3h-2v1h-1v1h-2v-1h-1v2h1v1h-1v1h-1v-3h-1v-2h1zM40 31h1v3h-1zM2 32h1v1h-1zM4 32h1v1h-1zM6 32h1v1h-1zM10 32v1h1v-1zM26 32h1v1h-1zM11 33v1h1v-1zM20 33h1v1h-1zM33 33v3h3v-3zM0 34h7v7h-7zM19 34h1v2h-2v-1h1zM34 34h1v1h-1zM1 35v5h5v-5zM2 36h3v3h-3zM8 36h1v1h1v4h-1v-2h-1zM31 36v1h1v-1zM29 37h1v2h-1zM34 37v1h1v-1zM27 38h1v3h-4v-1h1v-1h2zM16 39h1v1h-1zM20 39h1v1h-1zM31 39h2v1h-1v1h-1zM35 39v1h1v-1zM12 40h1v1h-1zM17 40h2v1h-2zM29 40h1v1h-1z"/>
+<text x="90" y="830" fill="#111" font-size="14" text-anchor="start" class="card-copyright">
+© 2025 Joe Sharp. Some rights reserved.
+</text>
+<text x="90" y="848" fill="#111" font-size="14" text-anchor="start" class="card-copyright">
+Portions of the materials used are property of Wizards of the Coast.
+</text>
+<text x="90" y="866" fill="#111" font-size="14" text-anchor="start" class="card-copyright">
+© Wizards of the Coast LLC
+</text>
+<defs>
+<linearGradient id="red_card_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8D6E63"/>
+<stop offset="50%" stop-color="#6D4C41"/>
+<stop offset="100%" stop-color="#4E342E"/>
+</linearGradient>
+<linearGradient id="red_frame_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F44336"/>
+<stop offset="50%" stop-color="#D32F2F"/>
+<stop offset="100%" stop-color="#B71C1C"/>
+</linearGradient>
+<linearGradient id="red_name_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFEBEE"/>
+<stop offset="50%" stop-color="#FFCDD2"/>
+<stop offset="100%" stop-color="#EF9A9A"/>
+</linearGradient>
+<linearGradient id="red_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFEBEE"/>
+<stop offset="50%" stop-color="#FFCDD2"/>
+<stop offset="100%" stop-color="#EF9A9A"/>
+</linearGradient>
+</defs>
+<rect x="25" y="25" width="580" height="740" fill="url(#red_frame_gradient)" stroke="#F44336" stroke-width="2" rx="10" ry="10" mask="url(#artWindowMask)"/>
+<defs>
+<linearGradient id="red_card_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8D6E63"/>
+<stop offset="50%" stop-color="#6D4C41"/>
+<stop offset="100%" stop-color="#4E342E"/>
+</linearGradient>
+<linearGradient id="red_frame_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F44336"/>
+<stop offset="50%" stop-color="#D32F2F"/>
+<stop offset="100%" stop-color="#B71C1C"/>
+</linearGradient>
+<linearGradient id="red_name_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFEBEE"/>
+<stop offset="50%" stop-color="#FFCDD2"/>
+<stop offset="100%" stop-color="#EF9A9A"/>
+</linearGradient>
+<linearGradient id="red_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFEBEE"/>
+<stop offset="50%" stop-color="#FFCDD2"/>
+<stop offset="100%" stop-color="#EF9A9A"/>
+</linearGradient>
+</defs>
+<g>
+<rect x="30" y="40" width="570" height="50" fill="url(#red_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
+<text x="45" y="75" fill="#111" font-size="32" class="card-name">
+MTG Card Maker
+</text>
+<g transform="translate(435, 63)">
+<defs><filter id="mana-cost-drop-shadow"        x="-50%"        y="-50%"        width="200%"        height="200%"><feDropShadow dx="-2"              dy="2"              stdDeviation="1"              flood-color="black"              flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><circle cx='0' cy='0' r='15' fill='#EF9A9A' /><g transform='translate(-12, -12)' opacity='0.7'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g><circle cx='35' cy='0' r='15' fill='#EF9A9A' /><g transform='translate(23, -12)' opacity='0.7'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g><circle cx='70' cy='0' r='15' fill='#EF9A9A' /><g transform='translate(58, -12)' opacity='0.7'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g><circle cx='105' cy='0' r='15' fill='#EF9A9A' /><g transform='translate(93, -12)' opacity='0.7'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g><circle cx='140' cy='0' r='15' fill='#EF9A9A' /><g transform='translate(128, -12)' opacity='0.7'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g></g>
+</g>
+</g>
+<g>
+<rect x="37" y="92" width="556" height="406" fill="none" stroke="#F44336" stroke-width="2" rx="8" ry="8"/>
+<rect x="40" y="95" width="550" height="400" fill="none" stroke="#111" stroke-width="2" rx="5" ry="5"/>
+<image href="mtgcm.webp" x="40" y="95" width="550" height="400" preserveAspectRatio="xMidYMid slice"/>
+</g>
+<defs>
+<linearGradient id="red_card_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8D6E63"/>
+<stop offset="50%" stop-color="#6D4C41"/>
+<stop offset="100%" stop-color="#4E342E"/>
+</linearGradient>
+<linearGradient id="red_frame_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F44336"/>
+<stop offset="50%" stop-color="#D32F2F"/>
+<stop offset="100%" stop-color="#B71C1C"/>
+</linearGradient>
+<linearGradient id="red_name_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFEBEE"/>
+<stop offset="50%" stop-color="#FFCDD2"/>
+<stop offset="100%" stop-color="#EF9A9A"/>
+</linearGradient>
+<linearGradient id="red_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFEBEE"/>
+<stop offset="50%" stop-color="#FFCDD2"/>
+<stop offset="100%" stop-color="#EF9A9A"/>
+</linearGradient>
+</defs>
+<g>
+<rect x="30" y="500" width="570" height="40" fill="url(#red_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25"/>
+<text x="45" y="528" fill="#111" font-size="22" class="card-type">
+Ruby - SVG - Shell
+</text>
+<path stroke-width="3" d="m 56.073212,76.492299 q 0,6.192777 -1.457124,11.656992 -1.335697,5.464215 -4.85708,9.592733 -3.399956,4.007086 -9.349879,6.435636 -5.828496,2.30711 -14.814094,2.30711 -8.257036,0 -14.206959,-1.94283 -5.9499234,-2.06426 -9.8355875,-4.735657 L 7.8666926,85.113616 q 3.5213834,2.064259 7.5284744,3.64281 4.007091,1.578551 8.742744,1.578551 6.921339,0 9.957014,-3.399956 Q 37.1306,83.535065 37.1306,75.520883 V 20.635878 H 56.073212 Z M 104.0368,41.278468 h 14.08553 l 4.00709,-20.64259 h 15.78551 l -4.00709,20.64259 h 8.86417 v 13.964105 h -11.53557 l -2.91424,14.935521 h 14.44981 V 84.1422 H 125.6508 l -3.88566,20.64259 H 105.97963 L 109.86529,84.1422 H 95.77976 l -3.885664,20.64259 H 76.108586 L 79.99425,84.1422 H 71.251506 V 70.178094 H 82.665644 L 85.579892,55.242573 H 71.251506 V 41.278468 h 16.99978 l 4.007091,-20.64259 h 15.785513 z m -5.585646,28.899626 h 14.085536 l 2.91424,-14.935521 H 101.3654 Z" fill="none" stroke="#111" transform="translate(557,504) scale(0.23) scale(0.93839063,1.0656543)" aria-label="J#"/>
+</g>
+<defs>
+<linearGradient id="red_card_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8D6E63"/>
+<stop offset="50%" stop-color="#6D4C41"/>
+<stop offset="100%" stop-color="#4E342E"/>
+</linearGradient>
+<linearGradient id="red_frame_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F44336"/>
+<stop offset="50%" stop-color="#D32F2F"/>
+<stop offset="100%" stop-color="#B71C1C"/>
+</linearGradient>
+<linearGradient id="red_name_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFEBEE"/>
+<stop offset="50%" stop-color="#FFCDD2"/>
+<stop offset="100%" stop-color="#EF9A9A"/>
+</linearGradient>
+<linearGradient id="red_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFEBEE"/>
+<stop offset="50%" stop-color="#FFCDD2"/>
+<stop offset="100%" stop-color="#EF9A9A"/>
+</linearGradient>
+</defs>
+<g>
+<rect x="40" y="545" width="550" height="265" fill="url(#red_text_box_gradient)" stroke="#F44336" stroke-width="2"/>
+<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+⤵︎: Create a custom MTG card.
+</text>
+<line x1="55" y1="740" x2="575" y2="740" stroke="#F44336" stroke-width="1"/>
+<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
+Raw, untamed power and fiery creation, a testament to the passionate
+</text>
+<text x="55" y="786" fill="#111" font-size="18" class="card-flavor-text">
+and dynamic nature of Ruby.
+</text>
+</g>
+<defs>
+<linearGradient id="red_card_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#8D6E63"/>
+<stop offset="50%" stop-color="#6D4C41"/>
+<stop offset="100%" stop-color="#4E342E"/>
+</linearGradient>
+<linearGradient id="red_frame_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#F44336"/>
+<stop offset="50%" stop-color="#D32F2F"/>
+<stop offset="100%" stop-color="#B71C1C"/>
+</linearGradient>
+<linearGradient id="red_name_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFEBEE"/>
+<stop offset="50%" stop-color="#FFCDD2"/>
+<stop offset="100%" stop-color="#EF9A9A"/>
+</linearGradient>
+<linearGradient id="red_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFEBEE"/>
+<stop offset="50%" stop-color="#FFCDD2"/>
+<stop offset="100%" stop-color="#EF9A9A"/>
+</linearGradient>
+</defs>
+<g>
+<rect x="522" y="790" width="73" height="40" fill="url(#red_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25"/>
+<text x="558" y="819" fill="#111" font-size="28" text-anchor="middle" class="card-power-toughness">
+7/12
+</text>
+</g>
+</svg>

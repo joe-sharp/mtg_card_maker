@@ -1,9 +1,8 @@
 # MTG Card Maker
 
 <p align=center>
-  <img src="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/mtgcm_card.png"
-       srcset="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/mtgcm_card.png 1x, images/mtgcm_card.png 1x"
-       alt="An image of a red Magic: The Gathering card titled 'MTG Card Maker' with RRRRR mana cost, silver border, and power/toughness of 7/12"
+  <img src="images/mtgcm_card.webp"
+       alt="A card featuring artwork of a fiery dragon and anvil"
        width="300" />
 </p>
 
@@ -156,9 +155,8 @@ mtg_card_maker generate_sprite deck.yml sprite_sheet.svg \
 
 <p>
 <img align=right
-     src="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/joe-sharp_card.png"
-     srcset="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/joe-sharp_card.png 1x, images/joe-sharp_card.png 1x"
-     alt="An image of custom Magic: The Gathering card featuring Joe Sharp, a 3/3 blue Engineer creature that costs 2UR and creates debugging tokens"
+     src="images/joe-sharp_card.webp"
+     alt="A card featuring artwork of a bearded man writing on a magical scroll with a feather pen"
      width="300" />
 </p>
 
