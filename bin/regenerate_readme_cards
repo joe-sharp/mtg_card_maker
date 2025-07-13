@@ -2,62 +2,111 @@
 # frozen_string_literal: true
 
 require 'fileutils'
+
 # Script to regenerate the cards shown in the README
 # This script generates both the MTG Card Maker card and Joe Sharp card
 
-puts '🪄 Regenerating README cards...'
+class ReadmeCardGenerator
+  def initialize
+    @output_dir = 'images'
+    FileUtils.mkdir_p('tmp')
+    FileUtils.mkdir_p(@output_dir)
+  end
 
-# Create tmp directory if it doesn't exist
-FileUtils.mkdir_p('tmp')
+  def generate_all_cards
+    puts '🪄 Regenerating README cards...'
 
-# Generate MTG Card Maker card
-puts 'Generating MTG Card Maker card...'
-system(
-  'bin/mtg_card_maker generate_card ' \
-  '--name="MTG Card Maker" ' \
-  '--mana-cost=RRRRR ' \
-  '--type-line="Ruby - SVG - Shell" ' \
-  '--rules-text="⤵︎: Create a custom MTG card." ' \
-  '--flavor-text="Raw, untamed power and fiery creation, a testament to the passionate and dynamic nature of Ruby." ' \
-  '--power=7 ' \
-  '--toughness=12 ' \
-  '--border-color=silver ' \
-  '--color=red ' \
-  '--output=tmp/mtgcm_card.svg ' \
-  '--art=mtgcm.jpg'
-)
+    cards.each do |card|
+      generate_card(card)
+      convert_card_to_webp(card)
+      cleanup_card_png(card)
+      display_card_results(card)
+    end
+  end
 
-# Generate Joe Sharp card
-puts 'Generating Joe Sharp card...'
-rules_text =
-  'When Joe Sharp enters the battlefield, create a 1/1 Code token with ' \
-  '"This token can debug any program."\n\n' \
-  'Whenever you cast a Red spell, draw a card.'
-system(
-  'bin/mtg_card_maker generate_card ' \
-  '--name="Joe Sharp" ' \
-  '--mana-cost=2UR ' \
-  '--type-line="Engineer - Fullstack" ' \
-  "--rules-text='#{rules_text}' " \
-  '--flavor-text="\"I write code everyday.\" - Joe Sharp" ' \
-  '--power=3 ' \
-  '--toughness=3 ' \
-  '--border-color=gold ' \
-  '--color=blue ' \
-  '--output=tmp/joe-sharp_card.svg ' \
-  '--art=joe.jpg'
-)
+  private
 
-# Convert SVG files to PNG
-puts 'Converting SVG files to PNG...'
-system('rsvg-convert --keep-aspect-ratio --width=300 --dpi-x=300 --dpi-y=300 ' \
-       'tmp/mtgcm_card.svg -o images/mtgcm_card.png')
-system('rsvg-convert --keep-aspect-ratio --width=300 --dpi-x=300 --dpi-y=300 ' \
-       'tmp/joe-sharp_card.svg -o images/joe-sharp_card.png')
+  def cards
+    [
+      {
+        name: 'MTG Card Maker',
+        mana_cost: 'RRRRR',
+        type_line: 'Ruby - SVG - Shell',
+        rules_text: '⤵︎: Create a custom MTG card.',
+        flavor_text: 'Raw, untamed power and fiery creation, a testament to the passionate and dynamic nature of Ruby.',
+        power: 7,
+        toughness: 12,
+        border_color: 'silver',
+        color: 'red',
+        art: 'mtgcm.webp',
+        output_svg: File.join(@output_dir, 'mtgcm_card.svg'),
+        output_webp: File.join(@output_dir, 'mtgcm_card.webp'),
+        output_png: File.join(@output_dir, 'mtgcm_card.png')
+      },
+      {
+        name: 'Joe Sharp',
+        mana_cost: '2UR',
+        type_line: 'Engineer - Fullstack',
+        rules_text: 'When Joe Sharp enters the battlefield, ' \
+                    'create a 1/1 Code token with \"This token can debug any program.\"\n\n' \
+                    'Whenever you cast a Red spell, draw a card.',
+        flavor_text: '\"I write code everyday.\" - Joe Sharp',
+        power: 3,
+        toughness: 3,
+        border_color: 'gold',
+        color: 'blue',
+        art: 'joe.webp',
+        output_svg: File.join(@output_dir, 'joe-sharp_card.svg'),
+        output_webp: File.join(@output_dir, 'joe-sharp_card.webp'),
+        output_png: File.join(@output_dir, 'joe-sharp_card.png')
+      }
+    ]
+  end
 
-puts '✨ README cards regenerated successfully!'
-puts '📁 Generated files:'
-puts '  - tmp/mtgcm_card.svg'
-puts '  - tmp/joe-sharp_card.svg'
-puts '  - images/mtgcm_card.png'
-puts '  - images/joe-sharp_card.png'
+  def generate_card(card)
+    puts "Generating #{card[:name]} card..."
+
+    command = build_generate_command(card)
+    system(command)
+  end
+
+  def build_generate_command(card)
+    [
+      'bin/mtg_card_maker generate_card',
+      "--name=\"#{card[:name]}\"",
+      "--mana-cost=#{card[:mana_cost]}",
+      "--type-line=\"#{card[:type_line]}\"",
+      "--rules-text=\"#{card[:rules_text]}\"",
+      "--flavor-text=\"#{card[:flavor_text]}\"",
+      "--power=#{card[:power]}",
+      "--toughness=#{card[:toughness]}",
+      "--border-color=#{card[:border_color]}",
+      "--color=#{card[:color]}",
+      "--output=#{card[:output_svg]}",
+      "--art=#{card[:art]}"
+    ].join(' ')
+  end
+
+  def convert_card_to_webp(card)
+    puts "Converting #{card[:name]} SVG to temporary PNG..."
+    system("rsvg-convert --zoom=2 #{card[:output_svg]} -o #{card[:output_png]}")
+
+    puts "Converting #{card[:name]} PNG to WebP..."
+    system("cwebp #{card[:output_png]} -o #{card[:output_webp]}")
+  end
+
+  def cleanup_card_png(card)
+    puts "Removing #{card[:name]} temporary PNG file..."
+    FileUtils.rm_f(card[:output_png])
+  end
+
+  def display_card_results(card)
+    puts "✨ #{card[:name]} card completed!"
+    puts '📁 Generated files:'
+    puts "  - #{card[:output_svg]}"
+    puts "  - #{card[:output_webp]}"
+  end
+end
+
+# Run the generator
+ReadmeCardGenerator.new.generate_all_cards
