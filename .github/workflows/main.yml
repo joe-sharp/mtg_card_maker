@@ -72,7 +72,8 @@ jobs:
             # Remove common timestamp patterns and compare
             # Filter out lines that contain only timestamp-related changes
             FILTERED_DIFF=$(mktemp)
-            cat "$TEMP_DIFF" | grep -v -E "(generated|timestamp|date|time)" > "$FILTERED_DIFF" || true
+            cat "$TEMP_DIFF" | grep -iv -E "(generated|timestamp|date|time)" > \
+              "$FILTERED_DIFF" || true
 
             # Check if filtered diff has meaningful content
             if [ -s "$FILTERED_DIFF" ]; then
