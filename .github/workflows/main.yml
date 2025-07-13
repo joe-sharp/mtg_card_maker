@@ -77,6 +77,8 @@ jobs:
 
             # Check if filtered diff has meaningful content
             if [ -s "$FILTERED_DIFF" ]; then
+              echo "Filtered diff:"
+              cat "$FILTERED_DIFF"
               echo "has_changes=true" >> $GITHUB_OUTPUT
               echo "Meaningful documentation changes detected"
             else
