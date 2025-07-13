@@ -76,7 +76,7 @@
 <stop offset="50%" stop-color="#E8E8E8"/>
 <stop offset="100%" stop-color="#D4D4D4"/>
 </linearGradient>
-<linearGradient id="colorless_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<linearGradient id="colorless_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
 <stop offset="0%" stop-color="#F5F5F5"/>
 <stop offset="50%" stop-color="#E8E8E8"/>
 <stop offset="100%" stop-color="#D4D4D4"/>

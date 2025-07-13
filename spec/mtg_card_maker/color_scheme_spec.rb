@@ -24,9 +24,9 @@ RSpec.describe MtgCardMaker::ColorScheme do
 
     describe 'description gradient colors' do
       it 'returns correct description gradient colors', :aggregate_failures do
-        expect(colorless.description_gradient_start).to eq('#F5F5F5')
-        expect(colorless.description_gradient_middle).to eq('#E8E8E8')
-        expect(colorless.description_gradient_end).to eq('#D4D4D4')
+        expect(colorless.text_box_gradient_start).to eq('#F5F5F5')
+        expect(colorless.text_box_gradient_middle).to eq('#E8E8E8')
+        expect(colorless.text_box_gradient_end).to eq('#D4D4D4')
       end
     end
 
@@ -264,7 +264,7 @@ RSpec.describe MtgCardMaker::ColorScheme do
     it 'returns correct gradient color arrays', :aggregate_failures do
       expect(colorless.frame_gradient_colors).to eq(['#8B8B8B', '#6B6B6B', '#4A4A4A'])
       expect(colorless.name_gradient_colors).to eq(['#F5F5F5', '#E8E8E8', '#D4D4D4'])
-      expect(colorless.description_gradient_colors).to eq(['#F5F5F5', '#E8E8E8', '#D4D4D4'])
+      expect(colorless.text_box_gradient_colors).to eq(['#F5F5F5', '#E8E8E8', '#D4D4D4'])
       expect(colorless.card_gradient_colors).to eq(['#3D3D3D', '#111', '#1A1A1A'])
     end
 
@@ -272,7 +272,7 @@ RSpec.describe MtgCardMaker::ColorScheme do
       white = described_class.new(:white)
       expect(white.frame_gradient_colors).to eq(['#FFF9C4', '#F5F5F5', '#BDB76B'])
       expect(white.name_gradient_colors).to eq(['#FFFFFF', '#FFF9C4', '#E0E0E0'])
-      expect(white.description_gradient_colors).to eq(['#FFFFFF', '#F5F5F5', '#E0E0E0'])
+      expect(white.text_box_gradient_colors).to eq(['#FFFFFF', '#F5F5F5', '#E0E0E0'])
       expect(white.card_gradient_colors).to eq(['#D7CCC8', '#BCAAA4', '#8D6E63'])
     end
   end

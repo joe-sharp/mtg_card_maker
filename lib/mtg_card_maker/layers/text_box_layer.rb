@@ -31,7 +31,7 @@ module MtgCardMaker
       svg.g do
         # Text box background with mask for transparent window
         svg.rect x: x, y: y, width: width, height: height,
-                 fill: "url(##{SvgGradientService.description_gradient_id(color_scheme)})",
+                 fill: "url(##{SvgGradientService.text_box_gradient_id(color_scheme)})",
                  stroke: color_scheme.primary_color,
                  stroke_width: stroke_width
 

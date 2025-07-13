@@ -88,14 +88,14 @@ RSpec.describe MtgCardMaker::SvgGradientService do
       expect(described_class.card_gradient_id(colorless_scheme)).to eq('colorless_card_gradient')
       expect(described_class.frame_gradient_id(colorless_scheme)).to eq('colorless_frame_gradient')
       expect(described_class.name_gradient_id(colorless_scheme)).to eq('colorless_name_gradient')
-      expect(described_class.description_gradient_id(colorless_scheme)).to eq('colorless_description_gradient')
+      expect(described_class.text_box_gradient_id(colorless_scheme)).to eq('colorless_text_box_gradient')
     end
 
     it 'returns correct gradient IDs for gold scheme', :aggregate_failures do
       expect(described_class.card_gradient_id(gold_scheme)).to eq('gold_card_gradient')
       expect(described_class.frame_gradient_id(gold_scheme)).to eq('gold_frame_gradient')
       expect(described_class.name_gradient_id(gold_scheme)).to eq('gold_name_gradient')
-      expect(described_class.description_gradient_id(gold_scheme)).to eq('gold_description_gradient')
+      expect(described_class.text_box_gradient_id(gold_scheme)).to eq('gold_text_box_gradient')
     end
 
     it 'returns correct metallic gradient IDs for gold scheme', :aggregate_failures do

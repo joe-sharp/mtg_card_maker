@@ -1,9 +1,8 @@
 # MTG Card Maker
 
 <p align=center>
-  <img src="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/mtgcm_card.png"
-       srcset="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/mtgcm_card.png 1x, images/mtgcm_card.png 1x"
-       alt="An image of a red Magic: The Gathering card titled 'MTG Card Maker' with RRRRR mana cost, silver border, and power/toughness of 7/12"
+  <img src="images/mtgcm_card.webp"
+       alt="A card featuring artwork of a fiery dragon and anvil"
        width="300" />
 </p>
 
@@ -18,9 +17,9 @@ Please note this gem is in early beta, and should not be used in any production 
 - **Card Name**: Customizable card titles with optional font support
 - **Mana Cost**: Support for 0-9, X, and all MTG mana symbols (W, U, B, R, G, C), alternate icon sets coming soon!
 - **Type Line**: Customizable Card types and subtypes (Creature, Instant, Sorcery, etc.)
-- **Description**: Rules text with automatic word wrapping and formatting
+- **Rules Text**: Write your own rules with automatic word wrapping and formatting
 - **Flavor Text**: Optional italicized flavor text at the bottom of cards
-- **Power/Toughness**: For creature cards, customizable power and toughness values, frame hides when omitted
+- **Power/Toughness**: Customizable power and toughness values, frame hides when omitted
 
 **Visual Customization:**
 - **Color Schemes**: 8 built-in colors (white, blue, black, red, green, colorless, gold, artifact), split colors coming soon!
@@ -113,8 +112,8 @@ art: path/to/art.jpg        # Optional
 mtg_card_maker generate_card \
   --name="Lightning Bolt" \
   --mana-cost=R \
-  --type-text=Instant \
-  --description="Deal 3 damage to any target." \
+  --type-line=Instant \
+  --rules-text="Deal 3 damage to any target." \
   --color=red
 ```
 
@@ -123,8 +122,8 @@ mtg_card_maker generate_card \
 mtg_card_maker add_card deck.yml \
   --name="Counterspell" \
   --mana-cost="UU" \
-  --type-text="Instant" \
-  --description="Counter target spell." \
+  --type-line="Instant" \
+  --rules-text="Counter target spell." \
   --color="blue"
 ```
 *Shortcuts:*
@@ -156,9 +155,8 @@ mtg_card_maker generate_sprite deck.yml sprite_sheet.svg \
 
 <p>
 <img align=right
-     src="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/joe-sharp_card.png"
-     srcset="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/joe-sharp_card.png 1x, images/joe-sharp_card.png 1x"
-     alt="An image of custom Magic: The Gathering card featuring Joe Sharp, a 3/3 blue Engineer creature that costs 2UR and creates debugging tokens"
+     src="images/joe-sharp_card.webp"
+     alt="A card featuring artwork of a bearded man writing on a magical scroll with a feather pen"
      width="300" />
 </p>
 
@@ -168,8 +166,8 @@ mtg_card_maker generate_sprite deck.yml sprite_sheet.svg \
 mtg_card_maker generate_card \
   --name="Joe Sharp" \
   --mana-cost=2UR \
-  --type-text="Engineer - Fullstack" \
-  --description='When Joe Sharp enters the battlefield, create a 1/1 Code token with "This token can debug any program."\n\nWhenever you cast a Red spell, draw a card.' \
+  --type-line="Engineer - Fullstack" \
+  --rules-text='When Joe Sharp enters the battlefield, create a 1/1 Code token with "This token can debug any program."\n\nWhenever you cast a Red spell, draw a card.' \
   --flavor-text='"I write code everyday." - Joe Sharp' \
   --power=3 \
   --toughness=3 \
@@ -179,9 +177,9 @@ mtg_card_maker generate_card \
 
 **Add multiple cards to a YAML file:**
 ```bash
-mtg_card_maker add_card deck.yml --name="Lightning Bolt" --mana-cost="R" --type-text="Instant" --description="Deal 3 damage to any target." --color="red"
+mtg_card_maker add_card deck.yml --name="Lightning Bolt" --mana-cost="R" --type-line="Instant" --rules-text="Deal 3 damage to any target." --color="red"
 
-mtg_card_maker add_card deck.yml --name="Counterspell" --mana-cost="UU" --type-text="Instant" --description="Counter target spell." --color="blue"
+mtg_card_maker add_card deck.yml --name="Counterspell" --mana-cost="UU" --type-line="Instant" --rules-text="Counter target spell." --color="blue"
 ```
 
 **Generate a sprite sheet from YAML:**
