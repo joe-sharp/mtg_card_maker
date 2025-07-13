@@ -59,7 +59,7 @@ jobs:
           git add docs/
 
           # Check if there are any staged changes
-          if git diff -U0 --staged --quiet; then
+          if git diff --staged --quiet; then
             echo "has_changes=false" >> $GITHUB_OUTPUT
             echo "No documentation changes to commit"
           else
@@ -67,7 +67,7 @@ jobs:
             TEMP_DIFF=$(mktemp)
 
             # Get all staged changes and filter out timestamp-only changes
-            git diff --staged > "$TEMP_DIFF"
+            git diff -U0 --staged > "$TEMP_DIFF"
 
             # Remove common timestamp patterns and compare
             # Filter out lines that contain only timestamp-related changes
@@ -77,8 +77,6 @@ jobs:
 
             # Check if filtered diff has meaningful content
             if [ -s "$FILTERED_DIFF" ]; then
-              echo "Filtered diff:"
-              cat "$FILTERED_DIFF"
               echo "has_changes=true" >> $GITHUB_OUTPUT
               echo "Meaningful documentation changes detected"
             else
