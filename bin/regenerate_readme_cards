@@ -10,6 +10,7 @@ require 'fileutils'
 class ReadmeCardGenerator
   def initialize
     @output_dir = 'images'
+    @docs_dir = 'docs/images'
     FileUtils.mkdir_p('tmp')
     FileUtils.mkdir_p(@output_dir)
   end
@@ -20,6 +21,7 @@ class ReadmeCardGenerator
     cards.each do |card|
       generate_card(card)
       convert_card_to_webp(card)
+      copy_to_docs(card)
       cleanup_card_png(card)
       display_card_results(card)
     end
@@ -96,6 +98,11 @@ class ReadmeCardGenerator
     system("cwebp #{card[:output_png]} -o #{card[:output_webp]}")
   end
 
+  def copy_to_docs(card)
+    puts "Copying #{card[:name]} WebP to docs..."
+    FileUtils.cp(card[:output_webp], 'docs/images/')
+  end
+
   def cleanup_card_png(card)
     puts "Removing #{card[:name]} temporary PNG file..."
     FileUtils.rm_f(card[:output_png])
@@ -106,6 +113,7 @@ class ReadmeCardGenerator
     puts '📁 Generated files:'
     puts "  - #{card[:output_svg]}"
     puts "  - #{card[:output_webp]}"
+    puts "  - #{card[:output_webp].sub(@output_dir, @docs_dir)}\n\n"
   end
 end
 
