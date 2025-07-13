@@ -13,8 +13,8 @@ require 'victor'
 #   card = MtgCardMaker::BaseCard.new(
 #     name: "Lightning Bolt",
 #     mana_cost: "R",
-#     type: "Instant",
-#     description: "Lightning Bolt deals 3 damage to any target.",
+#     type_line: "Instant",
+#     rules_text: "Lightning Bolt deals 3 damage to any target.",
 #     color_scheme: :red
 #   )
 #   card.generate("lightning_bolt.svg")
