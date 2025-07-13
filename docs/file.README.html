@@ -60,9 +60,8 @@
       <div id="content"><div id='filecontents'>
 <h1 id="label-MTG+Card+Maker">MTG Card Maker</h1>
 <p align=center>
-  <img src="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/mtgcm_card.png"
-       srcset="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/mtgcm_card.png 1x, images/mtgcm_card.png 1x"
-       alt="An image of a red Magic: The Gathering card titled 'MTG Card Maker' with RRRRR mana cost, silver border, and power/toughness of 7/12"
+  <img src="images/mtgcm_card.webp"
+       alt="A card featuring artwork of a fiery dragon and anvil"
        width="300" />
 </p>
 <p>A Ruby gem for creating fan-made Magic: The Gathering cards. This tool allows you to generate custom MTG cards with proper formatting, mana costs, and card layouts. All you need to supply is the artwork image url/path, or simply overlay on top of an image of your choosing.</p>
@@ -73,7 +72,7 @@
 
 <h4 id="label-F0-9F-8E-A8+Card+Customization">🎨 Card Customization</h4>
 
-<p><strong>Core Card Properties:</strong> - <strong>Card Name</strong>: Customizable card titles with optional font support - <strong>Mana Cost</strong>: Support for 0-9, X, and all MTG mana symbols (W, U, B, R, G, C), alternate icon sets coming soon! - <strong>Type Line</strong>: Customizable Card types and subtypes (Creature, Instant, Sorcery, etc.) - <strong>Description</strong>: Rules text with automatic word wrapping and formatting - <strong>Flavor Text</strong>: Optional italicized flavor text at the bottom of cards - <strong>Power/Toughness</strong>: For creature cards, customizable power and toughness values, frame hides when omitted</p>
+<p><strong>Core Card Properties:</strong> - <strong>Card Name</strong>: Customizable card titles with optional font support - <strong>Mana Cost</strong>: Support for 0-9, X, and all MTG mana symbols (W, U, B, R, G, C), alternate icon sets coming soon! - <strong>Type Line</strong>: Customizable Card types and subtypes (Creature, Instant, Sorcery, etc.) - <strong>Rules Text</strong>: Write your own rules with automatic word wrapping and formatting - <strong>Flavor Text</strong>: Optional italicized flavor text at the bottom of cards - <strong>Power/Toughness</strong>: Customizable power and toughness values, frame hides when omitted</p>
 
 <p><strong>Visual Customization:</strong> - <strong>Color Schemes</strong>: 8 built-in colors (white, blue, black, red, green, colorless, gold, artifact), split colors coming soon! - <strong>Border Color</strong>: Customizable border colors (white, black, gold, silver) - <strong>Art Integration</strong>: Support for custom artwork via image URLs, or simply layer the svg over your art of choice</p>
 
@@ -145,8 +144,8 @@ art: path/to/art.jpg        # Optional
 <pre class="code ruby"><code class="ruby">mtg_card_maker generate_card \
   --name=&quot;Lightning Bolt&quot; \
   --mana-cost=R \
-  --type-text=Instant \
-  --description=&quot;Deal 3 damage to any target.&quot; \
+  --type-line=Instant \
+  --rules-text=&quot;Deal 3 damage to any target.&quot; \
   --color=red
 </code></pre>
 
@@ -155,8 +154,8 @@ art: path/to/art.jpg        # Optional
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> \
   <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counterspell</span><span class='tstring_end'>&quot;</span></span> \
   <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UU</span><span class='tstring_end'>&quot;</span></span> \
-  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> \
-  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_description'>description</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counter target spell.</span><span class='tstring_end'>&quot;</span></span> \
+  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_line'>line</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> \
+  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_rules'>rules</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counter target spell.</span><span class='tstring_end'>&quot;</span></span> \
   <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>blue</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
 
@@ -179,9 +178,8 @@ art: path/to/art.jpg        # Optional
 <h3 id="label-Examples">Examples</h3>
 <p>
 <img align=right
-     src="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/joe-sharp_card.png"
-     srcset="https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/ead6ce560f893ac463abd4ae49dd17f3d301868e/images/joe-sharp_card.png 1x, images/joe-sharp_card.png 1x"
-     alt="An image of custom Magic: The Gathering card featuring Joe Sharp, a 3/3 blue Engineer creature that costs 2UR and creates debugging tokens"
+     src="images/joe-sharp_card.webp"
+     alt="A card featuring artwork of a bearded man writing on a magical scroll with a feather pen"
      width="300" />
 </p>
 <p><strong>Generate a simple creature:</strong></p>
@@ -189,8 +187,8 @@ art: path/to/art.jpg        # Optional
 <pre class="code ruby"><code class="ruby">mtg_card_maker generate_card \
   --name=&quot;Joe Sharp&quot; \
   --mana-cost=2UR \
-  --type-text=&quot;Engineer - Fullstack&quot; \
-  --description=&#39;When Joe Sharp enters the battlefield, create a 1/1 Code token with &quot;This token can debug any program.&quot;\n\nWhenever you cast a Red spell, draw a card.&#39; \
+  --type-line=&quot;Engineer - Fullstack&quot; \
+  --rules-text=&#39;When Joe Sharp enters the battlefield, create a 1/1 Code token with &quot;This token can debug any program.&quot;\n\nWhenever you cast a Red spell, draw a card.&#39; \
   --flavor-text=&#39;&quot;I write code everyday.&quot; - Joe Sharp&#39; \
   --power=3 \
   --toughness=3 \
@@ -200,9 +198,9 @@ art: path/to/art.jpg        # Optional
 
 <p><strong>Add multiple cards to a YAML file:</strong></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lightning Bolt</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>R</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_description'>description</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Deal 3 damage to any target.</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>red</span><span class='tstring_end'>&quot;</span></span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lightning Bolt</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>R</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_line'>line</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_rules'>rules</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Deal 3 damage to any target.</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>red</span><span class='tstring_end'>&quot;</span></span>
 
-<span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counterspell</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UU</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_description'>description</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counter target spell.</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>blue</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counterspell</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UU</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_line'>line</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_rules'>rules</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counter target spell.</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>blue</span><span class='tstring_end'>&quot;</span></span>
 </code></pre>
 
 <p><strong>Generate a sprite sheet from YAML:</strong></p>
@@ -322,7 +320,7 @@ art: path/to/art.jpg        # Optional
 </div></div>
 
       <div id="footer">
-  Generated on Sun Jul 13 01:32:30 2025 by
+  Generated on Sun Jul 13 21:09:28 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.4).
 </div>
