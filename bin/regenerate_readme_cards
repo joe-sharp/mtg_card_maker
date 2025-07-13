@@ -6,6 +6,7 @@ require 'fileutils'
 # Script to regenerate the cards shown in the README
 # This script generates both the MTG Card Maker card and Joe Sharp card
 
+# Generates and converts README cards to SVG and WebP formats
 class ReadmeCardGenerator
   def initialize
     @output_dir = 'images'
