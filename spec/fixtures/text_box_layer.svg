@@ -76,7 +76,7 @@
 <stop offset="50%" stop-color="#E8E8E8"/>
 <stop offset="100%" stop-color="#D4D4D4"/>
 </linearGradient>
-<linearGradient id="colorless_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<linearGradient id="colorless_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
 <stop offset="0%" stop-color="#F5F5F5"/>
 <stop offset="50%" stop-color="#E8E8E8"/>
 <stop offset="100%" stop-color="#D4D4D4"/>
@@ -105,7 +105,7 @@
 </pattern>
 </defs>
 <g>
-<rect x="40" y="545" width="550" height="265" fill="url(#colorless_description_gradient)" stroke="#8B8B8B" stroke-width="2"/>
+<rect x="40" y="545" width="550" height="265" fill="url(#colorless_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
 <text x="55" y="575" fill="#111" font-size="24" class="card-description">
 MTG Card Maker is a tool for creating fan-made MTG
 </text>

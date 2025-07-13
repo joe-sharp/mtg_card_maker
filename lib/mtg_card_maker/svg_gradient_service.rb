@@ -29,8 +29,8 @@ module MtgCardMaker
       end
 
       # Get gradient ID for description gradient
-      def description_gradient_id(color_scheme)
-        "#{color_scheme.scheme_name}_description_gradient"
+      def text_box_gradient_id(color_scheme)
+        "#{color_scheme.scheme_name}_text_box_gradient"
       end
 
       # Get gradient ID for metallic highlight gradient
@@ -59,7 +59,7 @@ module MtgCardMaker
         define_card_gradient(svg, color_scheme, scheme_name)
         define_frame_gradient(svg, color_scheme, scheme_name)
         define_name_gradient(svg, color_scheme, scheme_name)
-        define_description_gradient(svg, color_scheme, scheme_name)
+        define_text_box_gradient(svg, color_scheme, scheme_name)
       end
 
       def define_card_gradient(svg, color_scheme, scheme_name)
@@ -86,11 +86,11 @@ module MtgCardMaker
         end
       end
 
-      def define_description_gradient(svg, color_scheme, scheme_name)
-        svg.linearGradient id: "#{scheme_name}_description_gradient", x1: '0%', y1: '0%', x2: '100%', y2: '100%' do
-          svg.stop offset: '0%', 'stop-color': color_scheme.description_gradient_start
-          svg.stop offset: '50%', 'stop-color': color_scheme.description_gradient_middle
-          svg.stop offset: '100%', 'stop-color': color_scheme.description_gradient_end
+      def define_text_box_gradient(svg, color_scheme, scheme_name)
+        svg.linearGradient id: "#{scheme_name}_text_box_gradient", x1: '0%', y1: '0%', x2: '100%', y2: '100%' do
+          svg.stop offset: '0%', 'stop-color': color_scheme.text_box_gradient_start
+          svg.stop offset: '50%', 'stop-color': color_scheme.text_box_gradient_middle
+          svg.stop offset: '100%', 'stop-color': color_scheme.text_box_gradient_end
         end
       end
 

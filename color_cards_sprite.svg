@@ -72,7 +72,7 @@
     <stop offset="50%" stop-color="#E8E8E8"/>
     <stop offset="100%" stop-color="#D4D4D4"/>
   </linearGradient>
-  <linearGradient id="colorless_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+  <linearGradient id="colorless_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#F5F5F5"/>
     <stop offset="50%" stop-color="#E8E8E8"/>
     <stop offset="100%" stop-color="#D4D4D4"/>
@@ -114,7 +114,7 @@
     <stop offset="50%" stop-color="#FFF9C4"/>
     <stop offset="100%" stop-color="#E0E0E0"/>
   </linearGradient>
-  <linearGradient id="white_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+  <linearGradient id="white_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#FFFFFF"/>
     <stop offset="50%" stop-color="#F5F5F5"/>
     <stop offset="100%" stop-color="#E0E0E0"/>
@@ -134,7 +134,7 @@
     <stop offset="50%" stop-color="#BBDEFB"/>
     <stop offset="100%" stop-color="#90CAF9"/>
   </linearGradient>
-  <linearGradient id="blue_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+  <linearGradient id="blue_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#F3F8FF"/>
     <stop offset="50%" stop-color="#E3F2FD"/>
     <stop offset="100%" stop-color="#BBDEFB"/>
@@ -154,7 +154,7 @@
     <stop offset="50%" stop-color="#BDBDBD"/>
     <stop offset="100%" stop-color="#9E9E9E"/>
   </linearGradient>
-  <linearGradient id="black_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+  <linearGradient id="black_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#F5F5F5"/>
     <stop offset="50%" stop-color="#E0E0E0"/>
     <stop offset="100%" stop-color="#BDBDBD"/>
@@ -174,7 +174,7 @@
     <stop offset="50%" stop-color="#FFCDD2"/>
     <stop offset="100%" stop-color="#EF9A9A"/>
   </linearGradient>
-  <linearGradient id="red_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+  <linearGradient id="red_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#FFEBEE"/>
     <stop offset="50%" stop-color="#FFCDD2"/>
     <stop offset="100%" stop-color="#EF9A9A"/>
@@ -194,7 +194,7 @@
     <stop offset="50%" stop-color="#C8E6C9"/>
     <stop offset="100%" stop-color="#A5D6A7"/>
   </linearGradient>
-  <linearGradient id="green_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+  <linearGradient id="green_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#F1F8E9"/>
     <stop offset="50%" stop-color="#E8F5E8"/>
     <stop offset="100%" stop-color="#C8E6C9"/>
@@ -214,7 +214,7 @@
     <stop offset="50%" stop-color="#E1C16E"/>
     <stop offset="100%" stop-color="#C9A13B"/>
   </linearGradient>
-  <linearGradient id="gold_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+  <linearGradient id="gold_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#FFF8DC"/>
     <stop offset="50%" stop-color="#FFE4B5"/>
     <stop offset="100%" stop-color="#FFDAB9"/>
@@ -256,7 +256,7 @@
     <stop offset="50%" stop-color="#DEB887"/>
     <stop offset="100%" stop-color="#CD853F"/>
   </linearGradient>
-  <linearGradient id="artifact_description_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+  <linearGradient id="artifact_text_box_gradient" x1="0%" y1="0%" x2="100%" y2="100%">
     <stop offset="0%" stop-color="#F5F5DC"/>
     <stop offset="50%" stop-color="#DEB887"/>
     <stop offset="100%" stop-color="#CD853F"/>
@@ -303,7 +303,7 @@ Enchantment - Aura
 </g>
 
 <g>
-<rect x="40" y="545" width="550" height="265" fill="url(#white_description_gradient)" stroke="#8B8B8B" stroke-width="2"/>
+<rect x="40" y="545" width="550" height="265" fill="url(#white_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
 <text x="55" y="575" fill="#111" font-size="24" class="card-description">
 Enchanted creature gets +1/+1 and has vigilance.
 </text>
@@ -361,7 +361,7 @@ Instant
 </g>
 
 <g>
-<rect x="40" y="545" width="550" height="265" fill="url(#blue_description_gradient)" stroke="#42A5F5" stroke-width="2"/>
+<rect x="40" y="545" width="550" height="265" fill="url(#blue_text_box_gradient)" stroke="#42A5F5" stroke-width="2"/>
 <text x="55" y="575" fill="#111" font-size="24" class="card-description">
 Counter target spell unless its controller pays
 </text>
@@ -417,7 +417,7 @@ Sorcery
 </g>
 
 <g>
-<rect x="40" y="545" width="550" height="265" fill="url(#black_description_gradient)" stroke="#424242" stroke-width="2"/>
+<rect x="40" y="545" width="550" height="265" fill="url(#black_text_box_gradient)" stroke="#424242" stroke-width="2"/>
 <text x="55" y="575" fill="#111" font-size="24" class="card-description">
 Destroy target creature. You lose life equal to
 </text>
@@ -472,7 +472,7 @@ Instant
 </g>
 
 <g>
-<rect x="40" y="545" width="550" height="265" fill="url(#red_description_gradient)" stroke="#F44336" stroke-width="2"/>
+<rect x="40" y="545" width="550" height="265" fill="url(#red_text_box_gradient)" stroke="#F44336" stroke-width="2"/>
 <text x="55" y="575" fill="#111" font-size="24" class="card-description">
 This spell deals X damage to any target. If a
 </text>
@@ -534,7 +534,7 @@ Creature - Elemental
 </g>
 
 <g>
-<rect x="40" y="545" width="550" height="265" fill="url(#green_description_gradient)" stroke="#4CAF50" stroke-width="2"/>
+<rect x="40" y="545" width="550" height="265" fill="url(#green_text_box_gradient)" stroke="#4CAF50" stroke-width="2"/>
 <text x="55" y="575" fill="#111" font-size="24" class="card-description">
 Trample. When this creature enters the battlefield,
 </text>
@@ -599,7 +599,7 @@ Artifact
 </g>
 
 <g>
-<rect x="40" y="545" width="550" height="265" fill="url(#colorless_description_gradient)" stroke="#8B8B8B" stroke-width="2"/>
+<rect x="40" y="545" width="550" height="265" fill="url(#colorless_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
 <text x="55" y="575" fill="#111" font-size="24" class="card-description">
 When this artifact enters the battlefield, create
 </text>
@@ -654,7 +654,7 @@ Artifact - Equipment
 </g>
 
 <g>
-<rect x="40" y="545" width="550" height="265" fill="url(#artifact_description_gradient)" stroke="#D2B48C" stroke-width="2"/>
+<rect x="40" y="545" width="550" height="265" fill="url(#artifact_text_box_gradient)" stroke="#D2B48C" stroke-width="2"/>
 <text x="55" y="575" fill="#111" font-size="24" class="card-description">
 Equipped creature gets +2/+2 and has first strike.
 </text>
@@ -716,7 +716,7 @@ Legendary Creature - Dragon
 </g>
 
 <g>
-<rect x="40" y="545" width="550" height="265" fill="url(#gold_description_gradient)" stroke="#FFD700" stroke-width="2"/>
+<rect x="40" y="545" width="550" height="265" fill="url(#gold_text_box_gradient)" stroke="#FFD700" stroke-width="2"/>
 <text x="55" y="575" fill="#111" font-size="24" class="card-description">
 Flying, trample, haste. When this creature enters
 </text>

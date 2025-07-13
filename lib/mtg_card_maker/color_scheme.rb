@@ -24,7 +24,7 @@ module MtgCardMaker
       colorless: {
         frame_gradient: ['#8B8B8B', '#6B6B6B', '#4A4A4A'],
         name_gradient: ['#F5F5F5', '#E8E8E8', '#D4D4D4'],
-        description_gradient: ['#F5F5F5', '#E8E8E8', '#D4D4D4'],
+        text_box_gradient: ['#F5F5F5', '#E8E8E8', '#D4D4D4'],
         card_gradient: ['#3D3D3D', '#111', '#1A1A1A'],
         primary: '#8B8B8B',
         background: '#E8E8E8',
@@ -37,7 +37,7 @@ module MtgCardMaker
       white: {
         frame_gradient: ['#FFF9C4', '#F5F5F5', '#BDB76B'],
         name_gradient: ['#FFFFFF', '#FFF9C4', '#E0E0E0'],
-        description_gradient: ['#FFFFFF', '#F5F5F5', '#E0E0E0'],
+        text_box_gradient: ['#FFFFFF', '#F5F5F5', '#E0E0E0'],
         card_gradient: ['#D7CCC8', '#BCAAA4', '#8D6E63'],
         primary: '#8B8B8B',
         background: '#FFFFFF',
@@ -47,7 +47,7 @@ module MtgCardMaker
       blue: {
         frame_gradient: ['#42A5F5', '#1565C0', '#263238'],
         name_gradient: ['#E3F2FD', '#BBDEFB', '#90CAF9'],
-        description_gradient: ['#F3F8FF', '#E3F2FD', '#BBDEFB'],
+        text_box_gradient: ['#F3F8FF', '#E3F2FD', '#BBDEFB'],
         card_gradient: ['#546E7A', '#37474F', '#263238'],
         primary: '#42A5F5',
         background: '#E3F2FD',
@@ -57,7 +57,7 @@ module MtgCardMaker
       black: {
         frame_gradient: ['#424242', '#212121', '#000'],
         name_gradient: ['#E0E0E0', '#BDBDBD', '#9E9E9E'],
-        description_gradient: ['#F5F5F5', '#E0E0E0', '#BDBDBD'],
+        text_box_gradient: ['#F5F5F5', '#E0E0E0', '#BDBDBD'],
         card_gradient: ['#424242', '#212121', '#000'],
         primary: '#424242',
         background: '#E0E0E0',
@@ -67,7 +67,7 @@ module MtgCardMaker
       red: {
         frame_gradient: ['#F44336', '#D32F2F', '#B71C1C'],
         name_gradient: ['#FFEBEE', '#FFCDD2', '#EF9A9A'],
-        description_gradient: ['#FFEBEE', '#FFCDD2', '#EF9A9A'],
+        text_box_gradient: ['#FFEBEE', '#FFCDD2', '#EF9A9A'],
         card_gradient: ['#8D6E63', '#6D4C41', '#4E342E'],
         primary: '#F44336',
         background: '#FFEBEE',
@@ -77,7 +77,7 @@ module MtgCardMaker
       green: {
         frame_gradient: ['#4CAF50', '#388E3C', '#2E7D32'],
         name_gradient: ['#E8F5E8', '#C8E6C9', '#A5D6A7'],
-        description_gradient: ['#F1F8E9', '#E8F5E8', '#C8E6C9'],
+        text_box_gradient: ['#F1F8E9', '#E8F5E8', '#C8E6C9'],
         card_gradient: ['#6D4C41', '#5D4037', '#4E342E'],
         primary: '#4CAF50',
         background: '#E8F5E8',
@@ -87,7 +87,7 @@ module MtgCardMaker
       gold: {
         frame_gradient: ['#FFD700', '#FFA500', '#FF8C00'],
         name_gradient: ['#F5DEB3', '#E1C16E', '#C9A13B'],
-        description_gradient: ['#FFF8DC', '#FFE4B5', '#FFDAB9'],
+        text_box_gradient: ['#FFF8DC', '#FFE4B5', '#FFDAB9'],
         card_gradient: ['#8B7355', '#6B4423', '#4A2C0A'],
         primary: '#FFD700',
         background: '#FFF8DC',
@@ -100,7 +100,7 @@ module MtgCardMaker
       artifact: {
         frame_gradient: ['#D2B48C', '#BC8F8F', '#A0522D'],
         name_gradient: ['#F5F5DC', '#DEB887', '#CD853F'],
-        description_gradient: ['#F5F5DC', '#DEB887', '#CD853F'],
+        text_box_gradient: ['#F5F5DC', '#DEB887', '#CD853F'],
         card_gradient: ['#8B7355', '#6B4423', '#4A2C0A'],
         primary: '#D2B48C',
         background: '#F5F5DC',
@@ -170,20 +170,20 @@ module MtgCardMaker
     end
 
     # Description gradient colors
-    def description_gradient_start
-      config[:description_gradient][0]
+    def text_box_gradient_start
+      config[:text_box_gradient][0]
     end
 
-    def description_gradient_middle
-      config[:description_gradient][1]
+    def text_box_gradient_middle
+      config[:text_box_gradient][1]
     end
 
-    def description_gradient_end
-      config[:description_gradient][2]
+    def text_box_gradient_end
+      config[:text_box_gradient][2]
     end
 
-    def description_gradient_colors
-      config[:description_gradient]
+    def text_box_gradient_colors
+      config[:text_box_gradient]
     end
 
     # Card gradient colors

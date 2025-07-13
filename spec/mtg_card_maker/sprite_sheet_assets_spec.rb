@@ -131,7 +131,7 @@ RSpec.describe MtgCardMaker::SpriteSheetAssets do
         end
 
         xml = builder.to_xml
-        expect(xml).to include('white_description_gradient')
+        expect(xml).to include('white_text_box_gradient')
         expect(xml).to include('stop-color')
         expect(xml).to include('offset')
       end

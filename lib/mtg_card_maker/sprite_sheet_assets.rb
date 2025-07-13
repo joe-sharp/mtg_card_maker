@@ -109,7 +109,7 @@ module MtgCardMaker
       when 'name'
         SvgGradientService.define_name_gradient(xml, color_scheme, scheme_name)
       when 'description'
-        SvgGradientService.define_description_gradient(xml, color_scheme, scheme_name)
+        SvgGradientService.define_text_box_gradient(xml, color_scheme, scheme_name)
       end
     end
 
