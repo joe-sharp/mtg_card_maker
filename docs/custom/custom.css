@@ -140,6 +140,7 @@ form.search input {
     /* 3. Revert (un-invert) the filter for specific elements */
     /* This ensures that images, videos, and iframes are not inverted. */
     img,
+    iframe,
     video,
     [style*="background-image"] {
 
