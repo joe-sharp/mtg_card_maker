@@ -53,7 +53,7 @@ jobs:
       - name: Generate YARD Documentation
         run: bundle exec yard doc
       - name: Copy CSS to docs
-        run: cp docs/custom/custom.css docs/css/style-custom.css
+        run: cp docs/custom/custom.css docs/css/custom.css
       - name: Check for Documentation Changes
         id: check-changes
         run: |
