@@ -20,7 +20,7 @@
   font-style: normal;
 }
 
-.card-description {
+.card-rules-text {
   font-family: serif;
   font-weight: normal;
   font-style: normal;
@@ -304,13 +304,13 @@ Enchantment - Aura
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#white_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<text x="55" y="575" fill="#111" font-size="24" class="card-rules-text">
 Enchanted creature gets +1/+1 and has vigilance.
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="603" fill="#111" font-size="24" class="card-rules-text">
 When this enchantment enters the battlefield, you
 </text>
-<text x="55" y="632" fill="#111" font-size="24" class="card-description">
+<text x="55" y="632" fill="#111" font-size="24" class="card-rules-text">
 gain 2 life.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#8B8B8B" stroke-width="1"/>
@@ -362,10 +362,10 @@ Instant
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#blue_text_box_gradient)" stroke="#42A5F5" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<text x="55" y="575" fill="#111" font-size="24" class="card-rules-text">
 Counter target spell unless its controller pays
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="603" fill="#111" font-size="24" class="card-rules-text">
 {1}. Draw a card.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#42A5F5" stroke-width="1"/>
@@ -418,10 +418,10 @@ Sorcery
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#black_text_box_gradient)" stroke="#424242" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<text x="55" y="575" fill="#111" font-size="24" class="card-rules-text">
 Destroy target creature. You lose life equal to
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="603" fill="#111" font-size="24" class="card-rules-text">
 that creature's toughness.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#424242" stroke-width="1"/>
@@ -473,13 +473,13 @@ Instant
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#red_text_box_gradient)" stroke="#F44336" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<text x="55" y="575" fill="#111" font-size="24" class="card-rules-text">
 This spell deals X damage to any target. If a
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="603" fill="#111" font-size="24" class="card-rules-text">
 creature dealt damage this way would die this turn,
 </text>
-<text x="55" y="632" fill="#111" font-size="24" class="card-description">
+<text x="55" y="632" fill="#111" font-size="24" class="card-rules-text">
 exile it instead.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#F44336" stroke-width="1"/>
@@ -535,13 +535,13 @@ Creature - Elemental
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#green_text_box_gradient)" stroke="#4CAF50" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<text x="55" y="575" fill="#111" font-size="24" class="card-rules-text">
 Trample. When this creature enters the battlefield,
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="603" fill="#111" font-size="24" class="card-rules-text">
 search your library for a land card and put it onto
 </text>
-<text x="55" y="632" fill="#111" font-size="24" class="card-description">
+<text x="55" y="632" fill="#111" font-size="24" class="card-rules-text">
 the battlefield tapped.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#4CAF50" stroke-width="1"/>
@@ -600,10 +600,10 @@ Artifact
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#colorless_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<text x="55" y="575" fill="#111" font-size="24" class="card-rules-text">
 When this artifact enters the battlefield, create
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="603" fill="#111" font-size="24" class="card-rules-text">
 two 1/1 colorless artifact creature tokens.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#8B8B8B" stroke-width="1"/>
@@ -655,10 +655,10 @@ Artifact - Equipment
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#artifact_text_box_gradient)" stroke="#D2B48C" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<text x="55" y="575" fill="#111" font-size="24" class="card-rules-text">
 Equipped creature gets +2/+2 and has first strike.
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="603" fill="#111" font-size="24" class="card-rules-text">
 Equip {2}.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#D2B48C" stroke-width="1"/>
@@ -717,10 +717,10 @@ Legendary Creature - Dragon
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#gold_text_box_gradient)" stroke="#FFD700" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<text x="55" y="575" fill="#111" font-size="24" class="card-rules-text">
 Flying, trample, haste. When this creature enters
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="603" fill="#111" font-size="24" class="card-rules-text">
 the battlefield, destroy all other creatures.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#FFD700" stroke-width="1"/>

@@ -10,13 +10,13 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
       'white' => {
         'name' => 'Test Card 1',
         'type_line' => 'Creature',
-        'description' => 'A test creature',
+        'rules_text' => 'A test creature',
         'color' => 'white'
       },
       'blue' => {
         'name' => 'Test Card 2',
         'type_line' => 'Instant',
-        'description' => 'A test instant',
+        'rules_text' => 'A test instant',
         'color' => 'blue'
       }
     }

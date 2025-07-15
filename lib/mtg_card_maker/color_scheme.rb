@@ -169,7 +169,7 @@ module MtgCardMaker
       config[:name_gradient]
     end
 
-    # Description gradient colors
+    # Text box gradient colors
     def text_box_gradient_start
       config[:text_box_gradient][0]
     end

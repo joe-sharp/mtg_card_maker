@@ -28,7 +28,7 @@ module MtgCardMaker
         "#{color_scheme.scheme_name}_name_gradient"
       end
 
-      # Get gradient ID for description gradient
+      # Get gradient ID for text box gradient
       def text_box_gradient_id(color_scheme)
         "#{color_scheme.scheme_name}_text_box_gradient"
       end

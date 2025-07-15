@@ -46,7 +46,7 @@ module MtgCardMaker
 
     def render_rules_text
       layer_config = LayerConfig.default
-      text_service = create_text_service(layer_config, rules_text, :description, :card_description)
+      text_service = create_text_service(layer_config, rules_text, :rules_text, :rules_text)
       render_text_lines(text_service)
     end
 
@@ -76,7 +76,7 @@ module MtgCardMaker
       if text_type == :flavor_text
         y + height - layer_config.positioning(:flavor_text)[:y_offset]
       else
-        layer_config.text_y_position(y, :description)
+        layer_config.text_y_position(y, :rules_text)
       end
     end
 

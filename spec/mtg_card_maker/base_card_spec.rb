@@ -34,7 +34,7 @@ RSpec.describe MtgCardMaker::BaseCard do
         name: 'Test Card',
         mana_cost: '2U',
         type_line: 'Instant',
-        rules_text: 'Test description',
+        rules_text: 'Test rules text',
         flavor_text: 'Test flavor text',
         power: '3',
         toughness: '3',
@@ -44,7 +44,7 @@ RSpec.describe MtgCardMaker::BaseCard do
       expect(card.name).to eq('Test Card')
       expect(card.mana_cost).to eq('2U')
       expect(card.type_line).to eq('Instant')
-      expect(card.rules_text).to eq('Test description')
+      expect(card.rules_text).to eq('Test rules text')
       expect(card.flavor_text).to eq('Test flavor text')
       expect(card.power).to eq('3')
       expect(card.toughness).to eq('3')
@@ -142,11 +142,11 @@ RSpec.describe MtgCardMaker::BaseCard do
       expect(type_area.type_line).to be_nil
       expect(type_area.color_scheme).to eq(card.color_scheme)
 
-      # Test description layer
-      description_layer = layers[5]
-      expect(description_layer).to be_a(MtgCardMaker::TextBoxLayer)
-      expect(description_layer.rules_text).to be_nil
-      expect(description_layer.color_scheme).to eq(card.color_scheme)
+      # Test text box layer
+      text_box_layer = layers[5]
+      expect(text_box_layer).to be_a(MtgCardMaker::TextBoxLayer)
+      expect(text_box_layer.rules_text).to be_nil
+      expect(text_box_layer.color_scheme).to eq(card.color_scheme)
 
       # Test power area layer
       power_area = layers[6]

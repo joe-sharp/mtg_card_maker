@@ -51,7 +51,7 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect(text_count).to be >= 1 # At least one text element
     end
 
-    it 'handles empty description text' do
+    it 'handles empty rules text' do
       empty_layer = described_class.new(dimensions: { x: 10, y: 10, width: 100, height: 50 }, rules_text: '')
 
       # Should still generate SVG structure even with empty text
@@ -146,7 +146,7 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       )
     end
 
-    it 'renders metallic description for Gold color scheme', :aggregate_failures do
+    it 'renders metallic rules text for Gold color scheme', :aggregate_failures do
       template = MtgCardMaker::Template.new(width: 200, height: 200)
       template.add_layer(layer)
       svg_content = template.to_svg
@@ -157,7 +157,7 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect(svg_content).to include('gold_metallic_pattern')
     end
 
-    it 'renders metallic description without flavor text', :aggregate_failures do
+    it 'renders metallic rules text without flavor text', :aggregate_failures do
       layer_no_flavor = described_class.new(
         dimensions: { x: 10, y: 10, width: 100, height: 100 },
         rules_text: rules_text,
@@ -173,7 +173,7 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect(svg_content).to include('gold_metallic_shadow_gradient')
       expect(svg_content).to include('gold_metallic_pattern')
 
-      # Check that description text is rendered
+      # Check that rules text is rendered
       expect_svg_to_have_text(template, 'Deal 3')
       expect_svg_to_have_text(template, 'damage')
       expect_svg_to_have_text(template, 'to any')
@@ -181,17 +181,17 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
 
       # Check that there are no flavor text lines (should be 0)
       line_count = svg_content.scan(%r{<text[^>]*>.*?</text>}m).count
-      expect(line_count).to eq(4) # Only description lines, no flavor text
+      expect(line_count).to eq(4) # Only rules text lines, no flavor text
     end
 
-    it 'renders metallic description with empty description text' do
+    it 'renders metallic rules text with empty rules text' do
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 100, height: 100 },
         rules_text: '',
         color_scheme: gold_color_scheme
       )
 
-      # Should still render metallic structure even with empty description
+      # Should still render metallic structure even with empty rules text
       expect_svg_to_contain(layer, 'gold_metallic_highlight_gradient')
       expect_svg_to_contain(layer, 'gold_metallic_pattern')
       expect_svg_to_contain(layer, 'gold_metallic_shadow_gradient')

@@ -39,7 +39,7 @@ module MtgCardMaker
               font-style: normal;
             }
 
-            .card-description {
+            .card-rules-text {
               font-family: serif;
               font-weight: normal;
               font-style: normal;
@@ -108,7 +108,7 @@ module MtgCardMaker
         SvgGradientService.define_frame_gradient(xml, color_scheme, scheme_name)
       when 'name'
         SvgGradientService.define_name_gradient(xml, color_scheme, scheme_name)
-      when 'description'
+      when 'text_box'
         SvgGradientService.define_text_box_gradient(xml, color_scheme, scheme_name)
       end
     end
