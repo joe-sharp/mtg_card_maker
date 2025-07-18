@@ -5,6 +5,7 @@
 guard :rubocop, cli: '--format progress --out tmp/rubocop_status.txt ',
                 all_on_start: true, all_after_pass: true do
   watch(/.+\.rb$/)
+  watch(/bin/)
   watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
 end
 
