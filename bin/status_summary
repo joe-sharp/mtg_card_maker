@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+QUIET = ENV.fetch('QUIET', false)
+SUPPRESS_OUTPUT = QUIET ? '> /dev/null 2>&1' : ''
+
 single_card = {
   name:        'MTG Card Maker',
   mana_cost:   '10RRGUBW',
@@ -18,17 +21,19 @@ def card_args(config)
   config.map { |key, value| "--#{key.to_s.tr('_', '-')}=\"#{value}\"" }.join(' ')
 end
 
-# Card and sprite diff
-system('bin/mtg_card_maker generate_sprite examples/color_cards.yml color_cards_sprite.svg')
-system("bin/mtg_card_maker generate_card #{card_args(single_card)}")
+# Card and sprite diff (suppress output)
+system("bin/mtg_card_maker generate_sprite examples/color_cards.yml color_cards_sprite.svg #{SUPPRESS_OUTPUT}")
+system("bin/mtg_card_maker generate_card #{card_args(single_card)} #{SUPPRESS_OUTPUT}")
 
 # Check for changes after generation is complete
 sprite_changed = !`git --no-pager diff color_cards_sprite.svg 2>/dev/null`.empty?
 card_changed = !`diff output_card.svg spec/fixtures/complete_card.svg 2>/dev/null`.empty?
 
 # Print warnings after all generation output is complete
-puts "\e[33m⚠️  Warning: sprite file has changed from HEAD!\e[0m" if sprite_changed
-puts "\e[33m⚠️  Warning: output file has changed from fixtures!\e[0m" if card_changed
+unless QUIET
+  warn "\e[33m⚠️  Warning: sprite file has changed from HEAD!\e[0m" if sprite_changed
+  warn "\e[33m⚠️  Warning: output file has changed from fixtures!\e[0m" if card_changed
+end
 
 # Read status files with defaults
 rubocop_status = File.exist?('tmp/rubocop_status.txt') ? File.read('tmp/rubocop_status.txt') : ''
