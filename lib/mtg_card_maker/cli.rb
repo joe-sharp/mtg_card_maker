@@ -183,8 +183,9 @@ module MtgCardMaker
     end
 
     def process_newlines(text)
+      processed_text = text.gsub('\\n\\n', "\n\u2028\n")
       # Convert literal \n to actual newlines
-      text.gsub('\\n', "\n")
+      processed_text.gsub('\\n', "\n")
     end
 
     def create_directory_and_load_config(yaml_file)

@@ -103,7 +103,8 @@ module MtgCardMaker
     end
 
     def text_to_lines
-      @text.to_s.split(/\r?\n/).flat_map do |line|
+      text = @text.to_s.gsub('\\t', "\u00A0\u00A0")
+      text.split(/\r?\n/).flat_map do |line|
         wrap_line(line)
       end.reject(&:empty?)
     end

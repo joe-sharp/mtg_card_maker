@@ -277,29 +277,26 @@ Ruby - SVG - Shell
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#colorless_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
 <text x="55" y="575" fill="#111" font-size="24" class="card-rules-text">
-MTG Card Maker is a tool for creating fan-made MTG
+MTG Card Maker is unofficial Fan Content permitted
 </text>
 <text x="55" y="603" fill="#111" font-size="24" class="card-rules-text">
-cards. MTG Card Maker is unofficial Fan Content
+under the Fan Content Policy. Not approved/endorsed
 </text>
 <text x="55" y="632" fill="#111" font-size="24" class="card-rules-text">
-permitted under the Fan Content Policy. Not
+by Wizards. Portions of the materials used are
 </text>
 <text x="55" y="661" fill="#111" font-size="24" class="card-rules-text">
-approved/endorsed by Wizards. Portions of the
+property of Wizards of the Coast.
 </text>
 <text x="55" y="690" fill="#111" font-size="24" class="card-rules-text">
-materials used are property of Wizards of the
-</text>
-<text x="55" y="719" fill="#111" font-size="24" class="card-rules-text">
-Coast. ©Wizards of the Coast LLC.
+©Wizards of the Coast LLC.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#8B8B8B" stroke-width="1"/>
 <text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-MTG Card Maker is a tool for creating fan-made MTG cards
+MTG Card Maker is a tool for creating fan-made MTG cards    -- Joe
 </text>
 <text x="55" y="786" fill="#111" font-size="18" class="card-flavor-text">
--- Joe Sharp
+Sharp
 </text>
 </g>
 <defs>
