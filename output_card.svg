@@ -292,11 +292,11 @@ property of Wizards of the Coast.
 ©Wizards of the Coast LLC.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#8B8B8B" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-MTG Card Maker is a tool for creating fan-made MTG cards    -- Joe
+<text x="55" y="765" fill="#111" font-size="24" class="card-flavor-text">
+MTG Card Maker is a tool for creating fan-made MTG
 </text>
-<text x="55" y="786" fill="#111" font-size="18" class="card-flavor-text">
-Sharp
+<text x="55" y="793" fill="#111" font-size="24" class="card-flavor-text">
+cards    -- Joe Sharp
 </text>
 </g>
 <defs>

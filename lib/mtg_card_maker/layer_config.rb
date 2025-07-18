@@ -30,7 +30,7 @@ module MtgCardMaker
         name: 32,
         type: 22,
         rules_text: 24,
-        flavor_text: 18,
+        flavor_text: 24,
         power_area: 28,
         copyright: 14
       },

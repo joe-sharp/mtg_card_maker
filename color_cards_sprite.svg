@@ -314,8 +314,11 @@ When this enchantment enters the battlefield, you
 gain 2 life.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#8B8B8B" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-The light of justice never fades, even in the darkest of times.
+<text x="55" y="765" fill="#111" font-size="24" class="card-flavor-text">
+The light of justice never fades, even in the
+</text>
+<text x="55" y="793" fill="#111" font-size="24" class="card-flavor-text">
+darkest of times.
 </text>
 </g>
 </g>
@@ -369,8 +372,11 @@ Counter target spell unless its controller pays
 {1}. Draw a card.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#42A5F5" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-Knowledge flows like water, finding its way through any barrier.
+<text x="55" y="765" fill="#111" font-size="24" class="card-flavor-text">
+Knowledge flows like water, finding its way through
+</text>
+<text x="55" y="793" fill="#111" font-size="24" class="card-flavor-text">
+any barrier.
 </text>
 </g>
 </g>
@@ -425,8 +431,11 @@ Destroy target creature. You lose life equal to
 that creature's toughness.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#424242" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-Death is not the end, but a transformation into something darker.
+<text x="55" y="765" fill="#111" font-size="24" class="card-flavor-text">
+Death is not the end, but a transformation into
+</text>
+<text x="55" y="793" fill="#111" font-size="24" class="card-flavor-text">
+something darker.
 </text>
 </g>
 </g>
@@ -483,7 +492,7 @@ creature dealt damage this way would die this turn,
 exile it instead.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#F44336" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
+<text x="55" y="765" fill="#111" font-size="24" class="card-flavor-text">
 Fire consumes all, leaving only ash and memory.
 </text>
 </g>
@@ -545,8 +554,11 @@ search your library for a land card and put it onto
 the battlefield tapped.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#4CAF50" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-Nature's strength flows through every leaf and branch.
+<text x="55" y="765" fill="#111" font-size="24" class="card-flavor-text">
+Nature's strength flows through every leaf and
+</text>
+<text x="55" y="793" fill="#111" font-size="24" class="card-flavor-text">
+branch.
 </text>
 </g>
 
@@ -607,7 +619,7 @@ When this artifact enters the battlefield, create
 two 1/1 colorless artifact creature tokens.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#8B8B8B" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
+<text x="55" y="765" fill="#111" font-size="24" class="card-flavor-text">
 Forged from the essence of the void itself.
 </text>
 </g>
@@ -662,8 +674,11 @@ Equipped creature gets +2/+2 and has first strike.
 Equip {2}.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#D2B48C" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-A blade that has tasted the blood of countless battles.
+<text x="55" y="765" fill="#111" font-size="24" class="card-flavor-text">
+A blade that has tasted the blood of countless
+</text>
+<text x="55" y="793" fill="#111" font-size="24" class="card-flavor-text">
+battles.
 </text>
 </g>
 </g>
@@ -724,8 +739,11 @@ Flying, trample, haste. When this creature enters
 the battlefield, destroy all other creatures.
 </text>
 <line x1="55" y1="740" x2="575" y2="740" stroke="#FFD700" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-The embodiment of all colors, a force beyond mortal comprehension.
+<text x="55" y="765" fill="#111" font-size="24" class="card-flavor-text">
+The embodiment of all colors, a force beyond mortal
+</text>
+<text x="55" y="793" fill="#111" font-size="24" class="card-flavor-text">
+comprehension.
 </text>
 </g>
 

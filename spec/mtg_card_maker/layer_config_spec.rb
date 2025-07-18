@@ -51,7 +51,7 @@ RSpec.describe MtgCardMaker::LayerConfig do
       expect(config.font_size(:name)).to eq(32)
       expect(config.font_size(:type)).to eq(22)
       expect(config.font_size(:rules_text)).to eq(24)
-      expect(config.font_size(:flavor_text)).to eq(18)
+      expect(config.font_size(:flavor_text)).to eq(24)
       expect(config.font_size(:power_area)).to eq(28)
       expect(config.font_size(:copyright)).to eq(14)
     end
