@@ -80,7 +80,7 @@ module MtgCardMaker
       config = config.transform_keys(&:to_sym)
       card = BaseCard.new(config)
       card.save(options[:output])
-      puts "✨ Generated #{options[:output]}! ✨"
+      logger.success("Generated #{options[:output]}!")
     end
 
     # @!method generate_sprite(yaml_file, output_file)
@@ -89,17 +89,9 @@ module MtgCardMaker
     option :cards_per_row, type: :numeric, default: 4, desc: 'Number of cards per row in sprite'
     option :spacing, type: :numeric, default: 30, desc: 'Spacing between cards in pixels'
     def generate_sprite(yaml_file, output_file)
-      validate_yaml_file(yaml_file)
-
-      begin
-        config = load_yaml_config(yaml_file)
-        sprite_service = create_sprite_service
-        process_sprite_generation(config, sprite_service, output_file)
-      rescue Psych::SyntaxError => e
-        handle_yaml_error(e)
-      rescue StandardError => e
-        handle_general_error(e)
-      end
+      config = validate_yaml(yaml_file)
+      sprite_service = create_sprite_service
+      process_sprite_generation(config, sprite_service, output_file)
     end
 
     # @!method add_card(yaml_file)
@@ -107,11 +99,8 @@ module MtgCardMaker
     desc 'add_card YAML_FILE [OPTIONS]', 'Add a new card configuration to YAML file'
     card_options.each { |option, config| option option, config }
     def add_card(yaml_file)
-      # Create directory if it doesn't exist
-      FileUtils.mkdir_p(File.dirname(yaml_file))
-
-      # Load existing config or create new one
-      config = File.exist?(yaml_file) ? YAML.safe_load_file(yaml_file) : {}
+      # Create directory and load/validate config
+      config = create_directory_and_load_config(yaml_file)
 
       # Generate a unique key for the card
       card_key = generate_card_key(options[:name], config)
@@ -124,47 +113,40 @@ module MtgCardMaker
 
       # Save back to file
       File.write(yaml_file, config.to_yaml)
-      puts "✨ Added card '#{options[:name]}' to #{yaml_file}! ✨"
-      puts "🎴 Key: #{card_key}"
+      logger.success("Added card '#{options[:name]}' to #{yaml_file}!")
+      logger.info("🎴 Key: #{card_key}")
     end
 
     private
 
-    def validate_yaml_file(yaml_file)
-      return if File.exist?(yaml_file)
-
-      warn "❌ YAML file not found: #{yaml_file}"
-      exit 1
+    def logger
+      @logger ||= MtgCardMaker::Logger.new
     end
 
     def process_sprite_generation(config, sprite_service, output_file)
       if sprite_service.create_sprite_sheet(config, output_file)
         display_success_message(config, sprite_service, output_file)
       else
-        warn '❌ Failed to generate sprite sheet'
+        logger.error('Failed to generate sprite sheet')
         exit 1
       end
     end
 
     def handle_yaml_error(error)
-      warn "❌ Invalid YAML syntax: #{error.message}"
+      logger.error("Invalid YAML syntax: #{error.message}")
       exit 1
     end
 
     def handle_general_error(error)
-      warn "💥 Error: #{error.message}"
+      logger.error(error.message)
       exit 1
     end
 
     def display_success_message(config, sprite_service, output_file)
-      puts "✨ Generated #{output_file}! ✨"
+      logger.success("Generated #{output_file}!")
       width, height = sprite_service.sprite_dimensions(config.length)
-      puts "📏 Sprite dimensions: #{width}x#{height} pixels"
-      puts "🎨 Contains #{config.length} cards"
-    end
-
-    def load_yaml_config(yaml_file)
-      YAML.safe_load_file(yaml_file)
+      logger.info("📏 Sprite dimensions: #{width}x#{height} pixels")
+      logger.info("🎨 Contains #{config.length} cards")
     end
 
     def create_sprite_service
@@ -205,13 +187,33 @@ module MtgCardMaker
       text.gsub('\\n', "\n")
     end
 
-    def generate_card_key(name, existing_config)
+    def create_directory_and_load_config(yaml_file)
+      # Create directory if it doesn't exist
+      FileUtils.mkdir_p(File.dirname(yaml_file))
+
+      # Load and validate config
+      validate_yaml(yaml_file)
+    end
+
+    def validate_yaml(yaml_file)
+      return {} unless File.exist?(yaml_file)
+
+      YAML.safe_load_file(yaml_file) || {}
+    rescue Psych::SyntaxError => e
+      logger.error("Invalid YAML syntax: #{e.message}")
+      exit 1
+    rescue StandardError => e
+      logger.error("Error reading YAML file: #{e.message}")
+      exit 1
+    end
+
+    def generate_card_key(name, config)
       base_key = name.downcase.gsub(/[^a-z0-9]/, '_').squeeze('_').chomp('_')
 
       # If key already exists, append a number
-      if existing_config.key?(base_key)
+      if config.key?(base_key)
         counter = 1
-        counter += 1 while existing_config.key?("#{base_key}_#{counter}")
+        counter += 1 while config.key?("#{base_key}_#{counter}")
         "#{base_key}_#{counter}"
       else
         base_key

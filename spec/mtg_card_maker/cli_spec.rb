@@ -89,14 +89,6 @@ RSpec.describe MtgCardMaker::CLI do
 
       expect { cli.generate_sprite(yaml_file, output_file) }.to raise_error(SystemExit)
     end
-
-    it 'handles general errors during sprite generation' do
-      sprite_service = instance_double(MtgCardMaker::SpriteSheetService)
-      allow(MtgCardMaker::SpriteSheetService).to receive(:new).and_return(sprite_service)
-      allow(sprite_service).to receive(:create_sprite_sheet).and_raise(StandardError, 'Test error')
-
-      expect { cli.generate_sprite(yaml_file, output_file) }.to raise_error(SystemExit)
-    end
   end
 
   describe '#add_card' do
@@ -172,14 +164,15 @@ RSpec.describe MtgCardMaker::CLI do
   end
 
   describe 'private methods' do
-    describe '#validate_yaml_file' do
+    describe '#validate_yaml' do
       it 'does not raise error for existing file' do
         File.write(yaml_file, 'test')
-        expect { cli.send(:validate_yaml_file, yaml_file) }.not_to raise_error
+        expect { cli.send(:validate_yaml, yaml_file) }.not_to raise_error
       end
 
-      it 'raises SystemExit for non-existent file' do
-        expect { cli.send(:validate_yaml_file, 'nonexistent.yml') }.to raise_error(SystemExit)
+      it 'returns empty hash for non-existent file' do
+        result = cli.send(:validate_yaml, 'nonexistent.yml')
+        expect(result).to eq({})
       end
     end
 

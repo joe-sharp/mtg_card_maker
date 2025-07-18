@@ -156,13 +156,19 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
         files
       end
 
-      it 'prints warning to stderr during cleanup error' do
+      it 'logs warning during cleanup error' do
         card_files.each do |file|
           allow(file).to receive(:unlink).and_raise(StandardError, 'Cleanup error')
         end
-        expect do
-          service.send(:cleanup_temp_files, card_files)
-        end.to output(/Warning: Could not clean up temp file .*: Cleanup error/).to_stderr
+
+        # Allow the logger to receive calls and verify after
+        allow(service.send(:logger)).to receive(:warn)
+
+        service.send(:cleanup_temp_files, card_files)
+
+        # Verify the logger received the warn calls
+        expect(service.send(:logger)).to have_received(:warn)
+          .with(/Could not clean up temp file .*: Cleanup error/).twice
       end
     end
   end
