@@ -122,6 +122,7 @@ module MtgCardMaker
   require_relative 'mtg_card_maker/sprite_sheet_assets'
   require_relative 'mtg_card_maker/sprite_sheet_builder'
   require_relative 'mtg_card_maker/sprite_sheet_service'
+  require_relative 'mtg_card_maker/logger'
   require_relative 'mtg_card_maker/layers/border_layer'
   require_relative 'mtg_card_maker/layers/frame_layer'
   require_relative 'mtg_card_maker/layers/name_layer'

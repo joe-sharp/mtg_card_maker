@@ -35,4 +35,16 @@ RSpec.configure do |config|
   # Include SVG fixture helper methods
   config.include SVGFixtureHelper
   config.include SVGFixtureExpectations
+
+  # Suppress logger output during tests by setting logger level to none
+  config.before do
+    # Create a null logger that discards all output
+    null_logger = MtgCardMaker::Logger.new(output_stream: File::NULL, error_stream: File::NULL)
+    allow(MtgCardMaker::Logger).to receive(:new).and_return(null_logger)
+  end
+
+  # Don't mock the logger in logger specs
+  config.before(:each, :logger_spec) do
+    allow(MtgCardMaker::Logger).to receive(:new).and_call_original
+  end
 end

@@ -63,6 +63,10 @@ module MtgCardMaker
 
     private
 
+    def logger
+      @logger ||= MtgCardMaker::Logger.new
+    end
+
     def generate_individual_cards(card_configs)
       card_files = []
 
@@ -119,7 +123,7 @@ module MtgCardMaker
         file.close
         file.unlink
       rescue StandardError => e
-        warn "Warning: Could not clean up temp file #{file.path}: #{e.message}"
+        logger.warn("Could not clean up temp file #{file.path}: #{e.message}")
       end
     end
   end
