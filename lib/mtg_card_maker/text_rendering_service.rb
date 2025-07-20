@@ -103,6 +103,7 @@ module MtgCardMaker
     end
 
     def text_to_lines
+      # Convert user-friendly tabs to SVG/HTML friendly non-breaking spaces
       text = @text.to_s.gsub('\\t', "\u00A0\u00A0")
       text.split(/\r?\n/).flat_map do |line|
         wrap_line(line)

@@ -141,7 +141,7 @@ module MtgCardMaker
     def calculate_rules_start_position(rules_lines, line_height)
       total_text_height = rules_lines.length * line_height
       center_y = y + (height / 2.0) + (line_height / 2.0)
-      center_y += (line_height / 3.0) if rules_lines.length == 9
+      center_y += (line_height / 3.0) if rules_lines.length == MAX_RULES_LINES
 
       center_y - (total_text_height / 2.0)
     end
