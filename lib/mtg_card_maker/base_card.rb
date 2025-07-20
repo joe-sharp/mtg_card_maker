@@ -123,6 +123,7 @@ module MtgCardMaker
     # @option config [String] :art the URL or path for card artwork
     def initialize(config)
       assign_attributes(config)
+      validate_required_fields
       @template = Template.new
       add_layers
     end
@@ -183,6 +184,15 @@ module MtgCardMaker
       @border_color = config[:border_color]
       @color_scheme = use_color_scheme(config[:color])
       @art = config[:art]
+    end
+
+    def validate_required_fields
+      required_fields = %i[name type_line rules_text]
+      missing_fields = required_fields.select { |field| send(field).nil? || send(field).to_s.strip.empty? }
+
+      return if missing_fields.empty?
+
+      raise ArgumentError, "Missing required fields: #{missing_fields.join(', ')}"
     end
 
     def define_art_window_mask

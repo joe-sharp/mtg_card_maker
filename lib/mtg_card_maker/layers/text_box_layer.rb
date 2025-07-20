@@ -75,7 +75,7 @@ module MtgCardMaker
       render_separator(separator_y)
 
       # Render rules text flowing upward from separator
-      render_rules_text_upward(rules_lines, separator_y, layer_config) if rules_lines.any?
+      render_rules_text_upward(rules_lines, separator_y, layer_config)
 
       # Render flavor text flowing downward from separator
       return unless flavor_lines.any?
