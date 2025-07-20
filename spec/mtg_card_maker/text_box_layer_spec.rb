@@ -21,11 +21,12 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
   it 'matches expected fixture output' do
     fixture_layer = described_class.new(
       dimensions: { x: 40, y: 545, width: 550, height: 265 },
-      rules_text: 'MTG Card Maker is a tool for creating fan-made MTG cards. ' \
-                  'MTG Card Maker is unofficial Fan Content permitted under the Fan Content Policy. ' \
-                  'Not approved/endorsed by Wizards. Portions of the materials used are property of ' \
-                  'Wizards of the Coast. ©Wizards of the Coast LLC.',
-      flavor_text: "MTG Card Maker is a tool for creating fan-made MTG cards\n -- Joe Sharp"
+      rules_text: 'MTG Card Maker is unofficial Fan Content permitted ' \
+                  'under the Fan Content Policy. Not approved/endorsed ' \
+                  'by Wizards. Portions of the materials used are ' \
+                  "property of Wizards of the Coast.\n" \
+                  '©Wizards of the Coast LLC.',
+      flavor_text: 'MTG Card Maker is a tool for creating fan-made MTG cards\t\t-- Joe Sharp'
     )
     expect_svg_to_match_fixture(fixture_layer, 'text_box_layer')
   end
