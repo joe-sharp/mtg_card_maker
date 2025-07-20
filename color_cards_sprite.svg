@@ -367,10 +367,13 @@ Instant
 <rect x="40" y="545" width="550" height="265" fill="url(#blue_text_box_gradient)" stroke="#42A5F5" stroke-width="2"/>
 <line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#42A5F5" stroke-width="1"/>
 <text x="55" y="663.1" fill="#111" font-size="24" class="card-rules-text">
-{1}. Draw a card.
+Draw a card.
 </text>
 <text x="55" y="634.3" fill="#111" font-size="24" class="card-rules-text">
-Counter target spell unless its controller pays
+
+</text>
+<text x="55" y="605.5" fill="#111" font-size="24" class="card-rules-text">
+Counter target spell unless its controller pays {1}
 </text>
 <text x="55" y="706.3" fill="#111" font-size="24" class="card-flavor-text">
 Knowledge flows like water, finding its way through

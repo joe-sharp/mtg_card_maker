@@ -183,10 +183,8 @@ module MtgCardMaker
     end
 
     def process_newlines(text)
-      # Allow users to use \n\n for line breaks, but convert to \n\u2028\n for SVG compatibility
-      processed_text = text.gsub('\\n\\n', "\n\u2028\n")
       # Convert literal \n to actual newlines
-      processed_text.gsub('\\n', "\n")
+      text.gsub('\\n', "\n")
     end
 
     def create_directory_and_load_config(yaml_file)

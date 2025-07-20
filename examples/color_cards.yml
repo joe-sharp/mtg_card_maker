@@ -13,7 +13,7 @@ blue:
   name: "Blue"
   mana_cost: "UR"
   type_line: "Instant"
-  rules_text: "Counter target spell unless its controller pays {1}. Draw a card."
+  rules_text: "Counter target spell unless its controller pays {1} \n\nDraw a card."
   flavor_text: "Knowledge flows like water, finding its way through any barrier."
   border_color: black
   color: blue

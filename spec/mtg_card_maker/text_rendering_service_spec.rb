@@ -112,14 +112,16 @@ RSpec.describe MtgCardMaker::TextRenderingService do
         available_width: 100
       )
       result = text_service.wrapped_text_lines
-      expect(result.length).to eq(2)
+      expect(result.length).to eq(4) # Line 1, empty, empty, Line 2
       expect(result[0][0]).to eq('Line 1')
-      expect(result[1][0]).to eq('Line 2')
+      expect(result[1][0]).to eq('')
+      expect(result[2][0]).to eq('')
+      expect(result[3][0]).to eq('Line 2')
     end
 
     it 'handles single word that does not wrap', :aggregate_failures do
       layer_config = MtgCardMaker::LayerConfig.default
-      very_long_word = 'Supercalifragilisticexpialidocious'
+      very_long_word = 'Abracadabra-Alakazam-Expelliarmus-Stupefy'
       text_service = described_class.new(
         text: very_long_word,
         layer_config: layer_config,

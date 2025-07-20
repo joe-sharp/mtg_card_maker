@@ -107,7 +107,7 @@ module MtgCardMaker
       text = @text.to_s.gsub('\\t', "\u00A0\u00A0")
       text.split(/\r?\n/).flat_map do |line|
         wrap_line(line)
-      end.reject(&:empty?)
+      end
     end
 
     def build_text_attributes(lines)
@@ -148,7 +148,8 @@ module MtgCardMaker
       if test.length * char_width <= @available_width
         [test, nil]
       else
-        [word, current]
+        # Only return current if it's not empty
+        [word, current.empty? ? nil : current]
       end
     end
 

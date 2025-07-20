@@ -99,7 +99,7 @@ module FixtureGenerator
       rules_text: 'MTG Card Maker is unofficial Fan Content permitted ' \
                   'under the Fan Content Policy. Not approved/endorsed ' \
                   'by Wizards. Portions of the materials used are ' \
-                  "property of Wizards of the Coast.\n" \
+                  "property of Wizards of the Coast.\n\n" \
                   '©Wizards of the Coast LLC.',
       flavor_text: 'MTG Card Maker is a tool for creating fan-made MTG cards\t\t-- Joe Sharp'
     )
@@ -132,7 +132,7 @@ module FixtureGenerator
       rules_text: 'MTG Card Maker is unofficial Fan Content permitted ' \
                   'under the Fan Content Policy. Not approved/endorsed ' \
                   'by Wizards. Portions of the materials used are ' \
-                  "property of Wizards of the Coast.\n" \
+                  "property of Wizards of the Coast.\n\n" \
                   '©Wizards of the Coast LLC.',
       flavor_text: 'MTG Card Maker is a tool for creating fan-made MTG cards\t\t-- Joe Sharp',
       power: '9999',

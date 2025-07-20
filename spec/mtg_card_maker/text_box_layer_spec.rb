@@ -24,7 +24,7 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       rules_text: 'MTG Card Maker is unofficial Fan Content permitted ' \
                   'under the Fan Content Policy. Not approved/endorsed ' \
                   'by Wizards. Portions of the materials used are ' \
-                  "property of Wizards of the Coast.\n" \
+                  "property of Wizards of the Coast.\n\n" \
                   '©Wizards of the Coast LLC.',
       flavor_text: 'MTG Card Maker is a tool for creating fan-made MTG cards\t\t-- Joe Sharp'
     )
@@ -86,12 +86,12 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
 
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
       text_count = svg_content.scan('<text').length
-      expect(text_count).to eq(2) # Should only have 2 text elements (empty line skipped)
+      expect(text_count).to eq(3) # Should have 3 text elements (word1, empty line, word2)
     end
 
     it 'handles single word that starts a new line' do
       # This tests the current_line.empty? ? word branch in append_word_to_line
-      very_long_word = 'supercalifragilisticexpialidocious'
+      very_long_word = 'Abracadabra-Alakazam-Expelliarmus-Stupefy'
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 80, height: 100 }, # Very narrow width
         rules_text: very_long_word
