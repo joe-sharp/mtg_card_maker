@@ -3,7 +3,7 @@
 module MtgCardMaker
   # Simplified gradient definitions for SVG cards
   # Removes complex abstraction in favor of direct gradient creation
-  class SvgGradientService # rubocop:disable Metrics/ClassLength
+  class SvgGradientService
     class << self
       # Defines all gradients needed for a color scheme
       def define_all_gradients(svg, color_scheme = DEFAULT_COLOR_SCHEME)

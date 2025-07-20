@@ -17,7 +17,7 @@ module MtgCardMaker
   #   colorless_scheme = MtgCardMaker::ColorScheme.colorless
   #
   # @since 0.1.0
-  class ColorScheme # rubocop:disable Metrics/ClassLength
+  class ColorScheme
     # Predefined color schemes for all MTG colors and card types
     # @return [Hash] the predefined color scheme configurations
     SCHEMES = {
@@ -295,11 +295,6 @@ module MtgCardMaker
     # @return [ColorScheme] an artifact color scheme
     def self.artifact
       new(:artifact)
-    end
-
-    # @return [ColorScheme] a silver color scheme
-    def self.silver
-      new(:silver)
     end
   end
 end
