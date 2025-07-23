@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module MtgCardMaker
+  UNICODE_SPACES = "\u00A0\u00A0"
   # Minimal text rendering service with basic word wrapping for SVG.
   # This service handles text layout, wrapping, and attribute generation
   # for SVG text elements with configurable font sizes, colors, and spacing.
@@ -104,7 +105,7 @@ module MtgCardMaker
 
     def text_to_lines
       # Convert user-friendly tabs to SVG/HTML friendly non-breaking spaces
-      text = @text.to_s.gsub('\\t', "\u00A0\u00A0")
+      text = @text.to_s.gsub('\\t', UNICODE_SPACES)
       text.split(/\r?\n/).flat_map do |line|
         wrap_line(line)
       end
