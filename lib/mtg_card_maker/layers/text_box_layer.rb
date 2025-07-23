@@ -10,7 +10,8 @@ module MtgCardMaker
     # Text limits for different scenarios
     MAX_RULES_LINES = 9
     MAX_FLAVOR_LINES = 7 # Two less because one line of rules is required, plus the separator
-    BASE_RULES_LINES = 4
+    # The number of lines of rules text that fit above the separator
+    BASE_RULES_LINES = (MAX_RULES_LINES / 2).floor
 
     def initialize(dimensions:, rules_text:, flavor_text: nil, color: nil, color_scheme: DEFAULT_COLOR_SCHEME)
       frame_color = initialize_layer_color(color, color_scheme, :background_color)
@@ -110,12 +111,16 @@ module MtgCardMaker
       )
     end
 
+    # Separator is centered unless rules text won't fit
     def calculate_separator_position
+      # Vertical center of the text box
       base_separator_y = y + (height / 2.0)
+      # Determine how many lines to nudge the separator down
       rules_lines = calculate_rules_lines
       extra_lines = [rules_lines.length - BASE_RULES_LINES, 0].max
-      line_height = calculate_line_height(:rules_text)
 
+      line_height = calculate_line_height(:rules_text)
+      # Nudge the separator down by the number of extra lines
       base_separator_y + (extra_lines * line_height)
     end
 
@@ -141,6 +146,7 @@ module MtgCardMaker
     def calculate_rules_start_position(rules_lines, line_height)
       total_text_height = rules_lines.length * line_height
       center_y = y + (height / 2.0) + (line_height / 2.0)
+      # HACK: center text when the max number of lines is reached
       center_y += (line_height / 3.0) if rules_lines.length == MAX_RULES_LINES
 
       center_y - (total_text_height / 2.0)
