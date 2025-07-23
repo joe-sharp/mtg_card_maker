@@ -86,7 +86,7 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
 
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
       text_count = svg_content.scan('<text').length
-      expect(text_count).to eq(2) # Should have 3 text elements (word1, empty line, word2)
+      expect(text_count).to eq(2) # Should have 2 text elements; empty lines are not represented as text elements)
     end
 
     it 'handles single word that starts a new line' do
