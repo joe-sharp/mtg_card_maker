@@ -191,13 +191,11 @@ module MtgCardMaker
 
     # Set the content and type for a specific line (0-8)
     def set_line(line_number, text: nil, type: :rules_text)
-      validate_line_number(line_number)
       @lines[line_number] = { text: text, type: type }
     end
 
     # Get the content, type, and y position for a specific line (0-8)
     def get_line(line_number)
-      validate_line_number(line_number)
       line_data = @lines[line_number]
       {
         text: line_data[:text],
@@ -230,12 +228,6 @@ module MtgCardMaker
     end
 
     private
-
-    def validate_line_number(line_number)
-      return if line_number.between?(0, 8)
-
-      raise ArgumentError, "Line number must be between 0 and 8, got #{line_number}"
-    end
 
     def calculate_line_positions
       # Calculate MAX_RULES_LINES equally distributed vertical positions within the text box
