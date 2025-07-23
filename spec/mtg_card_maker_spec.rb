@@ -178,10 +178,10 @@ RSpec.describe MtgCardMaker do
         name: 'MTG Card Maker',
         mana_cost: '10RRGUBW',
         type_line: 'Ruby - SVG - Shell',
-        description: 'MTG Card Maker is a tool for creating fan-made MTG cards. ' \
-                     'MTG Card Maker is unofficial Fan Content permitted under the Fan Content Policy. ' \
-                     'Not approved/endorsed by Wizards. Portions of the materials used are property of ' \
-                     'Wizards of the Coast. ©Wizards of the Coast LLC.',
+        rules_text: 'MTG Card Maker is a tool for creating fan-made MTG cards. ' \
+                    'MTG Card Maker is unofficial Fan Content permitted under the Fan Content Policy. ' \
+                    'Not approved/endorsed by Wizards. Portions of the materials used are property of ' \
+                    'Wizards of the Coast. ©Wizards of the Coast LLC.',
         flavor_text: "MTG Card Maker is a tool for creating fan-made MTG cards\n -- Joe Sharp",
         power: '9999',
         toughness: '9999'
@@ -192,7 +192,7 @@ RSpec.describe MtgCardMaker do
       # Test that the complete card contains all expected elements
       expect_svg_to_contain(basic_card, 'MTG Card Maker')
       expect_svg_to_contain(basic_card, 'Ruby - SVG - Shell')
-      expect_svg_to_contain(basic_card, 'MTG Card Maker is a tool for creating fan-made MTG cards')
+      expect_svg_to_contain(basic_card, 'MTG Card Maker is a tool for creating fan-made MTG')
       expect_svg_to_contain(basic_card, '9999/9999')
       expect_svg_to_contain(basic_card, '© 2025 Joe Sharp')
       expect_svg_to_contain(basic_card, 'Wizards of the Coast')

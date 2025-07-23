@@ -76,7 +76,7 @@ module MtgCardMaker
         y: layer_config.text_y_position(y, :type_area, height),
         font_size: layer_config.font_size(:type),
         available_width: layer_config.text_width(width, :type_area),
-        css_class: layer_config.css_class(:card_type)
+        css_class: layer_config.css_class(:type_line)
       )
       text_service.wrapped_text_lines.each do |line, attrs|
         svg.text line, attrs

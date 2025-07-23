@@ -22,8 +22,8 @@ RSpec.describe MtgCardMaker::ColorScheme do
       end
     end
 
-    describe 'description gradient colors' do
-      it 'returns correct description gradient colors', :aggregate_failures do
+    describe 'text box gradient colors' do
+      it 'returns correct text box gradient colors', :aggregate_failures do
         expect(colorless.text_box_gradient_start).to eq('#F5F5F5')
         expect(colorless.text_box_gradient_middle).to eq('#E8E8E8')
         expect(colorless.text_box_gradient_end).to eq('#D4D4D4')

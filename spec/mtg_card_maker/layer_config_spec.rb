@@ -50,8 +50,8 @@ RSpec.describe MtgCardMaker::LayerConfig do
 
       expect(config.font_size(:name)).to eq(32)
       expect(config.font_size(:type)).to eq(22)
-      expect(config.font_size(:description)).to eq(24)
-      expect(config.font_size(:flavor_text)).to eq(18)
+      expect(config.font_size(:rules_text)).to eq(24)
+      expect(config.font_size(:flavor_text)).to eq(24)
       expect(config.font_size(:power_area)).to eq(28)
       expect(config.font_size(:copyright)).to eq(14)
     end
@@ -167,7 +167,7 @@ RSpec.describe MtgCardMaker::LayerConfig do
   describe '#text_y_position' do
     it 'calculates text y position without height' do
       config = described_class.default
-      y_pos = config.text_y_position(100, :description)
+      y_pos = config.text_y_position(100, :rules_text)
       expect(y_pos).to eq(130) # 100 + 30
     end
 

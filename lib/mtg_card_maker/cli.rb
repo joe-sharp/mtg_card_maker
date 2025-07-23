@@ -21,7 +21,7 @@ module MtgCardMaker
   #     --rules-text "Lightning Bolt deals 3 damage to any target." --color red
   #
   # @since 0.1.0
-  class CLI < Thor # rubocop:disable Metrics/ClassLength
+  class CLI < Thor
     package_name 'mtg_card_maker'
     map 'a'  => :add_card
     map 'ac' => :add_card

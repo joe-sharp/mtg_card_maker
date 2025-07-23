@@ -29,8 +29,8 @@ module MtgCardMaker
       font_sizes: {
         name: 32,
         type: 22,
-        description: 24,
-        flavor_text: 18,
+        rules_text: 24,
+        flavor_text: 24,
         power_area: 28,
         copyright: 14
       },
@@ -43,8 +43,8 @@ module MtgCardMaker
         char_width_multiplier: 0.42,
         css_classes: {
           card_name: 'card-name',
-          card_type: 'card-type',
-          card_description: 'card-description',
+          type_line: 'card-type',
+          rules_text: 'card-rules-text',
           flavor_text: 'card-flavor-text',
           power_area: 'card-power-toughness',
           copyright: 'card-copyright'
@@ -67,7 +67,7 @@ module MtgCardMaker
           y_offset: 8,
           width_ratio: 0.75
         },
-        description: {
+        rules_text: {
           y_offset: 30,
           width_ratio: 1.0
         },

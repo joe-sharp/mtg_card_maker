@@ -16,7 +16,6 @@ module MtgCardMaker
   #   svg = mana_cost.to_svg
   #
   # @since 0.1.0
-  # rubocop:disable Metrics/ClassLength
   class ManaCost
     # Mapping of letters to colors
     # @return [Hash] the color mapping for mana symbols
@@ -216,5 +215,4 @@ module MtgCardMaker
       end
     end
   end
-  # rubocop:enable Metrics/ClassLength
 end

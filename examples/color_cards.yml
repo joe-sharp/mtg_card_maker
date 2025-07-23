@@ -13,7 +13,7 @@ blue:
   name: "Blue"
   mana_cost: "UR"
   type_line: "Instant"
-  rules_text: "Counter target spell unless its controller pays {1}. Draw a card."
+  rules_text: "Counter target spell unless its controller pays {1} \n\nDraw a card."
   flavor_text: "Knowledge flows like water, finding its way through any barrier."
   border_color: black
   color: blue
@@ -39,7 +39,6 @@ green:
   mana_cost: "5G"
   type_line: "Creature - Elemental"
   rules_text: "Trample. When this creature enters the battlefield, search your library for a land card and put it onto the battlefield tapped."
-  flavor_text: "Nature's strength flows through every leaf and branch."
   power: "4"
   toughness: "12"
   border_color: silver
@@ -57,8 +56,7 @@ artifact:
   name: "Artifact"
   mana_cost: "2"
   type_line: "Artifact - Equipment"
-  rules_text: "Equipped creature gets +2/+2 and has first strike. Equip {2}."
-  flavor_text: "A blade that has tasted the blood of countless battles."
+  rules_text: "Equipped creature develops an unhealthy obsession with telling dad jokes during combat, gains the ability to juggle mana symbols (though not very well), randomly quotes Shakespeare at inappropriate moments, develops a peculiar fashion sense involving mismatched socks, learns to yodel but only on Tuesdays, attempts stand-up comedy during the end step, and insists on referring to itself in the third person as 'The Equipped One'."
   color: artifact
 
 gold:

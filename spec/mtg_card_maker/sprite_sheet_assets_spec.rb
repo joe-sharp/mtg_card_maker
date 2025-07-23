@@ -39,7 +39,7 @@ RSpec.describe MtgCardMaker::SpriteSheetAssets do
         expect(xml).to include('@font-face')
         expect(xml).to include('.card-name')
         expect(xml).to include('.card-type')
-        expect(xml).to include('.card-description')
+        expect(xml).to include('.card-rules-text')
         expect(xml).to include('.card-flavor-text')
         expect(xml).to include('.card-power-toughness')
         expect(xml).to include('.mana-cost-text')
@@ -122,11 +122,11 @@ RSpec.describe MtgCardMaker::SpriteSheetAssets do
         expect(xml).to include('offset')
       end
 
-      it 'defines description gradient for white scheme', :aggregate_failures do
+      it 'defines text box gradient for white scheme', :aggregate_failures do
         builder = Nokogiri::XML::Builder.new do |xml|
           xml.svg(xmlns: 'http://www.w3.org/2000/svg') do
             color_scheme = MtgCardMaker::ColorScheme.new(:white)
-            assets.send(:define_gradient, xml, color_scheme, 'white', 'description', nil)
+            assets.send(:define_gradient, xml, color_scheme, 'white', 'text_box', nil)
           end
         end
 

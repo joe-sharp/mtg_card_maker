@@ -20,7 +20,7 @@
   font-style: normal;
 }
 
-.card-description {
+.card-rules-text {
   font-family: serif;
   font-weight: normal;
   font-style: normal;
@@ -304,18 +304,21 @@ Enchantment - Aura
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#white_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#8B8B8B" stroke-width="1"/>
+<text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 Enchanted creature gets +1/+1 and has vigilance.
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 When this enchantment enters the battlefield, you
 </text>
-<text x="55" y="632" fill="#111" font-size="24" class="card-description">
+<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 gain 2 life.
 </text>
-<line x1="55" y1="740" x2="575" y2="740" stroke="#8B8B8B" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-The light of justice never fades, even in the darkest of times.
+<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
+The light of justice never fades, even in the
+</text>
+<text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-flavor-text">
+darkest of times.
 </text>
 </g>
 </g>
@@ -362,15 +365,18 @@ Instant
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#blue_text_box_gradient)" stroke="#42A5F5" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
-Counter target spell unless its controller pays
+<line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#42A5F5" stroke-width="1"/>
+<text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+Counter target spell unless its controller pays {1}
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
-{1}. Draw a card.
+<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+Draw a card.
 </text>
-<line x1="55" y1="740" x2="575" y2="740" stroke="#42A5F5" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-Knowledge flows like water, finding its way through any barrier.
+<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
+Knowledge flows like water, finding its way through
+</text>
+<text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-flavor-text">
+any barrier.
 </text>
 </g>
 </g>
@@ -418,15 +424,18 @@ Sorcery
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#black_text_box_gradient)" stroke="#424242" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#424242" stroke-width="1"/>
+<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 Destroy target creature. You lose life equal to
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 that creature's toughness.
 </text>
-<line x1="55" y1="740" x2="575" y2="740" stroke="#424242" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-Death is not the end, but a transformation into something darker.
+<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
+Death is not the end, but a transformation into
+</text>
+<text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-flavor-text">
+something darker.
 </text>
 </g>
 </g>
@@ -473,17 +482,17 @@ Instant
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#red_text_box_gradient)" stroke="#F44336" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#F44336" stroke-width="1"/>
+<text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 This spell deals X damage to any target. If a
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 creature dealt damage this way would die this turn,
 </text>
-<text x="55" y="632" fill="#111" font-size="24" class="card-description">
+<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 exile it instead.
 </text>
-<line x1="55" y1="740" x2="575" y2="740" stroke="#F44336" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
+<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
 Fire consumes all, leaving only ash and memory.
 </text>
 </g>
@@ -535,18 +544,14 @@ Creature - Elemental
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#green_text_box_gradient)" stroke="#4CAF50" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 Trample. When this creature enters the battlefield,
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="686.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 search your library for a land card and put it onto
 </text>
-<text x="55" y="632" fill="#111" font-size="24" class="card-description">
+<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 the battlefield tapped.
-</text>
-<line x1="55" y1="740" x2="575" y2="740" stroke="#4CAF50" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-Nature's strength flows through every leaf and branch.
 </text>
 </g>
 
@@ -600,14 +605,14 @@ Artifact
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#colorless_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#8B8B8B" stroke-width="1"/>
+<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 When this artifact enters the battlefield, create
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 two 1/1 colorless artifact creature tokens.
 </text>
-<line x1="55" y1="740" x2="575" y2="740" stroke="#8B8B8B" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
+<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
 Forged from the essence of the void itself.
 </text>
 </g>
@@ -655,15 +660,32 @@ Artifact - Equipment
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#artifact_text_box_gradient)" stroke="#D2B48C" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
-Equipped creature gets +2/+2 and has first strike.
+<text x="55" y="580.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+Equipped creature develops an unhealthy obsession
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
-Equip {2}.
+<text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+with telling dad jokes during combat, gains the
 </text>
-<line x1="55" y1="740" x2="575" y2="740" stroke="#D2B48C" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-A blade that has tasted the blood of countless battles.
+<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+ability to juggle mana symbols (though not very
+</text>
+<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+well), randomly quotes Shakespeare at inappropriate
+</text>
+<text x="55" y="686.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+moments, develops a peculiar fashion sense
+</text>
+<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+involving mismatched socks, learns to yodel but
+</text>
+<text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+only on Tuesdays, attempts stand-up comedy during
+</text>
+<text x="55" y="765.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+the end step, and insists on referring to itself in
+</text>
+<text x="55" y="792.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+the third person as 'The Equipped One'.
 </text>
 </g>
 </g>
@@ -717,15 +739,18 @@ Legendary Creature - Dragon
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#gold_text_box_gradient)" stroke="#FFD700" stroke-width="2"/>
-<text x="55" y="575" fill="#111" font-size="24" class="card-description">
+<line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#FFD700" stroke-width="1"/>
+<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 Flying, trample, haste. When this creature enters
 </text>
-<text x="55" y="603" fill="#111" font-size="24" class="card-description">
+<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 the battlefield, destroy all other creatures.
 </text>
-<line x1="55" y1="740" x2="575" y2="740" stroke="#FFD700" stroke-width="1"/>
-<text x="55" y="765" fill="#111" font-size="18" class="card-flavor-text">
-The embodiment of all colors, a force beyond mortal comprehension.
+<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
+The embodiment of all colors, a force beyond mortal
+</text>
+<text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-flavor-text">
+comprehension.
 </text>
 </g>
 

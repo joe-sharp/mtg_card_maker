@@ -228,7 +228,7 @@ module MtgCardMaker
           font-style: normal;
         }
 
-        .card-description {
+        .card-rules-text {
           font-family: serif;
           font-weight: normal;
           font-style: normal;
