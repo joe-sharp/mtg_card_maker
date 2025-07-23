@@ -955,13 +955,15 @@
 125
 126
 127
-128</pre>
+128
+129</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_assign_attributes'>assign_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_validate_required_fields'>validate_required_fields</span>
   <span class='ivar'>@template</span> <span class='op'>=</span> <span class='const'>Template</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
   <span class='id identifier rubyid_add_layers'>add_layers</span>
 <span class='kw'>end</span></pre>
@@ -1792,12 +1794,12 @@
       <pre class="lines">
 
 
-164
 165
-166</pre>
+166
+167</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 165</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_art_window_config'>art_window_config</span>
   <span class='const'><span class='object_link'><a href="#DEFAULTS-constant" title="MtgCardMaker::BaseCard::DEFAULTS (constant)">DEFAULTS</a></span></span><span class='lbracket'>[</span><span class='symbol'>:layers</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:art_layer</span><span class='rbracket'>]</span>
@@ -1847,12 +1849,12 @@
       <pre class="lines">
 
 
-154
 155
-156</pre>
+156
+157</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 155</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_card_height'>card_height</span>
   <span class='const'>CARD_HEIGHT</span>
@@ -1904,12 +1906,12 @@
       <pre class="lines">
 
 
-149
 150
-151</pre>
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 150</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_card_width'>card_width</span>
   <span class='const'>CARD_WIDTH</span>
@@ -1959,12 +1961,12 @@
       <pre class="lines">
 
 
-159
 160
-161</pre>
+161
+162</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 159</span>
+      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dimensions_for_layer'>dimensions_for_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_layer_name'>layer_name</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="#DEFAULTS-constant" title="MtgCardMaker::BaseCard::DEFAULTS (constant)">DEFAULTS</a></span></span><span class='lbracket'>[</span><span class='symbol'>:layers</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_layer_name'>layer_name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -2014,12 +2016,12 @@
       <pre class="lines">
 
 
-169
 170
-171</pre>
+171
+172</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 169</span>
+      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 170</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_frame_stroke_width'>frame_stroke_width</span>
   <span class='const'><span class='object_link'><a href="#DEFAULTS-constant" title="MtgCardMaker::BaseCard::DEFAULTS (constant)">DEFAULTS</a></span></span><span class='lbracket'>[</span><span class='symbol'>:frame_stroke_width</span><span class='rbracket'>]</span>
@@ -2091,12 +2093,12 @@
       <pre class="lines">
 
 
-134
 135
-136</pre>
+136
+137</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 135</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save'>save</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
   <span class='ivar'>@template</span><span class='period'>.</span><span class='id identifier rubyid_save'>save</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
@@ -2146,16 +2148,16 @@
       <pre class="lines">
 
 
-139
 140
 141
 142
 143
 144
-145</pre>
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'lib/mtg_card_maker/base_card.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_use_color_scheme'>use_color_scheme</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_color'>color</span>
@@ -2174,7 +2176,7 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Jul 18 02:54:24 2025 by
+  Generated on Wed Jul 23 22:51:37 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
