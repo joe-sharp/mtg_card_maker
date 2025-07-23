@@ -4,8 +4,6 @@ module MtgCardMaker
   # Text limits for different scenarios
   MAX_RULES_LINES = 9
   MAX_FLAVOR_LINES = 7 # Two less because one line of rules is required, plus the separator
-  # The number of lines of rules text that fit above the separator
-  BASE_RULES_LINES = (MAX_RULES_LINES / 2).floor
 
   # TextBoxLayer is a specialized layer for the rules and flavor text
   # with bidirectional text flow from a dynamic separator
