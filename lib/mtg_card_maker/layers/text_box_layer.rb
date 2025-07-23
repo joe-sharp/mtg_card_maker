@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 module MtgCardMaker
+  # Text limits for different scenarios
+  MAX_RULES_LINES = 9
+  MAX_FLAVOR_LINES = 7 # Two less because one line of rules is required, plus the separator
+  # The number of lines of rules text that fit above the separator
+  BASE_RULES_LINES = (MAX_RULES_LINES / 2).floor
+
   # TextBoxLayer is a specialized layer for the rules and flavor text
   # with bidirectional text flow from a dynamic separator
   class TextBoxLayer < BaseLayer
     include LayerInitializer
     attr_reader :rules_text, :flavor_text, :color_scheme
-
-    # Text limits for different scenarios
-    MAX_RULES_LINES = 9
-    MAX_FLAVOR_LINES = 7 # Two less because one line of rules is required, plus the separator
-    # The number of lines of rules text that fit above the separator
-    BASE_RULES_LINES = (MAX_RULES_LINES / 2).floor
 
     def initialize(dimensions:, rules_text:, flavor_text: nil, color: nil, color_scheme: DEFAULT_COLOR_SCHEME)
       frame_color = initialize_layer_color(color, color_scheme, :background_color)
@@ -29,6 +29,8 @@ module MtgCardMaker
 
     private
 
+    attr_reader :text_box_lines
+
     def render_text_box
       svg.g do
         render_background
@@ -44,49 +46,73 @@ module MtgCardMaker
     end
 
     def render_text_content
+      text_box_lines = create_text_box_lines
+
+      # Render separator
+      separator = text_box_lines.separator_line
+      render_separator(separator[:y_pos]) if separator
+
+      # Render text lines
+      text_box_lines.text_lines.each do |line|
+        render_text_line(line[:text], line[:y_pos], line[:type])
+      end
+    end
+
+    def create_text_box_lines
+      @text_box_lines = TextBoxLines.new(x: x, y: y, width: width, height: height)
+
       if flavor_text_present?
-        render_bidirectional_text
+        setup_bidirectional_text
       else
-        render_rules_only
+        setup_rules_only_text
       end
+
+      @text_box_lines
     end
 
-    def render_rules_only
-      rules_lines = calculate_rules_lines
-      line_height = calculate_line_height(:rules_text)
-      start_y = calculate_rules_start_position(rules_lines, line_height)
-
-      rules_lines.each_with_index do |line, index|
-        y_pos = start_y + (line_height * index)
-        render_text_line(line, y_pos, :rules_text)
-      end
-    end
-
-    def render_bidirectional_text
-      separator_y = calculate_separator_position
+    def setup_bidirectional_text
       rules_lines = calculate_rules_lines
       flavor_lines = calculate_flavor_lines(rules_lines.length)
 
-      render_separator(separator_y)
-      render_rules_text_upward(rules_lines, separator_y)
-      render_flavor_text_downward(flavor_lines, separator_y) if flavor_lines.any?
+      # Calculate separator line: first line after rules text, but never lower than line 4 (0-based)
+      separator_line = [rules_lines.length, 4].max
+
+      # Place rules text upward from separator
+      place_text_lines(rules_lines.reverse, separator_line, direction: :upward, type: :rules_text)
+
+      # Place separator
+      text_box_lines.set_line(separator_line, type: :separator)
+
+      # Place flavor text downward from separator
+      place_text_lines(flavor_lines, separator_line, direction: :downward, type: :flavor_text)
     end
 
-    def render_rules_text_upward(rules_lines, separator_y)
-      line_height = calculate_line_height(:rules_text)
+    def setup_rules_only_text
+      rules_lines = calculate_rules_lines
 
-      rules_lines.reverse.each_with_index do |line, index|
-        y_pos = separator_y - (line_height * (index + 0.5))
-        render_text_line(line, y_pos, :rules_text)
+      # Center the rules text in the available lines
+      start_line = (MAX_RULES_LINES - rules_lines.length) / 2
+
+      place_text_lines(rules_lines, start_line, direction: :forward, type: :rules_text)
+    end
+
+    def place_text_lines(lines, start_line, direction:, type:)
+      lines.each_with_index do |line, index|
+        line_number = calculate_line_number(start_line, index, direction)
+        break if line_number.negative? || line_number >= MAX_RULES_LINES
+
+        text_box_lines.set_line(line_number, text: line, type: type)
       end
     end
 
-    def render_flavor_text_downward(flavor_lines, separator_y)
-      line_height = calculate_line_height(:flavor_text)
-
-      flavor_lines.each_with_index do |line, index|
-        y_pos = separator_y + (line_height * (index + 1))
-        render_text_line(line, y_pos, :flavor_text)
+    def calculate_line_number(start_line, index, direction)
+      case direction
+      when :upward
+        start_line - index - 1
+      when :downward
+        start_line + index + 1
+      else
+        start_line + index
       end
     end
 
@@ -111,19 +137,6 @@ module MtgCardMaker
       )
     end
 
-    # Separator is centered unless rules text won't fit
-    def calculate_separator_position
-      # Vertical center of the text box
-      base_separator_y = y + (height / 2.0)
-      # Determine how many lines to nudge the separator down
-      rules_lines = calculate_rules_lines
-      extra_lines = [rules_lines.length - BASE_RULES_LINES, 0].max
-
-      line_height = calculate_line_height(:rules_text)
-      # Nudge the separator down by the number of extra lines
-      base_separator_y + (extra_lines * line_height)
-    end
-
     def calculate_rules_lines
       return [] if rules_text.nil? || rules_text.strip.empty?
 
@@ -135,21 +148,8 @@ module MtgCardMaker
       return [] unless flavor_text_present?
 
       text_service = create_text_service(flavor_text, :flavor_text)
-      max_flavor_lines = [MAX_FLAVOR_LINES - [rules_line_count - 1, 0].max, 1].max
+      max_flavor_lines = [(MAX_FLAVOR_LINES - rules_line_count + 1), 1].max
       text_service.wrapped_text_lines.first(max_flavor_lines).map(&:first)
-    end
-
-    def calculate_line_height(text_type)
-      layer_config.font_size(text_type) * layer_config.default_line_height_multiplier
-    end
-
-    def calculate_rules_start_position(rules_lines, line_height)
-      total_text_height = rules_lines.length * line_height
-      center_y = y + (height / 2.0) + (line_height / 2.0)
-      # HACK: center text when the max number of lines is reached
-      center_y += (line_height / 3.0) if rules_lines.length == MAX_RULES_LINES
-
-      center_y - (total_text_height / 2.0)
     end
 
     def create_text_service(text, text_type)
@@ -171,6 +171,79 @@ module MtgCardMaker
 
     def flavor_text_present?
       flavor_text && !flavor_text.strip.empty?
+    end
+  end
+
+  # TextBoxLines manages the positioning and content of the MAX_RULES_LINES lines in a text box
+  # Each line can contain rules text, flavor text, or be a separator
+  class TextBoxLines
+    attr_reader :x, :y, :width, :height
+
+    def initialize(x:, y:, width:, height:)
+      @width = width
+      @height = height
+      @lines = Array.new(MAX_RULES_LINES) { { text: nil, type: :rules_text } }
+      @line_spacing = height / 10.0
+      @x = x
+      @y = y + (@line_spacing / 3)
+      calculate_line_positions
+    end
+
+    # Set the content and type for a specific line (0-8)
+    def set_line(line_number, text: nil, type: :rules_text)
+      validate_line_number(line_number)
+      @lines[line_number] = { text: text, type: type }
+    end
+
+    # Get the content, type, and y position for a specific line (0-8)
+    def get_line(line_number)
+      validate_line_number(line_number)
+      line_data = @lines[line_number]
+      {
+        text: line_data[:text],
+        type: line_data[:type],
+        y_pos: @line_positions[line_number]
+      }
+    end
+
+    # Get all lines as an array of hashes with text, type, and y_pos
+    def all_lines
+      @lines.map.with_index do |line_data, index|
+        {
+          text: line_data[:text],
+          type: line_data[:type],
+          y_pos: @line_positions[index]
+        }
+      end
+    end
+
+    # Get all lines except separators and empty lines
+    def text_lines
+      all_lines.reject { |line| line[:type] == :separator || line[:text].nil? || line[:text].strip.empty? }
+    end
+
+    def separator_line
+      separator = all_lines.find { |line| line[:type] == :separator }
+      # Position the separator in the middle of its line
+      separator[:y_pos] -= (@line_spacing / 3) if separator
+      separator
+    end
+
+    private
+
+    def validate_line_number(line_number)
+      return if line_number.between?(0, 8)
+
+      raise ArgumentError, "Line number must be between 0 and 8, got #{line_number}"
+    end
+
+    def calculate_line_positions
+      # Calculate MAX_RULES_LINES equally distributed vertical positions within the text box
+      # Starting from the top of the text box (y) and ending at the bottom (y + height)
+      last_line = MAX_RULES_LINES - 1
+      @line_positions = (0..last_line).map do |line_num|
+        @y + (@line_spacing * (line_num + 1))
+      end
     end
   end
 end
