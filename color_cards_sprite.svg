@@ -484,7 +484,7 @@ Instant
 <rect x="40" y="545" width="550" height="265" fill="url(#red_text_box_gradient)" stroke="#F44336" stroke-width="2"/>
 <line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#F44336" stroke-width="1"/>
 <text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-This spell deals X damage to any target. If a
+This spell deals {X} damage to any target. If a
 </text>
 <text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 creature dealt damage this way would die this turn,
@@ -606,14 +606,14 @@ Artifact
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#colorless_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
 <line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#8B8B8B" stroke-width="1"/>
-<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-When this artifact enters the battlefield, create
-</text>
 <text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-two 1/1 colorless artifact creature tokens.
+{T}: Add {R}.
 </text>
 <text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
-Forged from the essence of the void itself.
+A piece of jewelry, usually containing a gemstone,
+</text>
+<text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-flavor-text">
+that can produce mana. Perhaps a Ruby?
 </text>
 </g>
 </g>
@@ -661,31 +661,31 @@ Artifact - Equipment
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#artifact_text_box_gradient)" stroke="#D2B48C" stroke-width="2"/>
 <text x="55" y="580.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-Equipped creature develops an unhealthy obsession
+{C}: Equipped creature develops an unhealthy
 </text>
 <text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-with telling dad jokes during combat, gains the
+obsession with telling dad jokes during combat,
 </text>
 <text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-ability to juggle mana symbols (though not very
+gains the ability to juggle mana symbols (though
 </text>
 <text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-well), randomly quotes Shakespeare at inappropriate
+not very well), randomly quotes Shakespeare at
 </text>
 <text x="55" y="686.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-moments, develops a peculiar fashion sense
+inappropriate moments, develops a peculiar fashion
 </text>
 <text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-involving mismatched socks, learns to yodel but
+sense involving mismatched socks, learns to yodel
 </text>
 <text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-only on Tuesdays, attempts stand-up comedy during
+but only on Tuesdays, attempts stand-up comedy
 </text>
 <text x="55" y="765.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-the end step, and insists on referring to itself in
+during the end step, and insists on referring to
 </text>
 <text x="55" y="792.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-the third person as 'The Equipped One'.
+itself in the third person as 'The Equipped One'.
 </text>
 </g>
 </g>
@@ -739,17 +739,23 @@ Legendary Creature - Dragon
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#gold_text_box_gradient)" stroke="#FFD700" stroke-width="2"/>
-<line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#FFD700" stroke-width="1"/>
-<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+<line x1="55" y1="704.0" x2="575" y2="704.0" stroke="#FFD700" stroke-width="1"/>
+<text x="55" y="580.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 Flying, trample, haste. When this creature enters
 </text>
-<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+<text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 the battlefield, destroy all other creatures.
 </text>
-<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
-The embodiment of all colors, a force beyond mortal
+<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+{C}: {T} this creature to {Q} all other creatures
+</text>
+<text x="55" y="686.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+you control.
 </text>
 <text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-flavor-text">
+The embodiment of all colors, a force beyond mortal
+</text>
+<text x="55" y="765.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
 comprehension.
 </text>
 </g>
