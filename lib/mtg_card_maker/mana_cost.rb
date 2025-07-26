@@ -19,13 +19,18 @@ module MtgCardMaker
   class ManaCost
     # Mapping of letters to colors
     # @return [Hash] the color mapping for mana symbols
-    COLOR_MAP = {
-      'B' => :black, 'S' => :black,
-      'U' => :blue,  'I' => :blue,
-      'G' => :green, 'F' => :green,
-      'W' => :white, 'P' => :white,
-      'R' => :red,   'M' => :red,
-      'C' => :colorless
+    SYMBOL_MAP = {
+      'B' => :black,
+      'U' => :blue,
+      'G' => :green,
+      'W' => :white,
+      'R' => :red,
+      'C' => :colorless,
+      'T' => :tap,
+      'Q' => :untap,
+      'E' => :energy,
+      'S' => :snow,
+      'X' => :x
     }.freeze
 
     # @return [Array<Symbol>] the parsed mana elements
@@ -124,7 +129,7 @@ module MtgCardMaker
     end
 
     def process_colored_character(char)
-      color = COLOR_MAP[char]
+      color = SYMBOL_MAP[char]
       if colorless_symbol?(color, char)
         @elements << :colorless
         @origins << :C
@@ -160,24 +165,28 @@ module MtgCardMaker
 
     def mana_element_svg(x, y, color, origin) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       layer_config = LayerConfig.default
-      circle_radius = layer_config.mana_cost_config[:circle_radius]
       icon_size = layer_config.mana_cost_config[:icon_size]
-
-      fill = svg_color(color)
-      svg = "<circle cx='#{x}' cy='#{y}' r='#{circle_radius}' fill='#{fill}' />"
 
       if color == :colorless && origin == :numeric
         # Add text for numeric colorless mana circles
-        svg << colorless_text(x, y, origin)
+        svg = colorless_text(x, y, origin)
+      elsif [:untap, :tap].include?(origin)
+        # Add icon without a background and slightly larger
+        icon_svg = @icon_service.icon_svg(color, size: icon_size)
+        if icon_svg
+          icon_x = x - (icon_size / 2)
+          icon_y = y - (icon_size / 2)
+          LayerConfig.default
+          svg = "<g transform='translate(#{icon_x}, #{icon_y})'>#{icon_svg}</g>"
+        end
       else
-        # Add icon inside colored mana circles, smaller and with opacity
         icon_svg = @icon_service.icon_svg(color, size: icon_size)
         if icon_svg
           icon_x = x - (icon_size / 2)
           icon_y = y - (icon_size / 2)
           layer_config = LayerConfig.default
           opacity = layer_config.mana_cost_icon_opacity
-          svg << "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
+          svg = "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
         end
       end
 
