@@ -72,8 +72,6 @@ module MtgCardMaker
     private
 
     def parse_mana_string(mana_string)
-      return if mana_string.nil? || mana_string.empty?
-
       if mana_string.start_with?('X')
         parse_x_cost(mana_string)
       elsif mana_string.match?(/^\d+/)
@@ -103,8 +101,6 @@ module MtgCardMaker
     end
 
     def parse_colored_mana(mana_string)
-      return if mana_string.nil? || mana_string.empty?
-
       mana_string.chars.each do |char|
         icon_type = SYMBOL_MAP[char]
         @elements << icon_type if icon_type

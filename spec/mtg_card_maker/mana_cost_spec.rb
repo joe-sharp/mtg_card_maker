@@ -134,23 +134,6 @@ RSpec.describe MtgCardMaker::ManaCost do
         expect(cost.int_val).to eq(99)
       end
     end
-
-    context 'with nil and empty string handling' do
-      it 'handles nil mana string in parse_mana_string', :aggregate_failures do
-        cost = described_class.new('R')
-        expect { cost.send(:parse_mana_string, nil) }.not_to raise_error
-      end
-
-      it 'handles empty string in parse_colored_mana', :aggregate_failures do
-        cost = described_class.new('R')
-        expect { cost.send(:parse_colored_mana, '') }.not_to raise_error
-      end
-
-      it 'handles nil string in parse_colored_mana', :aggregate_failures do
-        cost = described_class.new('R')
-        expect { cost.send(:parse_colored_mana, nil) }.not_to raise_error
-      end
-    end
   end
 
   describe '#to_svg' do
@@ -199,10 +182,6 @@ RSpec.describe MtgCardMaker::ManaCost do
 
     it 'returns correct drop shadow filter' do
       expect(cost.send(:drop_shadow_filter)).to include('<filter')
-    end
-
-    it 'handles parse_mana_string with nil' do
-      expect { cost.send(:parse_mana_string, nil) }.not_to raise_error
     end
 
     it 'handles variable cost parsing with X', :aggregate_failures do
