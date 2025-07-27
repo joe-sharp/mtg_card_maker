@@ -9,7 +9,7 @@ RSpec.describe MtgCardMaker::SpriteSheetAssets do
     it 'creates an instance with color schemes', :aggregate_failures do
       expect(assets).to be_a(described_class)
       expect(assets.instance_variable_get(:@color_schemes)).to be_an(Array)
-      expect(assets.instance_variable_get(:@color_schemes).length).to eq(8)
+      expect(assets.instance_variable_get(:@color_schemes).length).to eq(9)
     end
   end
 
@@ -254,7 +254,7 @@ RSpec.describe MtgCardMaker::SpriteSheetAssets do
       it 'builds all color schemes', :aggregate_failures do
         schemes = assets.send(:build_color_schemes)
         expect(schemes).to be_an(Array)
-        expect(schemes.length).to eq(8)
+        expect(schemes.length).to eq(9)
 
         scheme_names = schemes.map(&:scheme_name)
         expect(scheme_names).to include(:colorless, :white, :blue, :black, :red, :green, :gold, :artifact)
