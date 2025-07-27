@@ -6,6 +6,20 @@ module MtgCardMaker
   # SymbolReplacementService handles the parsing and rendering of MTG symbols in text
   # It converts text with symbol notation (like {W}, {2}, {T}) into HTML with inline SVG icons
   class SymbolReplacementService
+    # Mapping of mtg notation to icons
+    SYMBOL_MAP = {
+      'B' => :black,
+      'U' => :blue,
+      'G' => :green,
+      'W' => :white,
+      'R' => :red,
+      'C' => :colorless,
+      'T' => :tap,
+      'Q' => :untap,
+      'E' => :energy,
+      'S' => :snow,
+      'X' => :x
+    }.freeze
     attr_reader :font_size, :icon_service
 
     def initialize

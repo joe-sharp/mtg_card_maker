@@ -53,21 +53,6 @@ module MtgCardMaker
   # @return [String] the white color hex value
   WHITE = '#EEE'
 
-  # Mapping of mtg notation to icons
-  SYMBOL_MAP = {
-    'B' => :black,
-    'U' => :blue,
-    'G' => :green,
-    'W' => :white,
-    'R' => :red,
-    'C' => :colorless,
-    'T' => :tap,
-    'Q' => :untap,
-    'E' => :energy,
-    'S' => :snow,
-    'X' => :x
-  }.freeze
-
   # Custom error class for MTG Card Maker specific errors
   class Error < StandardError; end
 
