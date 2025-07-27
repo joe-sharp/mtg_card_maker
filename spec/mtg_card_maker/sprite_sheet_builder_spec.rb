@@ -77,14 +77,14 @@ RSpec.describe MtgCardMaker::SpriteSheetBuilder do
 
     it 'creates sprite builder with correct dimensions' do
       width, height = builder.sprite_dimensions(2)
-      result = builder.create_sprite_builder(width, height, card_files, assets)
+      result = builder.create_sprite_builder(width, height, card_files, assets, embed_font: false)
 
       expect(result).to be_a(Nokogiri::XML::Builder)
     end
 
     it 'includes assets in the sprite', :aggregate_failures do
       width, height = builder.sprite_dimensions(2)
-      result = builder.create_sprite_builder(width, height, card_files, assets)
+      result = builder.create_sprite_builder(width, height, card_files, assets, embed_font: false)
       xml = result.to_xml
 
       expect(xml).to include('@font-face')
@@ -133,7 +133,7 @@ RSpec.describe MtgCardMaker::SpriteSheetBuilder do
       it 'adds cards to sprite', :aggregate_failures do
         builder_obj = Nokogiri::XML::Builder.new do |xml|
           xml.svg(xmlns: 'http://www.w3.org/2000/svg') do
-            builder.send(:add_cards_to_sprite, xml, card_files)
+            builder.send(:add_cards_to_sprite, xml, card_files, false)
           end
         end
 
@@ -157,7 +157,7 @@ RSpec.describe MtgCardMaker::SpriteSheetBuilder do
 
       it 'adds card to sprite with correct position', :aggregate_failures do
         builder_obj = Nokogiri::XML::Builder.new
-        builder.send(:add_card_to_sprite, builder_obj, card_file, 0)
+        builder.send(:add_card_to_sprite, builder_obj, card_file, 0, false)
 
         xml = builder_obj.to_xml
         expect(xml).to include('<g')
@@ -170,7 +170,7 @@ RSpec.describe MtgCardMaker::SpriteSheetBuilder do
         file.close
 
         builder_obj = Nokogiri::XML::Builder.new
-        expect { builder.send(:add_card_to_sprite, builder_obj, file, 0) }.not_to raise_error
+        expect { builder.send(:add_card_to_sprite, builder_obj, file, 0, false) }.not_to raise_error
 
         file.unlink
       end
@@ -220,7 +220,7 @@ RSpec.describe MtgCardMaker::SpriteSheetBuilder do
 
         builder_obj = Nokogiri::XML::Builder.new do |xml|
           xml.svg(xmlns: 'http://www.w3.org/2000/svg') do
-            builder.send(:add_card_children, xml, svg_element)
+            builder.send(:add_card_children, xml, svg_element, false)
           end
         end
 
@@ -235,7 +235,7 @@ RSpec.describe MtgCardMaker::SpriteSheetBuilder do
 
         builder_obj = Nokogiri::XML::Builder.new do |xml|
           xml.svg(xmlns: 'http://www.w3.org/2000/svg') do
-            builder.send(:add_card_children, xml, svg_element)
+            builder.send(:add_card_children, xml, svg_element, false)
           end
         end
 

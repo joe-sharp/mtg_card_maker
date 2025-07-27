@@ -21,7 +21,6 @@ module MtgCardMaker
 
     # Render the frame with a gradient background
     def render
-      SvgGradientService.define_all_gradients(svg, color_scheme)
       if metallic_properties?
         render_metallic_frame
       else

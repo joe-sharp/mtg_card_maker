@@ -210,14 +210,13 @@ RSpec.describe MtgCardMaker::BorderLayer do
     before do
       layer.template = template
       allow(layer).to receive(:color_scheme).and_return(color_scheme)
-      allow(MtgCardMaker::SvgGradientService).to receive(:define_all_gradients)
       allow(layer).to receive(:render_metallic_elements)
     end
 
-    it 'defines gradients and renders metallic elements', :aggregate_failures do
+    it 'renders metallic elements without defining gradients', :aggregate_failures do
       layer.send(:render_metallic_frame, corners)
 
-      expect(MtgCardMaker::SvgGradientService).to have_received(:define_all_gradients).with(layer.svg, color_scheme)
+      # Gradients are now defined at BaseCard level, not in individual layers
       expect(layer).to have_received(:render_metallic_elements).with(
         mask: 'artWindowMask',
         corners: corners,

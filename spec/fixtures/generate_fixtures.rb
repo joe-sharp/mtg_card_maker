@@ -127,7 +127,7 @@ module FixtureGenerator
     # Create an instance of BaseCard with the same config as bin/generate_card
     config = {
       name: 'MTG Card Maker',
-      mana_cost: 'XCRGUBW',
+      mana_cost: 'X3RGUBW',
       type_line: 'Ruby - SVG - Shell',
       rules_text: 'MTG Card Maker is unofficial Fan Content permitted ' \
                   'under the Fan Content Policy. Not approved/endorsed ' \

@@ -18,9 +18,6 @@ module MtgCardMaker
     end
 
     def render
-      # Ensure gradients are defined for this color scheme
-      SvgGradientService.define_all_gradients(svg, color_scheme)
-
       svg.g do
         render_name_area
         render_card_name
@@ -42,13 +39,16 @@ module MtgCardMaker
                rx: corners[:x], ry: corners[:y], mask: "url(##{@mask_id})"
     end
 
+    def layer_config
+      @layer_config ||= LayerConfig.default
+    end
+
     def render_card_name
-      layer_config = LayerConfig.default
       text_service = TextRenderingService.new(
         text: name,
         layer_config: layer_config,
-        x: layer_config.text_x_position(x),
-        y: layer_config.text_y_position(y, :name_area, height),
+        x: text_x_position,
+        y: text_y_position,
         font_size: layer_config.font_size(:name),
         available_width: layer_config.text_width(width, :name_area),
         css_class: layer_config.css_class(:card_name)
@@ -57,6 +57,15 @@ module MtgCardMaker
       lines.each do |line, attrs|
         svg.text line, attrs
       end
+    end
+
+    def text_x_position
+      layer_config.text_x_position(x)
+    end
+
+    def text_y_position
+      additional_offset = 3 # Hack for font size
+      layer_config.text_y_position(y, :name_area, height) + additional_offset
     end
 
     def render_mana_cost
@@ -69,7 +78,6 @@ module MtgCardMaker
     end
 
     def cost_position_x(mana_cost)
-      layer_config = LayerConfig.default
       config = layer_config.mana_cost_config
       base_x = x + width - config[:margin] - (config[:icon_size] / 2)
       base_x - (config[:circle_spacing] * (mana_cost.elements.length - 1))

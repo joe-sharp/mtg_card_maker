@@ -25,13 +25,15 @@ RSpec.describe MtgCardMaker::SvgGradientService do
       expect { described_class.define_all_gradients(template.instance_variable_get(:@svg)) }.not_to raise_error
     end
 
-    it 'generates SVG with gradient definitions when used in a layer', :aggregate_failures do
-      # Test integration by using it through FrameLayer
-      layer = MtgCardMaker::FrameLayer.new(
-        dimensions: { x: 10, y: 10, width: 100, height: 100 }
-      )
+    it 'generates SVG with gradient definitions when used directly', :aggregate_failures do
+      # Test the service directly since layers no longer define gradients
+      template = MtgCardMaker::Template.new(width: 200, height: 200)
+      svg = template.instance_variable_get(:@svg)
 
-      svg_content = generate_svg_for_layer(layer, canvas_width: 200, canvas_height: 200)
+      # Define gradients directly
+      described_class.define_all_gradients(svg, colorless_scheme)
+
+      svg_content = template.to_svg
 
       # Verify that all expected gradients are present
       expect(svg_content).to include('id="colorless_card_gradient"')

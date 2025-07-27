@@ -8,67 +8,21 @@ module MtgCardMaker
     end
 
     # Add all shared assets to the sprite sheet XML
-    def add_assets_to_sprite(xml)
-      add_sprite_styles(xml)
+    #
+    # @param xml [Nokogiri::XML::Builder] the XML builder for the sprite sheet
+    # @param embed_font [Boolean] whether to embed the font as base64 (default: true)
+    def add_assets_to_sprite(xml, embed_font: true)
+      add_sprite_styles(xml, embed_font: embed_font)
       add_sprite_masks(xml)
       add_sprite_gradients(xml)
     end
 
     private
 
-    def add_sprite_styles(xml)
+    def add_sprite_styles(xml, embed_font)
       xml.defs do
         xml.style(type: 'text/css') do
-          xml.cdata <<~CSS
-            @font-face {
-              font-family: 'Goudy Mediaeval DemiBold';
-              src: url('fonts/Goudy Mediaeval DemiBold.ttf') format('truetype');
-              font-weight: normal;
-              font-style: normal;
-            }
-
-            .card-name {
-              font-family: 'Goudy Mediaeval DemiBold', serif;
-              font-weight: normal;
-              font-style: normal;
-            }
-
-            .card-type {
-              font-family: 'Goudy Mediaeval DemiBold', serif;
-              font-weight: normal;
-              font-style: normal;
-            }
-
-            .card-rules-text {
-              font-family: serif;
-              font-weight: normal;
-              font-style: normal;
-            }
-
-            .card-flavor-text {
-              font-family: serif;
-              font-weight: normal;
-              font-style: italic;
-            }
-
-            .card-power-toughness {
-              font-family: serif;
-              font-weight: bold;
-              font-style: normal;
-            }
-
-            .mana-cost-text {
-              font-family: serif;
-              font-weight: normal;
-              font-style: normal;
-            }
-
-            .mana-cost-text-large {
-              font-family: serif;
-              font-weight: semibold;
-              font-style: normal;
-            }
-          CSS
+          xml.cdata CssService.complete_styles(embed: embed_font)
         end
       end
     end

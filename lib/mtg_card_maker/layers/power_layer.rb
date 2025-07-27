@@ -19,9 +19,6 @@ module MtgCardMaker
       # Don't render if power or toughness are nil, empty, or invalid
       return if power.nil? || toughness.nil? || power.to_s.strip.empty? || toughness.to_s.strip.empty?
 
-      # Ensure gradients are defined for this color scheme
-      SvgGradientService.define_all_gradients(svg, color_scheme)
-
       layer_config = LayerConfig.default
       stroke_width = layer_config.stroke_width
       corners = layer_config.corner_radius(:power)

@@ -87,6 +87,24 @@ RSpec.describe MtgCardMaker::ManaCost do
         expect(cost.elements).to eq(%i[x red green])
         expect(cost.int_val).to be_nil
       end
+
+      it 'handles X cost with numeric values', :aggregate_failures do
+        cost = described_class.new('X3G')
+        expect(cost.elements).to eq(%i[x numeric green])
+        expect(cost.int_val).to eq(3)
+      end
+
+      it 'handles X cost with multi-digit numeric values', :aggregate_failures do
+        cost = described_class.new('X10RG')
+        expect(cost.elements).to eq(%i[x numeric red green])
+        expect(cost.int_val).to eq(10)
+      end
+
+      it 'handles X cost with single digit and colored mana', :aggregate_failures do
+        cost = described_class.new('X5W')
+        expect(cost.elements).to eq(%i[x numeric white])
+        expect(cost.int_val).to eq(5)
+      end
     end
 
     context 'with edge cases' do

@@ -42,11 +42,14 @@ module MtgCardMaker
       return false if card_configs.empty?
 
       begin
+        # Check if any card has embed_font: true
+        embed_font = should_embed_font?(card_configs)
+
         # Generate individual cards first
-        card_files = generate_individual_cards(card_configs)
+        card_files = generate_individual_cards(card_configs, embed_font)
 
         # Stitch them together into a sprite sheet
-        stitch_cards_into_sprite(card_files, output_file)
+        stitch_cards_into_sprite(card_files, output_file, embed_font)
       ensure
         # Clean up temporary files
         cleanup_temp_files(card_files)
@@ -67,11 +70,15 @@ module MtgCardMaker
       @logger ||= MtgCardMaker::Logger.new
     end
 
-    def generate_individual_cards(card_configs)
+    def should_embed_font?(card_configs)
+      card_configs.values.any? { |config| config['embed_font'] == true }
+    end
+
+    def generate_individual_cards(card_configs, embed_font)
       card_files = []
 
       card_configs.values.each_with_index do |config, index|
-        card = card_from_config(config)
+        card = card_from_config(config, embed_font)
         temp_file = save_card_to_temp_file(card, index)
         card_files << temp_file
       rescue StandardError => e
@@ -86,7 +93,8 @@ module MtgCardMaker
       raise "❌ Error generating card #{index}: #{error.message}"
     end
 
-    def card_from_config(config)
+    def card_from_config(config, _embed_font)
+      # Never embed font in individual cards when creating sprite sheets
       BaseCard.new(
         name: config['name'],
         mana_cost: config['mana_cost'],
@@ -97,7 +105,8 @@ module MtgCardMaker
         toughness: config['toughness'],
         color: config['color'],
         border_color: config['border_color'],
-        art: config['art']
+        art: config['art'],
+        embed_font: false
       )
     end
 
@@ -107,9 +116,9 @@ module MtgCardMaker
       temp_file
     end
 
-    def stitch_cards_into_sprite(card_files, output_file)
+    def stitch_cards_into_sprite(card_files, output_file, embed_font)
       width, height = sprite_dimensions(card_files.length)
-      builder = @builder.create_sprite_builder(width, height, card_files, @assets)
+      builder = @builder.create_sprite_builder(width, height, card_files, @assets, embed_font: embed_font)
       @builder.write_sprite_file(output_file, builder)
       true
     rescue StandardError => e

@@ -48,7 +48,7 @@ RSpec.describe MtgCardMaker::LayerConfig do
     it 'returns correct font sizes for different layer types', :aggregate_failures do
       config = described_class.default
 
-      expect(config.font_size(:name)).to eq(32)
+      expect(config.font_size(:name)).to eq(38)
       expect(config.font_size(:type)).to eq(22)
       expect(config.font_size(:text_box)).to eq(24)
       expect(config.font_size(:power_area)).to eq(28)

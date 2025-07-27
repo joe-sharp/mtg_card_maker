@@ -83,7 +83,14 @@ module MtgCardMaker
 
     def parse_x_cost(mana_string)
       @elements << :x
-      parse_colored_mana(mana_string[1..])
+      remaining_string = mana_string[1..]
+
+      # Check if the remaining string starts with a number
+      if remaining_string.match?(/^\d+/)
+        parse_numeric_cost(remaining_string)
+      else
+        parse_colored_mana(remaining_string)
+      end
     end
 
     def parse_numeric_cost(mana_string)

@@ -33,7 +33,7 @@ RSpec.describe MtgCardMaker::SpriteSheetAssets do
     describe '#add_sprite_styles' do
       it 'adds CSS styles to sprite', :aggregate_failures do
         builder = Nokogiri::XML::Builder.new
-        assets.send(:add_sprite_styles, builder)
+        assets.send(:add_sprite_styles, builder, embed_font: false)
 
         xml = builder.to_xml
         expect(xml).to include('@font-face')

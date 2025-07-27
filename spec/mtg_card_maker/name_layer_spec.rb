@@ -46,11 +46,12 @@ RSpec.describe MtgCardMaker::NameLayer do
     let(:layer) { described_class.new(dimensions: dimensions, name: 'Test', cost: '1R') }
 
     before do
+      # Mock gradient definitions since they're now defined at BaseCard level
+      allow(MtgCardMaker::SvgGradientService).to receive(:define_all_gradients)
       allow(svg).to receive(:g).and_yield
       allow(svg).to receive(:rect)
       allow(svg).to receive(:transform)
       allow(svg).to receive(:<<)
-      allow(MtgCardMaker::SvgGradientService).to receive(:define_all_gradients)
       allow(MtgCardMaker::SvgGradientService).to receive(:name_gradient_id)
       allow(MtgCardMaker::TextRenderingService).to receive(:render_wrapped_text)
       allow(MtgCardMaker::ManaCost).to receive(:new).and_return(

@@ -120,6 +120,7 @@ module MtgCardMaker
   require_relative 'mtg_card_maker/svg_gradient_service'
   require_relative 'mtg_card_maker/text_rendering_service'
   require_relative 'mtg_card_maker/symbol_replacement_service'
+  require_relative 'mtg_card_maker/css_service'
   require_relative 'mtg_card_maker/sprite_sheet_assets'
   require_relative 'mtg_card_maker/sprite_sheet_builder'
   require_relative 'mtg_card_maker/sprite_sheet_service'
@@ -161,7 +162,6 @@ module MtgCardMaker
       @height = height
       @svg = Victor::SVG.new width: width, height: height
       embed_font(embed: embed_font)
-      define_css_classes
     end
 
     # Add a layer to the template and render it
@@ -191,80 +191,8 @@ module MtgCardMaker
     private
 
     def embed_font(embed: false)
-      if embed
-        font_path = File.join(__dir__, 'mtg_card_maker', 'fonts', 'goudy_base64.txt')
-        base64_font_data = File.read(font_path).strip
-        @svg.style <<~CSS
-          @font-face {
-            font-family: 'Goudy Mediaeval DemiBold';
-            src: url(data:font/truetype;charset=utf-8;base64,#{base64_font_data}) format('truetype');
-            font-weight: normal;
-            font-style: normal;
-          }
-        CSS
-      else
-        @svg.style <<~CSS
-          @font-face {
-            font-family: 'Goudy Mediaeval DemiBold';
-            src: url('fonts/Goudy Mediaeval DemiBold.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-          }
-        CSS
-      end
-    end
-
-    def define_css_classes
-      @svg.style <<~CSS
-        /* Font Classes */
-        .card-name {
-          font-family: 'Goudy Mediaeval DemiBold', serif;
-          font-weight: normal;
-          font-style: normal;
-        }
-
-        .card-type {
-          font-family: 'Goudy Mediaeval DemiBold', serif;
-          font-weight: normal;
-          font-style: normal;
-        }
-
-        .card-rules-text {
-          font-family: serif;
-          font-weight: normal;
-          font-style: normal;
-        }
-
-        .card-flavor-text {
-          font-family: serif;
-          font-weight: normal;
-          font-style: italic;
-        }
-
-        .card-power-toughness {
-          font-family: serif;
-          font-weight: bold;
-          font-style: normal;
-        }
-
-        .card-copyright {
-          font-family: sans-serif;
-          font-weight: normal;
-          font-style: normal;
-        }
-
-        .mana-cost-text {
-          font-family: serif;
-          font-weight: normal;
-          font-style: normal;
-        }
-
-        .mana-cost-text-large {
-          font-family: serif;
-          font-weight: semibold;
-          font-style: normal;
-        }
-      CSS
+      css_content = CssService.complete_styles(embed: embed)
+      @svg.style css_content
     end
   end
 end
