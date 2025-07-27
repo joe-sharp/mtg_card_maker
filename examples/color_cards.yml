@@ -13,7 +13,7 @@ blue:
   name: "Blue"
   mana_cost: "UR"
   type_line: "Instant"
-  rules_text: "Counter target spell unless its controller pays {1} \n\nDraw a card."
+  rules_text: "Counter target spell unless its controller pays {1} \n\n{S} or {E} Draw a card."
   flavor_text: "Knowledge flows like water, finding its way through any barrier."
   border_color: black
   color: blue
@@ -36,7 +36,7 @@ red:
 
 green:
   name: "Green"
-  mana_cost: "5G"
+  mana_cost: "3GS"
   type_line: "Creature - Elemental"
   rules_text: "Trample. When this creature enters the battlefield, search your library for a land card and put it onto the battlefield tapped."
   power: "4"
