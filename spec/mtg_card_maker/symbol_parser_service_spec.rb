@@ -18,37 +18,37 @@ RSpec.describe MtgCardMaker::SymbolParserService do
 
   describe '#process_text' do
     context 'with colored mana symbols' do
-      it 'processes white mana symbol' do
+      it 'processes white mana symbol', :aggregate_failures do
         result = service.process_text('Add {W}.')
         expect(result).to include('<circle')
         expect(result).to include('fill="#FFF9C4"')
       end
 
-      it 'processes blue mana symbol' do
+      it 'processes blue mana symbol', :aggregate_failures do
         result = service.process_text('Add {U}.')
         expect(result).to include('<circle')
         expect(result).to include('fill="#90CAF9"')
       end
 
-      it 'processes black mana symbol' do
+      it 'processes black mana symbol', :aggregate_failures do
         result = service.process_text('Add {B}.')
         expect(result).to include('<circle')
         expect(result).to include('fill="#BDBDBD"')
       end
 
-      it 'processes red mana symbol' do
+      it 'processes red mana symbol', :aggregate_failures do
         result = service.process_text('Add {R}.')
         expect(result).to include('<circle')
         expect(result).to include('fill="#EF9A9A"')
       end
 
-      it 'processes green mana symbol' do
+      it 'processes green mana symbol', :aggregate_failures do
         result = service.process_text('Add {G}.')
         expect(result).to include('<circle')
         expect(result).to include('fill="#A5D6A7"')
       end
 
-      it 'processes colorless mana symbol' do
+      it 'processes colorless mana symbol', :aggregate_failures do
         result = service.process_text('Add {C}.')
         expect(result).to include('<circle')
         expect(result).to include('fill="#DDD"')
@@ -73,13 +73,13 @@ RSpec.describe MtgCardMaker::SymbolParserService do
         end
       end
 
-      it 'processes double digit generic mana' do
+      it 'processes double digit generic mana', :aggregate_failures do
         result = service.process_text('Cost: {10}')
         expect(result).to include('>10<')
         expect(result).to include('fill="#DDD"')
       end
 
-      it 'processes X generic mana' do
+      it 'processes X generic mana', :aggregate_failures do
         result = service.process_text('Cost: {X}')
         expect(result).to include('>X<')
         expect(result).to include('fill="#DDD"')
@@ -95,7 +95,7 @@ RSpec.describe MtgCardMaker::SymbolParserService do
     end
 
     context 'with hybrid mana symbols' do
-      it 'processes white/blue hybrid mana' do
+      it 'processes white/blue hybrid mana', :aggregate_failures do
         result = service.process_text('Cost: {W/U}')
         expect(result).to include('<circle')
         expect(result).to include('fill="#FFF9C4"') # Uses first color
@@ -158,14 +158,14 @@ RSpec.describe MtgCardMaker::SymbolParserService do
         expect(service.process_text(text)).to eq(text)
       end
 
-      it 'handles unsupported symbols' do
+      it 'handles unsupported symbols', :aggregate_failures do
         text = 'Cost: {Z}{Y}{A}'
         result = service.process_text(text)
         expect(result).to include('?') # Fallback symbol
         expect(result.scan('<circle').length).to eq(3)
       end
 
-      it 'handles malformed symbols' do
+      it 'handles malformed symbols', :aggregate_failures do
         text = 'Cost: {W}{U}{B}'
         result = service.process_text(text)
         expect(result).to include('fill="#FFF9C4"')
@@ -184,7 +184,7 @@ RSpec.describe MtgCardMaker::SymbolParserService do
   end
 
   describe '#supported_symbols' do
-    it 'returns all supported symbol patterns' do
+    it 'returns all supported symbol patterns', :aggregate_failures do
       symbols = service.supported_symbols
       expect(symbols).to include('{W}', '{U}', '{B}', '{R}', '{G}', '{C}')
       expect(symbols).to include('{1}', '{2}', '{X}')
@@ -192,7 +192,7 @@ RSpec.describe MtgCardMaker::SymbolParserService do
       expect(symbols).to include('{T}', '{Q}', '{E}')
     end
 
-    it 'returns symbols in the correct order for processing' do
+    it 'returns symbols in the correct order for processing', :aggregate_failures do
       symbols = service.supported_symbols
       # Check that longer patterns come before shorter ones
       w_u_index = symbols.index('{W/U}')
@@ -205,14 +205,14 @@ RSpec.describe MtgCardMaker::SymbolParserService do
   end
 
   describe '#supported?' do
-    it 'returns true for supported symbols' do
+    it 'returns true for supported symbols', :aggregate_failures do
       expect(service.supported?('{W}')).to be true
       expect(service.supported?('{1}')).to be true
       expect(service.supported?('{W/U}')).to be true
       expect(service.supported?('{T}')).to be true
     end
 
-    it 'returns false for unsupported symbols' do
+    it 'returns false for unsupported symbols', :aggregate_failures do
       expect(service.supported?('{Z}')).to be false
       expect(service.supported?('{11}')).to be false
       expect(service.supported?('{W/Z}')).to be false
@@ -221,14 +221,14 @@ RSpec.describe MtgCardMaker::SymbolParserService do
   end
 
   describe 'SVG generation' do
-    it 'generates proper SVG structure for colored mana' do
+    it 'generates proper SVG structure for colored mana', :aggregate_failures do
       result = service.process_text('{W}')
       expect(result).to include('<g style="display: inline-block; vertical-align: middle;">')
       expect(result).to include('<circle')
       expect(result).to include('opacity="0.8"')
     end
 
-    it 'generates proper SVG structure for generic mana' do
+    it 'generates proper SVG structure for generic mana', :aggregate_failures do
       result = service.process_text('{1}')
       expect(result).to include('<g style="display: inline-block; vertical-align: middle;">')
       expect(result).to include('<circle')
@@ -236,14 +236,14 @@ RSpec.describe MtgCardMaker::SymbolParserService do
       expect(result).to include('>1<')
     end
 
-    it 'generates proper SVG structure for action symbols' do
+    it 'generates proper SVG structure for action symbols', :aggregate_failures do
       result = service.process_text('{T}')
       expect(result).to include('<g style="display: inline-block; vertical-align: middle;">')
       expect(result).to include('<text')
       expect(result).to include('⟳')
     end
 
-    it 'generates fallback for missing icons' do
+    it 'generates fallback for missing icons', :aggregate_failures do
       # Mock icon service to return nil
       allow(service.icon_service).to receive(:icon_svg).and_return(nil)
       result = service.process_text('{W}')
@@ -253,8 +253,9 @@ RSpec.describe MtgCardMaker::SymbolParserService do
 
   describe 'integration with icon service' do
     it 'uses icon service for colored mana symbols' do
-      expect(service.icon_service).to receive(:icon_svg).with(:white, size: 16).and_return('<svg>test</svg>')
+      allow(service.icon_service).to receive(:icon_svg).with(:white, size: 16).and_return('<svg>test</svg>')
       service.process_text('{W}')
+      expect(service.icon_service).to have_received(:icon_svg).with(:white, size: 16)
     end
 
     it 'handles icon service failures gracefully' do

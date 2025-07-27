@@ -108,7 +108,7 @@ module MtgCardMaker
       end
     end
 
-    def generate_symbol_svg(symbol, config)
+    def generate_symbol_svg(symbol, config) # rubocop:disable Metrics/MethodLength
       case config[:type]
       when :colored_mana
         generate_colored_mana_svg(config)
@@ -182,7 +182,7 @@ module MtgCardMaker
       SVG
     end
 
-    def generate_action_symbol_svg(config)
+    def generate_action_symbol_svg(config) # rubocop:disable Metrics/MethodLength
       action = config[:action]
       size = config[:size]
 
