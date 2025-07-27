@@ -210,8 +210,14 @@ module MtgCardMaker
       end
     end
 
+    def define_gradients_for_card
+      svg = @template.instance_variable_get(:@svg)
+      SvgGradientService.define_all_gradients(svg, @color_scheme)
+    end
+
     def add_layers
       define_art_window_mask
+      define_gradients_for_card
       # Use LayerFactory to create layers in order
       layers = LayerFactory.create_layers_for_card(self, DEFAULTS[:mask_id], self)
       layers.each { |layer| @template.add_layer(layer) }

@@ -102,7 +102,6 @@ module MtgCardMaker
                rx: corners[:x], ry: corners[:y],
                fill: '#EEE',
                mask: "url(##{@mask_id})"
-      SvgGradientService.define_all_gradients(svg, color_scheme)
       render_metallic_elements(
         mask: @mask_id,
         corners: corners,

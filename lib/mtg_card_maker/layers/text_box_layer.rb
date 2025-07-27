@@ -23,7 +23,6 @@ module MtgCardMaker
 
     # Render the rules text and flavor text in a text box with bidirectional flow
     def render
-      SvgGradientService.define_all_gradients(svg, color_scheme)
       render_text_box
     end
 

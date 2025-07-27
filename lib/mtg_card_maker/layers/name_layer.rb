@@ -18,9 +18,6 @@ module MtgCardMaker
     end
 
     def render
-      # Ensure gradients are defined for this color scheme
-      SvgGradientService.define_all_gradients(svg, color_scheme)
-
       svg.g do
         render_name_area
         render_card_name
