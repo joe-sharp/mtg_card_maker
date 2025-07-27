@@ -5,7 +5,7 @@ require_relative 'icon_service'
 module MtgCardMaker
   # Mana cost class that generates SVG for the mana cost of a card.
   # This class parses mana cost strings (e.g., "2UR", "XG") and generates
-  # SVG circles with appropriate colors and icons for each mana symbol.
+  # SVG icons for each mana symbol.
   #
   # @example
   #   mana_cost = MtgCardMaker::ManaCost.new("2UR")
@@ -17,9 +17,6 @@ module MtgCardMaker
   #
   # @since 0.1.0
   class ManaCost
-    # Mapping of letters to colors
-    # @return [Hash] the color mapping for mana symbols
-
     # @return [Array<Symbol>] the parsed mana elements
     attr_reader :elements
 
@@ -32,7 +29,7 @@ module MtgCardMaker
     # @param icon_set [Symbol] the icon set to use (default: :default)
     def initialize(mana_string = nil, icon_set = :default) # rubocop:disable Metrics/MethodLength
       @elements = []
-      @origins = [] # :numeric, :C, or color symbol
+      @origins = [] # :numeric, :C, or icon_type
       @int_val = nil
       @original_string = mana_string
       @icon_service = IconService.new(icon_set)
@@ -52,24 +49,24 @@ module MtgCardMaker
       @origins = @origins.first(max_circles)
     end
 
-    # Returns SVG string for the mana cost circles with drop shadow
+    # Returns SVG string for the mana cost icons with drop shadow
     #
     # @return [String] the SVG markup for the mana cost
     def to_svg
       layer_config = LayerConfig.default
       circle_spacing = layer_config.mana_cost_config[:circle_spacing]
 
-      # Build mana cost circles SVG
-      mana_circles = @elements.each_with_index.map do |color, i|
+      # Build mana cost icons SVG
+      mana_icons = @elements.each_with_index.map do |icon_type, i|
         x = i * circle_spacing
         y = 0
-        mana_element_svg(x, y, color, @origins[i])
+        mana_element_svg(x, y, icon_type, @origins[i])
       end.join
 
       <<~SVG.delete("\n")
         #{drop_shadow_filter}
         <g filter="url(#mana-cost-drop-shadow)">
-        #{mana_circles}
+        #{mana_icons}
         </g>
       SVG
     end
@@ -91,16 +88,30 @@ module MtgCardMaker
     end
 
     def parse_numeric_cost(mana_string)
-      mana_string = mana_string.gsub(/^X/, '10')
+      if mana_string.start_with?('X')
+        # Handle X directly as an X icon
+        @int_val = nil
+        @elements << :x
+        @origins << :x
+
+        # Parse remaining colored mana after X
+        remaining = mana_string[1..]
+        parse_colored_mana(remaining)
+        return
+      end
 
       int_match = mana_string.match(/^(\d+)/)
       @int_val = int_match[1].to_i
 
-      # If it's a double-digit number, treat as X
-      @int_val = 10 if @int_val >= 10
-
-      @elements << :colorless
-      @origins << :numeric
+      # If it's more than 2 digits, treat as X
+      if @int_val >= 100
+        @int_val = nil
+        @elements << :x
+        @origins << :x
+      else
+        @elements << :numeric
+        @origins << :numeric
+      end
 
       # Remove the integer and parse remaining colored mana
       remaining = mana_string[int_match[1].length..]
@@ -116,18 +127,18 @@ module MtgCardMaker
     end
 
     def process_colored_character(char)
-      color = SYMBOL_MAP[char]
-      if colorless_symbol?(color, char)
+      icon_type = SYMBOL_MAP[char]
+      if colorless_symbol?(icon_type, char)
         @elements << :colorless
         @origins << :C
-      elsif color
-        @elements << color
-        @origins << color
+      elsif icon_type
+        @elements << icon_type
+        @origins << icon_type
       end
     end
 
-    def colorless_symbol?(color, char)
-      color == :colorless && char == 'C'
+    def colorless_symbol?(icon_type, char)
+      icon_type == :colorless && char == 'C'
     end
 
     def drop_shadow_filter
@@ -150,24 +161,40 @@ module MtgCardMaker
       SVG
     end
 
-    def mana_element_svg(x, y, color, origin) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+    def mana_element_svg(x, y, icon_type, origin) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       layer_config = LayerConfig.default
       icon_size = layer_config.mana_cost_config[:icon_size]
 
-      if color == :colorless && origin == :numeric
-        # Add text for numeric colorless mana circles
-        svg = colorless_text(x, y, origin)
-      elsif [:untap, :tap].include?(origin)
-        # Add icon without a background and slightly larger
-        icon_svg = @icon_service.icon_svg(color, size: icon_size)
+      if icon_type == :numeric && origin == :numeric
+        # Use IconService for numeric icons
+        icon_svg = @icon_service.numeric_icon_svg(@int_val, size: icon_size)
         if icon_svg
           icon_x = x - (icon_size / 2)
           icon_y = y - (icon_size / 2)
-          LayerConfig.default
+          layer_config = LayerConfig.default
+          opacity = layer_config.mana_cost_icon_opacity
+          svg = "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
+        end
+      elsif icon_type == :x && origin == :x
+        # Use IconService for X icon
+        icon_svg = @icon_service.icon_svg(:x, size: icon_size)
+        if icon_svg
+          icon_x = x - (icon_size / 2)
+          icon_y = y - (icon_size / 2)
+          layer_config = LayerConfig.default
+          opacity = layer_config.mana_cost_icon_opacity
+          svg = "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
+        end
+      elsif [:untap, :tap].include?(origin)
+        # Add icon without a background and slightly larger
+        icon_svg = @icon_service.icon_svg(icon_type, size: icon_size)
+        if icon_svg
+          icon_x = x - (icon_size / 2)
+          icon_y = y - (icon_size / 2)
           svg = "<g transform='translate(#{icon_x}, #{icon_y})'>#{icon_svg}</g>"
         end
       else
-        icon_svg = @icon_service.icon_svg(color, size: icon_size)
+        icon_svg = @icon_service.icon_svg(icon_type, size: icon_size)
         if icon_svg
           icon_x = x - (icon_size / 2)
           icon_y = y - (icon_size / 2)
@@ -178,37 +205,6 @@ module MtgCardMaker
       end
 
       svg
-    end
-
-    def colorless_text(x, y, origin)
-      if origin == :numeric && @int_val
-        text = @int_val == 10 ? 'X' : @int_val.to_s
-        text_svg(x, y, text)
-      else
-        ''
-      end
-    end
-
-    def text_svg(x, y, text)
-      # Position text in the center of the circle with appropriate styling
-      layer_config = LayerConfig.default
-      font_size = layer_config.mana_cost_font_size
-      font_weight = text == 'X' ? 'normal' : 'semibold'
-      y_offset = layer_config.mana_cost_text_y_offset
-
-      "<text x='#{x}' y='#{y + y_offset}' fill='#000' text-anchor='middle' " \
-        "font-weight='#{font_weight}' font-size='#{font_size}' font-family='serif'>#{text}</text>"
-    end
-
-    def svg_color(color)
-      case color
-      when :white then '#FFF9C4'  # White primary color
-      when :blue then '#90CAF9'   # Blue primary color (from fixture)
-      when :black then '#BDBDBD'  # Black primary color (from fixture)
-      when :red then '#EF9A9A'    # Red primary color (from fixture)
-      when :green then '#A5D6A7'  # Green primary color (from fixture)
-      else '#DDD'
-      end
     end
   end
 end
