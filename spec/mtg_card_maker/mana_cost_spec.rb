@@ -92,7 +92,7 @@ RSpec.describe MtgCardMaker::ManaCost do
     context 'with edge cases' do
       it 'handles unknown characters gracefully', :aggregate_failures do
         cost = described_class.new('2QZ')
-        expect(cost.elements).to eq([:numeric, :untap])
+        expect(cost.elements).to eq([:numeric])
         expect(cost.int_val).to eq(2)
       end
 

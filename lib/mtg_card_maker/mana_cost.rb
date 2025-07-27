@@ -25,9 +25,6 @@ module MtgCardMaker
       'W' => :white,
       'R' => :red,
       'C' => :colorless,
-      'T' => :tap,
-      'Q' => :untap,
-      'E' => :energy,
       'S' => :snow,
       'X' => :x
     }.freeze
