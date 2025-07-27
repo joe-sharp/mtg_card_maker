@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'cgi'
-
 module MtgCardMaker
   # Text limits for different scenarios
   MAX_RULES_LINES = 9
@@ -9,7 +7,7 @@ module MtgCardMaker
 
   # TextBoxLayer is a specialized layer for the rules and flavor text
   # with bidirectional text flow from a dynamic separator
-  class TextBoxLayer < BaseLayer # rubocop:disable Metrics/ClassLength
+  class TextBoxLayer < BaseLayer
     include LayerInitializer
     attr_reader :rules_text, :flavor_text, :color_scheme, :font_size, :text_width
 
@@ -119,7 +117,7 @@ module MtgCardMaker
     end
 
     def render_text_line(line, y_pos, text_type)
-      if contains_symbols?(line)
+      if symbol_service.contains_symbols?(line)
         render_line_with_symbols(line, y_pos)
       else
         svg.text line, {
@@ -132,63 +130,20 @@ module MtgCardMaker
       end
     end
 
-    def contains_symbols?(text)
-      text.match?(/\{[^}]+\}/)
-    end
-
     def render_line_with_symbols(line, y_pos)
-      parts = split_text_and_symbols(line)
+      html_content = symbol_service.render_line_with_symbols(line, text_width)
 
       # Use foreignObject with HTML for proper text/symbol alignment
       svg.foreignObject x: layer_config.text_x_position(x),
                         y: y_pos - font_size,
                         width: text_width,
                         height: font_size * 2 do
-        svg << render_html_line_with_symbols(parts)
+        svg << html_content
       end
     end
 
-    def split_text_and_symbols(text)
-      # Split text into parts: symbols and non-symbols using regex
-      # This matches symbols like {W}, {2}, {T}, etc. and captures them as separate parts
-      # Regex:The character { followed by any character except }, then closed by }
-      text.split(/(\{[^}]+\})/).reject(&:empty?)
-    end
-
-    def render_html_line_with_symbols(parts)
-      html_parts = parts.map do |part|
-        if part.start_with?('{') && part.end_with?('}')
-          # Render symbol as inline SVG
-          render_symbol_html(part)
-        else
-          # Escape HTML and render as text
-          CGI.escape_html(part)
-        end
-      end
-
-      # Wrap in a div with proper styling
-      <<~HTML
-        <div xmlns='http://www.w3.org/1999/xhtml' style='display: flex; align-items: center; font-size: #{font_size}px;'>
-          #{html_parts.join}
-        </div>
-      HTML
-    end
-
-    def render_symbol_html(symbol)
-      # Convert symbol to mana cost format and use ManaCost class
-      symbol = symbol.gsub(/[{}]/, '')
-      icon = IconService.new
-
-      # Get the SVG content from IconService
-      icon_svg = icon.icon_svg(SYMBOL_MAP[symbol])
-      # Try numeric icon if the regular icon lookup failed and symbol is numeric
-      icon_svg = icon.numeric_icon_svg(symbol.to_i) if icon_svg.nil? && symbol.match?(/^\d+$/)
-      return unless icon_svg
-
-      # Use the SVG content directly with proper styling
-      icon_svg.gsub(/width="[^"]*"/, 'width="24"')
-              .gsub(/height="[^"]*"/, 'height="24"')
-              .gsub('<svg', '<svg style="vertical-align: middle; margin: 0 5px;"')
+    def symbol_service
+      @symbol_service ||= SymbolReplacementService.new
     end
 
     def render_separator(separator_y)
