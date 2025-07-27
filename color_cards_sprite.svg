@@ -10,13 +10,13 @@
 /* Font Classes */
 .card-name {
   font-family: 'Goudy Mediaeval DemiBold', serif;
-  font-weight: bold;
+  font-weight: normal;
   font-style: normal;
 }
 
 .card-type {
   font-family: 'Goudy Mediaeval DemiBold', serif;
-  font-weight: bold;
+  font-weight: normal;
   font-style: normal;
 }
 

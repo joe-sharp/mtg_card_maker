@@ -174,7 +174,7 @@ module MtgCardMaker
     def add_optional_fields(config)
       optional_fields = %w[mana_cost power toughness border_color color art embed_font]
       optional_fields.each do |field|
-        config[field] = options[field.to_sym] if options[field.to_sym]
+        config[field] = options[field.to_sym] if options.key?(field.to_sym)
       end
 
       # Handle flavor_text separately to process newlines

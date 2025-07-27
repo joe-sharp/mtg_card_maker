@@ -125,7 +125,7 @@ module MtgCardMaker
     def initialize(config)
       assign_attributes(config)
       validate_required_fields
-      @template = Template.new(embed_font: config[:embed_font] || true)
+      @template = Template.new(embed_font: config.fetch(:embed_font, true))
       add_layers
     end
 

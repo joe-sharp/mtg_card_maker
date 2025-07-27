@@ -1,21 +1,15 @@
 <svg width="630" height="880" xmlns="http://www.w3.org/2000/svg">
 
 <style>
-@font-face {
-  font-family: 'Goudy Mediaeval DemiBold';
-  src: url('fonts/Goudy Mediaeval DemiBold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 /* Font Classes */
 .card-name {
-  font-family: 'Goudy Mediaeval DemiBold', serif;
+  font-family: serif;
   font-weight: bold;
   font-style: normal;
 }
 
 .card-type {
-  font-family: 'Goudy Mediaeval DemiBold', serif;
+  font-family: serif;
   font-weight: bold;
   font-style: normal;
 }
