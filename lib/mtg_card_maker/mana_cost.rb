@@ -16,7 +16,7 @@ module MtgCardMaker
   #   svg = mana_cost.to_svg
   #
   # @since 0.1.0
-  class ManaCost
+  class ManaCost # rubocop:disable Metrics/ClassLength
     # @return [Array<Symbol>] the parsed mana elements
     attr_reader :elements
 
@@ -27,9 +27,8 @@ module MtgCardMaker
     #
     # @param mana_string [String, nil] the mana cost string (e.g., "2UR", "XG")
     # @param icon_set [Symbol] the icon set to use (default: :default)
-    def initialize(mana_string = nil, icon_set = :default) # rubocop:disable Metrics/MethodLength
+    def initialize(mana_string = nil, icon_set = :default)
       @elements = []
-      @origins = [] # :numeric, :C, or icon_type
       @int_val = nil
       @original_string = mana_string
       @icon_service = IconService.new(icon_set)
@@ -46,7 +45,6 @@ module MtgCardMaker
       layer_config = LayerConfig.default
       max_circles = layer_config.mana_cost_config[:max_circles]
       @elements = @elements.first(max_circles)
-      @origins = @origins.first(max_circles)
     end
 
     # Returns SVG string for the mana cost icons with drop shadow
@@ -60,7 +58,7 @@ module MtgCardMaker
       mana_icons = @elements.each_with_index.map do |icon_type, i|
         x = i * circle_spacing
         y = 0
-        mana_element_svg(x, y, icon_type, @origins[i])
+        mana_element_svg(x, y, icon_type)
       end.join
 
       <<~SVG.delete("\n")
@@ -89,33 +87,45 @@ module MtgCardMaker
 
     def parse_numeric_cost(mana_string)
       if mana_string.start_with?('X')
-        # Handle X directly as an X icon
-        @int_val = nil
-        @elements << :x
-        @origins << :x
-
-        # Parse remaining colored mana after X
-        remaining = mana_string[1..]
-        parse_colored_mana(remaining)
-        return
+        handle_x_cost(mana_string)
+      else
+        handle_numeric_cost(mana_string)
       end
+    end
 
+    def handle_x_cost(mana_string)
+      set_x_cost
+      parse_remaining_colored_mana(mana_string[1..])
+    end
+
+    def handle_numeric_cost(mana_string)
+      numeric_value = extract_numeric_value(mana_string)
+      process_numeric_value(numeric_value)
+      parse_remaining_colored_mana(mana_string[numeric_value.to_s.length..])
+    end
+
+    def set_x_cost
+      @int_val = nil
+      @elements << :x
+    end
+
+    def extract_numeric_value(mana_string)
       int_match = mana_string.match(/^(\d+)/)
-      @int_val = int_match[1].to_i
+      int_match[1].to_i
+    end
 
-      # If it's more than 2 digits, treat as X
-      if @int_val >= 100
-        @int_val = nil
-        @elements << :x
-        @origins << :x
+    def process_numeric_value(value)
+      @int_val = value
+
+      if value >= 100
+        set_x_cost
       else
         @elements << :numeric
-        @origins << :numeric
       end
+    end
 
-      # Remove the integer and parse remaining colored mana
-      remaining = mana_string[int_match[1].length..]
-      parse_colored_mana(remaining)
+    def parse_remaining_colored_mana(remaining_string)
+      parse_colored_mana(remaining_string)
     end
 
     def parse_colored_mana(mana_string)
@@ -130,10 +140,8 @@ module MtgCardMaker
       icon_type = SYMBOL_MAP[char]
       if colorless_symbol?(icon_type, char)
         @elements << :colorless
-        @origins << :C
       elsif icon_type
         @elements << icon_type
-        @origins << icon_type
       end
     end
 
@@ -161,50 +169,68 @@ module MtgCardMaker
       SVG
     end
 
-    def mana_element_svg(x, y, icon_type, origin) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+    def mana_element_svg(x, y, icon_type)
+      case icon_type
+      when :numeric
+        render_numeric_icon(x, y)
+      when :x
+        render_x_icon(x, y)
+      when :untap, :tap
+        render_tap_icon(x, y, icon_type)
+      else
+        render_colored_icon(x, y, icon_type)
+      end
+    end
+
+    def render_numeric_icon(x, y)
       layer_config = LayerConfig.default
       icon_size = layer_config.mana_cost_config[:icon_size]
 
-      if icon_type == :numeric && origin == :numeric
-        # Use IconService for numeric icons
-        icon_svg = @icon_service.numeric_icon_svg(@int_val, size: icon_size)
-        if icon_svg
-          icon_x = x - (icon_size / 2)
-          icon_y = y - (icon_size / 2)
-          layer_config = LayerConfig.default
-          opacity = layer_config.mana_cost_icon_opacity
-          svg = "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
-        end
-      elsif icon_type == :x && origin == :x
-        # Use IconService for X icon
-        icon_svg = @icon_service.icon_svg(:x, size: icon_size)
-        if icon_svg
-          icon_x = x - (icon_size / 2)
-          icon_y = y - (icon_size / 2)
-          layer_config = LayerConfig.default
-          opacity = layer_config.mana_cost_icon_opacity
-          svg = "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
-        end
-      elsif [:untap, :tap].include?(origin)
-        # Add icon without a background and slightly larger
-        icon_svg = @icon_service.icon_svg(icon_type, size: icon_size)
-        if icon_svg
-          icon_x = x - (icon_size / 2)
-          icon_y = y - (icon_size / 2)
-          svg = "<g transform='translate(#{icon_x}, #{icon_y})'>#{icon_svg}</g>"
-        end
-      else
-        icon_svg = @icon_service.icon_svg(icon_type, size: icon_size)
-        if icon_svg
-          icon_x = x - (icon_size / 2)
-          icon_y = y - (icon_size / 2)
-          layer_config = LayerConfig.default
-          opacity = layer_config.mana_cost_icon_opacity
-          svg = "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
-        end
-      end
+      icon_svg = @icon_service.numeric_icon_svg(@int_val, size: icon_size)
+      return unless icon_svg
 
-      svg
+      icon_x = x - (icon_size / 2)
+      icon_y = y - (icon_size / 2)
+      opacity = layer_config.mana_cost_icon_opacity
+      "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
+    end
+
+    def render_x_icon(x, y)
+      layer_config = LayerConfig.default
+      icon_size = layer_config.mana_cost_config[:icon_size]
+
+      icon_svg = @icon_service.icon_svg(:x, size: icon_size)
+      return unless icon_svg
+
+      icon_x = x - (icon_size / 2)
+      icon_y = y - (icon_size / 2)
+      opacity = layer_config.mana_cost_icon_opacity
+      "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
+    end
+
+    def render_tap_icon(x, y, icon_type)
+      layer_config = LayerConfig.default
+      icon_size = layer_config.mana_cost_config[:icon_size]
+
+      icon_svg = @icon_service.icon_svg(icon_type, size: icon_size)
+      return unless icon_svg
+
+      icon_x = x - (icon_size / 2)
+      icon_y = y - (icon_size / 2)
+      "<g transform='translate(#{icon_x}, #{icon_y})'>#{icon_svg}</g>"
+    end
+
+    def render_colored_icon(x, y, icon_type)
+      layer_config = LayerConfig.default
+      icon_size = layer_config.mana_cost_config[:icon_size]
+
+      icon_svg = @icon_service.icon_svg(icon_type, size: icon_size)
+      return unless icon_svg
+
+      icon_x = x - (icon_size / 2)
+      icon_y = y - (icon_size / 2)
+      opacity = layer_config.mana_cost_icon_opacity
+      "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
     end
   end
 end
