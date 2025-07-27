@@ -16,7 +16,22 @@ module MtgCardMaker
   #   svg = mana_cost.to_svg
   #
   # @since 0.1.0
-  class ManaCost # rubocop:disable Metrics/ClassLength
+  class ManaCost
+    # Mapping of MTG notation to icon types
+    SYMBOL_MAP = {
+      'B' => :black,
+      'U' => :blue,
+      'G' => :green,
+      'W' => :white,
+      'R' => :red,
+      'C' => :colorless,
+      'T' => :tap,
+      'Q' => :untap,
+      'E' => :energy,
+      'S' => :snow,
+      'X' => :x
+    }.freeze
+
     # @return [Array<Symbol>] the parsed mana elements
     attr_reader :elements
 
@@ -30,21 +45,12 @@ module MtgCardMaker
     def initialize(mana_string = nil, icon_set = :default)
       @elements = []
       @int_val = nil
-      @original_string = mana_string
       @icon_service = IconService.new(icon_set)
 
       return if mana_string.nil? || mana_string.empty?
 
-      # Convert to uppercase for consistency
-      mana_string = mana_string.to_s.upcase
-
-      # Parse the mana string
-      parse_mana_string(mana_string)
-
-      # Limit to maximum circles
-      layer_config = LayerConfig.default
-      max_circles = layer_config.mana_cost_config[:max_circles]
-      @elements = @elements.first(max_circles)
+      parse_mana_string(mana_string.to_s.upcase)
+      limit_elements
     end
 
     # Returns SVG string for the mana cost icons with drop shadow
@@ -54,11 +60,8 @@ module MtgCardMaker
       layer_config = LayerConfig.default
       circle_spacing = layer_config.mana_cost_config[:circle_spacing]
 
-      # Build mana cost icons SVG
       mana_icons = @elements.each_with_index.map do |icon_type, i|
-        x = i * circle_spacing
-        y = 0
-        mana_element_svg(x, y, icon_type)
+        render_mana_icon(i * circle_spacing, 0, icon_type)
       end.join
 
       <<~SVG.delete("\n")
@@ -72,81 +75,71 @@ module MtgCardMaker
     private
 
     def parse_mana_string(mana_string)
-      return if mana_string.nil?
+      return if mana_string.nil? || mana_string.empty?
 
-      if numeric_cost?(mana_string) || mana_string.start_with?('X')
+      if mana_string.start_with?('X')
+        parse_x_cost(mana_string)
+      elsif mana_string.match?(/^\d+/)
         parse_numeric_cost(mana_string)
       else
         parse_colored_mana(mana_string)
       end
     end
 
-    def numeric_cost?(mana_string)
-      mana_string.match?(/^\d+/)
+    def parse_x_cost(mana_string)
+      @elements << :x
+      parse_colored_mana(mana_string[1..])
     end
 
     def parse_numeric_cost(mana_string)
-      if mana_string.start_with?('X')
-        handle_x_cost(mana_string)
+      numeric_value = mana_string.match(/^(\d+)/)[1].to_i
+
+      if numeric_value >= 100
+        @int_val = nil
+        @elements << :x
       else
-        handle_numeric_cost(mana_string)
-      end
-    end
-
-    def handle_x_cost(mana_string)
-      set_x_cost
-      parse_remaining_colored_mana(mana_string[1..])
-    end
-
-    def handle_numeric_cost(mana_string)
-      numeric_value = extract_numeric_value(mana_string)
-      process_numeric_value(numeric_value)
-      parse_remaining_colored_mana(mana_string[numeric_value.to_s.length..])
-    end
-
-    def set_x_cost
-      @int_val = nil
-      @elements << :x
-    end
-
-    def extract_numeric_value(mana_string)
-      int_match = mana_string.match(/^(\d+)/)
-      int_match[1].to_i
-    end
-
-    def process_numeric_value(value)
-      @int_val = value
-
-      if value >= 100
-        set_x_cost
-      else
+        @int_val = numeric_value
         @elements << :numeric
       end
-    end
 
-    def parse_remaining_colored_mana(remaining_string)
-      parse_colored_mana(remaining_string)
+      parse_colored_mana(mana_string[numeric_value.to_s.length..])
     end
 
     def parse_colored_mana(mana_string)
       return if mana_string.nil? || mana_string.empty?
 
       mana_string.chars.each do |char|
-        process_colored_character(char)
+        icon_type = SYMBOL_MAP[char]
+        @elements << icon_type if icon_type
       end
     end
 
-    def process_colored_character(char)
-      icon_type = SYMBOL_MAP[char]
-      if colorless_symbol?(icon_type, char)
-        @elements << :colorless
-      elsif icon_type
-        @elements << icon_type
-      end
+    def limit_elements
+      layer_config = LayerConfig.default
+      max_circles = layer_config.mana_cost_config[:max_circles]
+      @elements = @elements.first(max_circles)
     end
 
-    def colorless_symbol?(icon_type, char)
-      icon_type == :colorless && char == 'C'
+    def render_mana_icon(x, y, icon_type)
+      layer_config = LayerConfig.default
+      icon_size = layer_config.mana_cost_config[:icon_size]
+
+      icon_svg = get_icon_svg(icon_type, icon_size)
+      return unless icon_svg
+
+      icon_x = x - (icon_size / 2)
+      icon_y = y - (icon_size / 2)
+
+      "<g transform='translate(#{icon_x}, #{icon_y})'>#{icon_svg}</g>"
+    end
+
+    def get_icon_svg(icon_type, size)
+      case icon_type
+      when :numeric
+        @icon_service.numeric_icon_svg(@int_val, size: size)
+      else
+        @icon_service.icon_svg(icon_type, size: size)
+      end
     end
 
     def drop_shadow_filter
@@ -162,75 +155,10 @@ module MtgCardMaker
         <feDropShadow dx="#{drop_shadow[:dx]}"
                       dy="#{drop_shadow[:dy]}"
                       stdDeviation="#{drop_shadow[:std_deviation]}"
-                      flood-color="black"
-                      flood-opacity="#{drop_shadow[:flood_opacity]}"/>
+                      flood-color="black"/>
         </filter>
         </defs>
       SVG
-    end
-
-    def mana_element_svg(x, y, icon_type)
-      case icon_type
-      when :numeric
-        render_numeric_icon(x, y)
-      when :x
-        render_x_icon(x, y)
-      when :untap, :tap
-        render_tap_icon(x, y, icon_type)
-      else
-        render_colored_icon(x, y, icon_type)
-      end
-    end
-
-    def render_numeric_icon(x, y)
-      layer_config = LayerConfig.default
-      icon_size = layer_config.mana_cost_config[:icon_size]
-
-      icon_svg = @icon_service.numeric_icon_svg(@int_val, size: icon_size)
-      return unless icon_svg
-
-      icon_x = x - (icon_size / 2)
-      icon_y = y - (icon_size / 2)
-      opacity = layer_config.mana_cost_icon_opacity
-      "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
-    end
-
-    def render_x_icon(x, y)
-      layer_config = LayerConfig.default
-      icon_size = layer_config.mana_cost_config[:icon_size]
-
-      icon_svg = @icon_service.icon_svg(:x, size: icon_size)
-      return unless icon_svg
-
-      icon_x = x - (icon_size / 2)
-      icon_y = y - (icon_size / 2)
-      opacity = layer_config.mana_cost_icon_opacity
-      "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
-    end
-
-    def render_tap_icon(x, y, icon_type)
-      layer_config = LayerConfig.default
-      icon_size = layer_config.mana_cost_config[:icon_size]
-
-      icon_svg = @icon_service.icon_svg(icon_type, size: icon_size)
-      return unless icon_svg
-
-      icon_x = x - (icon_size / 2)
-      icon_y = y - (icon_size / 2)
-      "<g transform='translate(#{icon_x}, #{icon_y})'>#{icon_svg}</g>"
-    end
-
-    def render_colored_icon(x, y, icon_type)
-      layer_config = LayerConfig.default
-      icon_size = layer_config.mana_cost_config[:icon_size]
-
-      icon_svg = @icon_service.icon_svg(icon_type, size: icon_size)
-      return unless icon_svg
-
-      icon_x = x - (icon_size / 2)
-      icon_y = y - (icon_size / 2)
-      opacity = layer_config.mana_cost_icon_opacity
-      "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
     end
   end
 end

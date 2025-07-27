@@ -298,10 +298,9 @@ RSpec.describe MtgCardMaker::ManaCost do
         allow(icon_service).to receive_messages(icon_svg: nil, numeric_icon_svg: nil)
 
         # These should not raise errors even with nil icon_svg
-        expect { cost.send(:render_colored_icon, 0, 0, :red) }.not_to raise_error
-        expect { cost.send(:render_numeric_icon, 0, 0) }.not_to raise_error
-        expect { cost.send(:render_x_icon, 0, 0) }.not_to raise_error
-        expect { cost.send(:render_tap_icon, 0, 0, :tap) }.not_to raise_error
+        expect { cost.send(:render_mana_icon, 0, 0, :red) }.not_to raise_error
+        expect { cost.send(:render_mana_icon, 0, 0, :numeric) }.not_to raise_error
+        expect { cost.send(:render_mana_icon, 0, 0, :x) }.not_to raise_error
       end
     end
   end

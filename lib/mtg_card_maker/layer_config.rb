@@ -123,15 +123,9 @@ module MtgCardMaker
 
       # Drop shadow settings
       drop_shadow: {
-        dx: -2,
-        dy: 2,
-        std_deviation: 1,
-        flood_opacity: 1.0
-      },
-
-      # Icon opacity settings
-      icon_opacity: {
-        mana_cost: 0.7
+        dx: -1,
+        dy: 2.5,
+        std_deviation: 0
       }
     }.freeze
 
@@ -227,15 +221,6 @@ module MtgCardMaker
     # Drop shadow getters
     def drop_shadow_config
       config[:drop_shadow]
-    end
-
-    # Icon opacity getters
-    def icon_opacity_config
-      config[:icon_opacity]
-    end
-
-    def mana_cost_icon_opacity
-      icon_opacity_config[:mana_cost]
     end
 
     # Convenience methods for common calculations
