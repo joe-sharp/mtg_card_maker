@@ -108,6 +108,49 @@ RSpec.describe MtgCardMaker::ManaCost do
         expect(cost.int_val).to eq(2)
       end
     end
+
+    context 'with high numeric values' do
+      it 'converts 100+ values to X cost', :aggregate_failures do
+        cost = described_class.new('100')
+        expect(cost.elements).to eq([:x])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'converts 100+ values with colored mana to X cost', :aggregate_failures do
+        cost = described_class.new('150RG')
+        expect(cost.elements).to eq(%i[x red green])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles 99 as numeric (not X)', :aggregate_failures do
+        cost = described_class.new('99')
+        expect(cost.elements).to eq([:numeric])
+        expect(cost.int_val).to eq(99)
+      end
+
+      it 'handles 99 with colored mana as numeric', :aggregate_failures do
+        cost = described_class.new('99RG')
+        expect(cost.elements).to eq(%i[numeric red green])
+        expect(cost.int_val).to eq(99)
+      end
+    end
+
+    context 'with nil and empty string handling' do
+      it 'handles nil mana string in parse_mana_string', :aggregate_failures do
+        cost = described_class.new('R')
+        expect { cost.send(:parse_mana_string, nil) }.not_to raise_error
+      end
+
+      it 'handles empty string in parse_colored_mana', :aggregate_failures do
+        cost = described_class.new('R')
+        expect { cost.send(:parse_colored_mana, '') }.not_to raise_error
+      end
+
+      it 'handles nil string in parse_colored_mana', :aggregate_failures do
+        cost = described_class.new('R')
+        expect { cost.send(:parse_colored_mana, nil) }.not_to raise_error
+      end
+    end
   end
 
   describe '#to_svg' do
@@ -134,6 +177,20 @@ RSpec.describe MtgCardMaker::ManaCost do
     it 'handles empty mana string gracefully' do
       cost = described_class.new('')
       expect(cost.to_svg).to include('<g filter="url(#mana-cost-drop-shadow)">')
+    end
+
+    it 'handles X cost SVG generation', :aggregate_failures do
+      cost = described_class.new('X')
+      svg = cost.to_svg
+      expect(svg).to include('<g filter="url(#mana-cost-drop-shadow)">')
+      expect(svg).to include('<defs>')
+    end
+
+    it 'handles high numeric values as X in SVG', :aggregate_failures do
+      cost = described_class.new('150')
+      svg = cost.to_svg
+      expect(svg).to include('<g filter="url(#mana-cost-drop-shadow)">')
+      expect(svg).to include('<defs>')
     end
   end
 
@@ -202,6 +259,50 @@ RSpec.describe MtgCardMaker::ManaCost do
       cost = described_class.new('YZ')
       expect(cost.int_val).to be_nil
       expect(cost.elements).to eq([])
+    end
+
+    context 'with colored mana processing' do
+      it 'handles colorless symbol C specifically' do
+        cost = described_class.new('C')
+        expect(cost.elements).to eq([:colorless])
+      end
+
+      it 'handles regular colored mana symbols' do
+        cost = described_class.new('R')
+        expect(cost.elements).to eq([:red])
+      end
+
+      it 'handles unknown characters in colored mana' do
+        cost = described_class.new('Z')
+        expect(cost.elements).to eq([])
+      end
+
+      it 'handles mixed known and unknown characters' do
+        cost = described_class.new('RZ')
+        expect(cost.elements).to eq([:red])
+      end
+
+      it 'handles completely unknown characters' do
+        cost = described_class.new('ABC')
+        expect(cost.elements).to eq([:black, :colorless]) # A=black, B=black, C=colorless
+      end
+    end
+
+    context 'with icon rendering edge cases' do
+      it 'handles nil icon_svg in render methods', :aggregate_failures do
+        # Mock the icon service to return nil for icon_svg
+        cost = described_class.new('R')
+        icon_service = cost.instance_variable_get(:@icon_service)
+
+        # Test that the render methods handle nil icon_svg gracefully
+        allow(icon_service).to receive_messages(icon_svg: nil, numeric_icon_svg: nil)
+
+        # These should not raise errors even with nil icon_svg
+        expect { cost.send(:render_colored_icon, 0, 0, :red) }.not_to raise_error
+        expect { cost.send(:render_numeric_icon, 0, 0) }.not_to raise_error
+        expect { cost.send(:render_x_icon, 0, 0) }.not_to raise_error
+        expect { cost.send(:render_tap_icon, 0, 0, :tap) }.not_to raise_error
+      end
     end
   end
 end
