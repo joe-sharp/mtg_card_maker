@@ -27,7 +27,7 @@ module MtgCardMaker
     DEFAULT_CONFIG = {
       # Text rendering settings
       font_sizes: {
-        name: 38,
+        name: 36,
         type: 22,
         text_box: 24,
         power_area: 28,

@@ -286,7 +286,7 @@ Portions of the materials used are property of Wizards of the Coast.
 <rect x="25" y="25" width="580" height="740" fill="url(#white_frame_gradient)" stroke="#8B8B8B" stroke-width="2" rx="10" ry="10" mask="url(#artWindowMask)"/>
 <g>
 <rect x="30" y="40" width="570" height="50" fill="url(#white_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
-<text x="45" y="78" fill="#111" font-size="38" class="card-name">
+<text x="45" y="75" fill="#111" font-size="36" class="card-name">
 White
 </text>
 <g transform="translate(505, 63)">
@@ -343,7 +343,7 @@ Portions of the materials used are property of Wizards of the Coast.
 <rect x="25" y="25" width="580" height="740" fill="url(#blue_frame_gradient)" stroke="#42A5F5" stroke-width="2" rx="10" ry="10" mask="url(#artWindowMask)"/>
 <g>
 <rect x="30" y="40" width="570" height="50" fill="url(#blue_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
-<text x="45" y="78" fill="#111" font-size="38" class="card-name">
+<text x="45" y="75" fill="#111" font-size="36" class="card-name">
 Blue
 </text>
 <g transform="translate(540, 63)">
@@ -427,7 +427,7 @@ Portions of the materials used are property of Wizards of the Coast.
 <rect x="25" y="25" width="580" height="740" fill="url(#black_frame_gradient)" stroke="#424242" stroke-width="2" rx="10" ry="10" mask="url(#artWindowMask)"/>
 <g>
 <rect x="30" y="40" width="570" height="50" fill="url(#black_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
-<text x="45" y="78" fill="#111" font-size="38" class="card-name">
+<text x="45" y="75" fill="#111" font-size="36" class="card-name">
 Black
 </text>
 </g>
@@ -478,7 +478,7 @@ Portions of the materials used are property of Wizards of the Coast.
 <rect x="25" y="25" width="580" height="740" fill="url(#red_frame_gradient)" stroke="#F44336" stroke-width="2" rx="10" ry="10" mask="url(#artWindowMask)"/>
 <g>
 <rect x="30" y="40" width="570" height="50" fill="url(#red_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
-<text x="45" y="78" fill="#111" font-size="38" class="card-name">
+<text x="45" y="75" fill="#111" font-size="36" class="card-name">
 Red
 </text>
 <g transform="translate(505, 63)">
@@ -544,7 +544,7 @@ Portions of the materials used are property of Wizards of the Coast.
 <rect x="25" y="25" width="580" height="740" fill="url(#green_frame_gradient)" stroke="#4CAF50" stroke-width="2" rx="10" ry="10" mask="url(#artWindowMask)"/>
 <g>
 <rect x="30" y="40" width="570" height="50" fill="url(#green_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
-<text x="45" y="78" fill="#111" font-size="38" class="card-name">
+<text x="45" y="75" fill="#111" font-size="36" class="card-name">
 Green
 </text>
 <g transform="translate(505, 63)">
@@ -600,7 +600,7 @@ Portions of the materials used are property of Wizards of the Coast.
 <rect x="25" y="25" width="580" height="740" fill="url(#colorless_frame_gradient)" stroke="#8B8B8B" stroke-width="2" rx="10" ry="10" mask="url(#artWindowMask)"/>
 <g>
 <rect x="30" y="40" width="570" height="50" fill="url(#colorless_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
-<text x="45" y="78" fill="#111" font-size="38" class="card-name">
+<text x="45" y="75" fill="#111" font-size="36" class="card-name">
 Colorless
 </text>
 <g transform="translate(575, 63)">
@@ -661,7 +661,7 @@ Portions of the materials used are property of Wizards of the Coast.
 <rect x="25" y="25" width="580" height="740" fill="url(#artifact_frame_gradient)" stroke="#D2B48C" stroke-width="2" rx="10" ry="10" mask="url(#artWindowMask)"/>
 <g>
 <rect x="30" y="40" width="570" height="50" fill="url(#artifact_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
-<text x="45" y="78" fill="#111" font-size="38" class="card-name">
+<text x="45" y="75" fill="#111" font-size="36" class="card-name">
 Artifact
 </text>
 <g transform="translate(575, 63)">
@@ -738,7 +738,7 @@ Portions of the materials used are property of Wizards of the Coast.
 <rect x="27" y="27" width="576" height="736" mask="url(#artWindowMask)" rx="8" ry="8" fill="url(#gold_metallic_shadow_gradient)" opacity="0.4"/>
 <g>
 <rect x="30" y="40" width="570" height="50" fill="url(#gold_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
-<text x="45" y="78" fill="#111" font-size="38" class="card-name">
+<text x="45" y="75" fill="#111" font-size="36" class="card-name">
 Gold
 </text>
 <g transform="translate(400, 63)">
