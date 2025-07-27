@@ -286,7 +286,7 @@ Portions of the materials used are property of Wizards of the Coast.
 White
 </text>
 <g transform="translate(505, 63)">
-<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-2" dy="2" stdDeviation="1" flood-color="black" flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><circle cx="0" cy="0" r="15" fill="#FFF9C4"/><g transform="translate(-12, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M-6-420v-120h282v120H-6Zm299-162L185-691l84-84 109 108-85 85Zm127-102v-282h120v282H420Zm247 102-85-85 109-108 84 84-108 109Zm17 162v-120h282v120H684Zm-203.71 85Q420-335 377.5-377.21q-42.5-42.2-42.5-102.5 0-60.29 42.21-102.79 42.2-42.5 102.5-42.5 60.29 0 102.79 42.21 42.5 42.2 42.5 102.5 0 60.29-42.21 102.79-42.2 42.5-102.5 42.5ZM691-185 582-293l85-85 108 109-84 84Zm-422 0-84-84 108-109 85 85-109 108ZM420 6v-282h120V6H420Z"/></svg></g><circle cx="35" cy="0" r="15" fill="#FFF9C4"/><g transform="translate(23, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M-6-420v-120h282v120H-6Zm299-162L185-691l84-84 109 108-85 85Zm127-102v-282h120v282H420Zm247 102-85-85 109-108 84 84-108 109Zm17 162v-120h282v120H684Zm-203.71 85Q420-335 377.5-377.21q-42.5-42.2-42.5-102.5 0-60.29 42.21-102.79 42.2-42.5 102.5-42.5 60.29 0 102.79 42.21 42.5 42.2 42.5 102.5 0 60.29-42.21 102.79-42.2 42.5-102.5 42.5ZM691-185 582-293l85-85 108 109-84 84Zm-422 0-84-84 108-109 85 85-109 108ZM420 6v-282h120V6H420Z"/></svg></g><circle cx="70" cy="0" r="15" fill="#FFF9C4"/><g transform="translate(58, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M-6-420v-120h282v120H-6Zm299-162L185-691l84-84 109 108-85 85Zm127-102v-282h120v282H420Zm247 102-85-85 109-108 84 84-108 109Zm17 162v-120h282v120H684Zm-203.71 85Q420-335 377.5-377.21q-42.5-42.2-42.5-102.5 0-60.29 42.21-102.79 42.2-42.5 102.5-42.5 60.29 0 102.79 42.21 42.5 42.2 42.5 102.5 0 60.29-42.21 102.79-42.2 42.5-102.5 42.5ZM691-185 582-293l85-85 108 109-84 84Zm-422 0-84-84 108-109 85 85-109 108ZM420 6v-282h120V6H420Z"/></svg></g></g>
+<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-1" dy="2.5" stdDeviation="0" flood-color="black"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><g transform="translate(-15, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#FEFDDF"/>  <g transform="translate(70, -70) scale(0.85)">    <path d="M-6-420v-120h282v120H-6Zm299-162L185-691l84-84 109 108-85 85Zm127-102v-282h120v282H420Zm247 102-85-85 109-108 84 84-108 109Zm17 162v-120h282v120H684Zm-203.71 85Q420-335 377.5-377.21q-42.5-42.2-42.5-102.5 0-60.29 42.21-102.79 42.2-42.5 102.5-42.5 60.29 0 102.79 42.21 42.5 42.2 42.5 102.5 0 60.29-42.21 102.79-42.2 42.5-102.5 42.5ZM691-185 582-293l85-85 108 109-84 84Zm-422 0-84-84 108-109 85 85-109 108ZM420 6v-282h120V6H420Z"/>  </g></svg></g><g transform="translate(20, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#FEFDDF"/>  <g transform="translate(70, -70) scale(0.85)">    <path d="M-6-420v-120h282v120H-6Zm299-162L185-691l84-84 109 108-85 85Zm127-102v-282h120v282H420Zm247 102-85-85 109-108 84 84-108 109Zm17 162v-120h282v120H684Zm-203.71 85Q420-335 377.5-377.21q-42.5-42.2-42.5-102.5 0-60.29 42.21-102.79 42.2-42.5 102.5-42.5 60.29 0 102.79 42.21 42.5 42.2 42.5 102.5 0 60.29-42.21 102.79-42.2 42.5-102.5 42.5ZM691-185 582-293l85-85 108 109-84 84Zm-422 0-84-84 108-109 85 85-109 108ZM420 6v-282h120V6H420Z"/>  </g></svg></g><g transform="translate(55, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#FEFDDF"/>  <g transform="translate(70, -70) scale(0.85)">    <path d="M-6-420v-120h282v120H-6Zm299-162L185-691l84-84 109 108-85 85Zm127-102v-282h120v282H420Zm247 102-85-85 109-108 84 84-108 109Zm17 162v-120h282v120H684Zm-203.71 85Q420-335 377.5-377.21q-42.5-42.2-42.5-102.5 0-60.29 42.21-102.79 42.2-42.5 102.5-42.5 60.29 0 102.79 42.21 42.5 42.2 42.5 102.5 0 60.29-42.21 102.79-42.2 42.5-102.5 42.5ZM691-185 582-293l85-85 108 109-84 84Zm-422 0-84-84 108-109 85 85-109 108ZM420 6v-282h120V6H420Z"/>  </g></svg></g></g>
 </g>
 </g>
 <g>
@@ -347,7 +347,7 @@ Portions of the materials used are property of Wizards of the Coast.
 Blue
 </text>
 <g transform="translate(540, 63)">
-<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-2" dy="2" stdDeviation="1" flood-color="black" flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><circle cx="0" cy="0" r="15" fill="#90CAF9"/><g transform="translate(-12, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M479-56q-150 0-257-104T115-414q0-71.79 28-137.89Q171-618 223-668l162-160q20-19 44.74-29 24.74-10 50.26-10t50.26 10Q555-847 575-828l162 160q52 50 80 116.11 28 66.1 28 137.89 0 150-107.5 254T479-56ZM251-414h458q0-44-18.5-85t-49.67-71.56L480-731 319.17-570.56Q288-540 269.5-498.93 251-457.86 251-414Z"/></svg></g><circle cx="35" cy="0" r="15" fill="#EF9A9A"/><g transform="translate(23, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g></g>
+<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-1" dy="2.5" stdDeviation="0" flood-color="black"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><g transform="translate(-15, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#B5D9F4"/>  <g>    <path d="M479-56q-150 0-257-104T115-414q0-71.79 28-137.89Q171-618 223-668l162-160q20-19 44.74-29 24.74-10 50.26-10t50.26 10Q555-847 575-828l162 160q52 50 80 116.11 28 66.1 28 137.89 0 150-107.5 254T479-56ZM251-414h458q0-44-18.5-85t-49.67-71.56L480-731 319.17-570.56Q288-540 269.5-498.93 251-457.86 251-414Z"/>  </g></svg></g><g transform="translate(20, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#FABA9F"/>  <g transform="translate(-20, 20) scale(1.05)">    <path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/>  </g></svg></g></g>
 </g>
 </g>
 <g>
@@ -366,12 +366,39 @@ Instant
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#blue_text_box_gradient)" stroke="#42A5F5" stroke-width="2"/>
 <line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#42A5F5" stroke-width="1"/>
-<text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-Counter target spell unless its controller pays {1}
-</text>
-<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-Draw a card.
-</text>
+<foreignObject x="55" y="582.8333333333334" width="520.0" height="48">
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  Counter target spell unless its controller pays <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="-15 -15 30 30" width="24">
+  <circle cx="0" cy="0" r="15" fill="#DDD"/>
+  <text x="0" y="10" fill="#000" text-anchor="middle" font-weight="normal" font-size="32" font-family="serif">1</text>
+</svg>
+</div>
+
+</foreignObject>
+<foreignObject x="55" y="635.8333333333334" width="520.0" height="48">
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" width="24" height="24" viewBox="0 0 600 600">
+  <g transform="translate(-70.576066,118.21478)" id="layer1">
+    <circle cx="50.000999" cy="50" r="50" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" id="circle485" style="fill:#c9c4be"/>
+    <path d="M25.001,93.303 L33.505,89.209 L37.843,89.157 L40.198,85.077 L50.001,98.881 L59.803,85.077 L62.158,89.157 L66.496,89.208 L75.001,93.303 L75.708,83.891 L77.833,80.105 L75.479,76.027 L92.334,74.439 L85.279,59.05 L89.99,59.05 L92.203,55.318 L100,50 L92.203,44.681 L89.99,40.95 L85.279,40.95 L92.333,25.559 L75.479,23.973 L77.833,19.893 L75.707,16.111 L75,6.699 L66.496,10.792 L62.158,10.843 L59.803,14.922 L50,1.118 L40.198,14.922 L37.843,10.843 L33.505,10.792 L25,6.699 L24.293,16.111 L22.168,19.893 L24.523,23.973 L7.667,25.56 L14.722,40.95 L10.011,40.95 L7.798,44.682 L0,50 L7.797,55.318 L10.011,59.05 L14.722,59.05 L7.668,74.441 L24.523,76.027 L22.168,80.105 L24.293,83.889" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#0d0f0f"/>
+    <path d="M68.609,86.282 L72.116,84.258 L72.116,80.212 L68.609,78.188 L55.088,52.938 L83.717,52.023 L87.223,54.048 L90.727,52.025 L90.727,47.976 L87.223,45.953 L83.717,47.976 L55.088,47.063 L68.611,21.813 L72.117,19.789 L72.117,15.743 L68.611,13.719 L65.107,15.742 L65.105,19.789 L50.001,44.125 L34.896,19.789 L34.895,15.741 L31.392,13.718 L27.885,15.743 L27.885,19.789 L31.391,21.813 L44.913,47.063 L16.285,47.976 L12.778,45.953 L9.275,47.975 L9.275,52.023 L12.778,54.047 L16.285,52.023 L44.913,52.938 L31.39,78.188 L27.885,80.211 L27.884,84.258 L31.39,86.281 L34.895,84.258 L34.895,80.211 L50,55.875 L65.105,80.211 L65.105,84.259" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>
+    <path d="M57.051,22.393 L50.001,34.681 L42.951,22.393 L50.001,10.104" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>
+    <path d="M29.617,30.09 L36.734,42.34 L22.567,42.301 L15.45,30.052" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>
+    <path d="M22.566,57.697 L36.733,57.659 L29.616,69.908 L15.449,69.947" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>
+    <path d="M42.949,77.607 L50,65.318 L57.05,77.607 L50,89.896" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>
+    <path d="M70.384,69.91 L63.268,57.66 L77.434,57.699 L84.551,69.947" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>
+    <path d="M77.436,42.303 L63.268,42.341 L70.385,30.092 L84.551,30.053" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>
+  </g>
+</svg>
+ or <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="vertical-align: middle; margin: 0 5px;" version="1.1" id="svg4136" sodipodi:docname="energy2.svg" inkscape:version="0.91 r13725" x="0px" y="0px" width="24" height="24" viewBox="0 0 480 486.75" enable-background="new 0 0 480 486.75" xml:space="preserve">
+<sodipodi:namedview id="namedview4138" inkscape:current-layer="svg4136" inkscape:window-maximized="1" inkscape:window-y="-8" inkscape:window-x="-8" inkscape:pageshadow="2" inkscape:pageopacity="0" inkscape:window-height="24" inkscape:window-width="24" inkscape:cx="181.26755" inkscape:cy="243.375" objecttolerance="10" gridtolerance="10" guidetolerance="10" showgrid="false" inkscape:zoom="1.3025167" bordercolor="#666666" pagecolor="#ffffff" borderopacity="1">
+	</sodipodi:namedview>
+<path id="path4182" inkscape:connector-curvature="0" d="M234.896,485.029c-2.669-2.858-3.364-8.205-5.593-11.658  c-2.645-4.099-5.889-7.763-8.697-11.742c-3.68-5.217-7.881-10.06-11.601-15.262c-6.362-8.897-13.587-16.63-21.201-24.468  c-18.683-19.234-38.196-37.019-60.371-52.199c-34.356-23.52-70.771-44.106-109.819-58.761c-2.709-1.017,0,0-17.614-8.609  c3.325-5.34,23.831-34.407,28.638-42.12c8.028-12.881,13.8-26.964,19.782-40.866c7.616-17.7,14.438-35.819,19.899-54.296  c6.976-23.604,12.835-47.549,17.354-71.747c1.258-6.735,8.747-63.793,13.215-92.987c39.192,11.299,25.749,7.891,34.636,10.185  c24.621,6.357,50.451,7.612,75.722,9.557c14.404,1.109,28.678,0.999,43.104,0.777c21.448-0.33,42.94-1.344,64.203-4.293  c10.585-1.468,21.127-3.467,31.478-6.126c8.192-2.104,13.47-3.289,31.032-10.1c1.937,7.533,21.898,144.985,48.764,208.185  c10.624,24.992,42.674,79.876,52.745,92.264c-14.321,5.362-71.933,31.841-101.849,49.629  c-36.743,21.848-71.48,48.623-100.156,80.446c-13.532,15.02-24.152,32.606-35.086,49.537  C239.215,486.979,237.569,487.876,234.896,485.029z M246.385,430.125c7.625-39.942,29.623-90.766,63.953-147.75  c11.581-19.223,33.603-52.214,46.967-70.363c8.287-11.254,10.945-15.403,10.945-17.086c0-1.254-0.476-2.405-1.093-2.642  c-0.602-0.231-5.917,0.457-11.813,1.529c-36.192,6.578-73.021,8.765-101.648,6.036c-12.956-1.235-22.442-2.794-23.514-3.865  c-0.759-0.759,2.172-19.29,4.559-28.822c9.985-39.881,33.304-81.786,63.095-113.384c4.589-4.866,8.156-9.034,7.93-9.26  c-0.228-0.227-3.052,0.433-6.277,1.467c-37.805,12.116-79.837,13.334-110.1,3.191c-4.133-1.386-7.625-2.414-7.762-2.287  c-0.136,0.128,0.165,4.227,0.669,9.11c4.746,45.95-17.074,106.187-62.849,173.502c-6.884,10.124-20.352,28.227-28.176,37.875  c-3.156,3.891-4.503,6.084-3.834,6.239c0.567,0.132,6.354-1.116,12.86-2.772c18.57-4.727,34.105-7.629,55.329-10.332  c16.237-2.068,56.226-1.88,70.125,0.33c9.04,1.437,21.549,4.209,22.277,4.938c0.15,0.15-0.213,1.752-0.806,3.561  c-3.145,9.582-7.186,28.637-9.049,42.662c-3.581,26.956-3.578,70.348,0.006,102.375c1.409,12.596,3.907,28.753,4.624,29.913  C243.414,445.276,243.732,444.018,246.385,430.125L246.385,430.125z"/>
+</svg>
+ Draw a card.
+</div>
+
+</foreignObject>
 <text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
 Knowledge flows like water, finding its way through
 </text>
@@ -464,7 +491,7 @@ Portions of the materials used are property of Wizards of the Coast.
 Red
 </text>
 <g transform="translate(505, 63)">
-<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-2" dy="2" stdDeviation="1" flood-color="black" flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><circle cx="0" cy="0" r="15" fill="#DDD"/><text x="0" y="7" fill="#000" text-anchor="middle" font-weight="normal" font-size="24" font-family="serif">X</text><circle cx="35" cy="0" r="15" fill="#EF9A9A"/><g transform="translate(23, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g><circle cx="70" cy="0" r="15" fill="#EF9A9A"/><g transform="translate(58, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g></g>
+<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-1" dy="2.5" stdDeviation="0" flood-color="black"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><g transform="translate(-15, -15)"><svg height="30px" viewBox="-15 -15 30 30" width="30px">  <circle cx="0" cy="0" r="15" fill="#DDD"/>  <text x="0" y="10" fill="#000" text-anchor="middle" font-weight="normal" font-size="30" font-family="serif">    X  </text></svg></g><g transform="translate(20, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#FABA9F"/>  <g transform="translate(-20, 20) scale(1.05)">    <path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/>  </g></svg></g><g transform="translate(55, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#FABA9F"/>  <g transform="translate(-20, 20) scale(1.05)">    <path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/>  </g></svg></g></g>
 </g>
 </g>
 <g>
@@ -483,9 +510,18 @@ Instant
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#red_text_box_gradient)" stroke="#F44336" stroke-width="2"/>
 <line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#F44336" stroke-width="1"/>
-<text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-This spell deals X damage to any target. If a
-</text>
+<foreignObject x="55" y="582.8333333333334" width="520.0" height="48">
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  This spell deals <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="-15 -15 30 30" width="24">
+  <circle cx="0" cy="0" r="15" fill="#DDD"/>
+  <text x="0" y="10" fill="#000" text-anchor="middle" font-weight="normal" font-size="30" font-family="serif">
+    X
+  </text>
+</svg>
+ damage to any target. If a
+</div>
+
+</foreignObject>
 <text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 creature dealt damage this way would die this turn,
 </text>
@@ -525,8 +561,8 @@ Portions of the materials used are property of Wizards of the Coast.
 <text x="45" y="75" fill="#111" font-size="32" class="card-name">
 Green
 </text>
-<g transform="translate(540, 63)">
-<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-2" dy="2" stdDeviation="1" flood-color="black" flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><circle cx="0" cy="0" r="15" fill="#DDD"/><text x="0" y="7" fill="#000" text-anchor="middle" font-weight="semibold" font-size="24" font-family="serif">5</text><circle cx="35" cy="0" r="15" fill="#A5D6A7"/><g transform="translate(23, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M584-31H376v-161H37l161-242h-82l364-521 364 521h-82l161 242H584v161Z"/></svg></g></g>
+<g transform="translate(505, 63)">
+<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-1" dy="2.5" stdDeviation="0" flood-color="black"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><g transform="translate(-15, -15)"><svg height="30px" viewBox="-15 -15 30 30" width="30px">  <circle cx="0" cy="0" r="15" fill="#DDD"/>  <text x="0" y="10" fill="#000" text-anchor="middle" font-weight="normal" font-size="32" font-family="serif">3</text></svg></g><g transform="translate(20, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#ABDDBD"/>  <g transform="translate(70, -90) scale(0.85)">    <path d="M584-31H376v-161H37l161-242h-82l364-521 364 521h-82l161 242H584v161Z"/>  </g></svg></g><g transform="translate(55, -15)"><svg width="30px" height="30px" viewBox="0 0 600 600">  <g transform="translate(-70.576066,118.21478)" id="layer1">    <circle cx="50.000999" cy="50" r="50" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" id="circle485" style="fill:#c9c4be"/>    <path d="M25.001,93.303 L33.505,89.209 L37.843,89.157 L40.198,85.077 L50.001,98.881 L59.803,85.077 L62.158,89.157 L66.496,89.208 L75.001,93.303 L75.708,83.891 L77.833,80.105 L75.479,76.027 L92.334,74.439 L85.279,59.05 L89.99,59.05 L92.203,55.318 L100,50 L92.203,44.681 L89.99,40.95 L85.279,40.95 L92.333,25.559 L75.479,23.973 L77.833,19.893 L75.707,16.111 L75,6.699 L66.496,10.792 L62.158,10.843 L59.803,14.922 L50,1.118 L40.198,14.922 L37.843,10.843 L33.505,10.792 L25,6.699 L24.293,16.111 L22.168,19.893 L24.523,23.973 L7.667,25.56 L14.722,40.95 L10.011,40.95 L7.798,44.682 L0,50 L7.797,55.318 L10.011,59.05 L14.722,59.05 L7.668,74.441 L24.523,76.027 L22.168,80.105 L24.293,83.889" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#0d0f0f"/>    <path d="M68.609,86.282 L72.116,84.258 L72.116,80.212 L68.609,78.188 L55.088,52.938 L83.717,52.023 L87.223,54.048 L90.727,52.025 L90.727,47.976 L87.223,45.953 L83.717,47.976 L55.088,47.063 L68.611,21.813 L72.117,19.789 L72.117,15.743 L68.611,13.719 L65.107,15.742 L65.105,19.789 L50.001,44.125 L34.896,19.789 L34.895,15.741 L31.392,13.718 L27.885,15.743 L27.885,19.789 L31.391,21.813 L44.913,47.063 L16.285,47.976 L12.778,45.953 L9.275,47.975 L9.275,52.023 L12.778,54.047 L16.285,52.023 L44.913,52.938 L31.39,78.188 L27.885,80.211 L27.884,84.258 L31.39,86.281 L34.895,84.258 L34.895,80.211 L50,55.875 L65.105,80.211 L65.105,84.259" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>    <path d="M57.051,22.393 L50.001,34.681 L42.951,22.393 L50.001,10.104" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>    <path d="M29.617,30.09 L36.734,42.34 L22.567,42.301 L15.45,30.052" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>    <path d="M22.566,57.697 L36.733,57.659 L29.616,69.908 L15.449,69.947" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>    <path d="M42.949,77.607 L50,65.318 L57.05,77.607 L50,89.896" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>    <path d="M70.384,69.91 L63.268,57.66 L77.434,57.699 L84.551,69.947" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>    <path d="M77.436,42.303 L63.268,42.341 L70.385,30.092 L84.551,30.053" transform="matrix(5.99994,0,0,6,70.576066,-118.21478)" style="fill:#ffffff"/>  </g></svg></g></g>
 </g>
 </g>
 <g>
@@ -587,7 +623,7 @@ Portions of the materials used are property of Wizards of the Coast.
 Colorless
 </text>
 <g transform="translate(575, 63)">
-<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-2" dy="2" stdDeviation="1" flood-color="black" flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><circle cx="0" cy="0" r="15" fill="#DDD"/><g transform="translate(-12, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M480-137 137-480l343-343 343 343-343 343Zm0-192 151-151-151-151-151 151 151 151Zm0-151Z"/></svg></g></g>
+<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-1" dy="2.5" stdDeviation="0" flood-color="black"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><g transform="translate(-15, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#DDD"/>  <g transform="translate(-125, 125) scale(1.25)">    <path d="M480-137 137-480l343-343 343 343-343 343Zm0-162 181-181-181-181-181 181 181 181Zm0-181Z"/>  </g></svg></g></g>
 </g>
 </g>
 <g>
@@ -606,14 +642,24 @@ Artifact
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#colorless_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
 <line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#8B8B8B" stroke-width="1"/>
-<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-When this artifact enters the battlefield, create
-</text>
-<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-two 1/1 colorless artifact creature tokens.
-</text>
+<foreignObject x="55" y="635.8333333333334" width="520.0" height="48">
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" width="24" height="24" viewBox="0 0 600 600" version="1.1"><circle cx="300" cy="300" r="300" fill="#DDD"/><path d="m512 353.5-216 0 79.1-56.3c-29.4-23.3-63.4-35-101.9-35-19.3 0-32.5 3.7-39.5 11-7.1 7.4-10.7 20.7-10.7 39.9 0 53.2 27.4 110 82.2 170.4l-62.3 63.1c-72.5-88.2-108.8-167.1-108.8-236.5 0-41.6 12.5-74.7 37.6-99.3 25.1-24.6 58.5-36.9 100-36.9 50.7 0 106 19.3 165.9 57.8l46.4-79.1 28.2 200.8" fill="#111"/></svg>
+: Add <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="0 -960 960 960" width="24">
+  <circle cx="50%" cy="-50%" r="480" fill="#FABA9F"/>
+  <g transform="translate(-20, 20) scale(1.05)">
+    <path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/>
+  </g>
+</svg>
+.
+</div>
+
+</foreignObject>
 <text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
-Forged from the essence of the void itself.
+A piece of jewelry, usually containing a gemstone,
+</text>
+<text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-flavor-text">
+that can produce mana. Perhaps a Ruby?
 </text>
 </g>
 </g>
@@ -642,7 +688,7 @@ Portions of the materials used are property of Wizards of the Coast.
 Artifact
 </text>
 <g transform="translate(575, 63)">
-<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-2" dy="2" stdDeviation="1" flood-color="black" flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><circle cx="0" cy="0" r="15" fill="#DDD"/><text x="0" y="7" fill="#000" text-anchor="middle" font-weight="semibold" font-size="24" font-family="serif">2</text></g>
+<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-1" dy="2.5" stdDeviation="0" flood-color="black"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><g transform="translate(-15, -15)"><svg height="30px" viewBox="-15 -15 30 30" width="30px">  <circle cx="0" cy="0" r="15" fill="#DDD"/>  <text x="-14" y="10" fill="#000" text-anchor="start" font-weight="normal" font-size="30" letter-spacing="-2" font-family="serif">99</text></svg></g></g>
 </g>
 </g>
 <g>
@@ -673,20 +719,23 @@ ability to juggle mana symbols (though not very
 well), randomly quotes Shakespeare at inappropriate
 </text>
 <text x="55" y="686.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-moments, develops a peculiar fashion sense
+moments, attempts stand-up comedy during the end
 </text>
 <text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-involving mismatched socks, learns to yodel but
+step, and insists on referring to itself in the
 </text>
 <text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-only on Tuesdays, attempts stand-up comedy during
+third person as 'The Equipped One'.
 </text>
-<text x="55" y="765.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-the end step, and insists on referring to itself in
-</text>
-<text x="55" y="792.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-the third person as 'The Equipped One'.
-</text>
+<foreignObject x="55" y="768.3333333333334" width="520.0" height="48">
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  Equip <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="-15 -15 30 30" width="24">
+  <circle cx="0" cy="0" r="15" fill="#DDD"/>
+  <text x="0" y="10" fill="#000" text-anchor="middle" font-weight="normal" font-size="32" font-family="serif">5</text>
+</svg>
+</div>
+
+</foreignObject>
 </g>
 </g>
   <g transform="translate(1980, 910)">
@@ -721,7 +770,7 @@ Portions of the materials used are property of Wizards of the Coast.
 Gold
 </text>
 <g transform="translate(400, 63)">
-<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-2" dy="2" stdDeviation="1" flood-color="black" flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><circle cx="0" cy="0" r="15" fill="#BDBDBD"/><g transform="translate(-12, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M392-273h176l-88-176-88 176Zm-51.79-152q40.15 0 67.47-27.97T435-520.21q0-40.15-27.53-67.47T340.29-615q-39.65 0-67.47 27.53T245-520.29q0 39.65 27.97 67.47T340.21-425Zm280 0q40.15 0 67.47-27.97T715-520.21q0-40.15-27.53-67.47T620.29-615q-39.65 0-67.47 27.53T525-520.29q0 39.65 27.97 67.47T620.21-425ZM214-55v-178q-33-19-62-48.5t-50.5-67q-21.5-37.5-34-81T55-519.73Q55-690 174.09-797.5 293.19-905 480.33-905q187.15 0 305.91 107.5Q905-690 905-519.73q0 46.73-12.5 90.23-12.5 43.5-34 81t-50.5 67q-29 29.5-62 48.68V-55H625v-116H525v116h-90v-116H335v116H214Z"/></svg></g><circle cx="35" cy="0" r="15" fill="#FFF9C4"/><g transform="translate(23, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M-6-420v-120h282v120H-6Zm299-162L185-691l84-84 109 108-85 85Zm127-102v-282h120v282H420Zm247 102-85-85 109-108 84 84-108 109Zm17 162v-120h282v120H684Zm-203.71 85Q420-335 377.5-377.21q-42.5-42.2-42.5-102.5 0-60.29 42.21-102.79 42.2-42.5 102.5-42.5 60.29 0 102.79 42.21 42.5 42.2 42.5 102.5 0 60.29-42.21 102.79-42.2 42.5-102.5 42.5ZM691-185 582-293l85-85 108 109-84 84Zm-422 0-84-84 108-109 85 85-109 108ZM420 6v-282h120V6H420Z"/></svg></g><circle cx="70" cy="0" r="15" fill="#EF9A9A"/><g transform="translate(58, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/></svg></g><circle cx="105" cy="0" r="15" fill="#A5D6A7"/><g transform="translate(93, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M584-31H376v-161H37l161-242h-82l364-521 364 521h-82l161 242H584v161Z"/></svg></g><circle cx="140" cy="0" r="15" fill="#90CAF9"/><g transform="translate(128, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M479-56q-150 0-257-104T115-414q0-71.79 28-137.89Q171-618 223-668l162-160q20-19 44.74-29 24.74-10 50.26-10t50.26 10Q555-847 575-828l162 160q52 50 80 116.11 28 66.1 28 137.89 0 150-107.5 254T479-56ZM251-414h458q0-44-18.5-85t-49.67-71.56L480-731 319.17-570.56Q288-540 269.5-498.93 251-457.86 251-414Z"/></svg></g><circle cx="175" cy="0" r="15" fill="#DDD"/><g transform="translate(163, -12)" opacity="0.7"><svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#111"><path d="M480-137 137-480l343-343 343 343-343 343Zm0-192 151-151-151-151-151 151 151 151Zm0-151Z"/></svg></g></g>
+<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-1" dy="2.5" stdDeviation="0" flood-color="black"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><g transform="translate(-15, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#A6A6A6"/>  <g transform="translate(50, -50) scale(0.90)">    <path d="M392-273h176l-88-176-88 176Zm-51.79-152q40.15 0 67.47-27.97T435-520.21q0-40.15-27.53-67.47T340.29-615q-39.65 0-67.47 27.53T245-520.29q0 39.65 27.97 67.47T340.21-425Zm280 0q40.15 0 67.47-27.97T715-520.21q0-40.15-27.53-67.47T620.29-615q-39.65 0-67.47 27.53T525-520.29q0 39.65 27.97 67.47T620.21-425ZM214-55v-178q-33-19-62-48.5t-50.5-67q-21.5-37.5-34-81T55-519.73Q55-690 174.09-797.5 293.19-905 480.33-905q187.15 0 305.91 107.5Q905-690 905-519.73q0 46.73-12.5 90.23-12.5 43.5-34 81t-50.5 67q-29 29.5-62 48.68V-55H625v-116H525v116h-90v-116H335v116H214Z"/>  </g></svg></g><g transform="translate(20, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#FEFDDF"/>  <g transform="translate(70, -70) scale(0.85)">    <path d="M-6-420v-120h282v120H-6Zm299-162L185-691l84-84 109 108-85 85Zm127-102v-282h120v282H420Zm247 102-85-85 109-108 84 84-108 109Zm17 162v-120h282v120H684Zm-203.71 85Q420-335 377.5-377.21q-42.5-42.2-42.5-102.5 0-60.29 42.21-102.79 42.2-42.5 102.5-42.5 60.29 0 102.79 42.21 42.5 42.2 42.5 102.5 0 60.29-42.21 102.79-42.2 42.5-102.5 42.5ZM691-185 582-293l85-85 108 109-84 84Zm-422 0-84-84 108-109 85 85-109 108ZM420 6v-282h120V6H420Z"/>  </g></svg></g><g transform="translate(55, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#FABA9F"/>  <g transform="translate(-20, 20) scale(1.05)">    <path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/>  </g></svg></g><g transform="translate(90, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#ABDDBD"/>  <g transform="translate(70, -90) scale(0.85)">    <path d="M584-31H376v-161H37l161-242h-82l364-521 364 521h-82l161 242H584v161Z"/>  </g></svg></g><g transform="translate(125, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#B5D9F4"/>  <g>    <path d="M479-56q-150 0-257-104T115-414q0-71.79 28-137.89Q171-618 223-668l162-160q20-19 44.74-29 24.74-10 50.26-10t50.26 10Q555-847 575-828l162 160q52 50 80 116.11 28 66.1 28 137.89 0 150-107.5 254T479-56ZM251-414h458q0-44-18.5-85t-49.67-71.56L480-731 319.17-570.56Q288-540 269.5-498.93 251-457.86 251-414Z"/>  </g></svg></g><g transform="translate(160, -15)"><svg height="30px" viewBox="0 -960 960 960" width="30px">  <circle cx="50%" cy="-50%" r="480" fill="#DDD"/>  <g transform="translate(-125, 125) scale(1.25)">    <path d="M480-137 137-480l343-343 343 343-343 343Zm0-162 181-181-181-181-181 181 181 181Zm0-181Z"/>  </g></svg></g></g>
 </g>
 </g>
 <g>
@@ -739,17 +788,34 @@ Legendary Creature - Dragon
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#gold_text_box_gradient)" stroke="#FFD700" stroke-width="2"/>
-<line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#FFD700" stroke-width="1"/>
-<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+<line x1="55" y1="704.0" x2="575" y2="704.0" stroke="#FFD700" stroke-width="1"/>
+<text x="55" y="580.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 Flying, trample, haste. When this creature enters
 </text>
-<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+<text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 the battlefield, destroy all other creatures.
 </text>
-<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
-The embodiment of all colors, a force beyond mortal
+<foreignObject x="55" y="635.8333333333334" width="520.0" height="48">
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="0 -960 960 960" width="24">
+  <circle cx="50%" cy="-50%" r="480" fill="#DDD"/>
+  <g transform="translate(-125, 125) scale(1.25)">
+    <path d="M480-137 137-480l343-343 343 343-343 343Zm0-162 181-181-181-181-181 181 181 181Zm0-181Z"/>
+  </g>
+</svg>
+: <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" width="24" height="24" viewBox="0 0 600 600" version="1.1"><circle cx="300" cy="300" r="300" fill="#DDD"/><path d="m512 353.5-216 0 79.1-56.3c-29.4-23.3-63.4-35-101.9-35-19.3 0-32.5 3.7-39.5 11-7.1 7.4-10.7 20.7-10.7 39.9 0 53.2 27.4 110 82.2 170.4l-62.3 63.1c-72.5-88.2-108.8-167.1-108.8-236.5 0-41.6 12.5-74.7 37.6-99.3 25.1-24.6 58.5-36.9 100-36.9 50.7 0 106 19.3 165.9 57.8l46.4-79.1 28.2 200.8" fill="#111"/></svg>
+ this creature to <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" width="24" height="24" viewBox="0 0 600 600" version="1.1"><circle cx="300" cy="300" r="300" fill="#111"/><path d="m473.7 145.7-75.9 44.5c37 57.4 55.4 110.4 55.4 159.1 0 39.9-11.8 71.9-35.4 95.9-23.6 24.1-55.3 36.1-95.2 36.1-66.7 0-142.3-34.8-226.9-104.3l60.6-59.9c57.9 52.6 112.4 78.8 163.5 78.8 18.5 0 31.2-3.4 38.3-10.2 7.1-6.8 10.6-19.5 10.6-37.9 0-37-11.2-69.6-33.6-97.8l-54 75.9 0-207.2 192.6 27" fill="#FFF"/></svg>
+ all other creatures
+</div>
+
+</foreignObject>
+<text x="55" y="686.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+you control.
 </text>
 <text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-flavor-text">
+The embodiment of all colors, a force beyond mortal
+</text>
+<text x="55" y="765.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
 comprehension.
 </text>
 </g>

@@ -5,7 +5,7 @@ require_relative 'icon_service'
 module MtgCardMaker
   # Mana cost class that generates SVG for the mana cost of a card.
   # This class parses mana cost strings (e.g., "2UR", "XG") and generates
-  # SVG circles with appropriate colors and icons for each mana symbol.
+  # SVG icons for each mana symbol.
   #
   # @example
   #   mana_cost = MtgCardMaker::ManaCost.new("2UR")
@@ -17,15 +17,16 @@ module MtgCardMaker
   #
   # @since 0.1.0
   class ManaCost
-    # Mapping of letters to colors
-    # @return [Hash] the color mapping for mana symbols
-    COLOR_MAP = {
-      'B' => :black, 'S' => :black,
-      'U' => :blue,  'I' => :blue,
-      'G' => :green, 'F' => :green,
-      'W' => :white, 'P' => :white,
-      'R' => :red,   'M' => :red,
-      'C' => :colorless
+    # Mapping of MTG notation to icon types
+    SYMBOL_MAP = {
+      'B' => :black,
+      'U' => :blue,
+      'G' => :green,
+      'W' => :white,
+      'R' => :red,
+      'C' => :colorless,
+      'S' => :snow,
+      'X' => :x
     }.freeze
 
     # @return [Array<Symbol>] the parsed mana elements
@@ -38,46 +39,32 @@ module MtgCardMaker
     #
     # @param mana_string [String, nil] the mana cost string (e.g., "2UR", "XG")
     # @param icon_set [Symbol] the icon set to use (default: :default)
-    def initialize(mana_string = nil, icon_set = :default) # rubocop:disable Metrics/MethodLength
+    def initialize(mana_string = nil, icon_set = :default)
       @elements = []
-      @origins = [] # :numeric, :C, or color symbol
       @int_val = nil
-      @original_string = mana_string
       @icon_service = IconService.new(icon_set)
 
       return if mana_string.nil? || mana_string.empty?
 
-      # Convert to uppercase for consistency
-      mana_string = mana_string.to_s.upcase
-
-      # Parse the mana string
-      parse_mana_string(mana_string)
-
-      # Limit to maximum circles
-      layer_config = LayerConfig.default
-      max_circles = layer_config.mana_cost_config[:max_circles]
-      @elements = @elements.first(max_circles)
-      @origins = @origins.first(max_circles)
+      parse_mana_string(mana_string.to_s.upcase)
+      limit_elements
     end
 
-    # Returns SVG string for the mana cost circles with drop shadow
+    # Returns SVG string for the mana cost icons with drop shadow
     #
     # @return [String] the SVG markup for the mana cost
     def to_svg
       layer_config = LayerConfig.default
       circle_spacing = layer_config.mana_cost_config[:circle_spacing]
 
-      # Build mana cost circles SVG
-      mana_circles = @elements.each_with_index.map do |color, i|
-        x = i * circle_spacing
-        y = 0
-        mana_element_svg(x, y, color, @origins[i])
+      mana_icons = @elements.each_with_index.map do |icon_type, i|
+        render_mana_icon(i * circle_spacing, 0, icon_type)
       end.join
 
       <<~SVG.delete("\n")
         #{drop_shadow_filter}
         <g filter="url(#mana-cost-drop-shadow)">
-        #{mana_circles}
+        #{mana_icons}
         </g>
       SVG
     end
@@ -85,57 +72,67 @@ module MtgCardMaker
     private
 
     def parse_mana_string(mana_string)
-      return if mana_string.nil?
-
-      if numeric_cost?(mana_string) || mana_string.start_with?('X')
+      if mana_string.start_with?('X')
+        parse_x_cost(mana_string)
+      elsif mana_string.match?(/^\d+/)
         parse_numeric_cost(mana_string)
       else
         parse_colored_mana(mana_string)
       end
     end
 
-    def numeric_cost?(mana_string)
-      mana_string.match?(/^\d+/)
+    def parse_x_cost(mana_string)
+      @elements << :x
+      parse_colored_mana(mana_string[1..])
     end
 
     def parse_numeric_cost(mana_string)
-      mana_string = mana_string.gsub(/^X/, '10')
+      numeric_value = mana_string.match(/^(\d+)/)[1].to_i
 
-      int_match = mana_string.match(/^(\d+)/)
-      @int_val = int_match[1].to_i
+      if numeric_value >= 100
+        @int_val = nil
+        @elements << :x
+      else
+        @int_val = numeric_value
+        @elements << :numeric
+      end
 
-      # If it's a double-digit number, treat as X
-      @int_val = 10 if @int_val >= 10
-
-      @elements << :colorless
-      @origins << :numeric
-
-      # Remove the integer and parse remaining colored mana
-      remaining = mana_string[int_match[1].length..]
-      parse_colored_mana(remaining)
+      parse_colored_mana(mana_string[numeric_value.to_s.length..])
     end
 
     def parse_colored_mana(mana_string)
-      return if mana_string.nil? || mana_string.empty?
-
       mana_string.chars.each do |char|
-        process_colored_character(char)
+        icon_type = SYMBOL_MAP[char]
+        @elements << icon_type if icon_type
       end
     end
 
-    def process_colored_character(char)
-      color = COLOR_MAP[char]
-      if colorless_symbol?(color, char)
-        @elements << :colorless
-        @origins << :C
-      elsif color
-        @elements << color
-        @origins << color
-      end
+    def limit_elements
+      layer_config = LayerConfig.default
+      max_circles = layer_config.mana_cost_config[:max_circles]
+      @elements = @elements.first(max_circles)
     end
 
-    def colorless_symbol?(color, char)
-      color == :colorless && char == 'C'
+    def render_mana_icon(x, y, icon_type)
+      layer_config = LayerConfig.default
+      icon_size = layer_config.mana_cost_config[:icon_size]
+
+      icon_svg = get_icon_svg(icon_type, icon_size)
+      return unless icon_svg
+
+      icon_x = x - (icon_size / 2)
+      icon_y = y - (icon_size / 2)
+
+      "<g transform='translate(#{icon_x}, #{icon_y})'>#{icon_svg}</g>"
+    end
+
+    def get_icon_svg(icon_type, size)
+      case icon_type
+      when :numeric
+        @icon_service.numeric_icon_svg(@int_val, size: size)
+      else
+        @icon_service.icon_svg(icon_type, size: size)
+      end
     end
 
     def drop_shadow_filter
@@ -151,68 +148,10 @@ module MtgCardMaker
         <feDropShadow dx="#{drop_shadow[:dx]}"
                       dy="#{drop_shadow[:dy]}"
                       stdDeviation="#{drop_shadow[:std_deviation]}"
-                      flood-color="black"
-                      flood-opacity="#{drop_shadow[:flood_opacity]}"/>
+                      flood-color="black"/>
         </filter>
         </defs>
       SVG
-    end
-
-    def mana_element_svg(x, y, color, origin) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-      layer_config = LayerConfig.default
-      circle_radius = layer_config.mana_cost_config[:circle_radius]
-      icon_size = layer_config.mana_cost_config[:icon_size]
-
-      fill = svg_color(color)
-      svg = "<circle cx='#{x}' cy='#{y}' r='#{circle_radius}' fill='#{fill}' />"
-
-      if color == :colorless && origin == :numeric
-        # Add text for numeric colorless mana circles
-        svg << colorless_text(x, y, origin)
-      else
-        # Add icon inside colored mana circles, smaller and with opacity
-        icon_svg = @icon_service.icon_svg(color, size: icon_size)
-        if icon_svg
-          icon_x = x - (icon_size / 2)
-          icon_y = y - (icon_size / 2)
-          layer_config = LayerConfig.default
-          opacity = layer_config.mana_cost_icon_opacity
-          svg << "<g transform='translate(#{icon_x}, #{icon_y})' opacity='#{opacity}'>#{icon_svg}</g>"
-        end
-      end
-
-      svg
-    end
-
-    def colorless_text(x, y, origin)
-      if origin == :numeric && @int_val
-        text = @int_val == 10 ? 'X' : @int_val.to_s
-        text_svg(x, y, text)
-      else
-        ''
-      end
-    end
-
-    def text_svg(x, y, text)
-      # Position text in the center of the circle with appropriate styling
-      layer_config = LayerConfig.default
-      font_size = layer_config.mana_cost_font_size
-      font_weight = text == 'X' ? 'normal' : 'semibold'
-      y_offset = layer_config.mana_cost_text_y_offset
-
-      "<text x='#{x}' y='#{y + y_offset}' fill='#000' text-anchor='middle' " \
-        "font-weight='#{font_weight}' font-size='#{font_size}' font-family='serif'>#{text}</text>"
-    end
-
-    def svg_color(color)
-      case color
-      when :white then '#FFF9C4'  # White primary color
-      when :blue then '#90CAF9'   # Blue primary color (from fixture)
-      when :black then '#BDBDBD'  # Black primary color (from fixture)
-      when :red then '#EF9A9A'    # Red primary color (from fixture)
-      when :green then '#A5D6A7'  # Green primary color (from fixture)
-      else '#DDD'
-      end
     end
   end
 end

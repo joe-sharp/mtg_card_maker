@@ -119,6 +119,7 @@ module MtgCardMaker
   require_relative 'mtg_card_maker/layer_factory'
   require_relative 'mtg_card_maker/svg_gradient_service'
   require_relative 'mtg_card_maker/text_rendering_service'
+  require_relative 'mtg_card_maker/symbol_replacement_service'
   require_relative 'mtg_card_maker/sprite_sheet_assets'
   require_relative 'mtg_card_maker/sprite_sheet_builder'
   require_relative 'mtg_card_maker/sprite_sheet_service'

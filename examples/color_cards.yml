@@ -13,7 +13,7 @@ blue:
   name: "Blue"
   mana_cost: "UR"
   type_line: "Instant"
-  rules_text: "Counter target spell unless its controller pays {1} \n\nDraw a card."
+  rules_text: "Counter target spell unless its controller pays {1} \n\n{S} or {E} Draw a card."
   flavor_text: "Knowledge flows like water, finding its way through any barrier."
   border_color: black
   color: blue
@@ -30,13 +30,13 @@ red:
   name: "Red"
   mana_cost: "XRR"
   type_line: "Instant"
-  rules_text: "This spell deals X damage to any target. If a creature dealt damage this way would die this turn, exile it instead."
+  rules_text: "This spell deals {X} damage to any target. If a creature dealt damage this way would die this turn, exile it instead."
   flavor_text: "Fire consumes all, leaving only ash and memory."
   color: red
 
 green:
   name: "Green"
-  mana_cost: "5G"
+  mana_cost: "3GS"
   type_line: "Creature - Elemental"
   rules_text: "Trample. When this creature enters the battlefield, search your library for a land card and put it onto the battlefield tapped."
   power: "4"
@@ -48,22 +48,22 @@ colorless:
   name: "Colorless"
   mana_cost: "C"
   type_line: "Artifact"
-  rules_text: "When this artifact enters the battlefield, create two 1/1 colorless artifact creature tokens."
-  flavor_text: "Forged from the essence of the void itself."
+  rules_text: "{T}: Add {R}."
+  flavor_text: "A piece of jewelry, usually containing a gemstone, that can produce mana. Perhaps a Ruby?"
   color: colorless
 
 artifact:
   name: "Artifact"
-  mana_cost: "2"
+  mana_cost: "99"
   type_line: "Artifact - Equipment"
-  rules_text: "Equipped creature develops an unhealthy obsession with telling dad jokes during combat, gains the ability to juggle mana symbols (though not very well), randomly quotes Shakespeare at inappropriate moments, develops a peculiar fashion sense involving mismatched socks, learns to yodel but only on Tuesdays, attempts stand-up comedy during the end step, and insists on referring to itself in the third person as 'The Equipped One'."
+  rules_text: "Equipped creature develops an unhealthy obsession with telling dad jokes during combat, gains the ability to juggle mana symbols (though not very well), randomly quotes Shakespeare at inappropriate moments, attempts stand-up comedy during the end step, and insists on referring to itself in the third person as 'The Equipped One'.\n\nEquip {5}"
   color: artifact
 
 gold:
   name: "Gold"
   mana_cost: "BWRGUC"
   type_line: "Legendary Creature - Dragon"
-  rules_text: "Flying, trample, haste. When this creature enters the battlefield, destroy all other creatures."
+  rules_text: "Flying, trample, haste. When this creature enters the battlefield, destroy all other creatures.\n\n{C}: {T} this creature to {Q} all other creatures you control."
   flavor_text: "The embodiment of all colors, a force beyond mortal comprehension."
   power: "8"
   toughness: "8"

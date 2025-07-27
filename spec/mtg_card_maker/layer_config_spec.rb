@@ -50,8 +50,7 @@ RSpec.describe MtgCardMaker::LayerConfig do
 
       expect(config.font_size(:name)).to eq(32)
       expect(config.font_size(:type)).to eq(22)
-      expect(config.font_size(:rules_text)).to eq(24)
-      expect(config.font_size(:flavor_text)).to eq(24)
+      expect(config.font_size(:text_box)).to eq(24)
       expect(config.font_size(:power_area)).to eq(28)
       expect(config.font_size(:copyright)).to eq(14)
     end
@@ -123,9 +122,8 @@ RSpec.describe MtgCardMaker::LayerConfig do
       config = described_class.default
       mana_config = config.mana_cost_config
 
-      expect(mana_config[:circle_radius]).to eq(15)
       expect(mana_config[:circle_spacing]).to eq(35)
-      expect(mana_config[:icon_size]).to eq(24)
+      expect(mana_config[:icon_size]).to eq(30)
       expect(mana_config[:max_circles]).to eq(10)
       expect(mana_config[:margin]).to eq(10)
     end

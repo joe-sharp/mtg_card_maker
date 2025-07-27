@@ -71,7 +71,7 @@ module MtgCardMaker
     def cost_position_x(mana_cost)
       layer_config = LayerConfig.default
       config = layer_config.mana_cost_config
-      base_x = x + width - config[:margin] - config[:circle_radius]
+      base_x = x + width - config[:margin] - (config[:icon_size] / 2)
       base_x - (config[:circle_spacing] * (mana_cost.elements.length - 1))
     end
 

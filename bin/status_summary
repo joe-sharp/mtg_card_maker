@@ -6,7 +6,7 @@ SUPPRESS_OUTPUT = QUIET ? '> /dev/null 2>&1' : ''
 
 single_card = {
   name:        'MTG Card Maker',
-  mana_cost:   '10RRGUBW',
+  mana_cost:   'XCRGUBW',
   type_line:   'Ruby - SVG - Shell',
   rules_text:  'MTG Card Maker is unofficial Fan Content permitted ' \
                'under the Fan Content Policy. Not approved/endorsed ' \

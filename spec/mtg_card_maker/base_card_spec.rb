@@ -64,6 +64,95 @@ RSpec.describe MtgCardMaker::BaseCard do
       expect(card.color_scheme).to be_a(MtgCardMaker::ColorScheme)
       expect(card.color_scheme.primary_color).to eq(MtgCardMaker::ColorScheme.new(:blue).primary_color)
     end
+
+    context 'with validation errors' do
+      it 'raises error when name is missing', :aggregate_failures do
+        expect do
+          described_class.new(
+            type_line: 'Instant',
+            rules_text: 'Test rules text'
+          )
+        end.to raise_error(ArgumentError, /Missing required fields: name/)
+      end
+
+      it 'raises error when name is empty string', :aggregate_failures do
+        expect do
+          described_class.new(
+            name: '',
+            type_line: 'Instant',
+            rules_text: 'Test rules text'
+          )
+        end.to raise_error(ArgumentError, /Missing required fields: name/)
+      end
+
+      it 'raises error when name is whitespace only', :aggregate_failures do
+        expect do
+          described_class.new(
+            name: '   ',
+            type_line: 'Instant',
+            rules_text: 'Test rules text'
+          )
+        end.to raise_error(ArgumentError, /Missing required fields: name/)
+      end
+
+      it 'raises error when type_line is missing', :aggregate_failures do
+        expect do
+          described_class.new(
+            name: 'Test Card',
+            rules_text: 'Test rules text'
+          )
+        end.to raise_error(ArgumentError, /Missing required fields: type_line/)
+      end
+
+      it 'raises error when rules_text is missing', :aggregate_failures do
+        expect do
+          described_class.new(
+            name: 'Test Card',
+            type_line: 'Instant'
+          )
+        end.to raise_error(ArgumentError, /Missing required fields: rules_text/)
+      end
+
+      it 'raises error when multiple fields are missing', :aggregate_failures do
+        expect do
+          described_class.new(
+            name: 'Test Card'
+          )
+        end.to raise_error(ArgumentError, /Missing required fields: type_line, rules_text/)
+      end
+    end
+
+    context 'with color scheme handling' do
+      it 'uses default color scheme when color is nil', :aggregate_failures do
+        card = described_class.new(
+          name: 'Test Card',
+          type_line: 'Instant',
+          rules_text: 'Test rules text',
+          color: nil
+        )
+        expect(card.color_scheme).to eq(MtgCardMaker::DEFAULT_COLOR_SCHEME)
+      end
+
+      it 'uses default color scheme when color is not provided', :aggregate_failures do
+        card = described_class.new(
+          name: 'Test Card',
+          type_line: 'Instant',
+          rules_text: 'Test rules text'
+        )
+        expect(card.color_scheme).to eq(MtgCardMaker::DEFAULT_COLOR_SCHEME)
+      end
+
+      it 'creates custom color scheme when color is provided', :aggregate_failures do
+        card = described_class.new(
+          name: 'Test Card',
+          type_line: 'Instant',
+          rules_text: 'Test rules text',
+          color: :red
+        )
+        expect(card.color_scheme).to be_a(MtgCardMaker::ColorScheme)
+        expect(card.color_scheme.primary_color).to eq(MtgCardMaker::ColorScheme.new(:red).primary_color)
+      end
+    end
   end
 
   describe '#save' do
@@ -116,6 +205,20 @@ RSpec.describe MtgCardMaker::BaseCard do
 
     it 'provides frame stroke width' do
       expect(card.frame_stroke_width).to eq(2)
+    end
+
+    it 'returns empty hash for unknown layer', :aggregate_failures do
+      unknown_layer = card.dimensions_for_layer(:unknown_layer)
+      expect(unknown_layer).to eq({})
+    end
+
+    it 'returns empty hash for string layer name', :aggregate_failures do
+      string_layer = card.dimensions_for_layer('unknown_layer')
+      expect(string_layer).to eq({})
+    end
+
+    it 'raises error for nil layer name' do
+      expect { card.dimensions_for_layer(nil) }.to raise_error(NoMethodError)
     end
   end
 

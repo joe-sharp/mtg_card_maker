@@ -62,6 +62,15 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
         service.create_sprite_sheet(card_configs, output_file)
       end.to raise_error(RuntimeError, /❌ Error creating sprite sheet: Test error/)
     end
+
+    it 'handles card generation error and raises exception', :aggregate_failures do
+      # Mock BaseCard.new to raise an error for the first card
+      allow(MtgCardMaker::BaseCard).to receive(:new).and_raise(StandardError, 'Card generation failed')
+
+      expect do
+        service.create_sprite_sheet(card_configs, output_file)
+      end.to raise_error(RuntimeError, /❌ Error generating card 0: Card generation failed/)
+    end
   end
 
   describe '#sprite_dimensions' do
@@ -115,6 +124,60 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
           file.unlink
         end
       end
+
+      it 'handles card generation error and raises exception', :aggregate_failures do
+        # Mock BaseCard.new to raise an error
+        allow(MtgCardMaker::BaseCard).to receive(:new).and_raise(StandardError, 'Card generation failed')
+
+        expect do
+          service.send(:generate_individual_cards, card_configs)
+        end.to raise_error(RuntimeError, /❌ Error generating card 0: Card generation failed/)
+      end
+    end
+
+    describe '#card_from_config' do
+      it 'handles complete card configuration', :aggregate_failures do
+        complete_config = {
+          'name' => 'Complete Card',
+          'mana_cost' => '2U',
+          'type_line' => 'Instant',
+          'rules_text' => 'Test rules',
+          'flavor_text' => 'Test flavor',
+          'power' => '3',
+          'toughness' => '3',
+          'color' => 'blue',
+          'border_color' => 'gold',
+          'art' => 'https://example.com/art.jpg'
+        }
+
+        card = service.send(:card_from_config, complete_config)
+        expect(card.name).to eq('Complete Card')
+        expect(card.mana_cost).to eq('2U')
+        expect(card.type_line).to eq('Instant')
+        expect(card.rules_text).to eq('Test rules')
+        expect(card.flavor_text).to eq('Test flavor')
+        expect(card.power).to eq('3')
+        expect(card.toughness).to eq('3')
+        expect(card.color_scheme.primary_color).to eq(MtgCardMaker::ColorScheme.new(:blue).primary_color)
+      end
+
+      it 'handles minimal card configuration', :aggregate_failures do
+        minimal_config = {
+          'name' => 'Minimal Card',
+          'type_line' => 'Creature',
+          'rules_text' => 'Test rules'
+        }
+
+        card = service.send(:card_from_config, minimal_config)
+        expect(card.name).to eq('Minimal Card')
+        expect(card.mana_cost).to be_nil
+        expect(card.type_line).to eq('Creature')
+        expect(card.rules_text).to eq('Test rules')
+        expect(card.flavor_text).to be_nil
+        expect(card.power).to be_nil
+        expect(card.toughness).to be_nil
+        expect(card.color_scheme).to eq(MtgCardMaker::DEFAULT_COLOR_SCHEME)
+      end
     end
 
     describe '#stitch_cards_into_sprite' do
@@ -156,6 +219,10 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
         files
       end
 
+      it 'handles nil card_files gracefully' do
+        expect { service.send(:cleanup_temp_files, nil) }.not_to raise_error
+      end
+
       it 'logs warning during cleanup error' do
         card_files.each do |file|
           allow(file).to receive(:unlink).and_raise(StandardError, 'Cleanup error')
@@ -169,6 +236,20 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
         # Verify the logger received the warn calls
         expect(service.send(:logger)).to have_received(:warn)
           .with(/Could not clean up temp file .*: Cleanup error/).twice
+      end
+
+      it 'handles mixed cleanup success and failure', :aggregate_failures do
+        # First file cleanup succeeds, second fails
+        allow(card_files[0]).to receive(:unlink).and_call_original
+        allow(card_files[1]).to receive(:unlink).and_raise(StandardError, 'Cleanup error')
+
+        allow(service.send(:logger)).to receive(:warn)
+
+        service.send(:cleanup_temp_files, card_files)
+
+        # Verify only one warning was logged
+        expect(service.send(:logger)).to have_received(:warn)
+          .with(/Could not clean up temp file .*: Cleanup error/).once
       end
     end
   end

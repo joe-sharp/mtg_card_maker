@@ -9,7 +9,7 @@ module MtgCardMaker
   # with bidirectional text flow from a dynamic separator
   class TextBoxLayer < BaseLayer
     include LayerInitializer
-    attr_reader :rules_text, :flavor_text, :color_scheme
+    attr_reader :rules_text, :flavor_text, :color_scheme, :font_size, :text_width
 
     def initialize(dimensions:, rules_text:, flavor_text: nil, color: nil, color_scheme: DEFAULT_COLOR_SCHEME)
       frame_color = initialize_layer_color(color, color_scheme, :background_color)
@@ -17,6 +17,8 @@ module MtgCardMaker
       @rules_text = rules_text
       @flavor_text = flavor_text
       @color_scheme = color_scheme
+      @font_size = layer_config.font_size(:text_box)
+      @text_width = layer_config.text_width(width, :rules_text)
     end
 
     # Render the rules text and flavor text in a text box with bidirectional flow
@@ -115,13 +117,33 @@ module MtgCardMaker
     end
 
     def render_text_line(line, y_pos, text_type)
-      svg.text line, {
-        x: layer_config.text_x_position(x),
-        y: y_pos,
-        fill: color_scheme.text_color,
-        font_size: layer_config.font_size(text_type),
-        class: layer_config.css_class(text_type)
-      }
+      if symbol_service.contains_symbols?(line)
+        render_line_with_symbols(line, y_pos)
+      else
+        svg.text line, {
+          x: layer_config.text_x_position(x),
+          y: y_pos,
+          fill: color_scheme.text_color,
+          font_size: font_size,
+          class: layer_config.css_class(text_type)
+        }
+      end
+    end
+
+    def render_line_with_symbols(line, y_pos)
+      html_content = symbol_service.render_line_with_symbols(line, text_width)
+
+      # Use foreignObject with HTML for proper text/symbol alignment
+      svg.foreignObject x: layer_config.text_x_position(x),
+                        y: y_pos - font_size, # Ensure symbols don't throw off the line
+                        width: text_width,
+                        height: font_size * 2 do
+        svg << html_content
+      end
+    end
+
+    def symbol_service
+      @symbol_service ||= SymbolReplacementService.new
     end
 
     def render_separator(separator_y)
@@ -156,9 +178,9 @@ module MtgCardMaker
         layer_config: layer_config,
         x: layer_config.text_x_position(x),
         y: 0, # Will be calculated per line
-        font_size: layer_config.font_size(text_type),
+        font_size: font_size,
         color: color_scheme.text_color,
-        available_width: layer_config.text_width(width, text_type),
+        available_width: text_width,
         css_class: layer_config.css_class(text_type)
       )
     end
