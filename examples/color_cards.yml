@@ -56,7 +56,7 @@ artifact:
   name: "Artifact"
   mana_cost: "99"
   type_line: "Artifact - Equipment"
-  rules_text: "{C}: Equipped creature develops an unhealthy obsession with telling dad jokes during combat, gains the ability to juggle mana symbols (though not very well), randomly quotes Shakespeare at inappropriate moments, develops a peculiar fashion sense involving mismatched socks, learns to yodel but only on Tuesdays, attempts stand-up comedy during the end step, and insists on referring to itself in the third person as 'The Equipped One'."
+  rules_text: "Equipped creature develops an unhealthy obsession with telling dad jokes during combat, gains the ability to juggle mana symbols (though not very well), randomly quotes Shakespeare at inappropriate moments, attempts stand-up comedy during the end step, and insists on referring to itself in the third person as 'The Equipped One'.\n\nEquip {5}"
   color: artifact
 
 gold:

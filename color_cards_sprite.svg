@@ -685,42 +685,36 @@ Artifact - Equipment
 
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#artifact_text_box_gradient)" stroke="#D2B48C" stroke-width="2"/>
-<foreignObject x="55" y="556.3333333333334" width="520.0" height="48">
+<text x="55" y="580.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+Equipped creature develops an unhealthy obsession
+</text>
+<text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+with telling dad jokes during combat, gains the
+</text>
+<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+ability to juggle mana symbols (though not very
+</text>
+<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+well), randomly quotes Shakespeare at inappropriate
+</text>
+<text x="55" y="686.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+moments, attempts stand-up comedy during the end
+</text>
+<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-rules-text">
+step, and insists on referring to itself in the
+</text>
+<text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-rules-text">
+third person as 'The Equipped One'.
+</text>
+<foreignObject x="55" y="768.3333333333334" width="520.0" height="48">
 <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
-  <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="0 -960 960 960" width="24">
-  <circle cx="50%" cy="-50%" r="480" fill="#DDD"/>
-  <g transform="translate(-125, 125) scale(1.25)">
-    <path d="M480-137 137-480l343-343 343 343-343 343Zm0-162 181-181-181-181-181 181 181 181Zm0-181Z"/>
-  </g>
+  Equip <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="-15 -15 30 30" width="24">
+  <circle cx="0" cy="0" r="15" fill="#DDD"/>
+  <text x="0" y="10" fill="#000" text-anchor="middle" font-weight="normal" font-size="32" font-family="serif">5</text>
 </svg>
-: Equipped creature develops an unhealthy
 </div>
 
 </foreignObject>
-<text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-obsession with telling dad jokes during combat,
-</text>
-<text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-gains the ability to juggle mana symbols (though
-</text>
-<text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-not very well), randomly quotes Shakespeare at
-</text>
-<text x="55" y="686.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-inappropriate moments, develops a peculiar fashion
-</text>
-<text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-sense involving mismatched socks, learns to yodel
-</text>
-<text x="55" y="739.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-but only on Tuesdays, attempts stand-up comedy
-</text>
-<text x="55" y="765.8333333333334" fill="#111" font-size="24" class="card-rules-text">
-during the end step, and insists on referring to
-</text>
-<text x="55" y="792.3333333333334" fill="#111" font-size="24" class="card-rules-text">
-itself in the third person as 'The Equipped One'.
-</text>
 </g>
 </g>
   <g transform="translate(1980, 910)">
