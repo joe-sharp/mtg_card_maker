@@ -367,10 +367,13 @@ Instant
 <rect x="40" y="545" width="550" height="265" fill="url(#blue_text_box_gradient)" stroke="#42A5F5" stroke-width="2"/>
 <line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#42A5F5" stroke-width="1"/>
 <foreignObject x="55" y="582.8333333333334" width="520.0" height="48">
-<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-family: serif; font-size: 24px; color: #111; line-height: 1.2;">Counter target spell unless its controller pays <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="-15 -15 30 30" width="24">
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  Counter target spell unless its controller pays <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="-15 -15 30 30" width="24">
   <circle cx="0" cy="0" r="15" fill="#DDD"/>
   <text x="0" y="10" fill="#000" text-anchor="middle" font-weight="normal" font-size="32" font-family="serif">1</text>
-</svg></div>
+</svg>
+</div>
+
 </foreignObject>
 <text x="55" y="659.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 Draw a card.
@@ -487,13 +490,16 @@ Instant
 <rect x="40" y="545" width="550" height="265" fill="url(#red_text_box_gradient)" stroke="#F44336" stroke-width="2"/>
 <line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#F44336" stroke-width="1"/>
 <foreignObject x="55" y="582.8333333333334" width="520.0" height="48">
-<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-family: serif; font-size: 24px; color: #111; line-height: 1.2;">This spell deals <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="-15 -15 30 30" width="24">
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  This spell deals <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="-15 -15 30 30" width="24">
   <circle cx="0" cy="0" r="15" fill="#DDD"/>
   <text x="0" y="10" fill="#000" text-anchor="middle" font-weight="normal" font-size="30" font-family="serif">
     X
   </text>
 </svg>
- damage to any target. If a</div>
+ damage to any target. If a
+</div>
+
 </foreignObject>
 <text x="55" y="633.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 creature dealt damage this way would die this turn,
@@ -616,14 +622,17 @@ Artifact
 <rect x="40" y="545" width="550" height="265" fill="url(#colorless_text_box_gradient)" stroke="#8B8B8B" stroke-width="2"/>
 <line x1="55" y1="677.5" x2="575" y2="677.5" stroke="#8B8B8B" stroke-width="1"/>
 <foreignObject x="55" y="635.8333333333334" width="520.0" height="48">
-<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-family: serif; font-size: 24px; color: #111; line-height: 1.2;"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" width="24" height="24" viewBox="0 0 600 600" version="1.1"><circle cx="300" cy="300" r="300" fill="#DDD"/><path d="m512 353.5-216 0 79.1-56.3c-29.4-23.3-63.4-35-101.9-35-19.3 0-32.5 3.7-39.5 11-7.1 7.4-10.7 20.7-10.7 39.9 0 53.2 27.4 110 82.2 170.4l-62.3 63.1c-72.5-88.2-108.8-167.1-108.8-236.5 0-41.6 12.5-74.7 37.6-99.3 25.1-24.6 58.5-36.9 100-36.9 50.7 0 106 19.3 165.9 57.8l46.4-79.1 28.2 200.8" fill="#111"/></svg>
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" width="24" height="24" viewBox="0 0 600 600" version="1.1"><circle cx="300" cy="300" r="300" fill="#DDD"/><path d="m512 353.5-216 0 79.1-56.3c-29.4-23.3-63.4-35-101.9-35-19.3 0-32.5 3.7-39.5 11-7.1 7.4-10.7 20.7-10.7 39.9 0 53.2 27.4 110 82.2 170.4l-62.3 63.1c-72.5-88.2-108.8-167.1-108.8-236.5 0-41.6 12.5-74.7 37.6-99.3 25.1-24.6 58.5-36.9 100-36.9 50.7 0 106 19.3 165.9 57.8l46.4-79.1 28.2 200.8" fill="#111"/></svg>
 : Add <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="0 -960 960 960" width="24">
   <circle cx="50%" cy="-50%" r="480" fill="#FABA9F"/>
   <g transform="translate(-50, 50) scale(1.1)">
     <path d="M135-399.89Q135-511 193-599.5q58-88.5 126.77-151.17 68.78-62.67 127-96L505-880v172q0 25.74 17.25 40.37Q539.49-653 560.78-653q11.22 0 22.23-4.7T603-674l31-39q87 51 139 134t52 178.52q0 92.88-43.5 169.18Q738-155 666-110q22.19-27.84 33.6-61.77Q711-205.71 711-243.5q0-47.5-16.98-88.49-16.99-41-50.56-73.9L480-566 318-406q-34 32-51.5 73.54-17.5 41.54-17.5 88.73 0 37.73 11.4 71.77Q271.81-137.93 294-110q-72-45-115.5-121.45Q135-307.89 135-399.89ZM480-375l67.67 66.42Q561-294 568-277.86q7 16.13 7 33.86 0 38.3-28.44 65.65Q518.11-151 479.76-151q-38.34 0-66.55-27.35Q385-205.7 385-244q0-19 6.93-34.83Q398.86-294.67 412-308l68-67Z"/>
   </g>
 </svg>
-.</div>
+.
+</div>
+
 </foreignObject>
 <text x="55" y="712.8333333333334" fill="#111" font-size="24" class="card-flavor-text">
 A piece of jewelry, usually containing a gemstone,
@@ -658,7 +667,7 @@ Portions of the materials used are property of Wizards of the Coast.
 Artifact
 </text>
 <g transform="translate(575, 63)">
-<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-2" dy="2" stdDeviation="1" flood-color="black" flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><g transform="translate(-15, -15)" opacity="0.7"><svg height="30px" viewBox="-15 -15 30 30" width="30px">  <circle cx="0" cy="0" r="15" fill="#DDD"/>  <text x="0" y="10" fill="#000" text-anchor="middle" font-weight="normal" font-size="32" font-family="serif">2</text></svg></g></g>
+<defs><filter id="mana-cost-drop-shadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="-2" dy="2" stdDeviation="1" flood-color="black" flood-opacity="1.0"/></filter></defs><g filter="url(#mana-cost-drop-shadow)"><g transform="translate(-15, -15)" opacity="0.7"><svg height="30px" viewBox="-15 -15 30 30" width="30px">  <circle cx="0" cy="0" r="15" fill="#DDD"/>  <text x="-14" y="10" fill="#000" text-anchor="start" font-weight="normal" font-size="30" letter-spacing="-2" font-family="serif">99</text></svg></g></g>
 </g>
 </g>
 <g>
@@ -677,13 +686,16 @@ Artifact - Equipment
 <g>
 <rect x="40" y="545" width="550" height="265" fill="url(#artifact_text_box_gradient)" stroke="#D2B48C" stroke-width="2"/>
 <foreignObject x="55" y="556.3333333333334" width="520.0" height="48">
-<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-family: serif; font-size: 24px; color: #111; line-height: 1.2;"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="0 -960 960 960" width="24">
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="0 -960 960 960" width="24">
   <circle cx="50%" cy="-50%" r="480" fill="#DDD"/>
   <g transform="translate(-125, 125) scale(1.25)">
     <path d="M480-137 137-480l343-343 343 343-343 343Zm0-162 181-181-181-181-181 181 181 181Zm0-181Z"/>
   </g>
 </svg>
-: Equipped creature develops an unhealthy</div>
+: Equipped creature develops an unhealthy
+</div>
+
 </foreignObject>
 <text x="55" y="606.8333333333334" fill="#111" font-size="24" class="card-rules-text">
 obsession with telling dad jokes during combat,
@@ -769,7 +781,8 @@ Flying, trample, haste. When this creature enters
 the battlefield, destroy all other creatures.
 </text>
 <foreignObject x="55" y="635.8333333333334" width="520.0" height="48">
-<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-family: serif; font-size: 24px; color: #111; line-height: 1.2;"><svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="0 -960 960 960" width="24">
+<div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: center; font-size: 24px;">
+  <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" height="24" viewBox="0 -960 960 960" width="24">
   <circle cx="50%" cy="-50%" r="480" fill="#DDD"/>
   <g transform="translate(-125, 125) scale(1.25)">
     <path d="M480-137 137-480l343-343 343 343-343 343Zm0-162 181-181-181-181-181 181 181 181Zm0-181Z"/>
@@ -777,7 +790,9 @@ the battlefield, destroy all other creatures.
 </svg>
 : <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" width="24" height="24" viewBox="0 0 600 600" version="1.1"><circle cx="300" cy="300" r="300" fill="#DDD"/><path d="m512 353.5-216 0 79.1-56.3c-29.4-23.3-63.4-35-101.9-35-19.3 0-32.5 3.7-39.5 11-7.1 7.4-10.7 20.7-10.7 39.9 0 53.2 27.4 110 82.2 170.4l-62.3 63.1c-72.5-88.2-108.8-167.1-108.8-236.5 0-41.6 12.5-74.7 37.6-99.3 25.1-24.6 58.5-36.9 100-36.9 50.7 0 106 19.3 165.9 57.8l46.4-79.1 28.2 200.8" fill="#111"/></svg>
  this creature to <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin: 0 5px;" width="24" height="24" viewBox="0 0 600 600" version="1.1"><circle cx="300" cy="300" r="300" fill="#111"/><path d="m473.7 145.7-75.9 44.5c37 57.4 55.4 110.4 55.4 159.1 0 39.9-11.8 71.9-35.4 95.9-23.6 24.1-55.3 36.1-95.2 36.1-66.7 0-142.3-34.8-226.9-104.3l60.6-59.9c57.9 52.6 112.4 78.8 163.5 78.8 18.5 0 31.2-3.4 38.3-10.2 7.1-6.8 10.6-19.5 10.6-37.9 0-37-11.2-69.6-33.6-97.8l-54 75.9 0-207.2 192.6 27" fill="#FFF"/></svg>
- all other creatures</div>
+ all other creatures
+</div>
+
 </foreignObject>
 <text x="55" y="686.3333333333334" fill="#111" font-size="24" class="card-rules-text">
 you control.

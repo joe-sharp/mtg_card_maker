@@ -29,8 +29,7 @@ module MtgCardMaker
       font_sizes: {
         name: 32,
         type: 22,
-        rules_text: 24,
-        flavor_text: 24,
+        text_box: 24,
         power_area: 28,
         copyright: 14
       },
@@ -128,12 +127,6 @@ module MtgCardMaker
         dy: 2,
         std_deviation: 1,
         flood_opacity: 1.0
-      },
-
-      # Text positioning adjustments
-      text_positioning: {
-        mana_cost_text_y_offset: 7,
-        mana_cost_font_size: 24
       },
 
       # Icon opacity settings
@@ -234,19 +227,6 @@ module MtgCardMaker
     # Drop shadow getters
     def drop_shadow_config
       config[:drop_shadow]
-    end
-
-    # Text positioning getters
-    def text_positioning_config
-      config[:text_positioning]
-    end
-
-    def mana_cost_text_y_offset
-      text_positioning_config[:mana_cost_text_y_offset]
-    end
-
-    def mana_cost_font_size
-      text_positioning_config[:mana_cost_font_size]
     end
 
     # Icon opacity getters

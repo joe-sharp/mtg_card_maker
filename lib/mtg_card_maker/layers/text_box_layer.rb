@@ -9,9 +9,9 @@ module MtgCardMaker
 
   # TextBoxLayer is a specialized layer for the rules and flavor text
   # with bidirectional text flow from a dynamic separator
-  class TextBoxLayer < BaseLayer
+  class TextBoxLayer < BaseLayer # rubocop:disable Metrics/ClassLength
     include LayerInitializer
-    attr_reader :rules_text, :flavor_text, :color_scheme
+    attr_reader :rules_text, :flavor_text, :color_scheme, :font_size, :text_width
 
     def initialize(dimensions:, rules_text:, flavor_text: nil, color: nil, color_scheme: DEFAULT_COLOR_SCHEME)
       frame_color = initialize_layer_color(color, color_scheme, :background_color)
@@ -19,6 +19,8 @@ module MtgCardMaker
       @rules_text = rules_text
       @flavor_text = flavor_text
       @color_scheme = color_scheme
+      @font_size = layer_config.font_size(:text_box)
+      @text_width = layer_config.text_width(width, :rules_text)
     end
 
     # Render the rules text and flavor text in a text box with bidirectional flow
@@ -118,13 +120,13 @@ module MtgCardMaker
 
     def render_text_line(line, y_pos, text_type)
       if contains_symbols?(line)
-        render_line_with_symbols(line, y_pos, text_type)
+        render_line_with_symbols(line, y_pos)
       else
         svg.text line, {
           x: layer_config.text_x_position(x),
           y: y_pos,
           fill: color_scheme.text_color,
-          font_size: layer_config.font_size(text_type),
+          font_size: font_size,
           class: layer_config.css_class(text_type)
         }
       end
@@ -134,21 +136,19 @@ module MtgCardMaker
       text.match?(/\{[^}]+\}/)
     end
 
-    def render_line_with_symbols(line, y_pos, text_type)
+    def render_line_with_symbols(line, y_pos)
       parts = split_text_and_symbols(line)
-      start_x = layer_config.text_x_position(x)
-      font_size = layer_config.font_size(text_type)
-      color = color_scheme.text_color
 
       # Use foreignObject with HTML for proper text/symbol alignment
-      svg.foreignObject x: start_x, y: y_pos - font_size,
-                        width:  layer_config.text_width(width, text_type),
+      svg.foreignObject x: layer_config.text_x_position(x),
+                        y: y_pos - font_size,
+                        width: text_width,
                         height: font_size * 2 do
-        svg << render_html_line_with_symbols(parts, font_size, color)
+        svg << render_html_line_with_symbols(parts)
       end
     end
 
-    def split_text_and_symbols(text)
+    def split_text_and_symbols(text) # rubocop:disable Metrics/MethodLength
       # Split text into parts: symbols and non-symbols
       parts = []
       current = ''
@@ -170,42 +170,7 @@ module MtgCardMaker
       parts
     end
 
-    def render_symbol_using_mana_cost(symbol, x, y, _text_type)
-      # Convert symbol to mana cost format and use ManaCost class
-      mana_string = symbol.gsub(/[{}]/, '')
-      mana_cost = ManaCost.new(mana_string)
-
-      # Get the SVG content from ManaCost
-      mana_svg = mana_cost.to_svg
-
-      # Embed the mana cost SVG at the correct position with smaller size
-      svg.g transform: "translate(#{x + 7}, #{y - 7}) scale(0.7)" do
-        # Parse and embed the SVG content
-        embed_mana_cost_svg(mana_svg)
-      end
-    end
-
-    def embed_mana_cost_svg(mana_svg)
-      # Parse the SVG content and embed it
-      if mana_svg.include?('<g')
-        # Extract the group content
-        group_match = mana_svg.match(%r{<g[^>]*>(.*)</g>}m)
-        svg << group_match[1] if group_match
-      else
-        svg << mana_svg
-      end
-    end
-
-    def calculate_symbol_width(_text_type)
-      # Symbols are rendered with scale(0.7) and have a circle radius of 15
-      # The actual width should be the scaled circle diameter
-      layer_config = LayerConfig.default
-      circle_radius = layer_config.mana_cost_config[:circle_radius]
-      scale_factor = 0.7
-      (circle_radius * 2) * scale_factor # Diameter * scale = 30 * 0.7 = 21
-    end
-
-    def render_html_line_with_symbols(parts, font_size, color)
+    def render_html_line_with_symbols(parts)
       html_parts = parts.map do |part|
         if part.start_with?('{') && part.end_with?('}')
           # Render symbol as inline SVG
@@ -217,9 +182,11 @@ module MtgCardMaker
       end
 
       # Wrap in a div with proper styling
-      "<div xmlns=\"http://www.w3.org/1999/xhtml\" style=\"display: flex; align-items: center; font-family: serif; font-size: #{font_size}px; color: #{color}; line-height: 1.2;\">" +
-        html_parts.join +
-        '</div>'
+      <<~HTML
+        <div xmlns='http://www.w3.org/1999/xhtml' style='display: flex; align-items: center; font-size: #{font_size}px;'>
+          #{html_parts.join}
+        </div>
+      HTML
     end
 
     def render_symbol_html(symbol)
@@ -271,9 +238,9 @@ module MtgCardMaker
         layer_config: layer_config,
         x: layer_config.text_x_position(x),
         y: 0, # Will be calculated per line
-        font_size: layer_config.font_size(text_type),
+        font_size: font_size,
         color: color_scheme.text_color,
-        available_width: layer_config.text_width(width, text_type),
+        available_width: text_width,
         css_class: layer_config.css_class(text_type)
       )
     end
