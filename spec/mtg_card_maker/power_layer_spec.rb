@@ -45,6 +45,7 @@ RSpec.describe MtgCardMaker::PowerLayer do
 
     before do
       allow(Victor::SVG).to receive(:new).and_call_original
+      # Mock gradient definitions since they're now defined at BaseCard level
       allow(MtgCardMaker::SvgGradientService).to receive(:define_all_gradients)
       allow(MtgCardMaker::SvgGradientService).to receive(:name_gradient_id)
     end

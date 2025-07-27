@@ -37,9 +37,13 @@ RSpec.describe MtgCardMaker::FrameLayer do
     let(:svg) { double('SVG') }
     let(:scheme) { MtgCardMaker::ColorScheme.new(:colorless) }
 
+    before do
+      # Mock gradient definitions since they're now defined at BaseCard level
+      allow(MtgCardMaker::SvgGradientService).to receive(:define_all_gradients)
+    end
+
     it 'calls render_standard_frame for non-gold color_scheme' do
       layer = described_class.new(dimensions: dimensions, color_scheme: scheme)
-      allow(MtgCardMaker::SvgGradientService).to receive(:define_all_gradients)
       allow(layer).to receive(:render_standard_frame)
       layer.render
       expect(layer).to have_received(:render_standard_frame)
@@ -48,7 +52,6 @@ RSpec.describe MtgCardMaker::FrameLayer do
     it 'calls render_metallic_elements for gold color_scheme', :aggregate_failures do
       gold = MtgCardMaker::ColorScheme.new(:gold)
       layer = described_class.new(dimensions: dimensions, color_scheme: gold)
-      allow(MtgCardMaker::SvgGradientService).to receive(:define_all_gradients)
       allow(layer).to receive(:render_metallic_elements).and_call_original
       # Set up template so svg is not nil
       template = MtgCardMaker::Template.new(width: 100, height: 100)

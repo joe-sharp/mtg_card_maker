@@ -376,13 +376,12 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
 
     it 'renders metallic rules text for Gold color scheme', :aggregate_failures do
       template = MtgCardMaker::Template.new(width: 200, height: 200)
+
       template.add_layer(layer)
       svg_content = template.to_svg
 
-      # Check that metallic gradients and patterns are used
-      expect(svg_content).to include('gold_metallic_highlight_gradient')
-      expect(svg_content).to include('gold_metallic_shadow_gradient')
-      expect(svg_content).to include('gold_metallic_pattern')
+      # Check that the text box gradient is used
+      expect(svg_content).to include('gold_text_box_gradient')
     end
 
     it 'renders metallic rules text without flavor text', :aggregate_failures do
@@ -393,13 +392,12 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       )
 
       template = MtgCardMaker::Template.new(width: 200, height: 200)
+
       template.add_layer(layer_no_flavor)
       svg_content = template.to_svg
 
-      # Check that metallic gradients are used
-      expect(svg_content).to include('gold_metallic_highlight_gradient')
-      expect(svg_content).to include('gold_metallic_shadow_gradient')
-      expect(svg_content).to include('gold_metallic_pattern')
+      # Check that the text box gradient is used
+      expect(svg_content).to include('gold_text_box_gradient')
 
       # Check that rules text is rendered
       expect_svg_to_have_text(template, 'Deal 3')
@@ -420,9 +418,7 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       )
 
       # Should still render metallic structure even with empty rules text
-      expect_svg_to_contain(layer, 'gold_metallic_highlight_gradient')
-      expect_svg_to_contain(layer, 'gold_metallic_pattern')
-      expect_svg_to_contain(layer, 'gold_metallic_shadow_gradient')
+      expect_svg_to_contain(layer, 'gold_text_box_gradient')
       expect_svg_to_have_elements(layer, 'g')
     end
   end
