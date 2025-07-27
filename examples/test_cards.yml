@@ -36,3 +36,28 @@ serra_angel:
   power: '4'
   toughness: '4'
   color: white
+
+# Test cards for special symbols
+tap_test:
+  name: Tap Test
+  type_line: Instant
+  rules_text: "{T}: Add {G}."
+  mana_cost: T
+  flavor_text: Testing tap symbols.
+  color: green
+
+untap_test:
+  name: Untap Test
+  type_line: Instant
+  rules_text: "{Q}: Add {U}."
+  mana_cost: Q
+  flavor_text: Testing untap symbols.
+  color: blue
+
+energy_test:
+  name: Energy Test
+  type_line: Instant
+  rules_text: Add {E}{E}{E}.
+  mana_cost: E
+  flavor_text: Testing energy symbols.
+  color: colorless
