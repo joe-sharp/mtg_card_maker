@@ -92,10 +92,11 @@ module MtgCardMaker
       symbol = symbol.gsub(/[{}]/, '')
 
       # Get the SVG content from IconService
-      icon_svg = icon_service.icon_svg(SYMBOL_MAP[symbol])
-
-      # Handle numeric symbols
-      icon_svg = handle_numeric_symbol(symbol) if icon_svg.nil? && symbol.match?(/^\d+$/)
+      icon_svg = if symbol.match?(/^\d+$/)
+                   handle_numeric_symbol(symbol)
+                 else
+                   icon_service.icon_svg(SYMBOL_MAP[symbol])
+                 end
 
       return unless icon_svg
 
