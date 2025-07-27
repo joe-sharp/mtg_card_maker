@@ -64,7 +64,8 @@ module MtgCardMaker
     end
 
     def text_y_position
-      layer_config.text_y_position(y, :name_area, height) + 3
+      additional_offset = 3 # Hack for font size
+      layer_config.text_y_position(y, :name_area, height) + additional_offset
     end
 
     def render_mana_cost
