@@ -7,19 +7,16 @@
   font-weight: normal;
   font-style: normal;
 }
-
-</style>
-<style>
 /* Font Classes */
 .card-name {
   font-family: 'Goudy Mediaeval DemiBold', serif;
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
 }
 
 .card-type {
   font-family: 'Goudy Mediaeval DemiBold', serif;
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
 }
 
@@ -62,7 +59,7 @@
 </style>
 <g>
 <rect x="30" y="40" width="570" height="50" fill="url(#colorless_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
-<text x="45" y="75" fill="#111" font-size="32" class="card-name">
+<text x="45" y="78" fill="#111" font-size="38" class="card-name">
 MTG Card Maker
 </text>
 <g transform="translate(435, 63)">

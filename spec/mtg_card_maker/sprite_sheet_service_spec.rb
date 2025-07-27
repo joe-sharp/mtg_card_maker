@@ -112,7 +112,7 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
   describe 'private methods' do
     describe '#generate_individual_cards' do
       it 'generates individual card files', :aggregate_failures do
-        card_files = service.send(:generate_individual_cards, card_configs)
+        card_files = service.send(:generate_individual_cards, card_configs, false)
 
         expect(card_files).to be_an(Array)
         expect(card_files.length).to eq(2)
@@ -130,7 +130,7 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
         allow(MtgCardMaker::BaseCard).to receive(:new).and_raise(StandardError, 'Card generation failed')
 
         expect do
-          service.send(:generate_individual_cards, card_configs)
+          service.send(:generate_individual_cards, card_configs, false)
         end.to raise_error(RuntimeError, /❌ Error generating card 0: Card generation failed/)
       end
     end
@@ -150,7 +150,7 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
           'art' => 'https://example.com/art.jpg'
         }
 
-        card = service.send(:card_from_config, complete_config)
+        card = service.send(:card_from_config, complete_config, false)
         expect(card.name).to eq('Complete Card')
         expect(card.mana_cost).to eq('2U')
         expect(card.type_line).to eq('Instant')
@@ -168,7 +168,7 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
           'rules_text' => 'Test rules'
         }
 
-        card = service.send(:card_from_config, minimal_config)
+        card = service.send(:card_from_config, minimal_config, false)
         expect(card.name).to eq('Minimal Card')
         expect(card.mana_cost).to be_nil
         expect(card.type_line).to eq('Creature')
@@ -202,7 +202,7 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
         allow(service.instance_variable_get(:@builder)).to receive(:create_sprite_builder).and_raise(StandardError,
                                                                                                      'Test error')
         expect do
-          service.send(:stitch_cards_into_sprite, card_files, 'test_sprite.svg')
+          service.send(:stitch_cards_into_sprite, card_files, 'test_sprite.svg', false)
         end.to raise_error(RuntimeError, /❌ Error creating sprite sheet: Test error/)
       end
     end

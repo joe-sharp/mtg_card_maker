@@ -7,19 +7,16 @@
   font-weight: normal;
   font-style: normal;
 }
-
-</style>
-<style>
 /* Font Classes */
 .card-name {
   font-family: 'Goudy Mediaeval DemiBold', serif;
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
 }
 
 .card-type {
   font-family: 'Goudy Mediaeval DemiBold', serif;
-  font-weight: normal;
+  font-weight: bold;
   font-style: normal;
 }
 
