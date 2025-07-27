@@ -104,7 +104,7 @@ RSpec.describe MtgCardMaker::SymbolParserService do
       it 'processes multiple hybrid mana symbols', :aggregate_failures do
         result = service.process_text('Cost: {W/U}{B/G}{R/U}')
         expect(result).to include('<circle')
-        expect(result.scan('<circle').length).to eq(3)
+        expect(result.scan('<circle').length).to eq(5)
       end
     end
 

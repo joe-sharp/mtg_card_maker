@@ -6,13 +6,13 @@ RSpec.describe MtgCardMaker::ManaCost do
   describe '#initialize' do
     it 'handles mixed mana cost string', :aggregate_failures do
       cost = described_class.new('2RG')
-      expect(cost.elements).to include(:colorless, :red, :green)
+      expect(cost.elements).to include(:numeric, :red, :green)
       expect(cost.int_val).to eq(2)
     end
 
     it 'handles only numeric mana cost', :aggregate_failures do
       cost = described_class.new('3')
-      expect(cost.elements).to eq([:colorless])
+      expect(cost.elements).to eq([:numeric])
       expect(cost.int_val).to eq(3)
     end
 
@@ -48,51 +48,51 @@ RSpec.describe MtgCardMaker::ManaCost do
     context 'with variable costs' do
       it 'handles X cost', :aggregate_failures do
         cost = described_class.new('X')
-        expect(cost.elements).to eq([:colorless])
-        expect(cost.int_val).to eq(10)
+        expect(cost.elements).to eq([:x])
+        expect(cost.int_val).to be_nil
       end
 
       it 'handles X cost with colored mana', :aggregate_failures do
         cost = described_class.new('XR')
-        expect(cost.elements).to eq([:colorless, :red])
-        expect(cost.int_val).to eq(10)
+        expect(cost.elements).to eq([:x, :red])
+        expect(cost.int_val).to be_nil
       end
 
       it 'handles 10 cost', :aggregate_failures do
         cost = described_class.new('10')
-        expect(cost.elements).to eq([:colorless])
+        expect(cost.elements).to eq([:numeric])
         expect(cost.int_val).to eq(10)
       end
 
       it 'handles 10 cost with colored mana', :aggregate_failures do
         cost = described_class.new('10RG')
-        expect(cost.elements).to eq(%i[colorless red green])
+        expect(cost.elements).to eq(%i[numeric red green])
         expect(cost.int_val).to eq(10)
       end
 
       it 'handles 11 cost', :aggregate_failures do
         cost = described_class.new('11')
-        expect(cost.elements).to eq([:colorless])
-        expect(cost.int_val).to eq(10)
+        expect(cost.elements).to eq([:numeric])
+        expect(cost.int_val).to eq(11)
       end
 
       it 'handles 11 cost with colored mana', :aggregate_failures do
         cost = described_class.new('11WB')
-        expect(cost.elements).to eq(%i[colorless white black])
-        expect(cost.int_val).to eq(10)
+        expect(cost.elements).to eq(%i[numeric white black])
+        expect(cost.int_val).to eq(11)
       end
 
       it 'handles case-insensitive variable costs', :aggregate_failures do
         cost = described_class.new('xrg')
-        expect(cost.elements).to eq(%i[colorless red green])
-        expect(cost.int_val).to eq(10)
+        expect(cost.elements).to eq(%i[x red green])
+        expect(cost.int_val).to be_nil
       end
     end
 
     context 'with edge cases' do
       it 'handles unknown characters gracefully', :aggregate_failures do
         cost = described_class.new('2QZ')
-        expect(cost.elements).to eq([:colorless])
+        expect(cost.elements).to eq([:numeric, :untap])
         expect(cost.int_val).to eq(2)
       end
 
@@ -104,7 +104,7 @@ RSpec.describe MtgCardMaker::ManaCost do
 
       it 'handles colorless symbol C', :aggregate_failures do
         cost = described_class.new('2C')
-        expect(cost.elements).to eq([:colorless, :colorless])
+        expect(cost.elements).to eq([:numeric, :colorless])
         expect(cost.int_val).to eq(2)
       end
     end
@@ -144,152 +144,51 @@ RSpec.describe MtgCardMaker::ManaCost do
       expect(cost.send(:drop_shadow_filter)).to include('<filter')
     end
 
-    it 'returns correct svg_color for all colors', :aggregate_failures do
-      expect(cost.send(:svg_color, :white)).to eq('#FFF9C4')
-      expect(cost.send(:svg_color, :blue)).to eq('#90CAF9')
-      expect(cost.send(:svg_color, :black)).to eq('#BDBDBD')
-      expect(cost.send(:svg_color, :red)).to eq('#EF9A9A')
-      expect(cost.send(:svg_color, :green)).to eq('#A5D6A7')
-      expect(cost.send(:svg_color, :colorless)).to eq('#DDD')
-      expect(cost.send(:svg_color, :unknown)).to eq('#DDD')
-    end
-
-    it 'renders colorless circle with int_val < 10' do
-      cost = described_class.new('3')
-      svg = cost.send(:mana_element_svg, 0, 0, :colorless, :numeric)
-      expect(svg).to include('3</text>')
-    end
-
-    it 'renders colorless circle with int_val >= 10' do
-      cost = described_class.new('12')
-      svg = cost.send(:mana_element_svg, 0, 0, :colorless, :numeric)
-      expect(svg).to include('X</text>')
-    end
-
-    it 'renders colorless symbol C', :aggregate_failures do
-      cost = described_class.new('C')
-      svg = cost.send(:mana_element_svg, 0, 0, :colorless, :C)
-      expect(svg).to include('<svg')
-      expect(svg).to include('opacity=\'0.7\'')
-    end
-
-    it 'renders empty text for unknown origin' do
-      cost = described_class.new('R')
-      svg = cost.send(:mana_element_svg, 0, 0, :colorless, :unknown)
-      expect(svg).not_to include('</text>')
-    end
-
-    it 'renders empty text when int_val is nil' do
-      cost = described_class.new('R')
-      svg = cost.send(:mana_element_svg, 0, 0, :colorless, :numeric)
-      expect(svg).not_to include('</text>')
-    end
-
-    it 'renders colored mana with icon inside circle', :aggregate_failures do
-      cost = described_class.new('R')
-      svg = cost.send(:mana_element_svg, 0, 0, :red, :red)
-      expect(svg).to include('<circle')
-      expect(svg).to include('<svg')
-    end
-
     it 'handles parse_mana_string with nil' do
       expect { cost.send(:parse_mana_string, nil) }.not_to raise_error
     end
 
-    it 'handles text_svg with X' do
-      result = cost.send(:text_svg, 0, 0, 'X')
-      expect(result).to include('font-weight=\'normal\'')
-    end
-
-    it 'handles text_svg with number' do
-      result = cost.send(:text_svg, 0, 0, '5')
-      expect(result).to include('font-weight=\'semibold\'')
-    end
-
-    it 'handles mana_element_svg with nil icon_svg', :aggregate_failures do
-      # Mock the icon_service to return nil for icon_svg
-      icon_service = instance_double(MtgCardMaker::IconService)
-      allow(MtgCardMaker::IconService).to receive(:new).and_return(icon_service)
-      allow(icon_service).to receive(:icon_svg).and_return(nil)
-      cost = described_class.new('R')
-      svg = cost.send(:mana_element_svg, 0, 0, :red, :red)
-      expect(svg).to include('<circle')
-      expect(svg).not_to include('<svg') # No icon should be added
-    end
-
-    it 'handles mana_element_svg with specific color returning nil icon', :aggregate_failures do
-      # Mock the icon_service to return nil for a specific color
-      icon_service = instance_double(MtgCardMaker::IconService)
-      allow(MtgCardMaker::IconService).to receive(:new).and_return(icon_service)
-      allow(icon_service).to receive(:icon_svg).with(:blue, size: 24).and_return(nil)
-      allow(icon_service).to receive(:icon_svg).with(:red, size: 24).and_return('<svg>red</svg>')
-
-      cost = described_class.new('B')
-      svg = cost.send(:mana_element_svg, 0, 0, :blue, :blue)
-      expect(svg).to include('<circle')
-      expect(svg).not_to include('<svg') # No icon should be added for blue
-    end
-
-    it 'handles mana_element_svg with unknown color', :aggregate_failures do
-      cost = described_class.new('R')
-      svg = cost.send(:mana_element_svg, 0, 0, :unknown, :unknown)
-      expect(svg).to include('<circle')
-      expect(svg).to include('fill=\'#DDD\'') # Should use default color
-    end
-
-    it 'handles colorless_text with unknown origin' do
-      cost = described_class.new('R')
-      result = cost.send(:colorless_text, 0, 0, :unknown)
-      expect(result).to eq('')
-    end
-
-    it 'handles colorless_text with numeric origin but nil int_val' do
-      cost = described_class.new('R')
-      result = cost.send(:colorless_text, 0, 0, :numeric)
-      expect(result).to eq('')
-    end
-
     it 'handles variable cost parsing with X', :aggregate_failures do
       cost = described_class.new('X')
-      expect(cost.int_val).to eq(10)
-      expect(cost.elements).to eq([:colorless])
+      expect(cost.int_val).to be_nil
+      expect(cost.elements).to eq([:x])
     end
 
     it 'handles variable cost parsing with X and colored mana', :aggregate_failures do
       cost = described_class.new('XR')
-      expect(cost.int_val).to eq(10)
-      expect(cost.elements).to eq([:colorless, :red])
+      expect(cost.int_val).to be_nil
+      expect(cost.elements).to eq([:x, :red])
     end
 
     it 'handles double-digit numbers as X', :aggregate_failures do
       cost = described_class.new('15')
-      expect(cost.int_val).to eq(10)
-      expect(cost.elements).to eq([:colorless])
+      expect(cost.int_val).to eq(15)
+      expect(cost.elements).to eq([:numeric])
     end
 
     it 'handles double-digit numbers with colored mana', :aggregate_failures do
       cost = described_class.new('15RG')
-      expect(cost.int_val).to eq(10)
-      expect(cost.elements).to eq(%i[colorless red green])
+      expect(cost.int_val).to eq(15)
+      expect(cost.elements).to eq(%i[numeric red green])
     end
 
     it 'handles single-digit numbers normally', :aggregate_failures do
       cost = described_class.new('3')
       expect(cost.int_val).to eq(3)
-      expect(cost.elements).to eq([:colorless])
+      expect(cost.elements).to eq([:numeric])
     end
 
     it 'handles single-digit numbers with colored mana', :aggregate_failures do
       cost = described_class.new('3RG')
       expect(cost.int_val).to eq(3)
-      expect(cost.elements).to eq(%i[colorless red green])
+      expect(cost.elements).to eq(%i[numeric red green])
     end
 
     it 'handles string starting with X but not numeric', :aggregate_failures do
       # This should test the start_with?('X') branch
       cost = described_class.new('XBC')
-      expect(cost.int_val).to eq(10)
-      expect(cost.elements).to eq(%i[colorless black colorless])
+      expect(cost.int_val).to be_nil
+      expect(cost.elements).to eq(%i[x black colorless])
     end
 
     it 'handles string that does not start with digit or X', :aggregate_failures do

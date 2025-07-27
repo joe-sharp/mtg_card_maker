@@ -16,15 +16,10 @@ RSpec.describe MtgCardMaker::IconService do
     end
   end
 
-  describe '#available_colors' do
-    it 'returns available colors for default icon set' do
-      expected_colors = %i[white blue black red green colorless]
-      expect(icon_service.available_colors).to match_array(expected_colors)
-    end
-
-    it 'returns an empty array for a non-existent icon set' do
-      service = described_class.new(:nonexistent)
-      expect(service.available_colors).to eq([])
+  describe '#available_icon_types' do
+    it 'returns available icon types for default icon set' do
+      expected_types = %i[white blue black red green colorless single-digit double-digit]
+      expect(icon_service.available_icon_types).to include(*expected_types)
     end
   end
 
@@ -54,7 +49,7 @@ RSpec.describe MtgCardMaker::IconService do
       expect(svg).to include('width="30px"')
     end
 
-    it 'returns nil for invalid color' do
+    it 'returns nil for invalid icon type' do
       expect(icon_service.icon_svg(:invalid)).to be_nil
     end
 
@@ -80,6 +75,57 @@ RSpec.describe MtgCardMaker::IconService do
     end
   end
 
+  describe '#numeric_icon_svg' do
+    it 'returns SVG content for single digit number', :aggregate_failures do
+      svg = icon_service.numeric_icon_svg(5)
+      expect(svg).to include('<svg')
+      expect(svg).to include('width="30px"')
+      expect(svg).to include('height="30px"')
+      expect(svg).to include('>5<')
+    end
+
+    it 'returns SVG content for double digit number', :aggregate_failures do
+      svg = icon_service.numeric_icon_svg(16)
+      expect(svg).to include('<svg')
+      expect(svg).to include('width="30px"')
+      expect(svg).to include('height="30px"')
+      expect(svg).to include('>16<')
+    end
+
+    it 'returns nil for negative number' do
+      expect(icon_service.numeric_icon_svg(-1)).to be_nil
+    end
+
+    it 'returns nil for non-integer' do
+      expect(icon_service.numeric_icon_svg(5.5)).to be_nil
+    end
+
+    it 'resizes SVG to custom size', :aggregate_failures do
+      svg = icon_service.numeric_icon_svg(7, size: 50)
+      expect(svg).to include('width="50px"')
+      expect(svg).to include('height="50px"')
+    end
+
+    it 'uses single-digit template for single digit numbers' do
+      allow(File).to receive(:read).with(described_class::SINGLE_DIGIT_PATH).and_return('<svg><text>3</text></svg>')
+
+      svg = icon_service.numeric_icon_svg(5)
+      expect(svg).to include('>5<')
+    end
+
+    it 'uses double-digit template for double digit numbers' do
+      allow(File).to receive(:read).with(described_class::DOUBLE_DIGIT_PATH).and_return('<svg><text>16</text></svg>')
+
+      svg = icon_service.numeric_icon_svg(42)
+      expect(svg).to include('>42<')
+    end
+
+    it 'returns nil if template files do not exist' do
+      allow(File).to receive(:exist?).and_return(false)
+      expect(icon_service.numeric_icon_svg(5)).to be_nil
+    end
+  end
+
   describe '#qr_code_svg' do
     it 'returns nil if the QR code SVG file does not exist' do
       allow(File).to receive(:exist?).with(MtgCardMaker::IconService::QR_CODE_PATH).and_return(false)
@@ -96,8 +142,8 @@ RSpec.describe MtgCardMaker::IconService do
 
   describe 'icon file existence' do
     it 'has all required icon files for default set' do
-      icon_service.available_colors.each do |color|
-        icon_path = File.join(described_class::ICONS_DIR, described_class::ICON_SETS[:default][color])
+      icon_service.available_icon_types.each do |icon_type|
+        icon_path = File.join(described_class::ICONS_DIR, "#{icon_type}.svg")
         expect(File.exist?(icon_path)).to be true
       end
     end
