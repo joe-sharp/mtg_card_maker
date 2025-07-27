@@ -19,56 +19,7 @@ module MtgCardMaker
     def add_sprite_styles(xml)
       xml.defs do
         xml.style(type: 'text/css') do
-          xml.cdata <<~CSS
-            @font-face {
-              font-family: 'Goudy Mediaeval DemiBold';
-              src: url('fonts/Goudy Mediaeval DemiBold.ttf') format('truetype');
-              font-weight: normal;
-              font-style: normal;
-            }
-
-            .card-name {
-              font-family: 'Goudy Mediaeval DemiBold', serif;
-              font-weight: normal;
-              font-style: normal;
-            }
-
-            .card-type {
-              font-family: 'Goudy Mediaeval DemiBold', serif;
-              font-weight: normal;
-              font-style: normal;
-            }
-
-            .card-rules-text {
-              font-family: serif;
-              font-weight: normal;
-              font-style: normal;
-            }
-
-            .card-flavor-text {
-              font-family: serif;
-              font-weight: normal;
-              font-style: italic;
-            }
-
-            .card-power-toughness {
-              font-family: serif;
-              font-weight: bold;
-              font-style: normal;
-            }
-
-            .mana-cost-text {
-              font-family: serif;
-              font-weight: normal;
-              font-style: normal;
-            }
-
-            .mana-cost-text-large {
-              font-family: serif;
-              font-weight: semibold;
-              font-style: normal;
-            }
-          CSS
+          xml.cdata CssService.complete_styles(embed: false)
         end
       end
     end

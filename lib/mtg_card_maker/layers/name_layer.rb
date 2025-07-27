@@ -45,7 +45,7 @@ module MtgCardMaker
         text: name,
         layer_config: layer_config,
         x: layer_config.text_x_position(x),
-        y: layer_config.text_y_position(y, :name_area, height),
+        y: layer_config.text_y_position(y, :name_area, height) + 3,
         font_size: layer_config.font_size(:name),
         available_width: layer_config.text_width(width, :name_area),
         css_class: layer_config.css_class(:card_name)
