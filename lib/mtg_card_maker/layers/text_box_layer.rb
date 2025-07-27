@@ -135,7 +135,7 @@ module MtgCardMaker
 
       # Use foreignObject with HTML for proper text/symbol alignment
       svg.foreignObject x: layer_config.text_x_position(x),
-                        y: y_pos - font_size,
+                        y: y_pos - font_size, # Ensure symbols don't throw off the line
                         width: text_width,
                         height: font_size * 2 do
         svg << html_content
