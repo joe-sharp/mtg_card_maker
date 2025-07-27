@@ -105,6 +105,7 @@ module MtgCardMaker
         ColorScheme.new(:red),
         ColorScheme.new(:green),
         ColorScheme.new(:gold),
+        ColorScheme.new(:silver),
         ColorScheme.new(:artifact)
       ]
     end

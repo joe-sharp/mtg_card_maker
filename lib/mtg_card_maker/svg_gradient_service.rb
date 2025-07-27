@@ -50,7 +50,7 @@ module MtgCardMaker
 
       # Check if color scheme has metallic properties
       def metallic_properties?(color_scheme)
-        [:gold, :colorless].include?(color_scheme.scheme_name)
+        %i[gold colorless silver].include?(color_scheme.scheme_name)
       end
 
       def define_standard_gradients(svg, color_scheme)
