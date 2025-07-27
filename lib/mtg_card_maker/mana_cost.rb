@@ -19,19 +19,6 @@ module MtgCardMaker
   class ManaCost
     # Mapping of letters to colors
     # @return [Hash] the color mapping for mana symbols
-    SYMBOL_MAP = {
-      'B' => :black,
-      'U' => :blue,
-      'G' => :green,
-      'W' => :white,
-      'R' => :red,
-      'C' => :colorless,
-      'T' => :tap,
-      'Q' => :untap,
-      'E' => :energy,
-      'S' => :snow,
-      'X' => :x
-    }.freeze
 
     # @return [Array<Symbol>] the parsed mana elements
     attr_reader :elements

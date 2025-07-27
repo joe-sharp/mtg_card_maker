@@ -96,9 +96,8 @@ module MtgCardMaker
 
       # Mana cost settings
       mana_cost: {
-        circle_radius: 15,
         circle_spacing: 35,
-        icon_size: 24,
+        icon_size: 30,
         max_circles: 10,
         margin: 10
       },
