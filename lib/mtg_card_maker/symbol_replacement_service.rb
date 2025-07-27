@@ -79,14 +79,30 @@ module MtgCardMaker
 
       # Get the SVG content from IconService
       icon_svg = icon_service.icon_svg(SYMBOL_MAP[symbol])
-      # Try numeric icon if the regular icon lookup failed and symbol is numeric
-      icon_svg = icon_service.numeric_icon_svg(symbol.to_i) if icon_svg.nil? && symbol.match?(/^\d+$/)
+
+      # Handle numeric symbols
+      icon_svg = handle_numeric_symbol(symbol) if icon_svg.nil? && symbol.match?(/^\d+$/)
+
       return unless icon_svg
 
       # Use the SVG content directly with proper styling
       icon_svg.gsub(/width="[^"]*"/, 'width="24"')
               .gsub(/height="[^"]*"/, 'height="24"')
               .gsub('<svg', '<svg style="vertical-align: middle; margin: 0 5px;"')
+    end
+
+    # Handle numeric symbols, converting numbers 100+ to X symbols
+    # @param symbol [String] the numeric symbol string
+    # @return [String, nil] SVG content for the symbol or nil if not found
+    def handle_numeric_symbol(symbol)
+      numeric_value = symbol.to_i
+
+      # Convert numbers 100 and above to X symbols (like ManaCost does)
+      if numeric_value >= 100
+        icon_service.icon_svg(:x)
+      else
+        icon_service.numeric_icon_svg(numeric_value)
+      end
     end
   end
 end
