@@ -284,7 +284,7 @@ RSpec.describe MtgCardMaker::ManaCost do
 
       it 'handles completely unknown characters' do
         cost = described_class.new('ABC')
-        expect(cost.elements).to eq([:black, :colorless]) # A=black, B=black, C=colorless
+        expect(cost.elements).to eq([:black, :colorless]) # A=unknown, B=black, C=colorless
       end
     end
 
