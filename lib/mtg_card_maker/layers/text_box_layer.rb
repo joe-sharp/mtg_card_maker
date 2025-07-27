@@ -148,26 +148,11 @@ module MtgCardMaker
       end
     end
 
-    def split_text_and_symbols(text) # rubocop:disable Metrics/MethodLength
-      # Split text into parts: symbols and non-symbols
-      parts = []
-      current = ''
-
-      text.chars.each do |char|
-        if char == '{'
-          parts << current unless current.empty?
-          current = char
-        elsif char == '}'
-          current += char
-          parts << current
-          current = ''
-        else
-          current += char
-        end
-      end
-
-      parts << current unless current.empty?
-      parts
+    def split_text_and_symbols(text)
+      # Split text into parts: symbols and non-symbols using regex
+      # This matches symbols like {W}, {2}, {T}, etc. and captures them as separate parts
+      # Regex:The character { followed by any character except }, then closed by }
+      text.split(/(\{[^}]+\})/).reject(&:empty?)
     end
 
     def render_html_line_with_symbols(parts)
