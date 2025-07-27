@@ -51,7 +51,8 @@ module MtgCardMaker
         color: { type: :string,
                  default: 'colorless',
                  desc: 'Card color (white, blue, black, red, green, colorless)' },
-        art: { type: :string, aliases: ['artwork', 'image'], desc: 'Image URL or path for card artwork' }
+        art: { type: :string, aliases: ['artwork', 'image'], desc: 'Image URL or path for card artwork' },
+        embed_font: { type: :boolean, default: true, desc: 'Embed font as base64 in SVG' }
       }
     end
 
@@ -171,7 +172,7 @@ module MtgCardMaker
     end
 
     def add_optional_fields(config)
-      optional_fields = %w[mana_cost power toughness border_color color art]
+      optional_fields = %w[mana_cost power toughness border_color color art embed_font]
       optional_fields.each do |field|
         config[field] = options[field.to_sym] if options[field.to_sym]
       end

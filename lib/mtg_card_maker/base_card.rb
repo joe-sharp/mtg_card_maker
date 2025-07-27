@@ -121,10 +121,11 @@ module MtgCardMaker
     # @option config [String] :border_color the border color
     # @option config [Symbol, String] :color the color scheme
     # @option config [String] :art the URL or path for card artwork
+    # @option config [Boolean] :embed_font whether to embed the font as base64 (default: true)
     def initialize(config)
       assign_attributes(config)
       validate_required_fields
-      @template = Template.new
+      @template = Template.new(embed_font: config[:embed_font] || true)
       add_layers
     end
 
