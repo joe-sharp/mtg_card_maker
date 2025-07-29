@@ -28,8 +28,8 @@ module MtgCardMaker
         <<~CSS
           /* Font Classes */
           .card-name, .card-type {
-            font-family: #{embed ? "'Goudy Mediaeval DemiBold', serif" : 'serif'};
-            font-weight: #{embed ? 'normal' : 'bold'};
+            font-family: #{font_family(embed)};
+            font-weight: #{font_weight(embed)};
           }
 
           .card-rules-text, .mana-cost-text {
@@ -49,6 +49,14 @@ module MtgCardMaker
             font-family: sans-serif;
           }
         CSS
+      end
+
+      def font_family(embed)
+        embed ? "'Goudy Mediaeval DemiBold', serif" : 'serif'
+      end
+
+      def font_weight(embed)
+        embed ? 'normal' : 'bold'
       end
 
       # Generate complete CSS styles
