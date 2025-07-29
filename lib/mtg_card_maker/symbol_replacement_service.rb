@@ -8,17 +8,17 @@ module MtgCardMaker
   class SymbolReplacementService
     # Mapping of mtg notation to icons
     SYMBOL_MAP = {
-      'B' => :black,
-      'U' => :blue,
-      'G' => :green,
-      'W' => :white,
-      'R' => :red,
-      'C' => :colorless,
-      'T' => :tap,
-      'Q' => :untap,
-      'E' => :energy,
-      'S' => :snow,
-      'X' => :x,
+      'B'   => :black,
+      'U'   => :blue,
+      'G'   => :green,
+      'W'   => :white,
+      'R'   => :red,
+      'C'   => :colorless,
+      'T'   => :tap,
+      'Q'   => :untap,
+      'E'   => :energy,
+      'S'   => :snow,
+      'X'   => :x,
       'C/P' => :'phyrexian-colorless',
       'R/P' => :'phyrexian-red',
       'G/P' => :'phyrexian-green',
@@ -26,10 +26,11 @@ module MtgCardMaker
       'B/P' => :'phyrexian-black',
       'W/P' => :'phyrexian-white'
     }.freeze
-    attr_reader :font_size, :icon_service
+    attr_reader :font_size, :icon_service, :layer_config
 
     def initialize
-      @font_size = LayerConfig.default.font_size(:text_box)
+      @layer_config = LayerConfig.default
+      @font_size = layer_config.font_size(:text_box)
       @icon_service = IconService.new
     end
 
@@ -98,18 +99,34 @@ module MtgCardMaker
       symbol = symbol.gsub(/[{}]/, '')
 
       # Get the SVG content from IconService
-      icon_svg = if symbol.match?(/^\d+$/)
-                   handle_numeric_symbol(symbol)
-                 else
-                   icon_service.icon_svg(SYMBOL_MAP[symbol])
-                 end
+      icon_svg = get_icon_svg_for_symbol(symbol)
 
       return unless icon_svg
 
+      # Determine icon size based on icon type
+      icon_type = SYMBOL_MAP[symbol]
+      icon_size = get_icon_size_for_type(icon_type)
+
       # Use the SVG content directly with proper styling
-      icon_svg.gsub(/width="[^"]*"/, 'width="24"')
-              .gsub(/height="[^"]*"/, 'height="24"')
+      icon_svg.gsub(/width="[^"]*"/, "width='#{icon_size}'")
+              .gsub(/height="[^"]*"/, "height='#{icon_size}'")
               .gsub('<svg', '<svg style="vertical-align: middle; margin: 0 5px;"')
+    end
+
+    def get_icon_svg_for_symbol(symbol)
+      if symbol.match?(/^\d+$/)
+        handle_numeric_symbol(symbol)
+      else
+        icon_service.icon_svg(SYMBOL_MAP[symbol])
+      end
+    end
+
+    def get_icon_size_for_type(icon_type)
+      if icon_type.to_s.match?(/hybrid|phyrexian/)
+        layer_config.text_box_config[:hybrid_icon_size]
+      else
+        layer_config.text_box_config[:icon_size]
+      end
     end
 
     # Handle numeric symbols, converting numbers 100+ to X symbols

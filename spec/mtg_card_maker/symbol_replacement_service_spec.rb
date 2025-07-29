@@ -183,16 +183,16 @@ RSpec.describe MtgCardMaker::SymbolReplacementService do
       it 'renders colored mana symbols', :aggregate_failures do
         result = service.send(:render_symbol_html, '{R}')
         expect(result).to include('<svg')
-        expect(result).to include('width="24"')
-        expect(result).to include('height="24"')
+        expect(result).to include("width='24'")
+        expect(result).to include("height='24'")
         expect(result).to include('vertical-align: middle; margin: 0 5px;')
       end
 
       it 'renders numeric symbols', :aggregate_failures do
         result = service.send(:render_symbol_html, '{1}')
         expect(result).to include('<svg')
-        expect(result).to include('width="24"')
-        expect(result).to include('height="24"')
+        expect(result).to include("width='24'")
+        expect(result).to include("height='24'")
       end
 
       it 'returns nil for unsupported symbols' do
@@ -213,24 +213,24 @@ RSpec.describe MtgCardMaker::SymbolReplacementService do
       it 'renders Phyrexian white symbol', :aggregate_failures do
         result = service.send(:render_symbol_html, '{W/P}')
         expect(result).to include('<svg')
-        expect(result).to include('width="24"')
-        expect(result).to include('height="24"')
+        expect(result).to include("width='32'")
+        expect(result).to include("height='32'")
         expect(result).to include('vertical-align: middle; margin: 0 5px;')
       end
 
       it 'renders Phyrexian red symbol', :aggregate_failures do
         result = service.send(:render_symbol_html, '{R/P}')
         expect(result).to include('<svg')
-        expect(result).to include('width="24"')
-        expect(result).to include('height="24"')
+        expect(result).to include("width='32'")
+        expect(result).to include("height='32'")
         expect(result).to include('vertical-align: middle; margin: 0 5px;')
       end
 
       it 'renders Phyrexian colorless symbol', :aggregate_failures do
         result = service.send(:render_symbol_html, '{C/P}')
         expect(result).to include('<svg')
-        expect(result).to include('width="24"')
-        expect(result).to include('height="24"')
+        expect(result).to include("width='32'")
+        expect(result).to include("height='32'")
         expect(result).to include('vertical-align: middle; margin: 0 5px;')
       end
 
