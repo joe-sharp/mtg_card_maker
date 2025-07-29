@@ -232,7 +232,7 @@ mtg_card_maker generate_card \
   --name="Joe Sharp" \
   --mana-cost=3UR \
   --type-line="Engineer - Fullstack" \
-  --rules-text='When Joe Sharp enters the battlefield, all malfunctioning computers begin working.\nWhenever you cast a Red spell, draw a card.\n\n{E}: debug program. Ignore this cost, if a Coffee is in play.\n\n' \
+  --rules-text='When Joe Sharp enters the battlefield, all malfunctioning computers begin working.\nWhenever you cast a Red spell, draw a card.\n\n{E}: debug program. Ignore this cost, if a Coffee token is in play.\n\n' \
   --flavor-text='\"Nothing is true, everything is a string.\"\n\t\t\t\t- The ENV Creed' \
   --power=3 \
   --toughness=3 \
