@@ -43,7 +43,6 @@ RSpec.describe MtgCardMaker::SpriteSheetAssets do
         expect(xml).to include('.card-flavor-text')
         expect(xml).to include('.card-power-toughness')
         expect(xml).to include('.mana-cost-text')
-        expect(xml).to include('.mana-cost-text-large')
       end
     end
 

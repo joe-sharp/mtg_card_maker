@@ -17,8 +17,6 @@ module MtgCardMaker
           @font-face {
             font-family: 'Goudy Mediaeval DemiBold';
             src: url(data:font/truetype;charset=utf-8;base64,#{base64_font_data}) format('truetype');
-            font-weight: normal;
-            font-style: normal;
           }
         CSS
       end
@@ -29,52 +27,26 @@ module MtgCardMaker
       def css_classes(embed: false)
         <<~CSS
           /* Font Classes */
-          .card-name {
+          .card-name, .card-type {
             font-family: #{embed ? "'Goudy Mediaeval DemiBold', serif" : 'serif'};
             font-weight: #{embed ? 'normal' : 'bold'};
-            font-style: normal;
           }
 
-          .card-type {
-            font-family: #{embed ? "'Goudy Mediaeval DemiBold', serif" : 'serif'};
-            font-weight: #{embed ? 'normal' : 'bold'};
-            font-style: normal;
-          }
-
-          .card-rules-text {
+          .card-rules-text, .mana-cost-text {
             font-family: serif;
-            font-weight: normal;
-            font-style: normal;
           }
 
           .card-flavor-text {
             font-family: serif;
-            font-weight: normal;
-            font-style: italic;
           }
 
           .card-power-toughness {
             font-family: serif;
             font-weight: bold;
-            font-style: normal;
           }
 
           .card-copyright {
             font-family: sans-serif;
-            font-weight: normal;
-            font-style: normal;
-          }
-
-          .mana-cost-text {
-            font-family: serif;
-            font-weight: normal;
-            font-style: normal;
-          }
-
-          .mana-cost-text-large {
-            font-family: serif;
-            font-weight: semibold;
-            font-style: normal;
           }
         CSS
       end
