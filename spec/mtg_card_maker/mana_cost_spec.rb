@@ -285,6 +285,92 @@ RSpec.describe MtgCardMaker::ManaCost do
       end
     end
 
+    context 'with Phyrexian mana symbols' do
+      it 'handles single Phyrexian white symbol', :aggregate_failures do
+        cost = described_class.new('{W/P}')
+        expect(cost.elements).to eq([:'phyrexian-white'])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles single Phyrexian blue symbol', :aggregate_failures do
+        cost = described_class.new('{U/P}')
+        expect(cost.elements).to eq([:'phyrexian-blue'])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles single Phyrexian black symbol', :aggregate_failures do
+        cost = described_class.new('{B/P}')
+        expect(cost.elements).to eq([:'phyrexian-black'])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles single Phyrexian red symbol', :aggregate_failures do
+        cost = described_class.new('{R/P}')
+        expect(cost.elements).to eq([:'phyrexian-red'])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles single Phyrexian green symbol', :aggregate_failures do
+        cost = described_class.new('{G/P}')
+        expect(cost.elements).to eq([:'phyrexian-green'])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles single Phyrexian colorless symbol', :aggregate_failures do
+        cost = described_class.new('{C/P}')
+        expect(cost.elements).to eq([:'phyrexian-colorless'])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles multiple Phyrexian symbols', :aggregate_failures do
+        cost = described_class.new('{W/P}{R/P}')
+        expect(cost.elements).to eq([:'phyrexian-white', :'phyrexian-red'])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles Phyrexian symbols with regular mana', :aggregate_failures do
+        cost = described_class.new('{W/P}U')
+        expect(cost.elements).to eq([:'phyrexian-white', :blue])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles Phyrexian symbols with numeric mana', :aggregate_failures do
+        cost = described_class.new('2{W/P}')
+        expect(cost.elements).to eq([:numeric, :'phyrexian-white'])
+        expect(cost.int_val).to eq(2)
+      end
+
+      it 'handles Phyrexian symbols with X cost', :aggregate_failures do
+        cost = described_class.new('X{W/P}')
+        expect(cost.elements).to eq([:x, :'phyrexian-white'])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles complex mixed mana costs with Phyrexian', :aggregate_failures do
+        cost = described_class.new('2{W/P}UR')
+        expect(cost.elements).to eq(%i[numeric phyrexian-white blue red])
+        expect(cost.int_val).to eq(2)
+      end
+
+      it 'handles case-insensitive Phyrexian symbols', :aggregate_failures do
+        cost = described_class.new('{w/p}')
+        expect(cost.elements).to eq([:'phyrexian-white'])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles unknown symbols in braces gracefully', :aggregate_failures do
+        cost = described_class.new('{Z/P}')
+        expect(cost.elements).to eq([])
+        expect(cost.int_val).to be_nil
+      end
+
+      it 'handles mixed known and unknown symbols in braces', :aggregate_failures do
+        cost = described_class.new('{W/P}{Z/P}{R/P}')
+        expect(cost.elements).to eq([:'phyrexian-white', :'phyrexian-red'])
+        expect(cost.int_val).to be_nil
+      end
+    end
+
     context 'with icon rendering edge cases' do
       it 'handles nil icon_svg in render methods', :aggregate_failures do
         # Mock the icon service to return nil for icon_svg

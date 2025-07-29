@@ -26,7 +26,13 @@ module MtgCardMaker
       'R' => :red,
       'C' => :colorless,
       'S' => :snow,
-      'X' => :x
+      'X' => :x,
+      '{C/P}' => :'phyrexian-colorless',
+      '{R/P}' => :'phyrexian-red',
+      '{G/P}' => :'phyrexian-green',
+      '{U/P}' => :'phyrexian-blue',
+      '{B/P}' => :'phyrexian-black',
+      '{W/P}' => :'phyrexian-white'
     }.freeze
 
     # @return [Array<Symbol>] the parsed mana elements
@@ -108,8 +114,9 @@ module MtgCardMaker
     end
 
     def parse_colored_mana(mana_string)
-      mana_string.chars.each do |char|
-        icon_type = SYMBOL_MAP[char]
+      # Use regex to match symbols: single letters, 1-2 digits, or {anything between curly braces}
+      mana_string.scan(/([A-Z]|\d{1,2}|\{[^}]+\})/).flatten.each do |symbol|
+        icon_type = SYMBOL_MAP[symbol]
         @elements << icon_type if icon_type
       end
     end
