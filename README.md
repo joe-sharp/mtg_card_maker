@@ -15,7 +15,7 @@ Please note this gem is in early beta, and should not be used in any production 
 
 **Core Card Properties:**
 - **Card Name**: Customizable card titles with optional font support
-- **Mana Cost**: Support for 0-9, X, and all MTG mana symbols (W, U, B, R, G, C), alternate icon sets coming soon!
+- **Mana Cost**: Support for 0-9, X, and all MTG mana symbols (W, U, B, R, G, C, S), alternate icon sets coming soon!
 - **Type Line**: Customizable Card types and subtypes (Creature, Instant, Sorcery, etc.)
 - **Rules Text**: Write your own rules with automatic word wrapping and formatting
 - **Flavor Text**: Optional italicized flavor text at the bottom of cards
@@ -30,7 +30,7 @@ Please note this gem is in early beta, and should not be used in any production 
 
 **Efficiency Optimizations:**
 - **Shared Assets**: Fonts, gradients, and masks defined once per sprite sheet
-- **Reduced File Size**: Significantly smaller file sizes compared to individual cards
+- **Reduced File Size**: Significantly smaller file sizes compared to multiple individual cards
 - **Layout Optimization**: Ideal for web applications, printing and digital displays
 
 **Layout Control:**
@@ -87,8 +87,9 @@ flavor_text: "Flavor text"        # Optional
 power: 4                          # Optional
 toughness: 4                      # Optional
 color: red                        # Optional (default: colorless)
-border_color: gold           # Optional (default: white)
-art: path/to/art.jpg        # Optional
+border_color: gold                # Optional (default: white)
+art: path/to/art.jpg              # Optional
+embed_font: false                 # Optional (default: true)
 ```
 
 **Color Schemes Available:**
@@ -104,7 +105,8 @@ art: path/to/art.jpg        # Optional
 ```
 
 **Symbols Available for Mana Cost:**
-We currently support the following symbols in mana costs:
+
+Phyrexian, coming soon!
 
 **Mana Symbols:**
 - `W` - White mana <img src="lib/mtg_card_maker/icons/white.svg" width="16" valign="middle" />
@@ -128,15 +130,9 @@ We currently support the following symbols in mana costs:
 - `3` - 3 generic only <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" />
 - `B` - black only <img src="lib/mtg_card_maker/icons/black.svg" width="16" valign="middle" />
 
-**How It Works:**
-The mana cost parser supports flexible combinations:
-- **X costs** can be combined with numeric and colored mana
-- **Numeric costs** (0-99) represent generic mana
-- **Colored mana** symbols can be mixed in any order
-- **Maximum of 10 symbols** are displayed
-
 **Symbols Available in Rules Text:**
-You can use MTG symbols in your rules text by wrapping them in curly braces. The following symbols are supported:
+
+You can use MTG symbols in your rules text by wrapping them in curly braces "{C}". The following symbols are supported:
 
 **Mana Symbols:**
 - `{W}` - White mana <img src="lib/mtg_card_maker/icons/white.svg" width="16" valign="middle" />
