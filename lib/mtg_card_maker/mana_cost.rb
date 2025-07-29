@@ -19,14 +19,20 @@ module MtgCardMaker
   class ManaCost
     # Mapping of MTG notation to icon types
     SYMBOL_MAP = {
-      'B' => :black,
-      'U' => :blue,
-      'G' => :green,
-      'W' => :white,
-      'R' => :red,
-      'C' => :colorless,
-      'S' => :snow,
-      'X' => :x
+      'B'     => :black,
+      'U'     => :blue,
+      'G'     => :green,
+      'W'     => :white,
+      'R'     => :red,
+      'C'     => :colorless,
+      'S'     => :snow,
+      'X'     => :x,
+      '{C/P}' => :'phyrexian-colorless',
+      '{R/P}' => :'phyrexian-red',
+      '{G/P}' => :'phyrexian-green',
+      '{U/P}' => :'phyrexian-blue',
+      '{B/P}' => :'phyrexian-black',
+      '{W/P}' => :'phyrexian-white'
     }.freeze
 
     # @return [Array<Symbol>] the parsed mana elements
@@ -34,6 +40,9 @@ module MtgCardMaker
 
     # @return [Integer, nil] the integer value for generic mana
     attr_reader :int_val
+
+    # @return [LayerConfig] the layer configuration
+    attr_reader :layer_config
 
     # Initialize a new mana cost parser
     #
@@ -43,6 +52,7 @@ module MtgCardMaker
       @elements = []
       @int_val = nil
       @icon_service = IconService.new(icon_set)
+      @layer_config = LayerConfig.default
 
       return if mana_string.nil? || mana_string.empty?
 
@@ -54,7 +64,6 @@ module MtgCardMaker
     #
     # @return [String] the SVG markup for the mana cost
     def to_svg
-      layer_config = LayerConfig.default
       circle_spacing = layer_config.mana_cost_config[:circle_spacing]
 
       mana_icons = @elements.each_with_index.map do |icon_type, i|
@@ -108,21 +117,24 @@ module MtgCardMaker
     end
 
     def parse_colored_mana(mana_string)
-      mana_string.chars.each do |char|
-        icon_type = SYMBOL_MAP[char]
+      # Use regex to match symbols: single letters, 1-2 digits, or {anything between curly braces}
+      mana_string.scan(/([A-Z]|\d{1,2}|\{[^}]+\})/).flatten.each do |symbol|
+        icon_type = SYMBOL_MAP[symbol]
         @elements << icon_type if icon_type
       end
     end
 
     def limit_elements
-      layer_config = LayerConfig.default
       max_circles = layer_config.mana_cost_config[:max_circles]
       @elements = @elements.first(max_circles)
     end
 
     def render_mana_icon(x, y, icon_type)
-      layer_config = LayerConfig.default
-      icon_size = layer_config.mana_cost_config[:icon_size]
+      icon_size = if icon_type.to_s.match?(/phyrexian|hybrid/)
+                    layer_config.mana_cost_config[:hybrid_icon_size]
+                  else
+                    layer_config.mana_cost_config[:icon_size]
+                  end
 
       icon_svg = get_icon_svg(icon_type, icon_size)
       return unless icon_svg
@@ -143,7 +155,6 @@ module MtgCardMaker
     end
 
     def drop_shadow_filter
-      layer_config = LayerConfig.default
       drop_shadow = layer_config.drop_shadow_config
       <<~SVG.delete("\n")
         <defs>

@@ -224,6 +224,36 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       # Should not crash and should render as regular text
       expect { generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200) }.not_to raise_error
     end
+
+    it 'renders text with Phyrexian symbols', :aggregate_failures do
+      text_with_phyrexian = 'Add {W/P} or {R/P} to your mana pool.'
+      layer = described_class.new(
+        dimensions: { x: 10, y: 10, width: 200, height: 100 },
+        rules_text: text_with_phyrexian
+      )
+
+      svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
+
+      # Should use foreignObject for Phyrexian symbol rendering
+      expect(svg_content).to include('<foreignObject')
+      expect(svg_content).to include('xmlns=\'http://www.w3.org/1999/xhtml\'')
+      expect(svg_content).to include('display: flex')
+      expect(svg_content).to include('align-items: center')
+    end
+
+    it 'renders text with mixed regular and Phyrexian symbols', :aggregate_failures do
+      mixed_phyrexian_text = '{T}: Add {W} or {W/P} to your mana pool.'
+      layer = described_class.new(
+        dimensions: { x: 10, y: 10, width: 200, height: 100 },
+        rules_text: mixed_phyrexian_text
+      )
+
+      svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
+
+      # Should use foreignObject for mixed Phyrexian content
+      expect(svg_content).to include('<foreignObject')
+      expect(svg_content).to include('xmlns=\'http://www.w3.org/1999/xhtml\'')
+    end
   end
 
   context 'with line placement logic' do

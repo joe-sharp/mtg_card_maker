@@ -106,69 +106,82 @@ embed_font: false                 # Optional (default: true)
 
 **Symbols Available for Mana Cost:**
 
-Phyrexian, coming soon!
+Hybrid Mana, coming soon!
 
 **Mana Symbols:**
-- `W` - White mana <img src="lib/mtg_card_maker/icons/white.svg" width="16" valign="middle" />
-- `B` - Black mana <img src="lib/mtg_card_maker/icons/black.svg" width="16" valign="middle" />
-- `R` - Red mana <img src="lib/mtg_card_maker/icons/red.svg" width="16" valign="middle" />
-- `G` - Green mana <img src="lib/mtg_card_maker/icons/green.svg" width="16" valign="middle" />
-- `U` - Blue mana <img src="lib/mtg_card_maker/icons/blue.svg" width="16" valign="middle" />
-- `C` - Colorless mana <img src="lib/mtg_card_maker/icons/colorless.svg" width="16" valign="middle" />
-- `S` - Snow mana <img src="lib/mtg_card_maker/icons/snow.svg" width="16" valign="middle" />
+- `W` - White mana <img src="images/icons/white.svg" width="16" valign="middle" />
+- `B` - Black mana <img src="images/icons/black.svg" width="16" valign="middle" />
+- `R` - Red mana <img src="images/icons/red.svg" width="16" valign="middle" />
+- `G` - Green mana <img src="images/icons/green.svg" width="16" valign="middle" />
+- `U` - Blue mana <img src="images/icons/blue.svg" width="16" valign="middle" />
+- `C` - Colorless mana <img src="images/icons/colorless.svg" width="16" valign="middle" />
+- `S` - Snow mana <img src="images/icons/snow.svg" width="16" valign="middle" />
+- `{C/P}` - Colorless Phyrexian mana <img src="images/icons/phyrexian-colorless.svg" width="20" valign="middle" />
+- `{R/P}` - Red Phyrexian mana <img src="images/icons/phyrexian-red.svg" width="20" valign="middle" />
+- `{G/P}` - Green Phyrexian mana <img src="images/icons/phyrexian-green.svg" width="20" valign="middle" />
+- `{U/P}` - Blue Phyrexian mana <img src="images/icons/phyrexian-blue.svg" width="20" valign="middle" />
+- `{B/P}` - Black Phyrexian mana <img src="images/icons/phyrexian-black.svg" width="20" valign="middle" />
+- `{W/P}` - White Phyrexian mana <img src="images/icons/phyrexian-white.svg" width="20" valign="middle" />
 
 **Numeric Symbols:**
-- `0` through `99` - Generic mana costs (0-99) <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" />
-- `X` - X symbol <img src="lib/mtg_card_maker/icons/x.svg" width="16" valign="middle" />
+- `0` through `99` - Generic mana costs (0-99) <img src="images/icons/single-digit.svg" width="16" valign="middle" />
+- `X` - X symbol <img src="images/icons/x.svg" width="16" valign="middle" />
 
 **Combination Examples:**
-- `16US` - 16 generic + 1 blue + 1 snow <img src="lib/mtg_card_maker/icons/double-digit.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/blue.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/snow.svg" width="16" valign="middle" />
-- `XG` - X generic + 1 green <img src="lib/mtg_card_maker/icons/x.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/green.svg" width="16" valign="middle" />
-- `X3R` - X generic + 3 generic + 1 red <img src="lib/mtg_card_maker/icons/x.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/red.svg" width="16" valign="middle" />
-- `3WU` - 3 generic + 1 white + 1 blue <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/white.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/blue.svg" width="16" valign="middle" />
-- `X` - X generic only <img src="lib/mtg_card_maker/icons/x.svg" width="16" valign="middle" />
-- `3` - 3 generic only <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" />
-- `B` - black only <img src="lib/mtg_card_maker/icons/black.svg" width="16" valign="middle" />
+- `16US` - 16 generic + 1 blue + 1 snow <img src="images/icons/double-digit.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" /> <img src="images/icons/snow.svg" width="16" valign="middle" />
+- `XG` - X generic + 1 green <img src="images/icons/x.svg" width="16" valign="middle" /> <img src="images/icons/green.svg" width="16" valign="middle" />
+- `X3R` - X generic + 3 generic + 1 red <img src="images/icons/x.svg" width="16" valign="middle" /> <img src="images/icons/single-digit.svg" width="16" valign="middle" /> <img src="images/icons/red.svg" width="16" valign="middle" />
+- `3WU` - 3 generic + 1 white + 1 blue <img src="images/icons/single-digit.svg" width="16" valign="middle" /> <img src="images/icons/white.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" />
+- `WU{B/P}RG` White, Blue, Phyrexian Black, Red, Green <img src="images/icons/white.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" /> <img src="images/icons/phyrexian-black.svg" width="20" valign="middle" /> <img src="images/icons/red.svg" width="16" valign="middle" /> <img src="images/icons/green.svg" width="16" valign="middle" />
+- `X` - X generic only <img src="images/icons/x.svg" width="16" valign="middle" />
+- `3` - 3 generic only <img src="images/icons/single-digit.svg" width="16" valign="middle" />
+- `B` - black only <img src="images/icons/black.svg" width="16" valign="middle" />
 
 **Symbols Available in Rules Text:**
 
 You can use MTG symbols in your rules text by wrapping them in curly braces "{C}". The following symbols are supported:
 
 **Mana Symbols:**
-- `{W}` - White mana <img src="lib/mtg_card_maker/icons/white.svg" width="16" valign="middle" />
-- `{B}` - Black mana <img src="lib/mtg_card_maker/icons/black.svg" width="16" valign="middle" />
-- `{R}` - Red mana <img src="lib/mtg_card_maker/icons/red.svg" width="16" valign="middle" />
-- `{G}` - Green mana <img src="lib/mtg_card_maker/icons/green.svg" width="16" valign="middle" />
-- `{U}` - Blue mana <img src="lib/mtg_card_maker/icons/blue.svg" width="16" valign="middle" />
-- `{C}` - Colorless mana <img src="lib/mtg_card_maker/icons/colorless.svg" width="16" valign="middle" />
-- `{S}` - Snow mana symbol <img src="lib/mtg_card_maker/icons/snow.svg" width="16" valign="middle" />
+- `{W}` - White mana <img src="images/icons/white.svg" width="16" valign="middle" />
+- `{B}` - Black mana <img src="images/icons/black.svg" width="16" valign="middle" />
+- `{R}` - Red mana <img src="images/icons/red.svg" width="16" valign="middle" />
+- `{G}` - Green mana <img src="images/icons/green.svg" width="16" valign="middle" />
+- `{U}` - Blue mana <img src="images/icons/blue.svg" width="16" valign="middle" />
+- `{C}` - Colorless mana <img src="images/icons/colorless.svg" width="16" valign="middle" />
+- `{S}` - Snow mana symbol <img src="images/icons/snow.svg" width="16" valign="middle" />
+- `{C/P}` - Colorless Phyrexian mana <img src="images/icons/phyrexian-colorless.svg" width="20" valign="middle" />
+- `{R/P}` - Red Phyrexian mana <img src="images/icons/phyrexian-red.svg" width="20" valign="middle" />
+- `{G/P}` - Green Phyrexian mana <img src="images/icons/phyrexian-green.svg" width="20" valign="middle" />
+- `{U/P}` - Blue Phyrexian mana <img src="images/icons/phyrexian-blue.svg" width="20" valign="middle" />
+- `{B/P}` - Black Phyrexian mana <img src="images/icons/phyrexian-black.svg" width="20" valign="middle" />
+- `{W/P}` - White Phyrexian mana <img src="images/icons/phyrexian-white.svg" width="20" valign="middle" />
 
 **Numeric Symbols:**
-- `{0}` through `{99}` - Generic mana costs (0-99) <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" />
-- `{X}` - X symbol <img src="lib/mtg_card_maker/icons/x.svg" width="16" valign="middle" />
+- `{0}` through `{99}` - Generic mana costs (0-99) <img src="images/icons/single-digit.svg" width="16" valign="middle" />
+- `{X}` - X symbol <img src="images/icons/x.svg" width="16" valign="middle" />
 
 **Special Symbols:**
-- `{T}` - Tap symbol <img src="lib/mtg_card_maker/icons/tap.svg" width="16" valign="middle" />
-- `{Q}` - Untap symbol <img src="lib/mtg_card_maker/icons/untap.svg" width="16" valign="middle" />
-- `{E}` - Energy symbol <img src="lib/mtg_card_maker/icons/energy.svg" width="16" valign="middle" />
+- `{T}` - Tap symbol <img src="images/icons/tap.svg" width="16" valign="middle" />
+- `{Q}` - Untap symbol <img src="images/icons/untap.svg" width="16" valign="middle" />
+- `{E}` - Energy symbol <img src="images/icons/energy.svg" width="16" valign="middle" />
 
 **Example Usage:**
 ```yaml
 rules_text: "{T}: Add {W} or {U} to your mana pool."
 ```
 <p align=center>
-  <img src="lib/mtg_card_maker/icons/tap.svg"
+  <img src="images/icons/tap.svg"
        alt="{T}" width="16" valign="middle" />
   : Add
-  <img src="lib/mtg_card_maker/icons/white.svg"
+  <img src="images/icons/white.svg"
        alt="{W}" width="16" valign="middle" />
   or
-  <img src="lib/mtg_card_maker/icons/blue.svg"
-       alt="{B}" width="16" valign="middle" />
+  <img src="images/icons/blue.svg"
+       alt="{U}" width="16" valign="middle" />
   to your mana pool
 </p>
 
-## 🧪 Usage Examples
+## 🧪 Basic Examples
 
 ### Single Card
 

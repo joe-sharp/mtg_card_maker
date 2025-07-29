@@ -28,7 +28,7 @@ black:
 
 red:
   name: "Red"
-  mana_cost: "XRR"
+  mana_cost: "X{R/P}{R/P}{R/P}"
   type_line: "Instant"
   rules_text: "This spell deals {X} damage to any target. If a creature dealt damage this way would die this turn, exile it instead."
   flavor_text: "Fire consumes all, leaving only ash and memory."
@@ -38,7 +38,7 @@ green:
   name: "Green"
   mana_cost: "3GS"
   type_line: "Creature - Elemental"
-  rules_text: "Trample. When this creature enters the battlefield, search your library for a land card and put it onto the battlefield tapped."
+  rules_text: "Trample. When this creature enters the battlefield, search your library for a land card and put it onto the battlefield tapped.\n\n{G/P}: Untap this creature."
   power: "4"
   toughness: "12"
   border_color: silver

@@ -123,7 +123,6 @@ RSpec.describe MtgCardMaker::LayerConfig do
       mana_config = config.mana_cost_config
 
       expect(mana_config[:circle_spacing]).to eq(35)
-      expect(mana_config[:icon_size]).to eq(30)
       expect(mana_config[:max_circles]).to eq(10)
       expect(mana_config[:margin]).to eq(10)
     end

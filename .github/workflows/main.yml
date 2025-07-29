@@ -54,6 +54,8 @@ jobs:
         run: bundle exec yard doc
       - name: Copy CSS to docs
         run: cp docs/custom/custom.css docs/css/common.css
+      - name: Copy images to docs
+        run: cp -r images docs/images
       - name: Check for Documentation Changes
         id: check-changes
         run: |

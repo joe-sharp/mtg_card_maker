@@ -93,10 +93,16 @@ module MtgCardMaker
         }
       },
 
+      text_box: {
+        icon_size: 24,
+        hybrid_icon_size: 32
+      },
+
       # Mana cost settings
       mana_cost: {
         circle_spacing: 35,
         icon_size: 30,
+        hybrid_icon_size: 38,
         max_circles: 10,
         margin: 10
       },
@@ -141,7 +147,7 @@ module MtgCardMaker
       @config = default_config_with_merge.deep_merge(custom_config)
     end
 
-    # Font size getters
+    # Size getters
     def font_size(layer_type)
       config[:font_sizes][layer_type]
     end
@@ -167,6 +173,11 @@ module MtgCardMaker
 
     def corner_radius(layer_type)
       config[:frames][:corner_radius][layer_type] || { x: 5, y: 5 }
+    end
+
+    # Text box getters
+    def text_box_config
+      config[:text_box]
     end
 
     # Mana cost getters
