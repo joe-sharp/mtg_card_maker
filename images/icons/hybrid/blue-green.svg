@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 0 1060 1060" width="28px">
+  <!-- Background circle -->
+  <circle cx="530" cy="530" r="480" fill="#B5D9F4" />
+
+  <!-- Right half (green) - from 45° to 225° -->
+  <g transform="rotate(45, 530, 530)">
+    <path d="M 530 530 L 530 50 A 480 480 0 0 1 530 1010 Z" fill="#ABDDBD" />
+  </g>
+
+  <!-- Blue Mana symbol for left half -->
+  <g transform="translate(150, 550) scale(0.45)">
+    <path d="M479-56q-150 0-257-104T115-414q0-71.79 28-137.89Q171-618 223-668l162-160q20-19 44.74-29 24.74-10 50.26-10t50.26 10Q555-847 575-828l162 160q52 50 80 116.11 28 66.1 28 137.89 0 150-107.5 254T479-56ZM251-414h458q0-44-18.5-85t-49.67-71.56L480-731 319.17-570.56Q288-540 269.5-498.93 251-457.86 251-414Z"/>
+  </g>
+
+  <!-- Green Mana symbol for right half -->
+  <g transform="translate(500, 900) scale(0.45)">
+    <path d="M584-31H376v-161H37l161-242h-82l364-521 364 521h-82l161 242H584v161Z"/>
+  </g>
+</svg>
