@@ -106,7 +106,7 @@ embed_font: false                 # Optional (default: true)
 
 **Symbols Available for Mana Cost:**
 
-Phyrexian, coming soon!
+Hybrid Mana, coming soon!
 
 **Mana Symbols:**
 - `W` - White mana <img src="images/icons/white.svg" width="16" valign="middle" />
@@ -116,6 +116,12 @@ Phyrexian, coming soon!
 - `U` - Blue mana <img src="images/icons/blue.svg" width="16" valign="middle" />
 - `C` - Colorless mana <img src="images/icons/colorless.svg" width="16" valign="middle" />
 - `S` - Snow mana <img src="images/icons/snow.svg" width="16" valign="middle" />
+- `{C/P}` - Colorless Phyrexian mana <img src="images/icons/phyrexian-colorless.svg" width="18" valign="middle" />
+- `{C/P}` - Red Phyrexian mana <img src="images/icons/phyrexian-red.svg" width="18" valign="middle" />
+- `{C/P}` - Green Phyrexian mana <img src="images/icons/phyrexian-green.svg" width="18" valign="middle" />
+- `{C/P}` - Blue Phyrexian mana <img src="images/icons/phyrexian-blue.svg" width="18" valign="middle" />
+- `{C/P}` - Black Phyrexian mana <img src="images/icons/phyrexian-black.svg" width="18" valign="middle" />
+- `{C/P}` - White Phyrexian mana <img src="images/icons/phyrexian-white.svg" width="18" valign="middle" />
 
 **Numeric Symbols:**
 - `0` through `99` - Generic mana costs (0-99) <img src="images/icons/single-digit.svg" width="16" valign="middle" />
@@ -126,6 +132,7 @@ Phyrexian, coming soon!
 - `XG` - X generic + 1 green <img src="images/icons/x.svg" width="16" valign="middle" /> <img src="images/icons/green.svg" width="16" valign="middle" />
 - `X3R` - X generic + 3 generic + 1 red <img src="images/icons/x.svg" width="16" valign="middle" /> <img src="images/icons/single-digit.svg" width="16" valign="middle" /> <img src="images/icons/red.svg" width="16" valign="middle" />
 - `3WU` - 3 generic + 1 white + 1 blue <img src="images/icons/single-digit.svg" width="16" valign="middle" /> <img src="images/icons/white.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" />
+- `WU{B}RG` White, Blue, Phyrexian Black, Red, Green <img src="images/icons/white.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" /> <img src="images/icons/phyrexian-black.svg" width="18" valign="middle" /> <img src="images/icons/red.svg" width="16" valign="middle" /> <img src="images/icons/green.svg" width="16" valign="middle" />
 - `X` - X generic only <img src="images/icons/x.svg" width="16" valign="middle" />
 - `3` - 3 generic only <img src="images/icons/single-digit.svg" width="16" valign="middle" />
 - `B` - black only <img src="images/icons/black.svg" width="16" valign="middle" />
@@ -142,6 +149,12 @@ You can use MTG symbols in your rules text by wrapping them in curly braces "{C}
 - `{U}` - Blue mana <img src="images/icons/blue.svg" width="16" valign="middle" />
 - `{C}` - Colorless mana <img src="images/icons/colorless.svg" width="16" valign="middle" />
 - `{S}` - Snow mana symbol <img src="images/icons/snow.svg" width="16" valign="middle" />
+- `{C/P}` - Colorless Phyrexian mana <img src="images/icons/phyrexian-colorless.svg" width="18" valign="middle" />
+- `{C/P}` - Red Phyrexian mana <img src="images/icons/phyrexian-red.svg" width="18" valign="middle" />
+- `{C/P}` - Green Phyrexian mana <img src="images/icons/phyrexian-green.svg" width="18" valign="middle" />
+- `{C/P}` - Blue Phyrexian mana <img src="images/icons/phyrexian-blue.svg" width="18" valign="middle" />
+- `{C/P}` - Black Phyrexian mana <img src="images/icons/phyrexian-black.svg" width="18" valign="middle" />
+- `{C/P}` - White Phyrexian mana <img src="images/icons/phyrexian-white.svg" width="18" valign="middle" />
 
 **Numeric Symbols:**
 - `{0}` through `{99}` - Generic mana costs (0-99) <img src="images/icons/single-digit.svg" width="16" valign="middle" />
@@ -168,7 +181,7 @@ rules_text: "{T}: Add {W} or {U} to your mana pool."
   to your mana pool
 </p>
 
-## 🧪 Usage Examples
+## 🧪 Basic Examples
 
 ### Single Card
 
