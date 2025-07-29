@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+  <circle cx='50%' cy='-50%' r='480' fill='#DDD' />
+  <g transform='translate(-125, 125) scale(1.25)'>
+    <path d="M480-137 137-480l343-343 343 343-343 343Zm0-162 181-181-181-181-181 181 181 181Zm0-181Z"/>
+  </g>
+</svg>
