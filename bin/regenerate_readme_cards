@@ -52,7 +52,7 @@ class ReadmeCardGenerator
         rules_text: 'When Joe Sharp enters the battlefield, ' \
                     'all malfunctioning computers begin working.\n' \
                     'Whenever you cast a Red spell, draw a card.\n\n' \
-                    '{E}: debug program. Ignore this cost, if a Coffee token is in play.\n\n',
+                    '{E}: Debug program. Ignore this cost, if a Coffee token is in play.\n\n',
         flavor_text: '\"Nothing is true, everything is a string.\"\n\t\t\t\t- The ENV Creed',
         power: 3,
         toughness: 3,
