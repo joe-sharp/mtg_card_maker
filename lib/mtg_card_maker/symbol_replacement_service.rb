@@ -18,7 +18,13 @@ module MtgCardMaker
       'Q' => :untap,
       'E' => :energy,
       'S' => :snow,
-      'X' => :x
+      'X' => :x,
+      'C/P' => :'phyrexian-colorless',
+      'R/P' => :'phyrexian-red',
+      'G/P' => :'phyrexian-green',
+      'U/P' => :'phyrexian-blue',
+      'B/P' => :'phyrexian-black',
+      'W/P' => :'phyrexian-white'
     }.freeze
     attr_reader :font_size, :icon_service
 

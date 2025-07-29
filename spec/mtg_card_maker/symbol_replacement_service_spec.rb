@@ -114,6 +114,26 @@ RSpec.describe MtgCardMaker::SymbolReplacementService do
       expect(result).to include(' to your mana pool')
     end
 
+    it 'renders text with Phyrexian symbols', :aggregate_failures do
+      result = service.render_line_with_symbols('Add {W/P} or {R/P} to your mana pool', 200)
+      expect(result).to include('<div xmlns=\'http://www.w3.org/1999/xhtml\'')
+      expect(result).to include('display: flex; align-items: center; font-size:')
+      expect(result).to include('px;')
+      expect(result).to include('Add ')
+      expect(result).to include(' or ')
+      expect(result).to include(' to your mana pool')
+    end
+
+    it 'renders text with mixed regular and Phyrexian symbols', :aggregate_failures do
+      result = service.render_line_with_symbols('{T}: Add {W} or {W/P} to your mana pool', 200)
+      expect(result).to include('<div xmlns=\'http://www.w3.org/1999/xhtml\'')
+      expect(result).to include('display: flex; align-items: center; font-size:')
+      expect(result).to include('px;')
+      expect(result).to include(': Add ')
+      expect(result).to include(' or ')
+      expect(result).to include(' to your mana pool')
+    end
+
     it 'escapes HTML in regular text' do
       result = service.render_line_with_symbols('Deal <damage>', 200)
       expect(result).to include('Deal &lt;damage&gt;')
@@ -187,6 +207,35 @@ RSpec.describe MtgCardMaker::SymbolReplacementService do
 
       it 'handles malformed symbols' do
         result = service.send(:render_symbol_html, '{')
+        expect(result).to be_nil
+      end
+
+      it 'renders Phyrexian white symbol', :aggregate_failures do
+        result = service.send(:render_symbol_html, '{W/P}')
+        expect(result).to include('<svg')
+        expect(result).to include('width="24"')
+        expect(result).to include('height="24"')
+        expect(result).to include('vertical-align: middle; margin: 0 5px;')
+      end
+
+      it 'renders Phyrexian red symbol', :aggregate_failures do
+        result = service.send(:render_symbol_html, '{R/P}')
+        expect(result).to include('<svg')
+        expect(result).to include('width="24"')
+        expect(result).to include('height="24"')
+        expect(result).to include('vertical-align: middle; margin: 0 5px;')
+      end
+
+      it 'renders Phyrexian colorless symbol', :aggregate_failures do
+        result = service.send(:render_symbol_html, '{C/P}')
+        expect(result).to include('<svg')
+        expect(result).to include('width="24"')
+        expect(result).to include('height="24"')
+        expect(result).to include('vertical-align: middle; margin: 0 5px;')
+      end
+
+      it 'returns nil for unsupported Phyrexian symbols' do
+        result = service.send(:render_symbol_html, '{Z/P}')
         expect(result).to be_nil
       end
     end
