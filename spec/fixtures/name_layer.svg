@@ -1,65 +1,33 @@
 <svg width="630" height="880" xmlns="http://www.w3.org/2000/svg">
 
 <style>
-@font-face {
-  font-family: 'Goudy Mediaeval DemiBold';
-  src: url('fonts/Goudy Mediaeval DemiBold.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 /* Font Classes */
-.card-name {
-  font-family: 'Goudy Mediaeval DemiBold', serif;
-  font-weight: bold;
-  font-style: normal;
-}
-
-.card-type {
-  font-family: 'Goudy Mediaeval DemiBold', serif;
-  font-weight: bold;
-  font-style: normal;
-}
-
-.card-rules-text {
+.card-name, .card-type {
   font-family: serif;
-  font-weight: normal;
-  font-style: normal;
+  font-weight: bold;
+}
+
+.card-rules-text, .mana-cost-text {
+  font-family: serif;
 }
 
 .card-flavor-text {
   font-family: serif;
-  font-weight: normal;
-  font-style: italic;
 }
 
 .card-power-toughness {
   font-family: serif;
   font-weight: bold;
-  font-style: normal;
 }
 
 .card-copyright {
   font-family: sans-serif;
-  font-weight: normal;
-  font-style: normal;
-}
-
-.mana-cost-text {
-  font-family: serif;
-  font-weight: normal;
-  font-style: normal;
-}
-
-.mana-cost-text-large {
-  font-family: serif;
-  font-weight: semibold;
-  font-style: normal;
 }
 
 </style>
 <g>
 <rect x="30" y="40" width="570" height="50" fill="url(#colorless_name_gradient)" stroke="#111" stroke-width="2" rx="10" ry="25" mask="url(#)"/>
-<text x="45" y="78" fill="#111" font-size="38" class="card-name">
+<text x="45" y="75" fill="#111" font-size="36" class="card-name">
 MTG Card Maker
 </text>
 <g transform="translate(435, 63)">

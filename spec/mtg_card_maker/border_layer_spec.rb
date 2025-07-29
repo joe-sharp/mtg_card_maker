@@ -87,7 +87,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
       expect(described_class::SUPPORTED_COLORS).to eq({
                                                         white:  '#EEE',
                                                         black:  '#000',
-                                                        silver: :colorless,
+                                                        silver: :silver,
                                                         gold:   :gold
                                                       })
     end
@@ -96,8 +96,8 @@ RSpec.describe MtgCardMaker::BorderLayer do
   describe '#color_key_for' do
     let(:layer) { described_class.new(dimensions: { x: 0, y: 0, width: 100, height: 100 }) }
 
-    it 'returns :colorless for silver' do
-      expect(layer.send(:color_key_for, :silver)).to eq(:colorless)
+    it 'returns :silver for silver' do
+      expect(layer.send(:color_key_for, :silver)).to eq(:silver)
     end
 
     it 'returns :gold for gold' do
@@ -137,9 +137,9 @@ RSpec.describe MtgCardMaker::BorderLayer do
       end
     end
 
-    context 'when color is :colorless' do
+    context 'when color is :silver' do
       it 'calls render_metallic_frame' do
-        layer.send(:render_frame_by_color, :colorless, corners)
+        layer.send(:render_frame_by_color, :silver, corners)
         expect(layer).to have_received(:render_metallic_frame).with(corners)
       end
     end

@@ -32,7 +32,7 @@ module MtgCardMaker
     SUPPORTED_COLORS = {
       white: '#EEE',
       black: '#000',
-      silver: :colorless,
+      silver: :silver,
       gold: :gold
     }.freeze
 
@@ -77,7 +77,7 @@ module MtgCardMaker
         render_white_frame(corners)
       when :black
         render_black_frame(corners)
-      when :colorless, :gold
+      when :silver, :gold
         render_metallic_frame(corners)
       else
         raise ArgumentError, "Unsupported border color: #{color.inspect}. Supported: white, black, silver, gold."
@@ -118,7 +118,7 @@ module MtgCardMaker
     end
 
     def color_key_for(color)
-      return :colorless if color == :silver
+      return :silver if color == :silver
       return :gold if color == :gold
 
       color

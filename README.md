@@ -103,7 +103,76 @@ art: path/to/art.jpg        # Optional
 `white`     => White cards
 ```
 
-### 🚀 Usage Examples
+**Symbols Available for Mana Cost:**
+We currently support the following symbols in mana costs:
+
+**Mana Symbols:**
+- `W` - White mana <img src="lib/mtg_card_maker/icons/white.svg" width="16" valign="middle" />
+- `B` - Black mana <img src="lib/mtg_card_maker/icons/black.svg" width="16" valign="middle" />
+- `R` - Red mana <img src="lib/mtg_card_maker/icons/red.svg" width="16" valign="middle" />
+- `G` - Green mana <img src="lib/mtg_card_maker/icons/green.svg" width="16" valign="middle" />
+- `U` - Blue mana <img src="lib/mtg_card_maker/icons/blue.svg" width="16" valign="middle" />
+- `C` - Colorless mana <img src="lib/mtg_card_maker/icons/colorless.svg" width="16" valign="middle" />
+- `S` - Snow mana <img src="lib/mtg_card_maker/icons/snow.svg" width="16" valign="middle" />
+
+**Numeric Symbols:**
+- `0` through `99` - Generic mana costs (0-99) <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" />
+- `X` - X symbol <img src="lib/mtg_card_maker/icons/X.svg" width="16" valign="middle" />
+
+**Combination Examples:**
+- `16US` - 16 generic + 1 blue + 1 snow <img src="lib/mtg_card_maker/icons/double-digit.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/blue.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/snow.svg" width="16" valign="middle" />
+- `XG` - X generic + 1 green <img src="lib/mtg_card_maker/icons/X.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/green.svg" width="16" valign="middle" />
+- `X3R` - X generic + 3 generic + 1 red <img src="lib/mtg_card_maker/icons/X.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/red.svg" width="16" valign="middle" />
+- `3WU` - 3 generic + 1 white + 1 blue <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/white.svg" width="16" valign="middle" /> <img src="lib/mtg_card_maker/icons/blue.svg" width="16" valign="middle" />
+- `X` - X generic only <img src="lib/mtg_card_maker/icons/X.svg" width="16" valign="middle" />
+- `3` - 3 generic only <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" />
+- `B` - black only <img src="lib/mtg_card_maker/icons/black.svg" width="16" valign="middle" />
+
+**How It Works:**
+The mana cost parser supports flexible combinations:
+- **X costs** can be combined with numeric and colored mana
+- **Numeric costs** (0-99) represent generic mana
+- **Colored mana** symbols can be mixed in any order
+- **Maximum of 10 symbols** are displayed
+
+**Symbols Available in Rules Text:**
+You can use MTG symbols in your rules text by wrapping them in curly braces. The following symbols are supported:
+
+**Mana Symbols:**
+- `{W}` - White mana <img src="lib/mtg_card_maker/icons/white.svg" width="16" valign="middle" />
+- `{B}` - Black mana <img src="lib/mtg_card_maker/icons/black.svg" width="16" valign="middle" />
+- `{R}` - Red mana <img src="lib/mtg_card_maker/icons/red.svg" width="16" valign="middle" />
+- `{G}` - Green mana <img src="lib/mtg_card_maker/icons/green.svg" width="16" valign="middle" />
+- `{U}` - Blue mana <img src="lib/mtg_card_maker/icons/blue.svg" width="16" valign="middle" />
+- `{C}` - Colorless mana <img src="lib/mtg_card_maker/icons/colorless.svg" width="16" valign="middle" />
+- `{S}` - Snow mana symbol <img src="lib/mtg_card_maker/icons/snow.svg" width="16" valign="middle" />
+
+**Numeric Symbols:**
+- `{0}` through `{99}` - Generic mana costs (0-99) <img src="lib/mtg_card_maker/icons/single-digit.svg" width="16" valign="middle" />
+- `{X}` - X symbol <img src="lib/mtg_card_maker/icons/X.svg" width="16" valign="middle" />
+
+**Special Symbols:**
+- `{T}` - Tap symbol <img src="lib/mtg_card_maker/icons/tap.svg" width="16" valign="middle" />
+- `{Q}` - Untap symbol <img src="lib/mtg_card_maker/icons/untap.svg" width="16" valign="middle" />
+- `{E}` - Energy symbol <img src="lib/mtg_card_maker/icons/energy.svg" width="16" valign="middle" />
+
+**Example Usage:**
+```yaml
+rules_text: "{T}: Add {W} or {U} to your mana pool."
+```
+<p align=center>
+  <img src="lib/mtg_card_maker/icons/tap.svg"
+       alt="{T}" width="16" valign="middle" />
+  : Add
+  <img src="lib/mtg_card_maker/icons/white.svg"
+       alt="{W}" width="16" valign="middle" />
+  or
+  <img src="lib/mtg_card_maker/icons/blue.svg"
+       alt="{B}" width="16" valign="middle" />
+  to your mana pool
+</p>
+
+## 🧪 Usage Examples
 
 ### Single Card
 
@@ -151,7 +220,7 @@ mtg_card_maker generate_sprite deck.yml sprite_sheet.svg \
 *Shortcuts:*
 - `gs` or `gcs` for `generate_sprite`
 
-### Examples
+## 🔮 Examples
 
 <p>
 <img align=right
@@ -160,15 +229,15 @@ mtg_card_maker generate_sprite deck.yml sprite_sheet.svg \
      width="300" />
 </p>
 
-**Generate a simple creature:**
+**Generate a creature card:**
 
 ```bash
 mtg_card_maker generate_card \
   --name="Joe Sharp" \
-  --mana-cost=2UR \
+  --mana-cost=3UR \
   --type-line="Engineer - Fullstack" \
-  --rules-text='When Joe Sharp enters the battlefield, create a 1/1 Code token with "This token can debug any program."\n\nWhenever you cast a Red spell, draw a card.' \
-  --flavor-text='"I write code everyday." - Joe Sharp' \
+  --rules-text='When Joe Sharp enters the battlefield, all malfunctioning computers begin working.\nWhenever you cast a Red spell, draw a card.\n\n{E}: debug program. Ignore this cost, if a Coffee is in play.\n\n' \
+  --flavor-text='\"Nothing is true, everything is a string.\"\n\t\t\t\t- The ENV Creed' \
   --power=3 \
   --toughness=3 \
   --border-color=gold \
@@ -187,7 +256,7 @@ mtg_card_maker add_card deck.yml --name="Counterspell" --mana-cost="UU" --type-l
 mtg_card_maker generate_sprite deck.yml sprite_sheet.svg --cards-per-row=3 --spacing=20
 ```
 
-## Development
+## 🚧 Development
 
 ### Setup
 
@@ -257,7 +326,7 @@ bundle exec rubocop
 # Or run `bundle exec guard` and monitor output_card.svg and color_cards_sprite.svg for changes, it is far better, really.
 ```
 
-## Documentation
+## 📰 Documentation
 
 ### API Documentation
 
@@ -288,23 +357,23 @@ Then visit `http://localhost:8808` to browse the documentation.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
-## Contributing
+## 🤝🏻 Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/joe-sharp/mtg_card_maker. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/joe-sharp/mtg_card_maker/blob/main/CODE_OF_CONDUCT.md).
 
-## License
+## 🪪 License
 
 <a href="https://projects.joe-sharp.com/mtg_card_maker">MTG Card Maker</a> © 2025 by <a href="https://github.com/joe-sharp/mtg_card_maker">Joe Sharp</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" width="20" valign=bottom>
 
 The gem is available as open source under the terms of this license.
 
-## Copyright
+## ©️ Copyright
 
 © 2025 Joe Sharp. Some rights reserved.
 MTG Card Maker is unofficial Fan Content permitted under the [Fan Content Policy.](https://company.wizards.com/en/legal/fancontentpolicy) Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC.
 
 The removal or alteration of copyright notices, attributions, and/or QR codes from generated images constitutes a material breach of the license agreement. All copyright notices and identifying marks must remain intact and unmodified in accordance with the terms of use.
 
-## Code of Conduct
+## 🧙🏻 Code of Conduct
 
 Everyone interacting in the MTG Card Maker project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/joe-sharp/mtg_card_maker/blob/main/CODE_OF_CONDUCT.md).

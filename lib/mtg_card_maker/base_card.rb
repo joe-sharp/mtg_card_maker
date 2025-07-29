@@ -125,7 +125,7 @@ module MtgCardMaker
     def initialize(config)
       assign_attributes(config)
       validate_required_fields
-      @template = Template.new(embed_font: config[:embed_font] || true)
+      @template = Template.new(embed_font: config.fetch(:embed_font, true))
       add_layers
     end
 
@@ -214,6 +214,12 @@ module MtgCardMaker
     def define_gradients_for_card
       svg = @template.instance_variable_get(:@svg)
       SvgGradientService.define_all_gradients(svg, @color_scheme)
+
+      # Also define gradients for border layer
+      return unless @border_color
+
+      border_color_scheme = ColorScheme.new(@border_color.to_sym)
+      SvgGradientService.define_all_gradients(svg, border_color_scheme)
     end
 
     def add_layers
