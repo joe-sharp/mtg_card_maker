@@ -38,13 +38,10 @@ assignees: ['joe-sharp']
 
 ## 📝 Checklist
 
-- [ ] I have searched existing issues to avoid
-duplicates
-- [ ] I have provided all required environment
-information
+- [ ] I have searched existing issues to avoid duplicates
+- [ ] I have provided all required environment information
 - [ ] I have included a minimal reproduction case
-- [ ] I have tested with the latest version of
-MTG Card Maker
+- [ ] I have tested with the latest version of MTG Card Maker
 
 ---
 

@@ -22,6 +22,9 @@ assignees: ['joe-sharp']
 
 - [ ] I've searched existing issues to avoid duplicates
 - [ ] This aligns with MTG Card Maker's goals
+  - If unsure tell me why it should below:
+
+
 
 ---
 
