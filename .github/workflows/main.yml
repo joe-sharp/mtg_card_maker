@@ -55,7 +55,7 @@ jobs:
       - name: Copy CSS to docs
         run: cp docs/custom/custom.css docs/css/common.css
       - name: Copy images to docs
-        run: cp -r images docs/images
+        run: cp -r images docs/
       - name: Check for Documentation Changes
         id: check-changes
         run: |
