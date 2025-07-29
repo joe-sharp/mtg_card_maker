@@ -72,13 +72,13 @@
 
 <h4 id="label-F0-9F-8E-A8+Card+Customization">🎨 Card Customization</h4>
 
-<p><strong>Core Card Properties:</strong> - <strong>Card Name</strong>: Customizable card titles with optional font support - <strong>Mana Cost</strong>: Support for 0-9, X, and all MTG mana symbols (W, U, B, R, G, C), alternate icon sets coming soon! - <strong>Type Line</strong>: Customizable Card types and subtypes (Creature, Instant, Sorcery, etc.) - <strong>Rules Text</strong>: Write your own rules with automatic word wrapping and formatting - <strong>Flavor Text</strong>: Optional italicized flavor text at the bottom of cards - <strong>Power/Toughness</strong>: Customizable power and toughness values, frame hides when omitted</p>
+<p><strong>Core Card Properties:</strong> - <strong>Card Name</strong>: Customizable card titles with optional font support - <strong>Mana Cost</strong>: Support for 0-9, X, and all MTG mana symbols (W, U, B, R, G, C, S), alternate icon sets coming soon! - <strong>Type Line</strong>: Customizable Card types and subtypes (Creature, Instant, Sorcery, etc.) - <strong>Rules Text</strong>: Write your own rules with automatic word wrapping and formatting - <strong>Flavor Text</strong>: Optional italicized flavor text at the bottom of cards - <strong>Power/Toughness</strong>: Customizable power and toughness values, frame hides when omitted</p>
 
 <p><strong>Visual Customization:</strong> - <strong>Color Schemes</strong>: 8 built-in colors (white, blue, black, red, green, colorless, gold, artifact), split colors coming soon! - <strong>Border Color</strong>: Customizable border colors (white, black, gold, silver) - <strong>Art Integration</strong>: Support for custom artwork via image URLs, or simply layer the svg over your art of choice</p>
 
 <h4 id="label-F0-9F-96-BC-EF-B8-8F+Sprite+Sheet+Features">🖼️ Sprite Sheet Features</h4>
 
-<p><strong>Efficiency Optimizations:</strong> - <strong>Shared Assets</strong>: Fonts, gradients, and masks defined once per sprite sheet - <strong>Reduced File Size</strong>: Significantly smaller file sizes compared to individual cards - <strong>Layout Optimization</strong>: Ideal for web applications, printing and digital displays</p>
+<p><strong>Efficiency Optimizations:</strong> - <strong>Shared Assets</strong>: Fonts, gradients, and masks defined once per sprite sheet - <strong>Reduced File Size</strong>: Significantly smaller file sizes compared to multiple individual cards - <strong>Layout Optimization</strong>: Ideal for web applications, printing and digital displays</p>
 
 <p><strong>Layout Control:</strong> - <strong>Cards Per Row</strong>: Configurable number of cards per row (default: 4) - <strong>Spacing Control</strong>: Adjustable spacing between cards in pixels (default: 30) - <strong>Automatic Sizing</strong>: Dynamic sprite sheet dimensions based on card count</p>
 
@@ -119,8 +119,9 @@ flavor_text: &quot;Flavor text&quot;        # Optional
 power: 4                          # Optional
 toughness: 4                      # Optional
 color: red                        # Optional (default: colorless)
-border_color: gold           # Optional (default: white)
-art: path/to/art.jpg        # Optional
+border_color: gold                # Optional (default: white)
+art: path/to/art.jpg              # Optional
+embed_font: false                 # Optional (default: true)
 </code></pre>
 
 <p><strong>Color Schemes Available:</strong></p>
@@ -135,21 +136,23 @@ art: path/to/art.jpg        # Optional
 `white`     =&gt; White cards
 </code></pre>
 
-<p><strong>Symbols Available for Mana Cost:</strong> We currently support the following symbols in mana costs:</p>
+<p><strong>Symbols Available for Mana Cost:</strong></p>
+
+<p>Phyrexian, coming soon!</p>
 
 <p><strong>Mana Symbols:</strong> - <code>W</code> - White mana &lt;img src=“lib/mtg_card_maker/icons/white.svg” width=“16” valign=“middle” /&gt; - <code>B</code> - Black mana &lt;img src=“lib/mtg_card_maker/icons/black.svg” width=“16” valign=“middle” /&gt; - <code>R</code> - Red mana &lt;img src=“lib/mtg_card_maker/icons/red.svg” width=“16” valign=“middle” /&gt; - <code>G</code> - Green mana &lt;img src=“lib/mtg_card_maker/icons/green.svg” width=“16” valign=“middle” /&gt; - <code>U</code> - Blue mana &lt;img src=“lib/mtg_card_maker/icons/blue.svg” width=“16” valign=“middle” /&gt; - <code>C</code> - Colorless mana &lt;img src=“lib/mtg_card_maker/icons/colorless.svg” width=“16” valign=“middle” /&gt; - <code>S</code> - Snow mana &lt;img src=“lib/mtg_card_maker/icons/snow.svg” width=“16” valign=“middle” /&gt;</p>
 
-<p><strong>Numeric Symbols:</strong> - <code>0</code> through <code>99</code> - Generic mana costs (0-99) &lt;img src=“lib/mtg_card_maker/icons/single-digit.svg” width=“16” valign=“middle” /&gt; - <code>X</code> - X symbol &lt;img src=“lib/mtg_card_maker/icons/X.svg” width=“16” valign=“middle” /&gt;</p>
+<p><strong>Numeric Symbols:</strong> - <code>0</code> through <code>99</code> - Generic mana costs (0-99) &lt;img src=“lib/mtg_card_maker/icons/single-digit.svg” width=“16” valign=“middle” /&gt; - <code>X</code> - X symbol &lt;img src=“lib/mtg_card_maker/icons/x.svg” width=“16” valign=“middle” /&gt;</p>
 
-<p><strong>Combination Examples:</strong> - <code>16US</code> - 16 generic + 1 blue + 1 snow &lt;img src=“lib/mtg_card_maker/icons/double-digit.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/blue.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/snow.svg” width=“16” valign=“middle” /&gt; - <code>XG</code> - X generic + 1 green &lt;img src=“lib/mtg_card_maker/icons/X.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/green.svg” width=“16” valign=“middle” /&gt; - <code>X3R</code> - X generic + 3 generic + 1 red &lt;img src=“lib/mtg_card_maker/icons/X.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/single-digit.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/red.svg” width=“16” valign=“middle” /&gt; - <code>3WU</code> - 3 generic + 1 white + 1 blue &lt;img src=“lib/mtg_card_maker/icons/single-digit.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/white.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/blue.svg” width=“16” valign=“middle” /&gt; - <code>X</code> - X generic only &lt;img src=“lib/mtg_card_maker/icons/X.svg” width=“16” valign=“middle” /&gt; - <code>3</code> - 3 generic only &lt;img src=“lib/mtg_card_maker/icons/single-digit.svg” width=“16” valign=“middle” /&gt; - <code>B</code> - black only &lt;img src=“lib/mtg_card_maker/icons/black.svg” width=“16” valign=“middle” /&gt;</p>
+<p><strong>Combination Examples:</strong> - <code>16US</code> - 16 generic + 1 blue + 1 snow &lt;img src=“lib/mtg_card_maker/icons/double-digit.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/blue.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/snow.svg” width=“16” valign=“middle” /&gt; - <code>XG</code> - X generic + 1 green &lt;img src=“lib/mtg_card_maker/icons/x.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/green.svg” width=“16” valign=“middle” /&gt; - <code>X3R</code> - X generic + 3 generic + 1 red &lt;img src=“lib/mtg_card_maker/icons/x.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/single-digit.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/red.svg” width=“16” valign=“middle” /&gt; - <code>3WU</code> - 3 generic + 1 white + 1 blue &lt;img src=“lib/mtg_card_maker/icons/single-digit.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/white.svg” width=“16” valign=“middle” /&gt; &lt;img src=“lib/mtg_card_maker/icons/blue.svg” width=“16” valign=“middle” /&gt; - <code>X</code> - X generic only &lt;img src=“lib/mtg_card_maker/icons/x.svg” width=“16” valign=“middle” /&gt; - <code>3</code> - 3 generic only &lt;img src=“lib/mtg_card_maker/icons/single-digit.svg” width=“16” valign=“middle” /&gt; - <code>B</code> - black only &lt;img src=“lib/mtg_card_maker/icons/black.svg” width=“16” valign=“middle” /&gt;</p>
 
-<p><strong>How It Works:</strong> The mana cost parser supports flexible combinations: - <strong>X costs</strong> can be combined with numeric and colored mana - <strong>Numeric costs</strong> (0-99) represent generic mana - <strong>Colored mana</strong> symbols can be mixed in any order - <strong>Maximum of 10 symbols</strong> are displayed</p>
+<p><strong>Symbols Available in Rules Text:</strong></p>
 
-<p><strong>Symbols Available in Rules Text:</strong> You can use MTG symbols in your rules text by wrapping them in curly braces. The following symbols are supported:</p>
+<p>You can use MTG symbols in your rules text by wrapping them in curly braces “C”. The following symbols are supported:</p>
 
 <p><strong>Mana Symbols:</strong> - <code>{W}</code> - White mana &lt;img src=“lib/mtg_card_maker/icons/white.svg” width=“16” valign=“middle” /&gt; - <code>{B}</code> - Black mana &lt;img src=“lib/mtg_card_maker/icons/black.svg” width=“16” valign=“middle” /&gt; - <code>{R}</code> - Red mana &lt;img src=“lib/mtg_card_maker/icons/red.svg” width=“16” valign=“middle” /&gt; - <code>{G}</code> - Green mana &lt;img src=“lib/mtg_card_maker/icons/green.svg” width=“16” valign=“middle” /&gt; - <code>{U}</code> - Blue mana &lt;img src=“lib/mtg_card_maker/icons/blue.svg” width=“16” valign=“middle” /&gt; - <code>{C}</code> - Colorless mana &lt;img src=“lib/mtg_card_maker/icons/colorless.svg” width=“16” valign=“middle” /&gt; - <code>{S}</code> - Snow mana symbol &lt;img src=“lib/mtg_card_maker/icons/snow.svg” width=“16” valign=“middle” /&gt;</p>
 
-<p><strong>Numeric Symbols:</strong> - <code>{0}</code> through <code>{99}</code> - Generic mana costs (0-99) &lt;img src=“lib/mtg_card_maker/icons/single-digit.svg” width=“16” valign=“middle” /&gt; - <code>{X}</code> - X symbol &lt;img src=“lib/mtg_card_maker/icons/X.svg” width=“16” valign=“middle” /&gt;</p>
+<p><strong>Numeric Symbols:</strong> - <code>{0}</code> through <code>{99}</code> - Generic mana costs (0-99) &lt;img src=“lib/mtg_card_maker/icons/single-digit.svg” width=“16” valign=“middle” /&gt; - <code>{X}</code> - X symbol &lt;img src=“lib/mtg_card_maker/icons/x.svg” width=“16” valign=“middle” /&gt;</p>
 
 <p><strong>Special Symbols:</strong> - <code>{T}</code> - Tap symbol &lt;img src=“lib/mtg_card_maker/icons/tap.svg” width=“16” valign=“middle” /&gt; - <code>{Q}</code> - Untap symbol &lt;img src=“lib/mtg_card_maker/icons/untap.svg” width=“16” valign=“middle” /&gt; - <code>{E}</code> - Energy symbol &lt;img src=“lib/mtg_card_maker/icons/energy.svg” width=“16” valign=“middle” /&gt;</p>
 
@@ -353,7 +356,7 @@ art: path/to/art.jpg        # Optional
 </div></div>
 
       <div id="footer">
-  Generated on Tue Jul 29 07:33:01 2025 by
+  Generated on Tue Jul 29 07:59:47 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
