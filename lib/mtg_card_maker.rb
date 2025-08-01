@@ -120,6 +120,7 @@ module MtgCardMaker
   require_relative 'mtg_card_maker/svg_gradient_service'
   require_relative 'mtg_card_maker/text_rendering_service'
   require_relative 'mtg_card_maker/symbol_replacement_service'
+  require_relative 'mtg_card_maker/icon_filename_service'
   require_relative 'mtg_card_maker/css_service'
   require_relative 'mtg_card_maker/sprite_sheet_assets'
   require_relative 'mtg_card_maker/sprite_sheet_builder'
