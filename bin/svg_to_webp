@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'fileutils'
+require 'English'
+
+# Script to convert SVG files to WebP format
+# Uses Chrome headless mode for high-quality SVG to WebP conversion
+class OutputCardConverter
+  def initialize(input_svg)
+    @input_svg = input_svg
+    @output_webp = @input_svg.sub('.svg', '.webp')
+    @screenshot_file = 'screenshot.webp'
+  end
+
+  def convert
+    puts "🪄 Converting #{@input_svg} to WebP..."
+
+    unless File.exist?(@input_svg)
+      puts "❌ Error: #{@input_svg} not found!"
+      exit 1
+    end
+
+    convert_svg_to_webp
+    crop_and_cleanup
+    display_result
+  end
+
+  private
+
+  def convert_svg_to_webp
+    puts "Converting #{@input_svg} to WebP using Chrome..."
+
+    chrome_path = find_chrome_path
+    chrome_args = build_chrome_args
+
+    puts "Running Chrome command: #{chrome_path} #{chrome_args.join(' ')}"
+
+    execute_chrome_conversion(chrome_path, chrome_args)
+  end
+
+  def find_chrome_path
+    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+  end
+
+  def build_chrome_args
+    [
+      '--headless',
+      '--hide-scrollbars',
+      "--screenshot=#{@screenshot_file}",
+      '--screenshot-format=webp',
+      '--window-size=630,1200',
+      '--default-background-color=00000000',
+      "file://#{File.expand_path(@input_svg)}"
+    ]
+  end
+
+  def execute_chrome_conversion(chrome_path, chrome_args)
+    puts "Current working directory: #{Dir.pwd}"
+    puts "SVG file exists: #{File.exist?(@input_svg)}"
+
+    result = system(chrome_path, *chrome_args)
+    puts "Chrome command result: #{result}"
+    puts "Exit status: #{$CHILD_STATUS.exitstatus}" if $CHILD_STATUS
+  end
+
+  def crop_and_cleanup
+    if File.exist?(@screenshot_file)
+      # Crop the image to the size of the card, make white background transparent
+      system("cwebp -lossless -crop 0 0 630 880 #{@screenshot_file} -o #{@output_webp}")
+      puts "✅ Successfully created #{@output_webp} (WebP)"
+      FileUtils.rm_f(@screenshot_file)
+    else
+      puts '⚠️  Chrome conversion failed - no screenshot file found'
+      puts "Current directory contents: #{Dir.entries('.')}"
+      exit 1
+    end
+  end
+
+  def display_result
+    puts "\n✨ Conversion complete!"
+    puts "📁 Generated file: #{@output_webp}"
+    puts '📏 Dimensions: 630x880 pixels'
+    puts '🎨 Format: WebP (lossless)'
+  end
+end
+
+# Run the converter
+input_file = ARGV.first || 'output_card.svg'
+OutputCardConverter.new(input_file).convert
