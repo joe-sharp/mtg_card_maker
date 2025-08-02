@@ -20,5 +20,6 @@ group :development do
   gem 'guard-rubocop', '~> 1.5'
   gem 'guard-shell', '~> 0.7'
   gem 'rack', '~> 2.2'
+  gem 'redcarpet', '~> 3.6'
   gem 'webrick', '~> 1.9'
 end

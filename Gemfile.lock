@@ -113,6 +113,7 @@ GEM
     rdoc (6.14.2)
       erb
       psych (>= 4.0.0)
+    redcarpet (3.6.1)
     regexp_parser (2.10.0)
     reline (0.6.1)
       io-console (~> 0.5)
@@ -187,6 +188,7 @@ DEPENDENCIES
   mtg_card_maker!
   rack (~> 2.2)
   rake (~> 13.0)
+  redcarpet (~> 3.6)
   rspec (~> 3.0)
   rubocop (~> 1.21)
   rubocop-performance (~> 1.25)

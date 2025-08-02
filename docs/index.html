@@ -57,61 +57,120 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-MTG+Card+Maker">MTG Card Maker</h1>
+      <div id="content"><div id='filecontents'><h1 id="mtg-card-maker">MTG Card Maker</h1>
+
 <p align=center>
   <img src="images/mtgcm_card.webp"
        alt="A card featuring artwork of a fiery dragon and anvil"
        width="300" />
 </p>
-<p>A Ruby gem for creating fan-made Magic: The Gathering cards. This tool allows you to generate custom MTG cards with proper formatting, mana costs, and card layouts. All you need to supply is the artwork image url/path, or simply overlay on top of an image of your choosing.</p>
 
-<p>Please note this gem is in early beta, and should not be used in any production application. <strong>Using it commercially is a violation of the license.</strong> Please suggest feature ideas you have after reviewing the open issues here: <a href="https://github.com/joe-sharp/mtg_card_maker/issues">github.com/joe-sharp/mtg_card_maker/issues</a></p>
+<p>A Ruby gem for creating high quality fan-made Magic: The Gathering cards. This tool generates custom MTG cards with authentic formatting, comprehensive mana cost support, and precise card layouts. Perfect for game designers, content creators, and MTG enthusiasts.</p>
 
-<h2 id="label-Features">Features</h2>
+<p>Please note this gem is for fan content creation only. <strong>Using it commercially is a violation of the license.</strong> If you have ideas for improvements, please create a feature request after reviewing the open issues here: <a href="https://github.com/joe-sharp/mtg_card_maker/issues">https://github.com/joe-sharp/mtg_card_maker/issues</a></p>
 
-<h4 id="label-F0-9F-8E-A8+Card+Customization">🎨 Card Customization</h4>
+<h2 id="features">Features</h2>
 
-<p><strong>Core Card Properties:</strong> - <strong>Card Name</strong>: Customizable card titles with optional font support - <strong>Mana Cost</strong>: Support for 0-9, X, and all MTG mana symbols (W, U, B, R, G, C, S), alternate icon sets coming soon! - <strong>Type Line</strong>: Customizable Card types and subtypes (Creature, Instant, Sorcery, etc.) - <strong>Rules Text</strong>: Write your own rules with automatic word wrapping and formatting - <strong>Flavor Text</strong>: Optional italicized flavor text at the bottom of cards - <strong>Power/Toughness</strong>: Customizable power and toughness values, frame hides when omitted</p>
+<h4 id="card-customization">🎨 Card Customization</h4>
 
-<p><strong>Visual Customization:</strong> - <strong>Color Schemes</strong>: 8 built-in colors (white, blue, black, red, green, colorless, gold, artifact), split colors coming soon! - <strong>Border Color</strong>: Customizable border colors (white, black, gold, silver) - <strong>Art Integration</strong>: Support for custom artwork via image URLs, or simply layer the svg over your art of choice</p>
+<p><strong>Core Card Properties:</strong></p>
 
-<h4 id="label-F0-9F-96-BC-EF-B8-8F+Sprite+Sheet+Features">🖼️ Sprite Sheet Features</h4>
+<ul>
+<li><strong>Card Name</strong>: Customizable card titles with embedded font support</li>
+<li><strong>Mana Cost</strong>: Complete MTG symbol support including hybrid, Phyrexian, and numeric costs</li>
+<li><strong>Type Line</strong>: Customizable card types and subtypes (Creature, Instant, Sorcery, etc.)</li>
+<li><strong>Rules Text</strong>: Rich text with automatic word wrapping and symbol replacement</li>
+<li><strong>Flavor Text</strong>: Optional italicized flavor text with proper formatting</li>
+<li><strong>Power/Toughness</strong>: Dynamic power/toughness display</li>
+</ul>
 
-<p><strong>Efficiency Optimizations:</strong> - <strong>Shared Assets</strong>: Fonts, gradients, and masks defined once per sprite sheet - <strong>Reduced File Size</strong>: Significantly smaller file sizes compared to multiple individual cards - <strong>Layout Optimization</strong>: Ideal for web applications, printing and digital displays</p>
+<p><strong>Visual Customization:</strong></p>
 
-<p><strong>Layout Control:</strong> - <strong>Cards Per Row</strong>: Configurable number of cards per row (default: 4) - <strong>Spacing Control</strong>: Adjustable spacing between cards in pixels (default: 30) - <strong>Automatic Sizing</strong>: Dynamic sprite sheet dimensions based on card count</p>
+<ul>
+<li><strong>Color Schemes</strong>: 8 card colors (white, blue, black, red, green, colorless, gold, artifact)</li>
+<li><strong>Border Colors</strong>: Customizable borders (white, black, gold, silver)</li>
+<li><strong>Art Integration</strong>: Flexible artwork support via URLs or local paths</li>
+<li><strong>Font Embedding</strong>: Base64 font embedding for portability</li>
+</ul>
 
-<p><strong>Batch Processing:</strong> - <strong>YAML Configuration</strong>: Define multiple cards in structured YAML files - <strong>CLI Integration</strong>: Command-line tools for adding cards to YAML files - <strong>Error Handling</strong>: Robust error handling for invalid configurations</p>
+<h4 id="advanced-sprite-sheet-features">🖼️ Advanced Sprite Sheet Features</h4>
 
-<h4 id="label-F0-9F-9B-A0-EF-B8-8F+Technical+Features">🛠️ Technical Features</h4>
+<p><strong>Performance Optimizations:</strong></p>
 
-<p><strong>SVG Generation:</strong> - <strong>Vector Graphics</strong>: High-quality SVG output suitable for any size - <strong>Print Ready</strong>: Optimized for both digital and print applications - <strong>Cross-Platform</strong>: Compatible with all modern browsers and design software</p>
+<ul>
+<li><strong>Shared Assets</strong>: Fonts, gradients, and masks defined once per sprite sheet</li>
+<li><strong>File Size Reduction</strong>: Significantly smaller than individual card files</li>
+<li><strong>Layout Optimization</strong>: Ideal for web applications, printing
+and digital displays</li>
+</ul>
 
-<p><strong>Development Tools:</strong> - <strong>Guard Integration</strong>: Automated testing and code quality monitoring - <strong>Status Summary</strong>: Real-time development status with integrity checks - <strong>Comprehensive Testing</strong>: 95%+ test coverage with RSpec - <strong>Code Quality</strong>: RuboCop integration for consistent code style</p>
+<p><strong>Layout Control:</strong></p>
 
-<p><strong>Documentation:</strong> - <strong>YARD Documentation</strong>: Comprehensive API documentation (95.96% documented) - <strong>CLI Help</strong>: Detailed command-line help and examples - <strong>Examples</strong>: Multiple example configurations and use cases</p>
+<ul>
+<li><strong>Cards Per Row</strong>: Configurable grid layout (default: 4)</li>
+<li><strong>Spacing Control</strong>: Pixel-perfect spacing between cards (default: 30px)</li>
+<li><strong>Dynamic Sizing</strong>: Automatic sprite sheet dimensions based on card count</li>
+</ul>
 
-<h2 id="label-Installation">Installation</h2>
+<p><strong>Batch Processing:</strong></p>
 
-<h3 id="label-Prerequisites">Prerequisites</h3>
+<ul>
+<li><strong>YAML Configuration</strong>: Structured card definitions with validation</li>
+<li><strong>CLI Integration</strong>: Streamlined command-line workflow</li>
+<li><strong>Error Handling</strong>: Robust validation and helpful error messages</li>
+</ul>
 
-<p>This gem requires Ruby 3.2 or higher. The version of Ruby included with macOS is typically outdated and won’t work. You can install a newer version of Ruby using tools like <a href="https://asdf-vm.com/">asdf</a> (with the <a href="https://github.com/asdf-vm/asdf-ruby">Ruby plugin</a>), <a href="https://github.com/rbenv/rbenv">rbenv</a> or <a href="https://rvm.io/">RVM</a>. Note: This gem seems to work just fine on Ruby 3.5.0 but cannot be tested in CI currently.</p>
+<h4 id="technical-excellence">🛠️ Technical Excellence</h4>
+
+<p><strong>SVG Generation:</strong></p>
+
+<ul>
+<li><strong>Vector Graphics</strong>: High-quality SVG output suitable for any scale</li>
+<li><strong>Print Ready</strong>: Optimized for both digital and print applications</li>
+<li><strong>Cross-Platform</strong>: Compatible with all modern browsers and design software
+
+<ul>
+<li>NOTE: inline symbols in rule text may not render in some design software</li>
+</ul></li>
+</ul>
+
+<p><strong>Development Infrastructure:</strong></p>
+
+<ul>
+<li><strong>Guard Integration</strong>: Automated testing and quality monitoring</li>
+<li><strong>Status Summary</strong>: Real-time development feedback with integrity checks</li>
+<li><strong>Comprehensive Testing</strong>: 480+ tests with fixtures and helpers</li>
+<li><strong>Code Quality</strong>: Zero RuboCop violations, consistent style</li>
+</ul>
+
+<p><strong>Documentation:</strong></p>
+
+<ul>
+<li><strong>YARD Documentation</strong>: 96.30% documented with local server</li>
+<li><strong>CLI Help</strong>: Comprehensive command-line help and examples</li>
+<li><strong>Examples</strong>: Multiple configuration examples and use cases</li>
+</ul>
+
+<h2 id="installation">💽 Installation</h2>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<p>This gem requires Ruby 3.2 or higher. The version of Ruby included with macOS is typically outdated and won&#39;t work. You can install a newer version of Ruby using tools like <a href="https://asdf-vm.com/">asdf</a> (with the <a href="https://github.com/asdf-vm/asdf-ruby">Ruby plugin</a>), <a href="https://github.com/rbenv/rbenv">rbenv</a> or <a href="https://rvm.io/">RVM</a>. Note: This gem seems to work just fine on Ruby 3.5.0 but cannot be tested in CI currently.</p>
 
 <p>Install the gem:</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span>
+<pre class="code bash"><code class="bash">gem install mtg_card_maker
 </code></pre>
 
-<h2 id="label-Usage">Usage</h2>
+<h2 id="usage">Usage</h2>
 
-<h3 id="label-F0-9F-94-A7+Configuration+Options">🔧 Configuration Options</h3>
+<h3 id="configuration-options">🔧 Configuration Options</h3>
 
 <p><strong>Card Properties:</strong></p>
 
 <p>Optionals without a default hide when omitted.</p>
 
-<pre class="code ruby"><code class="ruby">name: &quot;Card Name&quot;                 # Required
+<pre class="code yaml"><code class="yaml">name: &quot;Card Name&quot;                 # Required
 type_line: &quot;Creature - Dragon&quot;    # Required
 rules_text: &quot;Card rules text&quot;     # Required
 mana_cost: 2RR                    # Optional
@@ -126,7 +185,7 @@ embed_font: false                 # Optional (default: true)
 
 <p><strong>Color Schemes Available:</strong></p>
 
-<pre class="code ruby"><code class="ruby">`artifact`  =&gt; Artifact cards (Brown, legacy)
+<pre class="code rb"><code class="rb">`artifact`  =&gt; Artifact cards (Brown, legacy)
 `black`     =&gt; Black cards
 `blue`      =&gt; Blue cards
 `colorless` =&gt; Artifact/Land cards (Grey)
@@ -138,56 +197,123 @@ embed_font: false                 # Optional (default: true)
 
 <p><strong>Symbols Available for Mana Cost:</strong></p>
 
-<p><strong>Mana Symbols:</strong> - <code>W</code> - White mana &lt;img src=“images/icons/white.svg” width=“16” valign=“middle” /&gt; - <code>B</code> - Black mana &lt;img src=“images/icons/black.svg” width=“16” valign=“middle” /&gt; - <code>R</code> - Red mana &lt;img src=“images/icons/red.svg” width=“16” valign=“middle” /&gt; - <code>G</code> - Green mana &lt;img src=“images/icons/green.svg” width=“16” valign=“middle” /&gt; - <code>U</code> - Blue mana &lt;img src=“images/icons/blue.svg” width=“16” valign=“middle” /&gt; - <code>C</code> - Colorless mana &lt;img src=“images/icons/colorless.svg” width=“16” valign=“middle” /&gt; - <code>S</code> - Snow mana &lt;img src=“images/icons/snow.svg” width=“16” valign=“middle” /&gt; - <code>{C/P}</code> - Colorless Phyrexian mana &lt;img src=“images/icons/phyrexian/colorless.svg” width=“20” valign=“middle” /&gt; - <code>{R/P}</code> - Red Phyrexian mana &lt;img src=“images/icons/phyrexian/red.svg” width=“20” valign=“middle” /&gt; - <code>{G/P}</code> - Green Phyrexian mana &lt;img src=“images/icons/phyrexian/green.svg” width=“20” valign=“middle” /&gt; - <code>{U/P}</code> - Blue Phyrexian mana &lt;img src=“images/icons/phyrexian/blue.svg” width=“20” valign=“middle” /&gt; - <code>{B/P}</code> - Black Phyrexian mana &lt;img src=“images/icons/phyrexian/black.svg” width=“20” valign=“middle” /&gt; - <code>{W/P}</code> - White Phyrexian mana &lt;img src=“images/icons/phyrexian/white.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Mana Symbols:</strong></p>
 
-<p>Hybrid and Phyrexian mana are now available! See all the notations below in the rule text section, the notation is the same. Just like the Phyrexian mana, you simply use curly braces in your notation: - <code>{R/G}</code> Red / Green Mana &lt;img src=“images/icons/hybrid/red-green.svg” width=“20” valign=“middle” /&gt; - <code>{G/W/P}</code> Green / White Phyrexian Mana &lt;img src=“images/icons/phyrexian/green-white.svg” width=“20” valign=“middle” /&gt;</p>
+<ul>
+<li><code>W</code> - White mana <img src="images/icons/white.svg" width="16" valign="middle" /></li>
+<li><code>B</code> - Black mana <img src="images/icons/black.svg" width="16" valign="middle" /></li>
+<li><code>R</code> - Red mana <img src="images/icons/red.svg" width="16" valign="middle" /></li>
+<li><code>G</code> - Green mana <img src="images/icons/green.svg" width="16" valign="middle" /></li>
+<li><code>U</code> - Blue mana <img src="images/icons/blue.svg" width="16" valign="middle" /></li>
+<li><code>C</code> - Colorless mana <img src="images/icons/colorless.svg" width="16" valign="middle" /></li>
+<li><code>S</code> - Snow mana <img src="images/icons/snow.svg" width="16" valign="middle" /></li>
+<li><code>{C/P}</code> - Colorless Phyrexian mana <img src="images/icons/phyrexian/colorless.svg" width="20" valign="middle" /></li>
+<li><code>{R/P}</code> - Red Phyrexian mana <img src="images/icons/phyrexian/red.svg" width="20" valign="middle" /></li>
+<li><code>{G/P}</code> - Green Phyrexian mana <img src="images/icons/phyrexian/green.svg" width="20" valign="middle" /></li>
+<li><code>{U/P}</code> - Blue Phyrexian mana <img src="images/icons/phyrexian/blue.svg" width="20" valign="middle" /></li>
+<li><code>{B/P}</code> - Black Phyrexian mana <img src="images/icons/phyrexian/black.svg" width="20" valign="middle" /></li>
+<li><code>{W/P}</code> - White Phyrexian mana <img src="images/icons/phyrexian/white.svg" width="20" valign="middle" /></li>
+</ul>
 
-<p><strong>Numeric Symbols:</strong> - <code>0</code> through <code>99</code> - Generic mana costs (0-99) &lt;img src=“images/icons/single-digit.svg” width=“16” valign=“middle” /&gt; - <code>X</code> - X symbol &lt;img src=“images/icons/x.svg” width=“16” valign=“middle” /&gt;</p>
+<p><strong>Advanced Mana Support:</strong>
+Hybrid and Phyrexian mana are now fully supported! See all the
+notations below in the rule text section. The notation uses curly braces for complex symbols:</p>
 
-<p><strong>Combination Examples:</strong> - <code>16US</code> - 16 generic + 1 blue + 1 snow &lt;img src=“images/icons/double-digit.svg” width=“16” valign=“middle” /&gt; &lt;img src=“images/icons/blue.svg” width=“16” valign=“middle” /&gt; &lt;img src=“images/icons/snow.svg” width=“16” valign=“middle” /&gt; - <code>XG</code> - X generic + 1 green &lt;img src=“images/icons/x.svg” width=“16” valign=“middle” /&gt; &lt;img src=“images/icons/green.svg” width=“16” valign=“middle” /&gt; - <code>X3R</code> - X generic + 3 generic + 1 red &lt;img src=“images/icons/x.svg” width=“16” valign=“middle” /&gt; &lt;img src=“images/icons/single-digit.svg” width=“16” valign=“middle” /&gt; &lt;img src=“images/icons/red.svg” width=“16” valign=“middle” /&gt; - <code>3WU</code> - 3 generic + 1 white + 1 blue &lt;img src=“images/icons/single-digit.svg” width=“16” valign=“middle” /&gt; &lt;img src=“images/icons/white.svg” width=“16” valign=“middle” /&gt; &lt;img src=“images/icons/blue.svg” width=“16” valign=“middle” /&gt; - <code>WU{B/P}RG</code> White, Blue, Phyrexian Black, Red, Green &lt;img src=“images/icons/white.svg” width=“16” valign=“middle” /&gt; &lt;img src=“images/icons/blue.svg” width=“16” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/red.svg” width=“16” valign=“middle” /&gt; &lt;img src=“images/icons/green.svg” width=“16” valign=“middle” /&gt; - <code>X</code> - X generic only &lt;img src=“images/icons/x.svg” width=“16” valign=“middle” /&gt; - <code>3</code> - 3 generic only &lt;img src=“images/icons/single-digit.svg” width=“16” valign=“middle” /&gt; - <code>B</code> - black only &lt;img src=“images/icons/black.svg” width=“16” valign=“middle” /&gt;</p>
+<ul>
+<li><code>{R/G}</code> Red / Green Mana <img src="images/icons/hybrid/red-green.svg" width="20" valign="middle" /></li>
+<li><code>{G/W/P}</code> Green / White Phyrexian Mana <img src="images/icons/phyrexian/green-white.svg" width="20" valign="middle" /></li>
+</ul>
+
+<p><strong>Numeric Symbols:</strong></p>
+
+<ul>
+<li><code>0</code> through <code>99</code> - Generic mana costs (0-99) <img src="images/icons/single-digit.svg" width="16" valign="middle" /></li>
+<li><code>X</code> - X symbol <img src="images/icons/x.svg" width="16" valign="middle" /></li>
+</ul>
+
+<p><strong>Combination Examples:</strong></p>
+
+<ul>
+<li><code>16US</code> - 16 generic + 1 blue + 1 snow <img src="images/icons/double-digit.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" /> <img src="images/icons/snow.svg" width="16" valign="middle" /></li>
+<li><code>XG</code> - X generic + 1 green <img src="images/icons/x.svg" width="16" valign="middle" /> <img src="images/icons/green.svg" width="16" valign="middle" /></li>
+<li><code>X3R</code> - X generic + 3 generic + 1 red <img src="images/icons/x.svg" width="16" valign="middle" /> <img src="images/icons/single-digit.svg" width="16" valign="middle" /> <img src="images/icons/red.svg" width="16" valign="middle" /></li>
+<li><code>3WU</code> - 3 generic + 1 white + 1 blue <img src="images/icons/single-digit.svg" width="16" valign="middle" /> <img src="images/icons/white.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" /></li>
+<li><code>WU{B/P}RG</code> White, Blue, Phyrexian Black, Red, Green <img src="images/icons/white.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" /> <img src="images/icons/phyrexian/black.svg" width="20" valign="middle" /> <img src="images/icons/red.svg" width="16" valign="middle" /> <img src="images/icons/green.svg" width="16" valign="middle" /></li>
+<li><code>X</code> - X generic only <img src="images/icons/x.svg" width="16" valign="middle" /></li>
+<li><code>3</code> - 3 generic only <img src="images/icons/single-digit.svg" width="16" valign="middle" /></li>
+<li><code>B</code> - black only <img src="images/icons/black.svg" width="16" valign="middle" /></li>
+</ul>
 
 <p><strong>Symbols Available in Rules Text:</strong></p>
 
-<p>You can use MTG symbols in your rules text by wrapping them in curly braces “C”. The following symbols are supported:</p>
+<p>You can use MTG symbols in your rules text by wrapping them in curly braces &quot;C&quot;. The following symbols are supported:</p>
 
-<p><strong>Mana Symbols:</strong> - <code>{W}</code> - White mana &lt;img src=“images/icons/white.svg” width=“16” valign=“middle” /&gt; - <code>{B}</code> - Black mana &lt;img src=“images/icons/black.svg” width=“16” valign=“middle” /&gt; - <code>{R}</code> - Red mana &lt;img src=“images/icons/red.svg” width=“16” valign=“middle” /&gt; - <code>{G}</code> - Green mana &lt;img src=“images/icons/green.svg” width=“16” valign=“middle” /&gt; - <code>{U}</code> - Blue mana &lt;img src=“images/icons/blue.svg” width=“16” valign=“middle” /&gt; - <code>{C}</code> - Colorless mana &lt;img src=“images/icons/colorless.svg” width=“16” valign=“middle” /&gt; - <code>{S}</code> - Snow mana symbol &lt;img src=“images/icons/snow.svg” width=“16” valign=“middle” /&gt; - <code>{C/P}</code> - Colorless Phyrexian mana &lt;img src=“images/icons/phyrexian/colorless.svg” width=“20” valign=“middle” /&gt; - <code>{R/P}</code> - Red Phyrexian mana &lt;img src=“images/icons/phyrexian/red.svg” width=“20” valign=“middle” /&gt; - <code>{G/P}</code> - Green Phyrexian mana &lt;img src=“images/icons/phyrexian/green.svg” width=“20” valign=“middle” /&gt; - <code>{U/P}</code> - Blue Phyrexian mana &lt;img src=“images/icons/phyrexian/blue.svg” width=“20” valign=“middle” /&gt; - <code>{B/P}</code> - Black Phyrexian mana &lt;img src=“images/icons/phyrexian/black.svg” width=“20” valign=“middle” /&gt; - <code>{W/P}</code> - White Phyrexian mana &lt;img src=“images/icons/phyrexian/white.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Mana Symbols:</strong></p>
+
+<ul>
+<li><code>{W}</code> - White mana <img src="images/icons/white.svg" width="16" valign="middle" /></li>
+<li><code>{B}</code> - Black mana <img src="images/icons/black.svg" width="16" valign="middle" /></li>
+<li><code>{R}</code> - Red mana <img src="images/icons/red.svg" width="16" valign="middle" /></li>
+<li><code>{G}</code> - Green mana <img src="images/icons/green.svg" width="16" valign="middle" /></li>
+<li><code>{U}</code> - Blue mana <img src="images/icons/blue.svg" width="16" valign="middle" /></li>
+<li><code>{C}</code> - Colorless mana <img src="images/icons/colorless.svg" width="16" valign="middle" /></li>
+<li><code>{S}</code> - Snow mana symbol <img src="images/icons/snow.svg" width="16" valign="middle" /></li>
+<li><code>{C/P}</code> - Colorless Phyrexian mana <img src="images/icons/phyrexian/colorless.svg" width="20" valign="middle" /></li>
+<li><code>{R/P}</code> - Red Phyrexian mana <img src="images/icons/phyrexian/red.svg" width="20" valign="middle" /></li>
+<li><code>{G/P}</code> - Green Phyrexian mana <img src="images/icons/phyrexian/green.svg" width="20" valign="middle" /></li>
+<li><code>{U/P}</code> - Blue Phyrexian mana <img src="images/icons/phyrexian/blue.svg" width="20" valign="middle" /></li>
+<li><code>{B/P}</code> - Black Phyrexian mana <img src="images/icons/phyrexian/black.svg" width="20" valign="middle" /></li>
+<li><code>{W/P}</code> - White Phyrexian mana <img src="images/icons/phyrexian/white.svg" width="20" valign="middle" /></li>
+</ul>
 
 <p><strong>Hybrid Mana Symbols:</strong></p>
 
-<p><strong>White hybrid:</strong> <code>{W/B}</code> <code>{W/R}</code> <code>{W/G}</code> <code>{W/U}</code> - &lt;img src=“images/icons/hybrid/white-black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/white-red.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/white-green.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/white-blue.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>White hybrid:</strong> <code>{W/B}</code> <code>{W/R}</code> <code>{W/G}</code> <code>{W/U}</code> - <img src="images/icons/hybrid/white-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/white-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/white-green.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/white-blue.svg" width="20" valign="middle" /></p>
 
-<p><strong>Black hybrid:</strong> <code>{B/W}</code> <code>{B/R}</code> <code>{B/G}</code> <code>{B/U}</code> - &lt;img src=“images/icons/hybrid/black-white.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/black-red.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/black-green.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/black-blue.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Black hybrid:</strong> <code>{B/W}</code> <code>{B/R}</code> <code>{B/G}</code> <code>{B/U}</code> - <img src="images/icons/hybrid/black-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/black-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/black-green.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/black-blue.svg" width="20" valign="middle" /></p>
 
-<p><strong>Red hybrid:</strong> <code>{R/W}</code> <code>{R/B}</code> <code>{R/G}</code> <code>{R/U}</code> - &lt;img src=“images/icons/hybrid/red-white.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/red-black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/red-green.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/red-blue.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Red hybrid:</strong> <code>{R/W}</code> <code>{R/B}</code> <code>{R/G}</code> <code>{R/U}</code> - <img src="images/icons/hybrid/red-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/red-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/red-green.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/red-blue.svg" width="20" valign="middle" /></p>
 
-<p><strong>Green hybrid:</strong> <code>{G/W}</code> <code>{G/B}</code> <code>{G/R}</code> <code>{G/U}</code> - &lt;img src=“images/icons/hybrid/green-white.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/green-black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/green-red.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/green-blue.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Green hybrid:</strong> <code>{G/W}</code> <code>{G/B}</code> <code>{G/R}</code> <code>{G/U}</code> - <img src="images/icons/hybrid/green-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/green-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/green-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/green-blue.svg" width="20" valign="middle" /></p>
 
-<p><strong>Blue hybrid:</strong> <code>{U/W}</code> <code>{U/B}</code> <code>{U/R}</code> <code>{U/G}</code> - &lt;img src=“images/icons/hybrid/blue-white.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/blue-black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/blue-red.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/blue-green.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Blue hybrid:</strong> <code>{U/W}</code> <code>{U/B}</code> <code>{U/R}</code> <code>{U/G}</code> - <img src="images/icons/hybrid/blue-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/blue-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/blue-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/blue-green.svg" width="20" valign="middle" /></p>
 
-<p><strong>“Two-brids”:</strong> <code>{2/W}</code> <code>{2/B}</code> <code>{2/R}</code> <code>{2/G}</code> <code>{2/U}</code> - &lt;img src=“images/icons/hybrid/2-white.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/2-black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/2-red.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/2-green.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/2-blue.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>&quot;Two-brids&quot;:</strong> <code>{2/W}</code> <code>{2/B}</code> <code>{2/R}</code> <code>{2/G}</code> <code>{2/U}</code> - <img src="images/icons/hybrid/2-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/2-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/2-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/2-green.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/2-blue.svg" width="20" valign="middle" /></p>
 
-<p><strong>Colorless hybrid:</strong> <code>{C/W}</code> <code>{C/B}</code> <code>{C/R}</code> <code>{C/G}</code> <code>{C/U}</code> - &lt;img src=“images/icons/hybrid/colorless-white.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/colorless-black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/colorless-red.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/colorless-green.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/hybrid/colorless-blue.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Colorless hybrid:</strong> <code>{C/W}</code> <code>{C/B}</code> <code>{C/R}</code> <code>{C/G}</code> <code>{C/U}</code> - <img src="images/icons/hybrid/colorless-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/colorless-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/colorless-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/colorless-green.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/colorless-blue.svg" width="20" valign="middle" /></p>
 
 <p><strong>Phyrexian Hybrid Mana Symbols:</strong></p>
 
-<p><strong>White Phyrexian hybrid:</strong> <code>{W/B/P}</code> <code>{W/R/P}</code> <code>{W/G/P}</code> <code>{W/U/P}</code> - &lt;img src=“images/icons/phyrexian/white-black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/white-red.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/white-green.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/white-blue.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>White Phyrexian hybrid:</strong> <code>{W/B/P}</code> <code>{W/R/P}</code> <code>{W/G/P}</code> <code>{W/U/P}</code> - <img src="images/icons/phyrexian/white-black.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/white-red.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/white-green.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/white-blue.svg" width="20" valign="middle" /></p>
 
-<p><strong>Black Phyrexian hybrid:</strong> <code>{B/W/P}</code> <code>{B/R/P}</code> <code>{B/G/P}</code> <code>{B/U/P}</code> - &lt;img src=“images/icons/phyrexian/black-white.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/black-red.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/black-green.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/black-blue.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Black Phyrexian hybrid:</strong> <code>{B/W/P}</code> <code>{B/R/P}</code> <code>{B/G/P}</code> <code>{B/U/P}</code> - <img src="images/icons/phyrexian/black-white.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/black-red.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/black-green.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/black-blue.svg" width="20" valign="middle" /></p>
 
-<p><strong>Red Phyrexian hybrid:</strong> <code>{R/W/P}</code> <code>{R/B/P}</code> <code>{R/G/P}</code> <code>{R/U/P}</code> - &lt;img src=“images/icons/phyrexian/red-white.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/red-black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/red-green.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/red-blue.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Red Phyrexian hybrid:</strong> <code>{R/W/P}</code> <code>{R/B/P}</code> <code>{R/G/P}</code> <code>{R/U/P}</code> - <img src="images/icons/phyrexian/red-white.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/red-black.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/red-green.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/red-blue.svg" width="20" valign="middle" /></p>
 
-<p><strong>Green Phyrexian hybrid:</strong> <code>{G/W/P}</code> <code>{G/B/P}</code> <code>{G/R/P}</code> <code>{G/U/P}</code> - &lt;img src=“images/icons/phyrexian/green-white.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/green-black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/green-red.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/green-blue.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Green Phyrexian hybrid:</strong> <code>{G/W/P}</code> <code>{G/B/P}</code> <code>{G/R/P}</code> <code>{G/U/P}</code> - <img src="images/icons/phyrexian/green-white.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/green-black.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/green-red.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/green-blue.svg" width="20" valign="middle" /></p>
 
-<p><strong>Blue Phyrexian hybrid:</strong> <code>{U/W/P}</code> <code>{U/B/P}</code> <code>{U/R/P}</code> <code>{U/G/P}</code> - &lt;img src=“images/icons/phyrexian/blue-white.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/blue-black.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/blue-red.svg” width=“20” valign=“middle” /&gt; &lt;img src=“images/icons/phyrexian/blue-green.svg” width=“20” valign=“middle” /&gt;</p>
+<p><strong>Blue Phyrexian hybrid:</strong> <code>{U/W/P}</code> <code>{U/B/P}</code> <code>{U/R/P}</code> <code>{U/G/P}</code> - <img src="images/icons/phyrexian/blue-white.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/blue-black.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/blue-red.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/blue-green.svg" width="20" valign="middle" /></p>
 
-<p><strong>Numeric Symbols:</strong> - <code>{0}</code> through <code>{99}</code> - Generic mana costs (0-99) &lt;img src=“images/icons/single-digit.svg” width=“16” valign=“middle” /&gt; - <code>{X}</code> - X symbol &lt;img src=“images/icons/x.svg” width=“16” valign=“middle” /&gt;</p>
+<p><strong>Numeric Symbols:</strong></p>
 
-<p><strong>Special Symbols:</strong> - <code>{T}</code> - Tap symbol &lt;img src=“images/icons/tap.svg” width=“16” valign=“middle” /&gt; - <code>{Q}</code> - Untap symbol &lt;img src=“images/icons/untap.svg” width=“16” valign=“middle” /&gt; - <code>{E}</code> - Energy symbol &lt;img src=“images/icons/energy.svg” width=“16” valign=“middle” /&gt;</p>
+<ul>
+<li><code>{0}</code> through <code>{99}</code> - Generic mana costs (0-99) <img src="images/icons/single-digit.svg" width="16" valign="middle" /></li>
+<li><code>{X}</code> - X symbol <img src="images/icons/x.svg" width="16" valign="middle" /></li>
+</ul>
+
+<p><strong>Special Symbols:</strong></p>
+
+<ul>
+<li><code>{T}</code> - Tap symbol <img src="images/icons/tap.svg" width="16" valign="middle" /></li>
+<li><code>{Q}</code> - Untap symbol <img src="images/icons/untap.svg" width="16" valign="middle" /></li>
+<li><code>{E}</code> - Energy symbol <img src="images/icons/energy.svg" width="16" valign="middle" /></li>
+</ul>
 
 <p><strong>Example Usage:</strong></p>
 
-<pre class="code ruby"><code class="ruby">rules_text: &quot;{T}: Add {W} or {U} to your mana pool.&quot;
+<pre class="code yaml"><code class="yaml">rules_text: &quot;{T}: Add {W} or {U} to your mana pool.&quot;
 </code></pre>
+
 <p align=center>
   <img src="images/icons/tap.svg"
        alt="T" width="16" valign="middle" />
@@ -199,13 +325,14 @@ embed_font: false                 # Optional (default: true)
        alt="U" width="16" valign="middle" />
   to your mana pool
 </p>
-<h2 id="label-F0-9F-A7-AA+Basic+Examples">🧪 Basic Examples</h2>
 
-<h3 id="label-Single+Card">Single Card</h3>
+<h2 id="basic-examples">🧪 Basic Examples</h2>
+
+<h3 id="single-card">Single Card</h3>
 
 <p><strong>Generate:</strong></p>
 
-<pre class="code ruby"><code class="ruby">mtg_card_maker generate_card \
+<pre class="code bash"><code class="bash">mtg_card_maker generate_card \
   --name=&quot;Lightning Bolt&quot; \
   --mana-cost=R \
   --type-line=Instant \
@@ -215,40 +342,62 @@ embed_font: false                 # Optional (default: true)
 
 <p><strong>Add to YAML:</strong></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> \
-  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counterspell</span><span class='tstring_end'>&quot;</span></span> \
-  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UU</span><span class='tstring_end'>&quot;</span></span> \
-  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_line'>line</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> \
-  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_rules'>rules</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counter target spell.</span><span class='tstring_end'>&quot;</span></span> \
-  <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>blue</span><span class='tstring_end'>&quot;</span></span>
+<pre class="code bash"><code class="bash">mtg_card_maker add_card deck.yml \
+  --name=&quot;Counterspell&quot; \
+  --mana-cost=&quot;UU&quot; \
+  --type-line=&quot;Instant&quot; \
+  --rules-text=&quot;Counter target spell.&quot; \
+  --color=&quot;blue&quot;
 </code></pre>
 
-<p><em>Shortcuts:</em> - <code>g</code> or <code>gc</code> for <code>generate_card</code> - <code>a</code> or <code>ac</code> for <code>add_card</code></p>
+<p><em>Shortcuts:</em></p>
 
-<h3 id="label-Generate+a+Sprite+Sheet">Generate a Sprite Sheet</h3>
+<ul>
+<li><code>g</code> or <code>gc</code> for <code>generate_card</code></li>
+<li><code>a</code> or <code>ac</code> for <code>add_card</code></li>
+</ul>
 
-<p>For printing or displaying multiple cards on a webpage, using a sprite sheet is recommended. This approach embeds fonts and gradients once per sheet instead of repeating them for each individual card, improving file size and loading efficiency. Generate a sprite sheet from YAML configuration:</p>
+<h3 id="generate-a-sprite-sheet">Generate a Sprite Sheet</h3>
 
-<p><strong>Required Arguments:</strong> - <code>YAML_FILE</code>: Path to YAML configuration file - <code>OUTPUT_FILE</code>: Output filename for the sprite sheet</p>
+<p>For printing or displaying multiple cards on a webpage, using a sprite sheet is recommended. This approach embeds fonts and gradients once per sheet instead of repeating them for each individual card, improving file size and loading efficiency.
+Generate a sprite sheet from YAML configuration:</p>
 
-<p><strong>Optional Options:</strong> - <code>--cards-per-row</code>: Number of cards per row in sprite (default: 4) - <code>--spacing</code>: Spacing between cards in pixels (default: 30)</p>
+<p><strong>Required Arguments:</strong></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_generate_sprite'>generate_sprite</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='id identifier rubyid_sprite_sheet'>sprite_sheet</span><span class='period'>.</span><span class='id identifier rubyid_svg'>svg</span> \
-<span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_cards'>cards</span><span class='op'>-</span><span class='id identifier rubyid_per'>per</span><span class='op'>-</span><span class='id identifier rubyid_row'>row</span><span class='op'>=</span><span class='int'>3</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_spacing'>spacing</span><span class='op'>=</span><span class='int'>5</span>
+<ul>
+<li><code>YAML_FILE</code>: Path to YAML configuration file</li>
+<li><code>OUTPUT_FILE</code>: Output filename for the sprite sheet</li>
+</ul>
+
+<p><strong>Optional Options:</strong></p>
+
+<ul>
+<li><code>--cards-per-row</code>: Number of cards per row in sprite (default: 4)</li>
+<li><code>--spacing</code>: Spacing between cards in pixels (default: 30)</li>
+</ul>
+
+<pre class="code bash"><code class="bash">mtg_card_maker generate_sprite deck.yml sprite_sheet.svg \
+--cards-per-row=3 --spacing=5
 </code></pre>
 
-<p><em>Shortcuts:</em> - <code>gs</code> or <code>gcs</code> for <code>generate_sprite</code></p>
+<p><em>Shortcuts:</em></p>
 
-<h2 id="label-F0-9F-94-AE+Examples">🔮 Examples</h2>
+<ul>
+<li><code>gs</code> or <code>gcs</code> for <code>generate_sprite</code></li>
+</ul>
+
+<h2 id="examples">🔮 Examples</h2>
+
 <p>
 <img align=right
      src="images/joe-sharp_card.webp"
      alt="A card featuring artwork of a bearded man writing on a magical scroll with a feather pen"
      width="300" />
 </p>
+
 <p><strong>Generate a creature card:</strong></p>
 
-<pre class="code ruby"><code class="ruby">mtg_card_maker generate_card \
+<pre class="code bash"><code class="bash">mtg_card_maker generate_card \
   --name=&quot;Joe Sharp&quot; \
   --mana-cost=3UR \
   --type-line=&quot;Engineer - Fullstack&quot; \
@@ -262,129 +411,178 @@ embed_font: false                 # Optional (default: true)
 
 <p><strong>Add multiple cards to a YAML file:</strong></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lightning Bolt</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>R</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_line'>line</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_rules'>rules</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Deal 3 damage to any target.</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>red</span><span class='tstring_end'>&quot;</span></span>
+<pre class="code bash"><code class="bash">mtg_card_maker add_card deck.yml --name=&quot;Lightning Bolt&quot; --mana-cost=&quot;R&quot; --type-line=&quot;Instant&quot; --rules-text=&quot;Deal 3 damage to any target.&quot; --color=&quot;red&quot;
 
-<span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_add_card'>add_card</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counterspell</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_mana'>mana</span><span class='op'>-</span><span class='id identifier rubyid_cost'>cost</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>UU</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_type'>type</span><span class='op'>-</span><span class='id identifier rubyid_line'>line</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Instant</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_rules'>rules</span><span class='op'>-</span><span class='id identifier rubyid_text'>text</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Counter target spell.</span><span class='tstring_end'>&quot;</span></span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_color'>color</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>blue</span><span class='tstring_end'>&quot;</span></span>
+mtg_card_maker add_card deck.yml --name=&quot;Counterspell&quot; --mana-cost=&quot;UU&quot; --type-line=&quot;Instant&quot; --rules-text=&quot;Counter target spell.&quot; --color=&quot;blue&quot;
 </code></pre>
 
 <p><strong>Generate a sprite sheet from YAML:</strong></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_mtg_card_maker'>mtg_card_maker</span> <span class='id identifier rubyid_generate_sprite'>generate_sprite</span> <span class='id identifier rubyid_deck'>deck</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span> <span class='id identifier rubyid_sprite_sheet'>sprite_sheet</span><span class='period'>.</span><span class='id identifier rubyid_svg'>svg</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_cards'>cards</span><span class='op'>-</span><span class='id identifier rubyid_per'>per</span><span class='op'>-</span><span class='id identifier rubyid_row'>row</span><span class='op'>=</span><span class='int'>3</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_spacing'>spacing</span><span class='op'>=</span><span class='int'>20</span>
+<pre class="code bash"><code class="bash">mtg_card_maker generate_sprite deck.yml sprite_sheet.svg --cards-per-row=3 --spacing=20
 </code></pre>
 
-<h2 id="label-F0-9F-9A-A7+Development">🚧 Development</h2>
+<h2 id="development">🚧 Development</h2>
 
-<h3 id="label-Setup">Setup</h3>
+<h3 id="setup">Setup</h3>
 
 <p>After checking out the repo, run <code>bin/setup</code> to install dependencies. Then, run <code>bundle exec rspec</code> to run the tests. You can also run <code>bin/console</code> for an interactive prompt that will allow you to experiment.</p>
 
-<h3 id="label-Development+Workflow+with+Guard">Development Workflow with Guard</h3>
+<h3 id="development-workflow-with-guard">Development Workflow with Guard</h3>
 
 <p>This project uses <a href="https://github.com/guard/guard">Guard</a> for automated testing and code quality checks during development. Guard monitors file changes and automatically runs relevant tests and checks.</p>
 
 <p><strong>Start Guard:</strong></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_guard'>guard</span>
+<pre class="code bash"><code class="bash">bundle exec guard
 </code></pre>
 
-<p><strong>What Guard monitors:</strong> - <strong>RuboCop</strong>: Automatically checks code style when Ruby files change - <strong>RSpec</strong>: Runs tests when spec files or corresponding lib files change - <strong>Status Summary</strong>: Monitors changes and runs <code>bin/status_summary</code> to check card generation integrity (end-to-end tests)</p>
+<p><strong>What Guard monitors:</strong></p>
 
-<p><strong>Guard Output:</strong> - RuboCop results are saved to <code>tmp/rubocop_status.txt</code> - RSpec results are saved to <code>tmp/rspec_status.txt</code> - Status summary provides real-time feedback on code quality and card generation</p>
+<ul>
+<li><strong>RuboCop</strong>: Automatically checks code style when Ruby files change</li>
+<li><strong>RSpec</strong>: Runs tests when spec files or corresponding lib files change</li>
+<li><strong>Status Summary</strong>: Monitors changes and runs <code>bin/status_summary</code> to check card generation integrity (end-to-end tests)</li>
+</ul>
 
-<h3 id="label-Status+Summary+Script">Status Summary Script</h3>
+<p><strong>Guard Output:</strong></p>
+
+<ul>
+<li>RuboCop results are saved to <code>tmp/rubocop_status.txt</code></li>
+<li>RSpec results are saved to <code>tmp/rspec_status.txt</code></li>
+<li>Status summary provides real-time feedback on code quality and card generation</li>
+</ul>
+
+<p><strong>Development Benefits:</strong></p>
+
+<ul>
+<li><strong>Zero Configuration</strong>: Just run <code>bundle exec guard</code> and start coding</li>
+<li><strong>Instant Feedback</strong>: See test results and code quality status immediately</li>
+<li><strong>Regression Prevention</strong>: Automatic integrity checks prevent breaking changes</li>
+<li><strong>Productivity Boost</strong>: Focus on coding while Guard handles quality assurance</li>
+</ul>
+
+<h3 id="status-summary-script">Status Summary Script</h3>
 
 <p>The <code>bin/status_summary</code> script provides a comprehensive development status overview, it is meant to only be run by guard.</p>
 
-<p><strong>What it does:</strong> - Generates test cards and sprite sheets to verify functionality - Compares generated output against expected fixtures - Checks for unexpected changes in SVG files - Displays status indicators, requires you run with guard: - ✅ RuboCop violations (with count if any) - ✅ RSpec test failures (with count if any) - ✅ Card generation integrity - ✅ Sprite sheet generation integrity</p>
+<p><strong>What it does:</strong></p>
 
-<p><strong>Status Indicators:</strong> - <code>✅</code> - All good - <code>⚠️</code> - Issues detected (with count) - <code>❌</code> - Failures - <code>🔄</code> - Unexpected changes detected</p>
+<ul>
+<li>Generates test cards and sprite sheets to verify functionality</li>
+<li>Compares generated output against expected fixtures</li>
+<li>Checks for unexpected changes in SVG files</li>
+<li>Displays status indicators, requires you run with guard:
 
-<h3 id="label-Interactive+Development">Interactive Development</h3>
+<ul>
+<li>✅ RuboCop violations (with count if any)</li>
+<li>✅ RSpec test failures (with count if any)</li>
+<li>✅ Card generation integrity</li>
+<li>✅ Sprite sheet generation integrity</li>
+</ul></li>
+</ul>
+
+<p><strong>Status Indicators:</strong></p>
+
+<ul>
+<li><code>✅</code> - All good</li>
+<li><code>⚠️</code> - Issues detected (with count)</li>
+<li><code>❌</code> - Failures</li>
+<li><code>🔄</code> - Unexpected changes detected</li>
+</ul>
+
+<h3 id="interactive-development">Interactive Development</h3>
 
 <p><strong>Console:</strong></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bin'>bin</span><span class='op'>/</span><span class='id identifier rubyid_console'>console</span>
+<pre class="code bash"><code class="bash">bin/console
 </code></pre>
 
 <p>Start an interactive Ruby console with the gem loaded for experimentation.</p>
 
-<p><strong>Manual Testing:</strong> Note: just use guard</p>
+<p><strong>Manual Testing:</strong>
+Note: just use guard</p>
 
-<pre class="code ruby"><code class="ruby"><span class='comment'># Run all tests
-</span><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_rspec'>rspec</span>
+<pre class="code bash"><code class="bash"># Run all tests
+bundle exec rspec
 
-<span class='comment'># Check code style
-</span><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_rubocop'>rubocop</span>
+# Check code style
+bundle exec rubocop
 
-<span class='comment'># Generate test cards
-</span>
-<span class='comment'># See examples above, but you will need to use bin/mtg_card_maker from the project root to use the in-development code.
-</span>
-<span class='comment'># Or run `bundle exec guard` and monitor output_card.svg and color_cards_sprite.svg for changes, it is far better, really.
-</span></code></pre>
+# Generate test cards
 
-<h2 id="label-F0-9F-93-B0+Documentation">📰 Documentation</h2>
+# See examples above, but you will need to use bin/mtg_card_maker from the project root to use the in-development code.
 
-<h3 id="label-API+Documentation">API Documentation</h3>
+# Or run `bundle exec guard` and monitor output_card.svg and color_cards_sprite.svg for changes, it is far better, really.
+</code></pre>
+
+<h2 id="technical-architecture">🏗️ Technical Architecture</h2>
+
+<p><strong>Design Patterns &amp; Best Practices:</strong></p>
+
+<ul>
+<li><strong>Layered Architecture</strong>: Clean separation between card components (art, text, frame, border)</li>
+<li><strong>Factory Pattern</strong>: <code>LayerFactory</code> provides flexible layer creation</li>
+<li><strong>Service-Oriented Design</strong>: Dedicated services for icons, sprites, gradients, and text rendering</li>
+<li><strong>Single Responsibility</strong>: Each class has a focused, well-defined purpose</li>
+<li><strong>Dependency Injection</strong>: Clean interfaces and testable components</li>
+</ul>
+
+<p><strong>Advanced Features:</strong></p>
+
+<ul>
+<li><strong>Symbol Replacement Engine</strong>: Sophisticated parsing of MTG notation with regex optimization</li>
+<li><strong>Dynamic Gradient Generation</strong>: Real-time SVG gradient creation for card colors</li>
+<li><strong>Font Embedding System</strong>: Base64 font embedding for portable SVG files</li>
+<li><strong>Sprite Sheet Optimization</strong>: Shared asset management reducing file sizes considerably</li>
+<li><strong>Comprehensive Validation</strong>: Robust error handling and input validation throughout</li>
+</ul>
+
+<h2 id="documentation">📰 Documentation</h2>
+
+<h3 id="api-documentation">API Documentation</h3>
 
 <p>The gem includes comprehensive YARD documentation for all classes and methods. You can generate and view the documentation locally:</p>
 
 <p><strong>Generate Documentation:</strong></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_yard'>yard</span> <span class='id identifier rubyid_doc'>doc</span>
+<pre class="code bash"><code class="bash">bundle exec yard doc
 </code></pre>
 
 <p><strong>Serve Documentation Locally:</strong></p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_yard'>yard</span> <span class='id identifier rubyid_server'>server</span>
+<pre class="code bash"><code class="bash">bundle exec yard server
 </code></pre>
 
 <p>Then visit <code>http://localhost:8808</code> to browse the documentation.</p>
 
-<h3 id="label-Key+Classes">Key Classes</h3>
-<ul><li>
-<p><strong>MtgCardMaker</strong>: Main module with card generation examples</p>
-</li><li>
-<p><strong>BaseCard</strong>: High-level card creation interface</p>
-</li><li>
-<p><strong>Template</strong>: SVG canvas and layer management</p>
-</li><li>
-<p><strong>BaseLayer</strong>: Abstract base class for all card layers</p>
-</li><li>
-<p><strong>ColorScheme</strong>: Unified color system for all MTG colors</p>
-</li><li>
-<p><strong>LayerFactory</strong>: Factory pattern for creating card layers</p>
-</li><li>
-<p><strong>CLI</strong>: Command-line interface with Thor integration</p>
-</li></ul>
-
-<h3 id="label-Installation+and+Release">Installation and Release</h3>
+<h3 id="installation-and-release">Installation and Release</h3>
 
 <p>To install this gem onto your local machine, run <code>bundle exec rake install</code>. To release a new version, update the version number in <code>version.rb</code>, and then run <code>bundle exec rake release</code>, which will create a git tag for the version, push git commits and the created tag, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>.</p>
 
-<h2 id="label-F0-9F-A4-9D-F0-9F-8F-BB+Contributing">🤝🏻 Contributing</h2>
+<h2 id="contributing">🤝🏻 Contributing</h2>
 
-<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/joe-sharp/mtg_card_maker">github.com/joe-sharp/mtg_card_maker</a>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the <a href="https://github.com/joe-sharp/mtg_card_maker/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/joe-sharp/mtg_card_maker">https://github.com/joe-sharp/mtg_card_maker</a>. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the <a href="https://github.com/joe-sharp/mtg_card_maker/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
 
-<h2 id="label-F0-9F-AA-AA+License">🪪 License</h2>
+<h2 id="license">🪪 License</h2>
 
-<p>&lt;a href=“<a href="https://projects.joe-sharp.com/mtg_card_maker">projects.joe-sharp.com/mtg_card_maker</a>”&gt;MTG Card Maker&lt;/a&gt; © 2025 by &lt;a href=“<a href="https://github.com/joe-sharp/mtg_card_maker">github.com/joe-sharp/mtg_card_maker</a>”&gt;Joe Sharp&lt;/a&gt; is licensed under &lt;a href=“<a href="https://creativecommons.org/licenses/by-nc-nd/4.0">creativecommons.org/licenses/by-nc-nd/4.0</a>/”&gt;CC BY-NC-ND 4.0&lt;/a&gt; &lt;img src=“<a href="https://mirrors.creativecommons.org/presskit/icons/cc.svg">mirrors.creativecommons.org/presskit/icons/cc.svg</a>” width=“20” valign=bottom&gt;&lt;img src=“<a href="https://mirrors.creativecommons.org/presskit/icons/by.svg">mirrors.creativecommons.org/presskit/icons/by.svg</a>” width=“20” valign=bottom&gt;&lt;img src=“<a href="https://mirrors.creativecommons.org/presskit/icons/nc.svg">mirrors.creativecommons.org/presskit/icons/nc.svg</a>” width=“20” valign=bottom&gt;&lt;img src=“<a href="https://mirrors.creativecommons.org/presskit/icons/nd.svg">mirrors.creativecommons.org/presskit/icons/nd.svg</a>” width=“20” valign=bottom&gt;</p>
+<p><a href="https://projects.joe-sharp.com/mtg_card_maker">MTG Card Maker</a> © 2025 by <a href="https://github.com/joe-sharp/mtg_card_maker">Joe Sharp</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" width="20" valign=bottom></p>
 
 <p>The gem is available as open source under the terms of this license.</p>
 
-<h2 id="label-C2-A9-EF-B8-8F+Copyright">©️ Copyright</h2>
+<h2 id="copyright">©️ Copyright</h2>
 
-<p>© 2025 Joe Sharp. Some rights reserved. MTG Card Maker is unofficial Fan Content permitted under the <a href="https://company.wizards.com/en/legal/fancontentpolicy">Fan Content Policy.</a> Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC.</p>
+<p>© 2025 Joe Sharp. Some rights reserved.
+MTG Card Maker is unofficial Fan Content permitted under the <a href="https://company.wizards.com/en/legal/fancontentpolicy">Fan Content Policy.</a> Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC.</p>
 
 <p>The removal or alteration of copyright notices, attributions, and/or QR codes from generated images constitutes a material breach of the license agreement. All copyright notices and identifying marks must remain intact and unmodified in accordance with the terms of use.</p>
 
-<h2 id="label-F0-9F-A7-99-F0-9F-8F-BB+Code+of+Conduct">🧙🏻 Code of Conduct</h2>
+<h2 id="code-of-conduct">🧙🏻 Code of Conduct</h2>
 
-<p>Everyone interacting in the MTG Card Maker project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the <a href="https://github.com/joe-sharp/mtg_card_maker/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
+<p>Everyone interacting in the MTG Card Maker project&#39;s codebases, issue trackers, chat rooms and mailing lists is expected to follow the <a href="https://github.com/joe-sharp/mtg_card_maker/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Aug  2 18:46:05 2025 by
+  Generated on Sat Aug  2 17:02:26 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
