@@ -386,6 +386,56 @@ Generate a sprite sheet from YAML configuration:</p>
 <li><code>gs</code> or <code>gcs</code> for <code>generate_sprite</code></li>
 </ul>
 
+<h3 id="experimental-webp-conversion">🖼️ Experimental WebP Conversion</h3>
+
+<p><strong>⚠️ Experimental Feature - Mac Only</strong></p>
+
+<p>The gem includes experimental support for converting SVG cards to WebP format using Chrome&#39;s headless mode. This feature is currently <strong>Mac-only</strong> and requires specific dependencies.</p>
+
+<p><strong>Why?:</strong>
+It seems a lot more user-friendly for use in things like this README.md file. The file size is bigger and it can&#39;t scale so I wouldn&#39;t use this option unless something in the SVG isn&#39;t working with whatever you are trying to do. You should also report that at <a href="https://github.com/joe-sharp/mtg_card_maker/issues">https://github.com/joe-sharp/mtg_card_maker/issues</a> . Thanks in advance!</p>
+
+<p><strong>Prerequisites:</strong></p>
+
+<ul>
+<li><strong>macOS</strong>: Chrome must be installed at <code>/Applications/Google Chrome.app/Contents/MacOS/Google Chrome</code></li>
+<li><strong>cwebp</strong>: Google&#39;s WebP encoder must be installed (install via Homebrew: <code>brew install webp</code>)</li>
+</ul>
+
+<p><strong>Usage:</strong></p>
+
+<pre class="code bash"><code class="bash"># Convert a single SVG card to WebP
+bin/svg_to_webp output_card.svg
+
+# Convert any SVG file to WebP
+bin/svg_to_webp path/to/your/card.svg
+</code></pre>
+
+<p><strong>Features:</strong></p>
+
+<ul>
+<li><strong>Lossless Conversion</strong>: High-quality WebP output with transparency support</li>
+<li><strong>Automatic Cropping</strong>: Removes Chrome&#39;s window chrome for clean card output</li>
+<li><strong>Optimized Dimensions</strong>: Outputs at 630x880 pixels (standard MTG card ratio)</li>
+<li><strong>Transparent Background</strong>: Preserves transparency for web and design use</li>
+</ul>
+
+<p><strong>Caveats:</strong></p>
+
+<ul>
+<li><strong>Platform Limitation</strong>: Currently only works on macOS with Chrome installed</li>
+<li><strong>Dependency Required</strong>: Requires <code>cwebp</code> command-line tool for final processing</li>
+<li><strong>Experimental Status</strong>: May have issues with complex SVG content or Chrome updates</li>
+<li><strong>File Size</strong>: WebP files may be larger than optimized SVGs for simple cards</li>
+</ul>
+
+<p><strong>Future Plans:</strong></p>
+
+<ul>
+<li>Cross-platform support (Windows, Linux)</li>
+<li>Integration with main CLI commands</li>
+</ul>
+
 <h2 id="examples">🔮 Examples</h2>
 
 <p>
@@ -406,7 +456,8 @@ Generate a sprite sheet from YAML configuration:</p>
   --power=3 \
   --toughness=3 \
   --border-color=gold \
-  --color=blue
+  --color=blue \
+  --art=images/joe.webp
 </code></pre>
 
 <p><strong>Add multiple cards to a YAML file:</strong></p>
@@ -582,7 +633,7 @@ MTG Card Maker is unofficial Fan Content permitted under the <a href="https://co
 </div></div>
 
       <div id="footer">
-  Generated on Sat Aug  2 17:02:26 2025 by
+  Generated on Sat Aug  2 23:48:00 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
