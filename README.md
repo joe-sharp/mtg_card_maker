@@ -6,62 +6,66 @@
        width="300" />
 </p>
 
-A Ruby gem for creating fan-made Magic: The Gathering cards. This tool allows you to generate custom MTG cards with proper formatting, mana costs, and card layouts. All you need to supply is the artwork image url/path, or simply overlay on top of an image of your choosing.
+A Ruby gem for creating high quality fan-made Magic: The Gathering cards. This tool generates custom MTG cards with authentic formatting, comprehensive mana cost support, and precise card layouts. Perfect for game designers, content creators, and MTG enthusiasts.
 
-Please note this gem is in early beta, and should not be used in any production application. **Using it commercially is a violation of the license.** Please suggest feature ideas you have after reviewing the open issues here: https://github.com/joe-sharp/mtg_card_maker/issues
+
+Please note this gem is for fan content creation only. **Using it commercially is a violation of the license.** If you have ideas for improvements, please create a feature request after reviewing the open issues here: https://github.com/joe-sharp/mtg_card_maker/issues
 
 ## Features
 #### 🎨 Card Customization
 
 **Core Card Properties:**
-- **Card Name**: Customizable card titles with optional font support
-- **Mana Cost**: Support for 0-9, X, and all MTG mana symbols (W, U, B, R, G, C, S), alternate icon sets coming soon!
-- **Type Line**: Customizable Card types and subtypes (Creature, Instant, Sorcery, etc.)
-- **Rules Text**: Write your own rules with automatic word wrapping and formatting
-- **Flavor Text**: Optional italicized flavor text at the bottom of cards
-- **Power/Toughness**: Customizable power and toughness values, frame hides when omitted
+- **Card Name**: Customizable card titles with embedded font support
+- **Mana Cost**: Complete MTG symbol support including hybrid, Phyrexian, and numeric costs
+- **Type Line**: Customizable card types and subtypes (Creature, Instant, Sorcery, etc.)
+- **Rules Text**: Rich text with automatic word wrapping and symbol replacement
+- **Flavor Text**: Optional italicized flavor text with proper formatting
+- **Power/Toughness**: Dynamic power/toughness display
 
 **Visual Customization:**
-- **Color Schemes**: 8 built-in colors (white, blue, black, red, green, colorless, gold, artifact), split colors coming soon!
-- **Border Color**: Customizable border colors (white, black, gold, silver)
-- **Art Integration**: Support for custom artwork via image URLs, or simply layer the svg over your art of choice
+- **Color Schemes**: 8 card colors (white, blue, black, red, green, colorless, gold, artifact)
+- **Border Colors**: Customizable borders (white, black, gold, silver)
+- **Art Integration**: Flexible artwork support via URLs or local paths
+- **Font Embedding**: Base64 font embedding for portability
 
-#### 🖼️ Sprite Sheet Features
+#### 🖼️ Advanced Sprite Sheet Features
 
-**Efficiency Optimizations:**
+**Performance Optimizations:**
 - **Shared Assets**: Fonts, gradients, and masks defined once per sprite sheet
-- **Reduced File Size**: Significantly smaller file sizes compared to multiple individual cards
-- **Layout Optimization**: Ideal for web applications, printing and digital displays
+- **File Size Reduction**: Significantly smaller than individual card files
+- **Layout Optimization**: Ideal for web applications, printing
+and digital displays
 
 **Layout Control:**
-- **Cards Per Row**: Configurable number of cards per row (default: 4)
-- **Spacing Control**: Adjustable spacing between cards in pixels (default: 30)
-- **Automatic Sizing**: Dynamic sprite sheet dimensions based on card count
+- **Cards Per Row**: Configurable grid layout (default: 4)
+- **Spacing Control**: Pixel-perfect spacing between cards (default: 30px)
+- **Dynamic Sizing**: Automatic sprite sheet dimensions based on card count
 
 **Batch Processing:**
-- **YAML Configuration**: Define multiple cards in structured YAML files
-- **CLI Integration**: Command-line tools for adding cards to YAML files
-- **Error Handling**: Robust error handling for invalid configurations
+- **YAML Configuration**: Structured card definitions with validation
+- **CLI Integration**: Streamlined command-line workflow
+- **Error Handling**: Robust validation and helpful error messages
 
-#### 🛠️ Technical Features
+#### 🛠️ Technical Excellence
 
 **SVG Generation:**
-- **Vector Graphics**: High-quality SVG output suitable for any size
+- **Vector Graphics**: High-quality SVG output suitable for any scale
 - **Print Ready**: Optimized for both digital and print applications
 - **Cross-Platform**: Compatible with all modern browsers and design software
+  - NOTE: inline symbols in rule text may not render in some design software
 
-**Development Tools:**
-- **Guard Integration**: Automated testing and code quality monitoring
-- **Status Summary**: Real-time development status with integrity checks
-- **Comprehensive Testing**: 95%+ test coverage with RSpec
-- **Code Quality**: RuboCop integration for consistent code style
+**Development Infrastructure:**
+- **Guard Integration**: Automated testing and quality monitoring
+- **Status Summary**: Real-time development feedback with integrity checks
+- **Comprehensive Testing**: 480+ tests with fixtures and helpers
+- **Code Quality**: Zero RuboCop violations, consistent style
 
 **Documentation:**
-- **YARD Documentation**: Comprehensive API documentation (95.96% documented)
-- **CLI Help**: Detailed command-line help and examples
-- **Examples**: Multiple example configurations and use cases
+- **YARD Documentation**: 96.30% documented with local server
+- **CLI Help**: Comprehensive command-line help and examples
+- **Examples**: Multiple configuration examples and use cases
 
-## Installation
+## 💽 Installation
 
 ### Prerequisites
 
@@ -121,7 +125,9 @@ embed_font: false                 # Optional (default: true)
 - `{B/P}` - Black Phyrexian mana <img src="images/icons/phyrexian/black.svg" width="20" valign="middle" />
 - `{W/P}` - White Phyrexian mana <img src="images/icons/phyrexian/white.svg" width="20" valign="middle" />
 
-Hybrid and Phyrexian mana are now available! See all the notations below in the rule text section, the notation is the same. Just like the Phyrexian mana, you simply use curly braces in your notation:
+**Advanced Mana Support:**
+Hybrid and Phyrexian mana are now fully supported! See all the
+notations below in the rule text section. The notation uses curly braces for complex symbols:
 - `{R/G}` Red / Green Mana <img src="images/icons/hybrid/red-green.svg" width="20" valign="middle" />
 - `{G/W/P}` Green / White Phyrexian Mana <img src="images/icons/phyrexian/green-white.svg" width="20" valign="middle" />
 
@@ -320,6 +326,12 @@ bundle exec guard
 - RSpec results are saved to `tmp/rspec_status.txt`
 - Status summary provides real-time feedback on code quality and card generation
 
+**Development Benefits:**
+- **Zero Configuration**: Just run `bundle exec guard` and start coding
+- **Instant Feedback**: See test results and code quality status immediately
+- **Regression Prevention**: Automatic integrity checks prevent breaking changes
+- **Productivity Boost**: Focus on coding while Guard handles quality assurance
+
 ### Status Summary Script
 
 The `bin/status_summary` script provides a comprehensive development status overview, it is meant to only be run by guard.
@@ -365,6 +377,22 @@ bundle exec rubocop
 # Or run `bundle exec guard` and monitor output_card.svg and color_cards_sprite.svg for changes, it is far better, really.
 ```
 
+## 🏗️ Technical Architecture
+
+**Design Patterns & Best Practices:**
+- **Layered Architecture**: Clean separation between card components (art, text, frame, border)
+- **Factory Pattern**: `LayerFactory` provides flexible layer creation
+- **Service-Oriented Design**: Dedicated services for icons, sprites, gradients, and text rendering
+- **Single Responsibility**: Each class has a focused, well-defined purpose
+- **Dependency Injection**: Clean interfaces and testable components
+
+**Advanced Features:**
+- **Symbol Replacement Engine**: Sophisticated parsing of MTG notation with regex optimization
+- **Dynamic Gradient Generation**: Real-time SVG gradient creation for card colors
+- **Font Embedding System**: Base64 font embedding for portable SVG files
+- **Sprite Sheet Optimization**: Shared asset management reducing file sizes considerably
+- **Comprehensive Validation**: Robust error handling and input validation throughout
+
 ## 📰 Documentation
 
 ### API Documentation
@@ -382,15 +410,7 @@ bundle exec yard server
 ```
 Then visit `http://localhost:8808` to browse the documentation.
 
-### Key Classes
 
-- **MtgCardMaker**: Main module with card generation examples
-- **BaseCard**: High-level card creation interface
-- **Template**: SVG canvas and layer management
-- **BaseLayer**: Abstract base class for all card layers
-- **ColorScheme**: Unified color system for all MTG colors
-- **LayerFactory**: Factory pattern for creating card layers
-- **CLI**: Command-line interface with Thor integration
 
 ### Installation and Release
 
