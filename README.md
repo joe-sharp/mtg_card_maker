@@ -265,6 +265,44 @@ mtg_card_maker generate_sprite deck.yml sprite_sheet.svg \
 *Shortcuts:*
 - `gs` or `gcs` for `generate_sprite`
 
+### 🖼️ Experimental WebP Conversion
+
+**⚠️ Experimental Feature - Mac Only**
+
+The gem includes experimental support for converting SVG cards to WebP format using Chrome's headless mode. This feature is currently **Mac-only** and requires specific dependencies.
+
+**Why?:**
+It seems a lot more user-friendly for use in things like this README.md file. The file size is bigger and it can't scale so I wouldn't use this option unless something in the SVG isn't working with whatever you are trying to do. You should also report that at https://github.com/joe-sharp/mtg_card_maker/issues . Thanks in advance!
+
+**Prerequisites:**
+- **macOS**: Chrome must be installed at `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`
+- **cwebp**: Google's WebP encoder must be installed (install via Homebrew: `brew install webp`)
+
+**Usage:**
+```bash
+# Convert a single SVG card to WebP
+bin/svg_to_webp output_card.svg
+
+# Convert any SVG file to WebP
+bin/svg_to_webp path/to/your/card.svg
+```
+
+**Features:**
+- **Lossless Conversion**: High-quality WebP output with transparency support
+- **Automatic Cropping**: Removes Chrome's window chrome for clean card output
+- **Optimized Dimensions**: Outputs at 630x880 pixels (standard MTG card ratio)
+- **Transparent Background**: Preserves transparency for web and design use
+
+**Caveats:**
+- **Platform Limitation**: Currently only works on macOS with Chrome installed
+- **Dependency Required**: Requires `cwebp` command-line tool for final processing
+- **Experimental Status**: May have issues with complex SVG content or Chrome updates
+- **File Size**: WebP files may be larger than optimized SVGs for simple cards
+
+**Future Plans:**
+- Cross-platform support (Windows, Linux)
+- Integration with main CLI commands
+
 ## 🔮 Examples
 
 <p>
@@ -286,8 +324,11 @@ mtg_card_maker generate_card \
   --power=3 \
   --toughness=3 \
   --border-color=gold \
-  --color=blue
+  --color=blue \
+  --art=images/joe.webp
 ```
+
+
 
 **Add multiple cards to a YAML file:**
 ```bash
