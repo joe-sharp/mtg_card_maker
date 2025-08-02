@@ -31,6 +31,22 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
     expect_svg_to_match_fixture(fixture_layer, 'text_box_layer')
   end
 
+  it 'applies correct CSS class to flavor text elements', :aggregate_failures do
+    layer = described_class.new(
+      dimensions: { x: 10, y: 10, width: 200, height: 100 },
+      rules_text: 'Short rules text.',
+      flavor_text: 'Short flavor text.'
+    )
+
+    svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
+
+    # Should have flavor text elements with correct CSS class
+    expect(svg_content).to include('class="card-flavor-text"')
+
+    # Should also have rules text elements with correct CSS class
+    expect(svg_content).to include('class="card-rules-text"')
+  end
+
   context 'with text wrapping behavior' do
     it 'breaks long text into multiple lines' do
       long_text = 'This is a very long piece of text that should be broken into multiple lines'

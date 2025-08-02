@@ -38,6 +38,7 @@ module MtgCardMaker
 
           .card-flavor-text {
             font-family: serif;
+            font-style: italic;
           }
 
           .card-power-toughness {
