@@ -57,7 +57,7 @@ module MtgCardMaker
         .merge(generate_phyrexian_hybrid_symbols)
     end
 
-    # Generate numeric symbols (0-99 for single-digit, 100+ for double-digit)
+    # Generate numeric symbols (0-9 single-digit, 10-99 double-digit)
     def generate_numeric_symbols
       (0..99).to_h { |num| ["{#{num}}", :numeric] }
     end

@@ -245,7 +245,7 @@ RSpec.describe MtgCardMaker::SymbolReplacementService do
     it 'uses IconService for symbol rendering' do
       icon_service = instance_double(MtgCardMaker::IconService)
       allow(MtgCardMaker::IconService).to receive(:new).and_return(icon_service)
-      allow(icon_service).to receive(:icon_svg).with(:red).and_return('<svg>red</svg>')
+      allow(icon_service).to receive(:symbol_svg).with('{R}').and_return('<svg>red</svg>')
 
       service = described_class.new
       result = service.send(:render_symbol_html, '{R}')
@@ -256,8 +256,7 @@ RSpec.describe MtgCardMaker::SymbolReplacementService do
     it 'falls back to numeric icons for numbers' do
       icon_service = instance_double(MtgCardMaker::IconService)
       allow(MtgCardMaker::IconService).to receive(:new).and_return(icon_service)
-      allow(icon_service).to receive(:icon_svg).with(nil).and_return(nil)
-      allow(icon_service).to receive(:numeric_icon_svg).with(1).and_return('<svg>1</svg>')
+      allow(icon_service).to receive(:symbol_svg).with('{1}').and_return('<svg>1</svg>')
 
       service = described_class.new
       result = service.send(:render_symbol_html, '{1}')

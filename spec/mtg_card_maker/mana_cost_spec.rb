@@ -6,19 +6,19 @@ RSpec.describe MtgCardMaker::ManaCost do
   describe '#initialize' do
     it 'handles mixed mana cost string', :aggregate_failures do
       cost = described_class.new('2RG')
-      expect(cost.elements).to include(:numeric, :red, :green)
+      expect(cost.elements).to include('{2}', '{R}', '{G}')
       expect(cost.int_val).to eq(2)
     end
 
     it 'handles only numeric mana cost', :aggregate_failures do
       cost = described_class.new('3')
-      expect(cost.elements).to eq([:numeric])
+      expect(cost.elements).to eq(['{3}'])
       expect(cost.int_val).to eq(3)
     end
 
     it 'handles only colored mana cost', :aggregate_failures do
       cost = described_class.new('RW')
-      expect(cost.elements).to eq([:red, :white])
+      expect(cost.elements).to eq(['{R}', '{W}'])
       expect(cost.int_val).to be_nil
     end
 
@@ -41,68 +41,68 @@ RSpec.describe MtgCardMaker::ManaCost do
 
     it 'initializes with custom icon_set' do
       cost = described_class.new('R', :custom)
-      expect(cost.elements).to eq([:red])
+      expect(cost.elements).to eq(['{R}'])
       # The icon_set parameter is used internally by IconService
     end
 
     context 'with variable costs' do
       it 'handles X cost', :aggregate_failures do
         cost = described_class.new('X')
-        expect(cost.elements).to eq([:x])
+        expect(cost.elements).to eq(['{X}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles X cost with colored mana', :aggregate_failures do
         cost = described_class.new('XR')
-        expect(cost.elements).to eq([:x, :red])
+        expect(cost.elements).to eq(['{X}', '{R}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles 10 cost', :aggregate_failures do
         cost = described_class.new('10')
-        expect(cost.elements).to eq([:numeric])
+        expect(cost.elements).to eq(['{10}'])
         expect(cost.int_val).to eq(10)
       end
 
       it 'handles 10 cost with colored mana', :aggregate_failures do
         cost = described_class.new('10RG')
-        expect(cost.elements).to eq(%i[numeric red green])
+        expect(cost.elements).to eq(['{10}', '{R}', '{G}'])
         expect(cost.int_val).to eq(10)
       end
 
       it 'handles 11 cost', :aggregate_failures do
         cost = described_class.new('11')
-        expect(cost.elements).to eq([:numeric])
+        expect(cost.elements).to eq(['{11}'])
         expect(cost.int_val).to eq(11)
       end
 
       it 'handles 11 cost with colored mana', :aggregate_failures do
         cost = described_class.new('11WB')
-        expect(cost.elements).to eq(%i[numeric white black])
+        expect(cost.elements).to eq(['{11}', '{W}', '{B}'])
         expect(cost.int_val).to eq(11)
       end
 
       it 'handles case-insensitive variable costs', :aggregate_failures do
         cost = described_class.new('xrg')
-        expect(cost.elements).to eq(%i[x red green])
+        expect(cost.elements).to eq(['{X}', '{R}', '{G}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles X cost with numeric values', :aggregate_failures do
         cost = described_class.new('X3G')
-        expect(cost.elements).to eq(%i[x numeric green])
+        expect(cost.elements).to eq(['{X}', '{3}', '{G}'])
         expect(cost.int_val).to eq(3)
       end
 
       it 'handles X cost with multi-digit numeric values', :aggregate_failures do
         cost = described_class.new('X10RG')
-        expect(cost.elements).to eq(%i[x numeric red green])
+        expect(cost.elements).to eq(['{X}', '{10}', '{R}', '{G}'])
         expect(cost.int_val).to eq(10)
       end
 
       it 'handles X cost with single digit and colored mana', :aggregate_failures do
         cost = described_class.new('X5W')
-        expect(cost.elements).to eq(%i[x numeric white])
+        expect(cost.elements).to eq(['{X}', '{5}', '{W}'])
         expect(cost.int_val).to eq(5)
       end
     end
@@ -110,19 +110,19 @@ RSpec.describe MtgCardMaker::ManaCost do
     context 'with edge cases' do
       it 'handles unknown characters gracefully', :aggregate_failures do
         cost = described_class.new('2QZ')
-        expect(cost.elements).to eq([:numeric])
+        expect(cost.elements).to eq(['{2}', '{Q}', '{Z}'])
         expect(cost.int_val).to eq(2)
       end
 
       it 'handles mixed case colored mana', :aggregate_failures do
         cost = described_class.new('rWb')
-        expect(cost.elements).to eq(%i[red white black])
+        expect(cost.elements).to eq(['{R}', '{W}', '{B}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles colorless symbol C', :aggregate_failures do
         cost = described_class.new('2C')
-        expect(cost.elements).to eq([:numeric, :colorless])
+        expect(cost.elements).to eq(['{2}', '{C}'])
         expect(cost.int_val).to eq(2)
       end
     end
@@ -130,25 +130,25 @@ RSpec.describe MtgCardMaker::ManaCost do
     context 'with high numeric values' do
       it 'converts 100+ values to X cost', :aggregate_failures do
         cost = described_class.new('100')
-        expect(cost.elements).to eq([:x])
+        expect(cost.elements).to eq(['{X}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'converts 100+ values with colored mana to X cost', :aggregate_failures do
         cost = described_class.new('150RG')
-        expect(cost.elements).to eq(%i[x red green])
+        expect(cost.elements).to eq(['{X}', '{R}', '{G}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles 99 as numeric (not X)', :aggregate_failures do
         cost = described_class.new('99')
-        expect(cost.elements).to eq([:numeric])
+        expect(cost.elements).to eq(['{99}'])
         expect(cost.int_val).to eq(99)
       end
 
       it 'handles 99 with colored mana as numeric', :aggregate_failures do
         cost = described_class.new('99RG')
-        expect(cost.elements).to eq(%i[numeric red green])
+        expect(cost.elements).to eq(['{99}', '{R}', '{G}'])
         expect(cost.int_val).to eq(99)
       end
     end
@@ -162,11 +162,10 @@ RSpec.describe MtgCardMaker::ManaCost do
       expect(svg).to include('filter="url(#mana-cost-drop-shadow)"')
     end
 
-    it 'uses icons for colored mana and circles for colorless', :aggregate_failures do
+    it 'uses icons for all mana symbols', :aggregate_failures do
       cost = described_class.new('RW2')
       svg = cost.to_svg
-      expect(svg.scan('<circle').size).to eq(2) # Matches fixture/output
-      expect(svg.scan('<svg').size).to eq(2) # Two icons for colored mana
+      expect(svg.scan('<svg').size).to eq(3) # All symbols now use icons
     end
 
     it 'uses circles for colorless mana', :aggregate_failures do
@@ -205,185 +204,185 @@ RSpec.describe MtgCardMaker::ManaCost do
     it 'handles variable cost parsing with X', :aggregate_failures do
       cost = described_class.new('X')
       expect(cost.int_val).to be_nil
-      expect(cost.elements).to eq([:x])
+      expect(cost.elements).to eq(['{X}'])
     end
 
     it 'handles variable cost parsing with X and colored mana', :aggregate_failures do
       cost = described_class.new('XR')
       expect(cost.int_val).to be_nil
-      expect(cost.elements).to eq([:x, :red])
+      expect(cost.elements).to eq(['{X}', '{R}'])
     end
 
     it 'handles double-digit numbers as X', :aggregate_failures do
       cost = described_class.new('15')
       expect(cost.int_val).to eq(15)
-      expect(cost.elements).to eq([:numeric])
+      expect(cost.elements).to eq(['{15}'])
     end
 
     it 'handles double-digit numbers with colored mana', :aggregate_failures do
       cost = described_class.new('15RG')
       expect(cost.int_val).to eq(15)
-      expect(cost.elements).to eq(%i[numeric red green])
+      expect(cost.elements).to eq(['{15}', '{R}', '{G}'])
     end
 
     it 'handles single-digit numbers normally', :aggregate_failures do
       cost = described_class.new('3')
       expect(cost.int_val).to eq(3)
-      expect(cost.elements).to eq([:numeric])
+      expect(cost.elements).to eq(['{3}'])
     end
 
     it 'handles single-digit numbers with colored mana', :aggregate_failures do
       cost = described_class.new('3RG')
       expect(cost.int_val).to eq(3)
-      expect(cost.elements).to eq(%i[numeric red green])
+      expect(cost.elements).to eq(['{3}', '{R}', '{G}'])
     end
 
     it 'handles string starting with X but not numeric', :aggregate_failures do
       # This should test the start_with?('X') branch
       cost = described_class.new('XBC')
       expect(cost.int_val).to be_nil
-      expect(cost.elements).to eq(%i[x black colorless])
+      expect(cost.elements).to eq(['{X}', '{B}', '{C}'])
     end
 
     it 'handles string that does not start with digit or X', :aggregate_failures do
       # This should test the else branch in parse_mana_string
       cost = described_class.new('ABC')
       expect(cost.int_val).to be_nil
-      expect(cost.elements).to eq([:black, :colorless]) # A=black, B=black, C=colorless
+      expect(cost.elements).to eq(['{A}', '{B}', '{C}']) # All characters are now allowed
     end
 
     it 'handles string with unknown characters', :aggregate_failures do
       cost = described_class.new('YZ')
       expect(cost.int_val).to be_nil
-      expect(cost.elements).to eq([])
+      expect(cost.elements).to eq(['{Y}', '{Z}'])
     end
 
     context 'with colored mana processing' do
       it 'handles colorless symbol C specifically' do
         cost = described_class.new('C')
-        expect(cost.elements).to eq([:colorless])
+        expect(cost.elements).to eq(['{C}'])
       end
 
       it 'handles regular colored mana symbols' do
         cost = described_class.new('R')
-        expect(cost.elements).to eq([:red])
+        expect(cost.elements).to eq(['{R}'])
       end
 
       it 'handles unknown characters in colored mana' do
         cost = described_class.new('Z')
-        expect(cost.elements).to eq([])
+        expect(cost.elements).to eq(['{Z}'])
       end
 
       it 'handles mixed known and unknown characters' do
         cost = described_class.new('RZ')
-        expect(cost.elements).to eq([:red])
+        expect(cost.elements).to eq(['{R}', '{Z}'])
       end
 
       it 'handles completely unknown characters' do
         cost = described_class.new('ABC')
-        expect(cost.elements).to eq([:black, :colorless]) # A=unknown, B=black, C=colorless
+        expect(cost.elements).to eq(['{A}', '{B}', '{C}']) # All characters are now allowed
       end
     end
 
     context 'with Phyrexian mana symbols' do
       it 'handles single Phyrexian white symbol', :aggregate_failures do
         cost = described_class.new('{W/P}')
-        expect(cost.elements).to eq([:'phyrexian-white'])
+        expect(cost.elements).to eq(['{W/P}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles single Phyrexian blue symbol', :aggregate_failures do
         cost = described_class.new('{U/P}')
-        expect(cost.elements).to eq([:'phyrexian-blue'])
+        expect(cost.elements).to eq(['{U/P}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles single Phyrexian black symbol', :aggregate_failures do
         cost = described_class.new('{B/P}')
-        expect(cost.elements).to eq([:'phyrexian-black'])
+        expect(cost.elements).to eq(['{B/P}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles single Phyrexian red symbol', :aggregate_failures do
         cost = described_class.new('{R/P}')
-        expect(cost.elements).to eq([:'phyrexian-red'])
+        expect(cost.elements).to eq(['{R/P}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles single Phyrexian green symbol', :aggregate_failures do
         cost = described_class.new('{G/P}')
-        expect(cost.elements).to eq([:'phyrexian-green'])
+        expect(cost.elements).to eq(['{G/P}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles single Phyrexian colorless symbol', :aggregate_failures do
         cost = described_class.new('{C/P}')
-        expect(cost.elements).to eq([:'phyrexian-colorless'])
+        expect(cost.elements).to eq(['{C/P}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles multiple Phyrexian symbols', :aggregate_failures do
         cost = described_class.new('{W/P}{R/P}')
-        expect(cost.elements).to eq([:'phyrexian-white', :'phyrexian-red'])
+        expect(cost.elements).to eq(['{W/P}', '{R/P}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles Phyrexian symbols with regular mana', :aggregate_failures do
         cost = described_class.new('{W/P}U')
-        expect(cost.elements).to eq([:'phyrexian-white', :blue])
+        expect(cost.elements).to eq(['{W/P}', '{U}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles Phyrexian symbols with numeric mana', :aggregate_failures do
         cost = described_class.new('2{W/P}')
-        expect(cost.elements).to eq([:numeric, :'phyrexian-white'])
+        expect(cost.elements).to eq(['{2}', '{W/P}'])
         expect(cost.int_val).to eq(2)
       end
 
       it 'handles Phyrexian symbols with X cost', :aggregate_failures do
         cost = described_class.new('X{W/P}')
-        expect(cost.elements).to eq([:x, :'phyrexian-white'])
+        expect(cost.elements).to eq(['{X}', '{W/P}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles complex mixed mana costs with Phyrexian', :aggregate_failures do
         cost = described_class.new('2{W/P}UR')
-        expect(cost.elements).to eq(%i[numeric phyrexian-white blue red])
+        expect(cost.elements).to eq(['{2}', '{W/P}', '{U}', '{R}'])
         expect(cost.int_val).to eq(2)
       end
 
       it 'handles case-insensitive Phyrexian symbols', :aggregate_failures do
         cost = described_class.new('{w/p}')
-        expect(cost.elements).to eq([:'phyrexian-white'])
+        expect(cost.elements).to eq(['{W/P}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles unknown symbols in braces gracefully', :aggregate_failures do
         cost = described_class.new('{Z/P}')
-        expect(cost.elements).to eq([])
+        expect(cost.elements).to eq(['{Z/P}'])
         expect(cost.int_val).to be_nil
       end
 
       it 'handles mixed known and unknown symbols in braces', :aggregate_failures do
         cost = described_class.new('{W/P}{Z/P}{R/P}')
-        expect(cost.elements).to eq([:'phyrexian-white', :'phyrexian-red'])
+        expect(cost.elements).to eq(['{W/P}', '{Z/P}', '{R/P}'])
         expect(cost.int_val).to be_nil
       end
     end
 
     context 'with icon rendering edge cases' do
       it 'handles nil icon_svg in render methods', :aggregate_failures do
-        # Mock the icon service to return nil for icon_svg
+        # Mock the icon service to return nil for symbol_svg
         cost = described_class.new('R')
         icon_service = cost.instance_variable_get(:@icon_service)
 
         # Test that the render methods handle nil icon_svg gracefully
-        allow(icon_service).to receive_messages(icon_svg: nil, numeric_icon_svg: nil)
+        allow(icon_service).to receive(:symbol_svg).and_return(nil)
 
         # These should not raise errors even with nil icon_svg
-        expect { cost.send(:render_mana_icon, 0, 0, :red) }.not_to raise_error
-        expect { cost.send(:render_mana_icon, 0, 0, :numeric) }.not_to raise_error
-        expect { cost.send(:render_mana_icon, 0, 0, :x) }.not_to raise_error
+        expect { cost.send(:render_mana_icon, 0, 0, '{R}') }.not_to raise_error
+        expect { cost.send(:render_mana_icon, 0, 0, '{2}') }.not_to raise_error
+        expect { cost.send(:render_mana_icon, 0, 0, '{X}') }.not_to raise_error
       end
     end
   end

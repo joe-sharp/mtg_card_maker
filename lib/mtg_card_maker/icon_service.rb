@@ -2,6 +2,7 @@
 
 require 'fileutils'
 require 'nokogiri'
+require_relative 'icon_filename_service'
 
 module MtgCardMaker
   # IconService loads and renders SVG icons for mana costs.
@@ -10,8 +11,9 @@ module MtgCardMaker
   #
   # @example
   #   service = MtgCardMaker::IconService.new
-  #   svg = service.icon_svg(:red, size: 24)
-  #   svg = service.numeric_icon_svg(5, size: 24)
+  #   svg = service.symbol_svg("{W}", size: 24)
+  #   svg = service.symbol_svg("{2}", size: 24)
+  #   svg = service.symbol_svg("{W/B}", size: 24)
   #
   # @since 0.1.0
   class IconService
@@ -26,12 +28,21 @@ module MtgCardMaker
     def initialize(icon_set = :default)
       @icon_set = icon_set
       @cached_icons = {}
+      @filename_service = IconFilenameService.new
     end
 
-    # Returns the SVG content for a given icon type and icon set
-    def icon_svg(icon_type, size: 30)
-      return nil unless valid_icon?(icon_type)
+    # Returns the SVG content for a given symbol string
+    # @param symbol_string [String] the symbol string (e.g., "{W}", "{2}", "{W/B}", "{C/P}")
+    # @param size [Integer] the size of the icon in pixels
+    # @return [String, nil] the SVG content or nil if symbol not found
+    def symbol_svg(symbol_string, size: 30)
+      icon_type = @filename_service.symbol_to_icon_type(symbol_string)
+      return nil unless icon_type
 
+      # Handle numeric icons specially since they need dynamic content
+      return render_numeric_icon(symbol_string, size) if icon_type == :numeric
+
+      # Handle regular icons
       icon_path = icon_path_for_type(icon_type)
       return nil unless File.exist?(icon_path)
 
@@ -39,8 +50,12 @@ module MtgCardMaker
       resize_svg(svg_content, size)
     end
 
-    # Returns the SVG content for a numeric icon with the specified number
-    def numeric_icon_svg(number, size: 30)
+    # Renders a numeric icon with the specified number
+    # @param symbol_string [String] the numeric symbol string (e.g., "{2}", "{42}")
+    # @param size [Integer] the size of the icon in pixels
+    # @return [String, nil] the SVG content or nil if symbol not found
+    def render_numeric_icon(symbol_string, size)
+      number = extract_number_from_symbol(symbol_string)
       return nil unless number.is_a?(Integer) && number >= 0
 
       # Determine which template to use based on digit count
@@ -86,13 +101,35 @@ module MtgCardMaker
 
     private
 
+    def extract_number_from_symbol(symbol_string)
+      # Extract the number from symbols like "{2}", "{42}", etc.
+      match = symbol_string.match(/\{(\d{1,2})\}/)
+      return 'X' unless match
+
+      match[1].to_i
+    end
+
     def valid_icon?(icon_type)
       # Check if the SVG file exists
       File.exist?(icon_path_for_type(icon_type))
     end
 
     def icon_path_for_type(icon_type)
-      # Auto-map any symbol to {symbol}.svg
+      icon_type_str = icon_type.to_s
+
+      if (match = icon_type_str.match(/^(phyrexian|hybrid)-(.*)$/))
+        subdirectory_icon_path(icon_type: match[2], subdirectory: match[1])
+      else
+        standard_icon_path(icon_type)
+      end
+    end
+
+    def subdirectory_icon_path(icon_type:, subdirectory:)
+      filename = "#{icon_type}.svg"
+      File.join(ICONS_DIR, subdirectory, filename)
+    end
+
+    def standard_icon_path(icon_type)
       filename = "#{icon_type}.svg"
       File.join(ICONS_DIR, filename)
     end
