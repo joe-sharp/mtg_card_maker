@@ -106,8 +106,6 @@ embed_font: false                 # Optional (default: true)
 
 **Symbols Available for Mana Cost:**
 
-Hybrid Mana, coming soon!
-
 **Mana Symbols:**
 - `W` - White mana <img src="images/icons/white.svg" width="16" valign="middle" />
 - `B` - Black mana <img src="images/icons/black.svg" width="16" valign="middle" />
@@ -116,12 +114,16 @@ Hybrid Mana, coming soon!
 - `U` - Blue mana <img src="images/icons/blue.svg" width="16" valign="middle" />
 - `C` - Colorless mana <img src="images/icons/colorless.svg" width="16" valign="middle" />
 - `S` - Snow mana <img src="images/icons/snow.svg" width="16" valign="middle" />
-- `{C/P}` - Colorless Phyrexian mana <img src="images/icons/phyrexian-colorless.svg" width="20" valign="middle" />
-- `{R/P}` - Red Phyrexian mana <img src="images/icons/phyrexian-red.svg" width="20" valign="middle" />
-- `{G/P}` - Green Phyrexian mana <img src="images/icons/phyrexian-green.svg" width="20" valign="middle" />
-- `{U/P}` - Blue Phyrexian mana <img src="images/icons/phyrexian-blue.svg" width="20" valign="middle" />
-- `{B/P}` - Black Phyrexian mana <img src="images/icons/phyrexian-black.svg" width="20" valign="middle" />
-- `{W/P}` - White Phyrexian mana <img src="images/icons/phyrexian-white.svg" width="20" valign="middle" />
+- `{C/P}` - Colorless Phyrexian mana <img src="images/icons/phyrexian/colorless.svg" width="20" valign="middle" />
+- `{R/P}` - Red Phyrexian mana <img src="images/icons/phyrexian/red.svg" width="20" valign="middle" />
+- `{G/P}` - Green Phyrexian mana <img src="images/icons/phyrexian/green.svg" width="20" valign="middle" />
+- `{U/P}` - Blue Phyrexian mana <img src="images/icons/phyrexian/blue.svg" width="20" valign="middle" />
+- `{B/P}` - Black Phyrexian mana <img src="images/icons/phyrexian/black.svg" width="20" valign="middle" />
+- `{W/P}` - White Phyrexian mana <img src="images/icons/phyrexian/white.svg" width="20" valign="middle" />
+
+Hybrid and Phyrexian mana are now available! See all the notations below in the rule text section, the notation is the same. Just like the Phyrexian mana, you simply use curly braces in your notation:
+- `{R/G}` Red / Green Mana <img src="images/icons/hybrid/red-green.svg" width="20" valign="middle" />
+- `{G/W/P}` Green / White Phyrexian Mana <img src="images/icons/phyrexian/green-white.svg" width="20" valign="middle" />
 
 **Numeric Symbols:**
 - `0` through `99` - Generic mana costs (0-99) <img src="images/icons/single-digit.svg" width="16" valign="middle" />
@@ -132,7 +134,7 @@ Hybrid Mana, coming soon!
 - `XG` - X generic + 1 green <img src="images/icons/x.svg" width="16" valign="middle" /> <img src="images/icons/green.svg" width="16" valign="middle" />
 - `X3R` - X generic + 3 generic + 1 red <img src="images/icons/x.svg" width="16" valign="middle" /> <img src="images/icons/single-digit.svg" width="16" valign="middle" /> <img src="images/icons/red.svg" width="16" valign="middle" />
 - `3WU` - 3 generic + 1 white + 1 blue <img src="images/icons/single-digit.svg" width="16" valign="middle" /> <img src="images/icons/white.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" />
-- `WU{B/P}RG` White, Blue, Phyrexian Black, Red, Green <img src="images/icons/white.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" /> <img src="images/icons/phyrexian-black.svg" width="20" valign="middle" /> <img src="images/icons/red.svg" width="16" valign="middle" /> <img src="images/icons/green.svg" width="16" valign="middle" />
+- `WU{B/P}RG` White, Blue, Phyrexian Black, Red, Green <img src="images/icons/white.svg" width="16" valign="middle" /> <img src="images/icons/blue.svg" width="16" valign="middle" /> <img src="images/icons/phyrexian/black.svg" width="20" valign="middle" /> <img src="images/icons/red.svg" width="16" valign="middle" /> <img src="images/icons/green.svg" width="16" valign="middle" />
 - `X` - X generic only <img src="images/icons/x.svg" width="16" valign="middle" />
 - `3` - 3 generic only <img src="images/icons/single-digit.svg" width="16" valign="middle" />
 - `B` - black only <img src="images/icons/black.svg" width="16" valign="middle" />
@@ -149,12 +151,40 @@ You can use MTG symbols in your rules text by wrapping them in curly braces "{C}
 - `{U}` - Blue mana <img src="images/icons/blue.svg" width="16" valign="middle" />
 - `{C}` - Colorless mana <img src="images/icons/colorless.svg" width="16" valign="middle" />
 - `{S}` - Snow mana symbol <img src="images/icons/snow.svg" width="16" valign="middle" />
-- `{C/P}` - Colorless Phyrexian mana <img src="images/icons/phyrexian-colorless.svg" width="20" valign="middle" />
-- `{R/P}` - Red Phyrexian mana <img src="images/icons/phyrexian-red.svg" width="20" valign="middle" />
-- `{G/P}` - Green Phyrexian mana <img src="images/icons/phyrexian-green.svg" width="20" valign="middle" />
-- `{U/P}` - Blue Phyrexian mana <img src="images/icons/phyrexian-blue.svg" width="20" valign="middle" />
-- `{B/P}` - Black Phyrexian mana <img src="images/icons/phyrexian-black.svg" width="20" valign="middle" />
-- `{W/P}` - White Phyrexian mana <img src="images/icons/phyrexian-white.svg" width="20" valign="middle" />
+- `{C/P}` - Colorless Phyrexian mana <img src="images/icons/phyrexian/colorless.svg" width="20" valign="middle" />
+- `{R/P}` - Red Phyrexian mana <img src="images/icons/phyrexian/red.svg" width="20" valign="middle" />
+- `{G/P}` - Green Phyrexian mana <img src="images/icons/phyrexian/green.svg" width="20" valign="middle" />
+- `{U/P}` - Blue Phyrexian mana <img src="images/icons/phyrexian/blue.svg" width="20" valign="middle" />
+- `{B/P}` - Black Phyrexian mana <img src="images/icons/phyrexian/black.svg" width="20" valign="middle" />
+- `{W/P}` - White Phyrexian mana <img src="images/icons/phyrexian/white.svg" width="20" valign="middle" />
+
+**Hybrid Mana Symbols:**
+
+**White hybrid:** `{W/B}` `{W/R}` `{W/G}` `{W/U}` - <img src="images/icons/hybrid/white-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/white-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/white-green.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/white-blue.svg" width="20" valign="middle" />
+
+**Black hybrid:** `{B/W}` `{B/R}` `{B/G}` `{B/U}` - <img src="images/icons/hybrid/black-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/black-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/black-green.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/black-blue.svg" width="20" valign="middle" />
+
+**Red hybrid:** `{R/W}` `{R/B}` `{R/G}` `{R/U}` - <img src="images/icons/hybrid/red-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/red-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/red-green.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/red-blue.svg" width="20" valign="middle" />
+
+**Green hybrid:** `{G/W}` `{G/B}` `{G/R}` `{G/U}` - <img src="images/icons/hybrid/green-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/green-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/green-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/green-blue.svg" width="20" valign="middle" />
+
+**Blue hybrid:** `{U/W}` `{U/B}` `{U/R}` `{U/G}` - <img src="images/icons/hybrid/blue-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/blue-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/blue-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/blue-green.svg" width="20" valign="middle" />
+
+**"Two-brids":** `{2/W}` `{2/B}` `{2/R}` `{2/G}` `{2/U}` - <img src="images/icons/hybrid/2-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/2-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/2-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/2-green.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/2-blue.svg" width="20" valign="middle" />
+
+**Colorless hybrid:** `{C/W}` `{C/B}` `{C/R}` `{C/G}` `{C/U}` - <img src="images/icons/hybrid/colorless-white.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/colorless-black.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/colorless-red.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/colorless-green.svg" width="20" valign="middle" /> <img src="images/icons/hybrid/colorless-blue.svg" width="20" valign="middle" />
+
+**Phyrexian Hybrid Mana Symbols:**
+
+**White Phyrexian hybrid:** `{W/B/P}` `{W/R/P}` `{W/G/P}` `{W/U/P}` - <img src="images/icons/phyrexian/white-black.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/white-red.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/white-green.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/white-blue.svg" width="20" valign="middle" />
+
+**Black Phyrexian hybrid:** `{B/W/P}` `{B/R/P}` `{B/G/P}` `{B/U/P}` - <img src="images/icons/phyrexian/black-white.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/black-red.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/black-green.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/black-blue.svg" width="20" valign="middle" />
+
+**Red Phyrexian hybrid:** `{R/W/P}` `{R/B/P}` `{R/G/P}` `{R/U/P}` - <img src="images/icons/phyrexian/red-white.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/red-black.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/red-green.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/red-blue.svg" width="20" valign="middle" />
+
+**Green Phyrexian hybrid:** `{G/W/P}` `{G/B/P}` `{G/R/P}` `{G/U/P}` - <img src="images/icons/phyrexian/green-white.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/green-black.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/green-red.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/green-blue.svg" width="20" valign="middle" />
+
+**Blue Phyrexian hybrid:** `{U/W/P}` `{U/B/P}` `{U/R/P}` `{U/G/P}` - <img src="images/icons/phyrexian/blue-white.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/blue-black.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/blue-red.svg" width="20" valign="middle" /> <img src="images/icons/phyrexian/blue-green.svg" width="20" valign="middle" />
 
 **Numeric Symbols:**
 - `{0}` through `{99}` - Generic mana costs (0-99) <img src="images/icons/single-digit.svg" width="16" valign="middle" />

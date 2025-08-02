@@ -6,26 +6,6 @@ module MtgCardMaker
   # SymbolReplacementService handles the parsing and rendering of MTG symbols in text
   # It converts text with symbol notation (like {W}, {2}, {T}) into HTML with inline SVG icons
   class SymbolReplacementService
-    # Mapping of mtg notation to icons
-    SYMBOL_MAP = {
-      'B'   => :black,
-      'U'   => :blue,
-      'G'   => :green,
-      'W'   => :white,
-      'R'   => :red,
-      'C'   => :colorless,
-      'T'   => :tap,
-      'Q'   => :untap,
-      'E'   => :energy,
-      'S'   => :snow,
-      'X'   => :x,
-      'C/P' => :'phyrexian-colorless',
-      'R/P' => :'phyrexian-red',
-      'G/P' => :'phyrexian-green',
-      'U/P' => :'phyrexian-blue',
-      'B/P' => :'phyrexian-black',
-      'W/P' => :'phyrexian-white'
-    }.freeze
     attr_reader :font_size, :icon_service, :layer_config
 
     def initialize
@@ -95,17 +75,13 @@ module MtgCardMaker
     # @param symbol [String] the symbol in {symbol} format
     # @return [String, nil] HTML string for the symbol or nil if not found
     def render_symbol_html(symbol)
-      # Convert symbol to mana cost format and use IconService
-      symbol = symbol.gsub(/[{}]/, '')
-
       # Get the SVG content from IconService
-      icon_svg = get_icon_svg_for_symbol(symbol)
+      icon_svg = icon_service.symbol_svg(symbol)
 
       return unless icon_svg
 
-      # Determine icon size based on icon type
-      icon_type = SYMBOL_MAP[symbol]
-      icon_size = get_icon_size_for_type(icon_type)
+      # Determine icon size based on symbol type using IconService
+      icon_size = get_icon_size_for_symbol(symbol)
 
       # Use the SVG content directly with proper styling
       icon_svg.gsub(/width="[^"]*"/, "width='#{icon_size}'")
@@ -113,33 +89,13 @@ module MtgCardMaker
               .gsub('<svg', '<svg style="vertical-align: middle; margin: 0 5px;"')
     end
 
-    def get_icon_svg_for_symbol(symbol)
-      if symbol.match?(/^\d+$/)
-        handle_numeric_symbol(symbol)
-      else
-        icon_service.icon_svg(SYMBOL_MAP[symbol])
-      end
-    end
-
-    def get_icon_size_for_type(icon_type)
-      if icon_type.to_s.match?(/hybrid|phyrexian/)
+    def get_icon_size_for_symbol(symbol)
+      # Use IconService to determine if this is a hybrid or phyrexian symbol
+      # Check if the symbol contains '/' which indicates hybrid or phyrexian
+      if symbol.match?(%r{\{.*/.*\}})
         layer_config.text_box_config[:hybrid_icon_size]
       else
         layer_config.text_box_config[:icon_size]
-      end
-    end
-
-    # Handle numeric symbols, converting numbers 100+ to X symbols
-    # @param symbol [String] the numeric symbol string
-    # @return [String, nil] SVG content for the symbol or nil if not found
-    def handle_numeric_symbol(symbol)
-      numeric_value = symbol.to_i
-
-      # Convert numbers 100 and above to X symbols (like ManaCost does)
-      if numeric_value >= 100
-        icon_service.icon_svg(:x)
-      else
-        icon_service.numeric_icon_svg(numeric_value)
       end
     end
   end

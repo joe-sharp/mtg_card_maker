@@ -17,25 +17,7 @@ module MtgCardMaker
   #
   # @since 0.1.0
   class ManaCost
-    # Mapping of MTG notation to icon types
-    SYMBOL_MAP = {
-      'B'     => :black,
-      'U'     => :blue,
-      'G'     => :green,
-      'W'     => :white,
-      'R'     => :red,
-      'C'     => :colorless,
-      'S'     => :snow,
-      'X'     => :x,
-      '{C/P}' => :'phyrexian-colorless',
-      '{R/P}' => :'phyrexian-red',
-      '{G/P}' => :'phyrexian-green',
-      '{U/P}' => :'phyrexian-blue',
-      '{B/P}' => :'phyrexian-black',
-      '{W/P}' => :'phyrexian-white'
-    }.freeze
-
-    # @return [Array<Symbol>] the parsed mana elements
+    # @return [Array<String>] the parsed mana elements (symbol strings)
     attr_reader :elements
 
     # @return [Integer, nil] the integer value for generic mana
@@ -66,8 +48,8 @@ module MtgCardMaker
     def to_svg
       circle_spacing = layer_config.mana_cost_config[:circle_spacing]
 
-      mana_icons = @elements.each_with_index.map do |icon_type, i|
-        render_mana_icon(i * circle_spacing, 0, icon_type)
+      mana_icons = @elements.each_with_index.map do |symbol, i|
+        render_mana_icon(i * circle_spacing, 0, symbol)
       end.join
 
       <<~SVG.delete("\n")
@@ -91,7 +73,7 @@ module MtgCardMaker
     end
 
     def parse_x_cost(mana_string)
-      @elements << :x
+      @elements << '{X}'
       remaining_string = mana_string[1..]
 
       # Check if the remaining string starts with a number
@@ -107,10 +89,10 @@ module MtgCardMaker
 
       if numeric_value >= 100
         @int_val = nil
-        @elements << :x
+        @elements << '{X}'
       else
         @int_val = numeric_value
-        @elements << :numeric
+        @elements << "{#{numeric_value}}"
       end
 
       parse_colored_mana(mana_string[numeric_value.to_s.length..])
@@ -119,8 +101,11 @@ module MtgCardMaker
     def parse_colored_mana(mana_string)
       # Use regex to match symbols: single letters, 1-2 digits, or {anything between curly braces}
       mana_string.scan(/([A-Z]|\d{1,2}|\{[^}]+\})/).flatten.each do |symbol|
-        icon_type = SYMBOL_MAP[symbol]
-        @elements << icon_type if icon_type
+        # Add curly braces if not already present
+        formatted_symbol = symbol.start_with?('{') ? symbol : "{#{symbol}}"
+
+        # Allow any symbol - IconService will handle validation
+        @elements << formatted_symbol
       end
     end
 
@@ -129,29 +114,20 @@ module MtgCardMaker
       @elements = @elements.first(max_circles)
     end
 
-    def render_mana_icon(x, y, icon_type)
-      icon_size = if icon_type.to_s.match?(/phyrexian|hybrid/)
+    def render_mana_icon(x, y, symbol)
+      icon_size = if symbol.match?(%r{\{.*/.*\}}) # Hybrid or phyrexian symbols
                     layer_config.mana_cost_config[:hybrid_icon_size]
                   else
                     layer_config.mana_cost_config[:icon_size]
                   end
 
-      icon_svg = get_icon_svg(icon_type, icon_size)
+      icon_svg = @icon_service.symbol_svg(symbol, size: icon_size)
       return unless icon_svg
 
       icon_x = x - (icon_size / 2)
       icon_y = y - (icon_size / 2)
 
       "<g transform='translate(#{icon_x}, #{icon_y})'>#{icon_svg}</g>"
-    end
-
-    def get_icon_svg(icon_type, size)
-      case icon_type
-      when :numeric
-        @icon_service.numeric_icon_svg(@int_val, size: size)
-      else
-        @icon_service.icon_svg(icon_type, size: size)
-      end
     end
 
     def drop_shadow_filter
