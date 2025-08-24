@@ -283,6 +283,7 @@
     <stop offset="100%" stop-color="#CD853F"/>
   </linearGradient>
   <g transform="translate(0, 0)">
+    <svg viewBox="0 0 630 880" width="630" height="880">
 
 
 
@@ -338,8 +339,10 @@ The light of justice never fades, even in the
 darkest of times.
 </text>
 </g>
-</g>
+</svg>
+  </g>
   <g transform="translate(660, 0)">
+    <svg viewBox="0 0 630 880" width="630" height="880">
 
 
 
@@ -420,8 +423,10 @@ Knowledge flows like water, finding its way through
 any barrier.
 </text>
 </g>
-</g>
+</svg>
+  </g>
   <g transform="translate(1320, 0)">
+    <svg viewBox="0 0 630 880" width="630" height="880">
 
 
 
@@ -475,8 +480,10 @@ Death is not the end, but a transformation into
 something darker.
 </text>
 </g>
-</g>
+</svg>
+  </g>
   <g transform="translate(1980, 0)">
+    <svg viewBox="0 0 630 880" width="630" height="880">
 
 
 
@@ -538,8 +545,10 @@ exile it instead.
 Fire consumes all, leaving only ash and memory.
 </text>
 </g>
-</g>
+</svg>
+  </g>
   <g transform="translate(0, 910)">
+    <svg viewBox="0 0 630 880" width="630" height="880">
 
 
 
@@ -610,8 +619,10 @@ the battlefield tapped.
 4/12
 </text>
 </g>
-</g>
+</svg>
+  </g>
   <g transform="translate(660, 910)">
+    <svg viewBox="0 0 630 880" width="630" height="880">
 
 
 
@@ -671,8 +682,10 @@ A piece of jewelry, usually containing a gemstone,
 that can produce mana. Perhaps a Ruby?
 </text>
 </g>
-</g>
+</svg>
+  </g>
   <g transform="translate(1320, 910)">
+    <svg viewBox="0 0 630 880" width="630" height="880">
 
 
 
@@ -742,8 +755,10 @@ third person as 'The Equipped One'.
 
 </foreignObject>
 </g>
-</g>
+</svg>
+  </g>
   <g transform="translate(1980, 910)">
+    <svg viewBox="0 0 630 880" width="630" height="880">
 
 
 
@@ -826,5 +841,6 @@ comprehension.
 8/8
 </text>
 </g>
-</g>
+</svg>
+  </g>
 </svg>

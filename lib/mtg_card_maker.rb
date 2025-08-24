@@ -161,7 +161,7 @@ module MtgCardMaker
     def initialize(width: CARD_WIDTH, height: CARD_HEIGHT, embed_font: false)
       @width = width
       @height = height
-      @svg = Victor::SVG.new width: width, height: height
+      @svg = Victor::SVG.new width: width, height: height, viewBox: "0 0 #{width} #{height}"
       embed_font(embed: embed_font)
     end
 

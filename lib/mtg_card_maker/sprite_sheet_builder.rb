@@ -65,7 +65,12 @@ module MtgCardMaker
       return unless svg_element
 
       xml.g(transform: "translate(#{position[:x]}, #{position[:y]})") do
-        add_card_children(xml, svg_element, embed_font)
+        # Add the card with its own viewBox for proper scaling
+        xml.svg(viewBox: "0 0 #{CARD_WIDTH} #{CARD_HEIGHT}",
+                width: CARD_WIDTH,
+                height: CARD_HEIGHT) do
+          add_card_children(xml, svg_element, embed_font)
+        end
       end
     end
 
