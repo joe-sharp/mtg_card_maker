@@ -50,4 +50,16 @@ licensed to you by this project, and are excluded from the grant above:
    lib/mtg_card_maker/fonts/OFL.txt. The font remains under that license,
    not the MIT License.
 
+3. Sample artwork
+
+   The card artwork and finished sample cards in the images/ directory of the
+   source repository (which are not part of the published gem) are
+   AI-generated and are included for illustration only. They are not covered
+   by the MIT License, and no rights in them are granted.
+
+Cards you generate belong to you: the MIT License says nothing about the
+text, artwork, or other content you put on them. The jsharp.svg and
+qrcode.svg icons bundled in lib/mtg_card_maker/icons/ are original to this
+project and are covered by the MIT License.
+
 Questions about the author's own original assets: joesharp13@gmail.com

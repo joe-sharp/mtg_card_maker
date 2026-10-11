@@ -194,7 +194,7 @@ RSpec.describe MtgCardMaker do
       expect_svg_to_contain(basic_card, 'Ruby - SVG - Shell')
       expect_svg_to_contain(basic_card, 'MTG Card Maker is a tool for creating fan-made MTG')
       expect_svg_to_contain(basic_card, '9999/9999')
-      expect_svg_to_contain(basic_card, '© 2025 Joe Sharp')
+      expect_svg_to_contain(basic_card, 'MTG Card Maker by Joe Sharp')
       expect_svg_to_contain(basic_card, 'Wizards of the Coast')
 
       # Test that it has the expected SVG structure

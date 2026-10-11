@@ -469,12 +469,15 @@ The MIT License does **not** cover:
 
 - **Wizards of the Coast materials** (the Magic: The Gathering name, mana and set symbols, card frame and layout designs). These are property of Wizards of the Coast and are used under the Fan Content Policy, which does not permit commercial use.
 - **The Goudy Bookletter 1911 font**, © 2010 Barry Schwartz, licensed under the [SIL Open Font License 1.1](lib/mtg_card_maker/fonts/OFL.txt).
+- **The sample artwork and sample cards in `images/`**, which are AI-generated, are for illustration only and are not licensed for reuse. They are not part of the gem.
+
+Cards you generate, including their text and artwork, belong to you.
 
 See [LICENSE.txt](LICENSE.txt) for details.
 
 ## ©️ Copyright
 
-© 2025 Joe Sharp.
+© 2025 Joe Sharp. Released under the MIT License.
 MTG Card Maker is unofficial Fan Content permitted under the [Fan Content Policy.](https://company.wizards.com/en/legal/fancontentpolicy) Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC.
 
 Please keep the copyright notices, attributions, and QR code on generated cards intact.
