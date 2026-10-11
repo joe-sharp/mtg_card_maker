@@ -90,6 +90,8 @@ module MtgCardMaker
     option :cards_per_row, type: :numeric, default: 4, desc: 'Number of cards per row in sprite'
     option :spacing, type: :numeric, default: 30, desc: 'Spacing between cards in pixels'
     def generate_sprite(yaml_file, output_file)
+      abort "❌ YAML file not found: #{yaml_file}" unless File.exist?(yaml_file)
+
       config = validate_yaml(yaml_file)
       sprite_service = create_sprite_service
       process_sprite_generation(config, sprite_service, output_file)

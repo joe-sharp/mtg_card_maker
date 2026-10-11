@@ -66,8 +66,9 @@ RSpec.describe MtgCardMaker::CLI do
       expect { cli.generate_sprite(yaml_file, output_file) }.not_to raise_error
     end
 
-    it 'handles non-existent YAML file' do
-      expect { cli.generate_sprite('nonexistent.yml', output_file) }.to raise_error(SystemExit)
+    it 'handles non-existent YAML file', :aggregate_failures do
+      expect { cli.generate_sprite('nonexistent.yml', output_file) }
+        .to raise_error(SystemExit).and output(/YAML file not found: nonexistent\.yml/).to_stderr
     end
 
     it 'handles invalid YAML syntax' do
