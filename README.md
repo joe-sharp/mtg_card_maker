@@ -269,7 +269,7 @@ mtg_card_maker generate_sprite deck.yml sprite_sheet.svg \
 
 **⚠️ Experimental Feature - Mac Only**
 
-The gem includes experimental support for converting SVG cards to WebP format using Chrome's headless mode. This feature is currently **Mac-only** and requires specific dependencies.
+The source repository includes an experimental script, `bin/svg_to_webp`, for converting SVG cards to WebP format using Chrome's headless mode. It is a development script and is **not** part of the published gem, so clone the repository to use it. This feature is currently **Mac-only** and requires specific dependencies.
 
 **Why?:**
 It seems a lot more user-friendly for use in things like this README.md file. The file size is bigger and it can't scale so I wouldn't use this option unless something in the SVG isn't working with whatever you are trying to do. You should also report that at https://github.com/joe-sharp/mtg_card_maker/issues . Thanks in advance!
@@ -278,7 +278,7 @@ It seems a lot more user-friendly for use in things like this README.md file. Th
 - **macOS**: Chrome must be installed at `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`
 - **cwebp**: Google's WebP encoder must be installed (install via Homebrew: `brew install webp`)
 
-**Usage:**
+**Usage** (from a clone of the repository):
 ```bash
 # Convert a single SVG card to WebP
 bin/svg_to_webp output_card.svg
