@@ -65,55 +65,42 @@ RSpec.describe MtgCardMaker::BaseCard do
       expect(card.color_scheme.primary_color).to eq(MtgCardMaker::ColorScheme.new(:blue).primary_color)
     end
 
-    context 'with validation errors' do
-      it 'raises error when name is missing', :aggregate_failures do
-        expect do
-          described_class.new(
-            type_line: 'Instant',
-            rules_text: 'Test rules text'
-          )
-        end.to raise_error(ArgumentError, /Missing required fields: name/)
+    context 'with omitted fields' do
+      def render_to_string(card)
+        temp_file = Tempfile.new(['optional_fields', '.svg'])
+        card.save(temp_file.path)
+        File.read(temp_file.path)
+      ensure
+        temp_file&.close
+        temp_file&.unlink
       end
 
-      it 'raises error when name is empty string', :aggregate_failures do
-        expect do
-          described_class.new(
-            name: '',
-            type_line: 'Instant',
-            rules_text: 'Test rules text'
-          )
-        end.to raise_error(ArgumentError, /Missing required fields: name/)
+      it 'warns when name is missing', :aggregate_failures, :logger_spec do
+        expect { described_class.new(type_line: 'Instant', rules_text: 'Test rules text') }
+          .to output(/Card has no name\n/).to_stderr
       end
 
-      it 'raises error when name is whitespace only', :aggregate_failures do
-        expect do
-          described_class.new(
-            name: '   ',
-            type_line: 'Instant',
-            rules_text: 'Test rules text'
-          )
-        end.to raise_error(ArgumentError, /Missing required fields: name/)
+      it 'warns when type_line is missing', :aggregate_failures, :logger_spec do
+        expect { described_class.new(name: 'Test Card', rules_text: 'Test rules text') }
+          .to output(/Card has no type line\n/).to_stderr
       end
 
-      it 'raises error when type_line is missing', :aggregate_failures do
-        expect do
-          described_class.new(
-            name: 'Test Card',
-            rules_text: 'Test rules text'
-          )
-        end.to raise_error(ArgumentError, /Missing required fields: type_line/)
+      it 'warns when both name and type_line are blank', :aggregate_failures, :logger_spec do
+        expect { described_class.new(name: '  ', type_line: '', rules_text: 'x') }
+          .to output(/Card has no name or type line/).to_stderr
       end
 
-      it 'does not require rules_text', :aggregate_failures do
-        card = described_class.new(name: 'Test Card', type_line: 'Creature - Bear')
-        temp_file = Tempfile.new(['vanilla_card', '.svg'])
+      it 'does not warn when name and type_line are present', :logger_spec do
+        expect { described_class.new(name: 'Test Card', type_line: 'Instant') }.not_to output.to_stderr
+      end
 
+      it 'does not require rules_text', :aggregate_failures, :logger_spec do
+        card = nil
+
+        expect { card = described_class.new(name: 'Test Card', type_line: 'Creature - Bear') }
+          .not_to output.to_stderr
         expect(card.rules_text).to be_nil
-        expect { card.save(temp_file.path) }.not_to raise_error
-        expect(File.read(temp_file.path)).to include('Test Card')
-
-        temp_file.close
-        temp_file.unlink
+        expect(render_to_string(card)).to include('Test Card')
       end
 
       it 'accepts blank rules_text' do
@@ -121,12 +108,11 @@ RSpec.describe MtgCardMaker::BaseCard do
           .not_to raise_error
       end
 
-      it 'raises error when multiple fields are missing', :aggregate_failures do
-        expect do
-          described_class.new(
-            name: 'Test Card'
-          )
-        end.to raise_error(ArgumentError, /Missing required fields: type_line/)
+      it 'renders a card with no text at all', :aggregate_failures, :logger_spec do
+        card = nil
+
+        expect { card = described_class.new({}) }.to output(/Card has no name or type line/).to_stderr
+        expect(render_to_string(card)).to include('<svg')
       end
     end
 

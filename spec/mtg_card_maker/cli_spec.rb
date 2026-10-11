@@ -38,6 +38,13 @@ RSpec.describe MtgCardMaker::CLI do
     # end
   end
 
+  describe 'unknown options' do
+    it 'rejects misspelled options instead of ignoring them', :aggregate_failures do
+      expect { described_class.start(%w[generate_card --nmae=Test --type-line=Instant]) }
+        .to raise_error(SystemExit).and output(/Unknown switches "--nmae=Test"/).to_stderr
+    end
+  end
+
   describe '#generate_sprite' do
     let(:valid_yaml_content) do
       {
@@ -262,6 +269,14 @@ RSpec.describe MtgCardMaker::CLI do
         expect(result).not_to have_key('flavor_text')
       end
 
+      it 'does not require name or type_line', :aggregate_failures do
+        cli.options = {}
+
+        result = cli.send(:build_card_config_from_options)
+        expect(result).not_to have_key('name')
+        expect(result).not_to have_key('type_line')
+      end
+
       it 'does not require rules_text', :aggregate_failures do
         cli.options = { name: 'Vanilla Bear', type_line: 'Creature - Bear' }
 
@@ -278,6 +293,11 @@ RSpec.describe MtgCardMaker::CLI do
     end
 
     describe '#generate_card_key' do
+      it 'falls back to a generic key when the name is missing', :aggregate_failures do
+        expect(cli.send(:generate_card_key, nil, {})).to eq('card')
+        expect(cli.send(:generate_card_key, '!!!', { 'card' => {} })).to eq('card_1')
+      end
+
       it 'generates key from card name' do
         result = cli.send(:generate_card_key, 'Test Card', {})
         expect(result).to eq('test_card')
