@@ -111,10 +111,10 @@ module MtgCardMaker
     # Initialize a new card with the given configuration
     #
     # @param config [Hash] the card configuration
-    # @option config [String] :name the card name
+    # @option config [String] :name the card name (optional, warns when omitted)
     # @option config [String] :mana_cost the mana cost in MTG notation
     # @option config [String] :type_line the card type
-    # @option config [String] :rules_text the card rules text
+    # @option config [String] :rules_text the card rules text (optional)
     # @option config [String] :flavor_text the flavor text
     # @option config [String] :power the power value for creatures
     # @option config [String] :toughness the toughness value for creatures
@@ -124,7 +124,7 @@ module MtgCardMaker
     # @option config [Boolean] :embed_font whether to embed the font as base64 (default: true)
     def initialize(config)
       assign_attributes(config)
-      validate_required_fields
+      warn_about_missing_fields
       @template = Template.new(embed_font: config.fetch(:embed_font, true))
       add_layers
     end
@@ -187,13 +187,11 @@ module MtgCardMaker
       @art = config[:art]
     end
 
-    def validate_required_fields
-      required_fields = %i[name type_line rules_text]
-      missing_fields = required_fields.select { |field| send(field).nil? || send(field).to_s.strip.empty? }
+    def warn_about_missing_fields
+      missing = { name: 'name', type_line: 'type line' }.select { |field, _label| public_send(field).to_s.strip.empty? }
+      return if missing.empty?
 
-      return if missing_fields.empty?
-
-      raise ArgumentError, "Missing required fields: #{missing_fields.join(', ')}"
+      Logger.new.warn("Card has no #{missing.values.join(' or ')}")
     end
 
     def define_art_window_mask

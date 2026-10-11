@@ -30,6 +30,9 @@ module MtgCardMaker
     map 'gcs'=> :generate_sprite
     map 'gs' => :generate_sprite
 
+    # Fail on misspelled options (for example --nmae) instead of ignoring them
+    check_unknown_options!
+
     def self.exit_on_failure?
       true
     end
@@ -39,11 +42,11 @@ module MtgCardMaker
     # @return [Hash] the card option definitions for Thor
     def self.card_options
       {
-        name: { type: :string, required: true, desc: 'Card name' },
+        name: { type: :string, desc: 'Card name (warns when omitted)' },
         mana_cost: { type: :string, aliases: ['mana', 'cost'], desc: 'Mana cost (e.g., "2RR", "XG")' },
-        type_line: { type: :string, required: true, aliases: ['type'],
-                     desc: 'Card type & subtype (e.g., "Creature - Dragon", "Instant")' },
-        rules_text: { type: :string, required: true, aliases: ['rules'], desc: 'Card rules text' },
+        type_line: { type: :string, aliases: ['type'],
+                     desc: 'Card type & subtype (e.g., "Creature - Dragon", "Instant"; warns when omitted)' },
+        rules_text: { type: :string, aliases: ['rules'], desc: 'Card rules text (optional)' },
         flavor_text: { type: :string, aliases: ['flavor'], desc: 'Flavor text (optional)' },
         power: { type: :string, desc: 'Power (for creatures)' },
         toughness: { type: :string, desc: 'Toughness (for creatures)' },
@@ -58,10 +61,10 @@ module MtgCardMaker
 
     # Generate a single MTG card with specified parameters
     #
-    # @option options [String] :name the card name (required)
+    # @option options [String] :name the card name (optional, warns when omitted)
     # @option options [String] :mana_cost the mana cost in MTG notation
-    # @option options [String] :type_line the card type (required)
-    # @option options [String] :rules_text the card rules (required)
+    # @option options [String] :type_line the card type (optional, warns when omitted)
+    # @option options [String] :rules_text the card rules text (optional)
     # @option options [String] :flavor_text the flavor text
     # @option options [String] :power the power value for creatures
     # @option options [String] :toughness the toughness value for creatures
@@ -90,6 +93,8 @@ module MtgCardMaker
     option :cards_per_row, type: :numeric, default: 4, desc: 'Number of cards per row in sprite'
     option :spacing, type: :numeric, default: 30, desc: 'Spacing between cards in pixels'
     def generate_sprite(yaml_file, output_file)
+      abort "❌ YAML file not found: #{yaml_file}" unless File.exist?(yaml_file)
+
       config = validate_yaml(yaml_file)
       sprite_service = create_sprite_service
       process_sprite_generation(config, sprite_service, output_file)
@@ -114,7 +119,7 @@ module MtgCardMaker
 
       # Save back to file
       File.write(yaml_file, config.to_yaml)
-      logger.success("Added card '#{options[:name]}' to #{yaml_file}!")
+      logger.success("Added card '#{options[:name] || card_key}' to #{yaml_file}!")
       logger.info("🎴 Key: #{card_key}")
     end
 
@@ -158,17 +163,11 @@ module MtgCardMaker
     end
 
     def build_card_config_from_options
-      config = build_required_config
-      add_optional_fields(config)
-      config
+      build_base_config.tap { |config| add_optional_fields(config) }
     end
 
-    def build_required_config
-      {
-        'name' => options[:name],
-        'type_line' => options[:type_line],
-        'rules_text' => process_newlines(options[:rules_text])
-      }
+    def build_base_config
+      { 'name' => options[:name], 'type_line' => options[:type_line] }.compact
     end
 
     def add_optional_fields(config)
@@ -177,10 +176,12 @@ module MtgCardMaker
         config[field] = options[field.to_sym] if options.key?(field.to_sym)
       end
 
-      # Handle flavor_text separately to process newlines
-      return unless options[:flavor_text]
+      add_text_fields(config)
+    end
 
-      config['flavor_text'] = process_newlines(options[:flavor_text])
+    # Text fields are handled separately to process newlines
+    def add_text_fields(config)
+      %i[rules_text flavor_text].each { |f| config[f.to_s] = process_newlines(options[f]) if options[f] }
     end
 
     def process_newlines(text)
@@ -209,16 +210,15 @@ module MtgCardMaker
     end
 
     def generate_card_key(name, config)
-      base_key = name.downcase.gsub(/[^a-z0-9]/, '_').squeeze('_').chomp('_')
+      base_key = name.to_s.downcase.gsub(/[^a-z0-9]/, '_').squeeze('_').chomp('_')
+      base_key = 'card' if base_key.empty?
 
       # If key already exists, append a number
-      if config.key?(base_key)
-        counter = 1
-        counter += 1 while config.key?("#{base_key}_#{counter}")
-        "#{base_key}_#{counter}"
-      else
-        base_key
-      end
+      return base_key unless config.key?(base_key)
+
+      counter = 1
+      counter += 1 while config.key?("#{base_key}_#{counter}")
+      "#{base_key}_#{counter}"
     end
   end
 end

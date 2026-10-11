@@ -81,11 +81,11 @@ gem install mtg_card_maker
 
 **Card Properties:**
 
-Optionals without a default hide when omitted.
+Every property is optional and hides when omitted. A warning is shown if `name` or `type_line` is missing.
 ```yaml
-name: "Card Name"                 # Required
-type_line: "Creature - Dragon"    # Required
-rules_text: "Card rules text"     # Required
+name: "Card Name"                 # Optional (warns when omitted)
+type_line: "Creature - Dragon"    # Optional (warns when omitted)
+rules_text: "Card rules text"     # Optional
 mana_cost: 2RR                    # Optional
 flavor_text: "Flavor text"        # Optional
 power: 4                          # Optional
@@ -244,6 +244,8 @@ mtg_card_maker add_card deck.yml \
 - `g` or `gc` for `generate_card`
 - `a` or `ac` for `add_card`
 
+*Misspelled options are rejected* (for example `--nmae` fails with `Unknown switches "--nmae"` and suggests `--name`) rather than silently producing a blank card.
+
 ### Generate a Sprite Sheet
 
 For printing or displaying multiple cards on a webpage, using a sprite sheet is recommended. This approach embeds fonts and gradients once per sheet instead of repeating them for each individual card, improving file size and loading efficiency.
@@ -269,7 +271,7 @@ mtg_card_maker generate_sprite deck.yml sprite_sheet.svg \
 
 **⚠️ Experimental Feature - Mac Only**
 
-The gem includes experimental support for converting SVG cards to WebP format using Chrome's headless mode. This feature is currently **Mac-only** and requires specific dependencies.
+The source repository includes an experimental script, `bin/svg_to_webp`, for converting SVG cards to WebP format using Chrome's headless mode. It is a development script and is **not** part of the published gem, so clone the repository to use it. This feature is currently **Mac-only** and requires specific dependencies.
 
 **Why?:**
 It seems a lot more user-friendly for use in things like this README.md file. The file size is bigger and it can't scale so I wouldn't use this option unless something in the SVG isn't working with whatever you are trying to do. You should also report that at https://github.com/joe-sharp/mtg_card_maker/issues . Thanks in advance!
@@ -278,7 +280,7 @@ It seems a lot more user-friendly for use in things like this README.md file. Th
 - **macOS**: Chrome must be installed at `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`
 - **cwebp**: Google's WebP encoder must be installed (install via Homebrew: `brew install webp`)
 
-**Usage:**
+**Usage** (from a clone of the repository):
 ```bash
 # Convert a single SVG card to WebP
 bin/svg_to_webp output_card.svg
