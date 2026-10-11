@@ -43,7 +43,7 @@ module MtgCardMaker
         mana_cost: { type: :string, aliases: ['mana', 'cost'], desc: 'Mana cost (e.g., "2RR", "XG")' },
         type_line: { type: :string, required: true, aliases: ['type'],
                      desc: 'Card type & subtype (e.g., "Creature - Dragon", "Instant")' },
-        rules_text: { type: :string, required: true, aliases: ['rules'], desc: 'Card rules text' },
+        rules_text: { type: :string, aliases: ['rules'], desc: 'Card rules text (optional)' },
         flavor_text: { type: :string, aliases: ['flavor'], desc: 'Flavor text (optional)' },
         power: { type: :string, desc: 'Power (for creatures)' },
         toughness: { type: :string, desc: 'Toughness (for creatures)' },
@@ -61,7 +61,7 @@ module MtgCardMaker
     # @option options [String] :name the card name (required)
     # @option options [String] :mana_cost the mana cost in MTG notation
     # @option options [String] :type_line the card type (required)
-    # @option options [String] :rules_text the card rules (required)
+    # @option options [String] :rules_text the card rules text (optional)
     # @option options [String] :flavor_text the flavor text
     # @option options [String] :power the power value for creatures
     # @option options [String] :toughness the toughness value for creatures
@@ -158,16 +158,13 @@ module MtgCardMaker
     end
 
     def build_card_config_from_options
-      config = build_required_config
-      add_optional_fields(config)
-      config
+      build_required_config.tap { |config| add_optional_fields(config) }
     end
 
     def build_required_config
       {
         'name' => options[:name],
-        'type_line' => options[:type_line],
-        'rules_text' => process_newlines(options[:rules_text])
+        'type_line' => options[:type_line]
       }
     end
 
@@ -177,10 +174,12 @@ module MtgCardMaker
         config[field] = options[field.to_sym] if options.key?(field.to_sym)
       end
 
-      # Handle flavor_text separately to process newlines
-      return unless options[:flavor_text]
+      add_text_fields(config)
+    end
 
-      config['flavor_text'] = process_newlines(options[:flavor_text])
+    # Text fields are handled separately to process newlines
+    def add_text_fields(config)
+      %i[rules_text flavor_text].each { |f| config[f.to_s] = process_newlines(options[f]) if options[f] }
     end
 
     def process_newlines(text)

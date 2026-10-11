@@ -85,7 +85,7 @@ Optionals without a default hide when omitted.
 ```yaml
 name: "Card Name"                 # Required
 type_line: "Creature - Dragon"    # Required
-rules_text: "Card rules text"     # Required
+rules_text: "Card rules text"     # Optional
 mana_cost: 2RR                    # Optional
 flavor_text: "Flavor text"        # Optional
 power: 4                          # Optional

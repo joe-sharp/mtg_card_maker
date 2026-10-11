@@ -114,7 +114,7 @@ module MtgCardMaker
     # @option config [String] :name the card name
     # @option config [String] :mana_cost the mana cost in MTG notation
     # @option config [String] :type_line the card type
-    # @option config [String] :rules_text the card rules text
+    # @option config [String] :rules_text the card rules text (optional)
     # @option config [String] :flavor_text the flavor text
     # @option config [String] :power the power value for creatures
     # @option config [String] :toughness the toughness value for creatures
@@ -188,7 +188,7 @@ module MtgCardMaker
     end
 
     def validate_required_fields
-      required_fields = %i[name type_line rules_text]
+      required_fields = %i[name type_line]
       missing_fields = required_fields.select { |field| send(field).nil? || send(field).to_s.strip.empty? }
 
       return if missing_fields.empty?

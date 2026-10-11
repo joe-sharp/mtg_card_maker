@@ -260,6 +260,20 @@ RSpec.describe MtgCardMaker::CLI do
         expect(result).not_to have_key('mana_cost')
         expect(result).not_to have_key('flavor_text')
       end
+
+      it 'does not require rules_text', :aggregate_failures do
+        cli.options = { name: 'Vanilla Bear', type_line: 'Creature - Bear' }
+
+        result = cli.send(:build_card_config_from_options)
+        expect(result['name']).to eq('Vanilla Bear')
+        expect(result).not_to have_key('rules_text')
+      end
+
+      it 'converts literal newlines in rules_text' do
+        cli.options = { name: 'Test Card', type_line: 'Instant', rules_text: 'Line one.\\nLine two.' }
+
+        expect(cli.send(:build_card_config_from_options)['rules_text']).to eq("Line one.\nLine two.")
+      end
     end
 
     describe '#generate_card_key' do

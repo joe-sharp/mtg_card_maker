@@ -104,13 +104,21 @@ RSpec.describe MtgCardMaker::BaseCard do
         end.to raise_error(ArgumentError, /Missing required fields: type_line/)
       end
 
-      it 'raises error when rules_text is missing', :aggregate_failures do
-        expect do
-          described_class.new(
-            name: 'Test Card',
-            type_line: 'Instant'
-          )
-        end.to raise_error(ArgumentError, /Missing required fields: rules_text/)
+      it 'does not require rules_text', :aggregate_failures do
+        card = described_class.new(name: 'Test Card', type_line: 'Creature - Bear')
+        temp_file = Tempfile.new(['vanilla_card', '.svg'])
+
+        expect(card.rules_text).to be_nil
+        expect { card.save(temp_file.path) }.not_to raise_error
+        expect(File.read(temp_file.path)).to include('Test Card')
+
+        temp_file.close
+        temp_file.unlink
+      end
+
+      it 'accepts blank rules_text' do
+        expect { described_class.new(name: 'Test Card', type_line: 'Creature - Bear', rules_text: '') }
+          .not_to raise_error
       end
 
       it 'raises error when multiple fields are missing', :aggregate_failures do
@@ -118,7 +126,7 @@ RSpec.describe MtgCardMaker::BaseCard do
           described_class.new(
             name: 'Test Card'
           )
-        end.to raise_error(ArgumentError, /Missing required fields: type_line, rules_text/)
+        end.to raise_error(ArgumentError, /Missing required fields: type_line/)
       end
     end
 
