@@ -85,6 +85,11 @@ RSpec/AnyInstance:
   Exclude:
     - 'spec/mtg_card_maker/svg_gradient_service_spec.rb'
 
+# Fixture generator is a script that reports progress on purpose.
+RSpec/Output:
+  Exclude:
+    - 'spec/fixtures/generate_fixtures.rb'
+
 RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/mtg_card_maker/frame_layer_spec.rb'
