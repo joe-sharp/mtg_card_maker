@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "README";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -67,7 +69,7 @@
 
 <p>A Ruby gem for creating high quality fan-made Magic: The Gathering cards. This tool generates custom MTG cards with authentic formatting, comprehensive mana cost support, and precise card layouts. Perfect for game designers, content creators, and MTG enthusiasts.</p>
 
-<p>Please note this gem is for fan content creation only. <strong>Using it commercially is a violation of the license.</strong> If you have ideas for improvements, please create a feature request after reviewing the open issues here: <a href="https://github.com/joe-sharp/mtg_card_maker/issues">https://github.com/joe-sharp/mtg_card_maker/issues</a></p>
+<p>Please note this gem is for fan content creation only. <strong>Wizards of the Coast&#39;s Fan Content Policy does not permit commercial use of cards made with Magic: The Gathering materials.</strong> If you have ideas for improvements, please create a feature request after reviewing the open issues here: <a href="https://github.com/joe-sharp/mtg_card_maker/issues">https://github.com/joe-sharp/mtg_card_maker/issues</a></p>
 
 <h2 id="features">Features</h2>
 
@@ -155,7 +157,7 @@ and digital displays</li>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
-<p>This gem requires Ruby 3.2 or higher. The version of Ruby included with macOS is typically outdated and won&#39;t work. You can install a newer version of Ruby using tools like <a href="https://asdf-vm.com/">asdf</a> (with the <a href="https://github.com/asdf-vm/asdf-ruby">Ruby plugin</a>), <a href="https://github.com/rbenv/rbenv">rbenv</a> or <a href="https://rvm.io/">RVM</a>. Note: This gem seems to work just fine on Ruby 3.5.0 but cannot be tested in CI currently.</p>
+<p>This gem requires Ruby 3.3 or higher. The version of Ruby included with macOS is typically outdated and won&#39;t work. You can install a newer version of Ruby using tools like <a href="https://asdf-vm.com/">asdf</a> (with the <a href="https://github.com/asdf-vm/asdf-ruby">Ruby plugin</a>), <a href="https://github.com/rbenv/rbenv">rbenv</a> or <a href="https://rvm.io/">RVM</a>. Note: This gem seems to work just fine on Ruby 3.5.0 but cannot be tested in CI currently.</p>
 
 <p>Install the gem:</p>
 
@@ -168,11 +170,11 @@ and digital displays</li>
 
 <p><strong>Card Properties:</strong></p>
 
-<p>Optionals without a default hide when omitted.</p>
+<p>Every property is optional and hides when omitted. A warning is shown if <code>name</code> or <code>type_line</code> is missing.</p>
 
-<pre class="code yaml"><code class="yaml">name: &quot;Card Name&quot;                 # Required
-type_line: &quot;Creature - Dragon&quot;    # Required
-rules_text: &quot;Card rules text&quot;     # Required
+<pre class="code yaml"><code class="yaml">name: &quot;Card Name&quot;                 # Optional (warns when omitted)
+type_line: &quot;Creature - Dragon&quot;    # Optional (warns when omitted)
+rules_text: &quot;Card rules text&quot;     # Optional
 mana_cost: 2RR                    # Optional
 flavor_text: &quot;Flavor text&quot;        # Optional
 power: 4                          # Optional
@@ -357,6 +359,8 @@ notations below in the rule text section. The notation uses curly braces for com
 <li><code>a</code> or <code>ac</code> for <code>add_card</code></li>
 </ul>
 
+<p><em>Misspelled options are rejected</em> (for example <code>--nmae</code> fails with <code>Unknown switches &quot;--nmae&quot;</code> and suggests <code>--name</code>) rather than silently producing a blank card.</p>
+
 <h3 id="generate-a-sprite-sheet">Generate a Sprite Sheet</h3>
 
 <p>For printing or displaying multiple cards on a webpage, using a sprite sheet is recommended. This approach embeds fonts and gradients once per sheet instead of repeating them for each individual card, improving file size and loading efficiency.
@@ -390,7 +394,7 @@ Generate a sprite sheet from YAML configuration:</p>
 
 <p><strong>⚠️ Experimental Feature - Mac Only</strong></p>
 
-<p>The gem includes experimental support for converting SVG cards to WebP format using Chrome&#39;s headless mode. This feature is currently <strong>Mac-only</strong> and requires specific dependencies.</p>
+<p>The source repository includes an experimental script, <code>bin/svg_to_webp</code>, for converting SVG cards to WebP format using Chrome&#39;s headless mode. It is a development script and is <strong>not</strong> part of the published gem, so clone the repository to use it. This feature is currently <strong>Mac-only</strong> and requires specific dependencies.</p>
 
 <p><strong>Why?:</strong>
 It seems a lot more user-friendly for use in things like this README.md file. The file size is bigger and it can&#39;t scale so I wouldn&#39;t use this option unless something in the SVG isn&#39;t working with whatever you are trying to do. You should also report that at <a href="https://github.com/joe-sharp/mtg_card_maker/issues">https://github.com/joe-sharp/mtg_card_maker/issues</a> . Thanks in advance!</p>
@@ -402,7 +406,7 @@ It seems a lot more user-friendly for use in things like this README.md file. Th
 <li><strong>cwebp</strong>: Google&#39;s WebP encoder must be installed (install via Homebrew: <code>brew install webp</code>)</li>
 </ul>
 
-<p><strong>Usage:</strong></p>
+<p><strong>Usage</strong> (from a clone of the repository):</p>
 
 <pre class="code bash"><code class="bash"># Convert a single SVG card to WebP
 bin/svg_to_webp output_card.svg
@@ -616,16 +620,26 @@ bundle exec rubocop
 
 <h2 id="license">🪪 License</h2>
 
-<p><a href="https://projects.joe-sharp.com/mtg_card_maker">MTG Card Maker</a> © 2025 by <a href="https://github.com/joe-sharp/mtg_card_maker">Joe Sharp</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" width="20" valign=bottom></p>
+<p>The code in this gem is available as open source under the terms of the <a href="LICENSE.txt">MIT License</a>.</p>
 
-<p>The gem is available as open source under the terms of this license.</p>
+<p>The MIT License does <strong>not</strong> cover:</p>
+
+<ul>
+<li><strong>Wizards of the Coast materials</strong> (the Magic: The Gathering name, mana and set symbols, card frame and layout designs). These are property of Wizards of the Coast and are used under the Fan Content Policy, which does not permit commercial use.</li>
+<li><strong>The Goudy Bookletter 1911 font</strong>, © 2010 Barry Schwartz, licensed under the <a href="lib/mtg_card_maker/fonts/OFL.txt">SIL Open Font License 1.1</a>.</li>
+<li><strong>The sample artwork and sample cards in <code>images/</code></strong>, which are AI-generated, are for illustration only and are not licensed for reuse. They are not part of the gem.</li>
+</ul>
+
+<p>Cards you generate, including their text and artwork, belong to you.</p>
+
+<p>See <a href="LICENSE.txt">LICENSE.txt</a> for details.</p>
 
 <h2 id="copyright">©️ Copyright</h2>
 
-<p>© 2025 Joe Sharp. Some rights reserved.
+<p>© 2025 Joe Sharp. Released under the MIT License.
 MTG Card Maker is unofficial Fan Content permitted under the <a href="https://company.wizards.com/en/legal/fancontentpolicy">Fan Content Policy.</a> Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC.</p>
 
-<p>The removal or alteration of copyright notices, attributions, and/or QR codes from generated images constitutes a material breach of the license agreement. All copyright notices and identifying marks must remain intact and unmodified in accordance with the terms of use.</p>
+<p>Please keep the copyright notices, attributions, and QR code on generated cards intact.</p>
 
 <h2 id="code-of-conduct">🧙🏻 Code of Conduct</h2>
 
@@ -633,9 +647,9 @@ MTG Card Maker is unofficial Fan Content permitted under the <a href="https://co
 </div></div>
 
       <div id="footer">
-  Generated on Sat Aug  2 23:48:00 2025 by
+  Generated on Sun Oct 11 23:40:18 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.5).
+  0.9.45 (ruby-3.4.11).
 </div>
 
     </div>
