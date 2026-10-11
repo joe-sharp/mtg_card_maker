@@ -468,7 +468,7 @@ The code in this gem is available as open source under the terms of the [MIT Lic
 The MIT License does **not** cover:
 
 - **Wizards of the Coast materials** (the Magic: The Gathering name, mana and set symbols, card frame and layout designs). These are property of Wizards of the Coast and are used under the Fan Content Policy, which does not permit commercial use.
-- **The Goudy Mediaeval DemiBold font**, © Typographer Mediengestaltung, 2000, full character set by Dieter Steffmann. It remains under its original author's terms; see [fonts2u](https://fonts2u.com/goudy-mediaeval-demibold.font).
+- **The Goudy Bookletter 1911 font**, © 2010 Barry Schwartz, licensed under the [SIL Open Font License 1.1](lib/mtg_card_maker/fonts/OFL.txt).
 
 See [LICENSE.txt](LICENSE.txt) for details.
 

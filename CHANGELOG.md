@@ -4,7 +4,8 @@
 
 ### 📜 License
 - **Relicensed from CC BY-NC-ND 4.0 to the MIT License.** Version 0.1.0 remains available under its original license.
-- Wizards of the Coast materials and the Goudy Mediaeval DemiBold font are explicitly excluded from the MIT grant and keep their own terms (see `LICENSE.txt`).
+- Wizards of the Coast materials and the bundled Goudy Bookletter 1911 font (SIL OFL 1.1) are explicitly excluded from the MIT grant and keep their own terms (see `LICENSE.txt`).
+- Replaced the bundled Goudy Mediaeval DemiBold font, which is licensed for personal use only, with Goudy Bookletter 1911. Embedded card text renders slightly differently, and SVGs with embedded fonts are about 38 KB larger.
 
 ### ⚠️ Breaking Changes
 - **Dropped support for Ruby 3.2.** Ruby 3.3 or higher is now required (Ruby 3.2 reached end of life in March 2026).

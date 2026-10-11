@@ -41,15 +41,13 @@ licensed to you by this project, and are excluded from the grant above:
    governed by the Fan Content Policy, which does not permit commercial use.
    Nothing in the MIT License grants you any rights in them.
 
-2. Goudy Mediaeval DemiBold font
+2. Goudy Bookletter 1911 font
 
-   lib/mtg_card_maker/fonts/Goudy Mediaeval DemiBold.ttf, its base64 copy
-   (goudy_base64.txt), and the font as embedded in generated SVG files are:
-   Copyright (c) Typographer Mediengestaltung, 2000. All rights reserved.
-   Full character set added by Dieter Steffmann, Kreuztal.
-   The font remains under its original author's terms, not the MIT License.
-   See https://fonts2u.com/goudy-mediaeval-demibold.font. You are responsible
-   for confirming those terms permit your intended use, especially any
-   commercial use.
+   lib/mtg_card_maker/fonts/GoudyBookletter1911.ttf, its base64 copy
+   (goudy_bookletter_base64.txt), and the font as embedded in generated SVG
+   files are Copyright (c) 2010, Barry Schwartz (crudfactory.com), licensed
+   under the SIL Open Font License, Version 1.1. The license text is in
+   lib/mtg_card_maker/fonts/OFL.txt. The font remains under that license,
+   not the MIT License.
 
 Questions about the author's own original assets: joesharp13@gmail.com

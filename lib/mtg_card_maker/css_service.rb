@@ -11,11 +11,11 @@ module MtgCardMaker
       def font_face(embed: false)
         return '' unless embed
 
-        font_path = File.join(__dir__, 'fonts', 'goudy_base64.txt')
+        font_path = File.join(__dir__, 'fonts', 'goudy_bookletter_base64.txt')
         base64_font_data = File.read(font_path).strip
         <<~CSS
           @font-face {
-            font-family: 'Goudy Mediaeval DemiBold';
+            font-family: 'Goudy Bookletter 1911';
             src: url(data:font/truetype;charset=utf-8;base64,#{base64_font_data}) format('truetype');
           }
         CSS
@@ -53,7 +53,7 @@ module MtgCardMaker
       end
 
       def font_family(embed)
-        embed ? "'Goudy Mediaeval DemiBold', serif" : 'serif'
+        embed ? "'Goudy Bookletter 1911', serif" : 'serif'
       end
 
       def font_weight(embed)
