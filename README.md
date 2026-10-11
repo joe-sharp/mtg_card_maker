@@ -81,10 +81,10 @@ gem install mtg_card_maker
 
 **Card Properties:**
 
-Optionals without a default hide when omitted.
+Every property is optional and hides when omitted. A warning is shown if `name` or `type_line` is missing.
 ```yaml
-name: "Card Name"                 # Required
-type_line: "Creature - Dragon"    # Required
+name: "Card Name"                 # Optional (warns when omitted)
+type_line: "Creature - Dragon"    # Optional (warns when omitted)
 rules_text: "Card rules text"     # Optional
 mana_cost: 2RR                    # Optional
 flavor_text: "Flavor text"        # Optional
@@ -243,6 +243,8 @@ mtg_card_maker add_card deck.yml \
 *Shortcuts:*
 - `g` or `gc` for `generate_card`
 - `a` or `ac` for `add_card`
+
+*Misspelled options are rejected* (for example `--nmae` fails with `Unknown switches "--nmae"` and suggests `--name`) rather than silently producing a blank card.
 
 ### Generate a Sprite Sheet
 

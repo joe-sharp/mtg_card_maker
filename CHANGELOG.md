@@ -2,8 +2,12 @@
 
 ## [0.2.1] - 2026-10-11
 
+### 🔄 Changed
+- **All card text fields are optional again.** `name`, `type_line`, and `rules_text` may be omitted or blank in the Ruby API, YAML configuration, and CLI, so vanilla creatures, tokens, and blank frames can be generated. 0.2.0 required all three. When `name` or `type_line` is missing, a warning is printed ("Card has no name or type line") and the card is still generated.
+- **The CLI rejects unknown options.** A misspelled option such as `--nmae` now fails with `Unknown switches "--nmae"` and a suggestion, instead of being ignored and producing a blank card.
+- `add_card` uses the key `card` (then `card_1`, `card_2`, ...) when no name is given.
+
 ### 🐛 Fixed
-- `rules_text` is optional again in the Ruby API, YAML configuration, and CLI (`--rules-text`), so vanilla creatures and other cards without rules text can be generated. 0.2.0 required it as part of the new field validation. `name` and `type_line` remain required.
 - `generate_sprite` reports `YAML file not found: <path>` for a missing YAML file again, instead of the generic "Failed to generate sprite sheet" error.
 
 ## [0.2.0] - 2026-10-11
@@ -15,7 +19,7 @@
 - Replaced the bundled Goudy Mediaeval DemiBold font, which is licensed for personal use only, with Goudy Bookletter 1911. Embedded card text renders slightly differently, and SVGs with embedded fonts are about 38 KB larger.
 
 ### ⚠️ Breaking Changes
-- **Card validation.** The Ruby API and YAML configuration now raise `ArgumentError: Missing required fields` when `name`, `type_line`, or `rules_text` is missing or blank. In 0.1.0 these cards rendered without the missing text. The `rules_text` requirement was removed again in 0.2.1.
+- **Card validation.** The Ruby API and YAML configuration now raise `ArgumentError: Missing required fields` when `name`, `type_line`, or `rules_text` is missing or blank. In 0.1.0 these cards rendered without the missing text. These requirements were removed again in 0.2.1.
 - **Dropped support for Ruby 3.2.** Ruby 3.3 or higher is now required (Ruby 3.2 reached end of life in March 2026).
 
 ### ✨ Features
