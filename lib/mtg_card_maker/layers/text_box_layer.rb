@@ -9,6 +9,7 @@ module MtgCardMaker
   # with bidirectional text flow from a dynamic separator
   class TextBoxLayer < BaseLayer
     include LayerInitializer
+
     attr_reader :rules_text, :flavor_text, :color_scheme, :font_size, :text_width
 
     def initialize(dimensions:, rules_text:, flavor_text: nil, color: nil, color_scheme: DEFAULT_COLOR_SCHEME)

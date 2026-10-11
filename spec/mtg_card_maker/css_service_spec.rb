@@ -82,7 +82,7 @@ RSpec.describe MtgCardMaker::CssService do
         expect(name_type_css_match).not_to be_nil
 
         name_type_css = name_type_css_match[0]
-        expect(name_type_css).to include("font-family: 'Goudy Mediaeval DemiBold', serif")
+        expect(name_type_css).to include("font-family: 'Goudy Bookletter 1911', serif")
         expect(name_type_css).to include('font-weight: normal')
       end
 
@@ -109,13 +109,13 @@ RSpec.describe MtgCardMaker::CssService do
       result = described_class.font_face(embed: true)
 
       expect(result).to include('@font-face')
-      expect(result).to include("font-family: 'Goudy Mediaeval DemiBold'")
+      expect(result).to include("font-family: 'Goudy Bookletter 1911'")
       expect(result).to include('src: url(data:font/truetype')
       expect(result).to include('format(\'truetype\')')
     end
 
     it 'reads font data from correct file' do
-      font_path = File.join(File.dirname(__FILE__), '../../lib/mtg_card_maker/fonts/goudy_base64.txt')
+      font_path = File.join(File.dirname(__FILE__), '../../lib/mtg_card_maker/fonts/goudy_bookletter_base64.txt')
       expect(File.exist?(font_path)).to be true
     end
   end
@@ -141,7 +141,7 @@ RSpec.describe MtgCardMaker::CssService do
   describe '.font_family' do
     it 'returns embedded font family when embed is true' do
       result = described_class.font_family(true)
-      expect(result).to eq("'Goudy Mediaeval DemiBold', serif")
+      expect(result).to eq("'Goudy Bookletter 1911', serif")
     end
 
     it 'returns fallback font family when embed is false' do

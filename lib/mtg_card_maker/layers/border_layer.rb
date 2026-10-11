@@ -142,7 +142,7 @@ module MtgCardMaker
 
     def render_copyright_texts(layer_config)
       copyright_texts = [
-        '© 2025 Joe Sharp. Some rights reserved.',
+        'MTG Card Maker by Joe Sharp',
         'Portions of the materials used are property of Wizards of the Coast.',
         '© Wizards of the Coast LLC'
       ]

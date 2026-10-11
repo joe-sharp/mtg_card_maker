@@ -300,7 +300,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
 
     it 'renders all copyright texts with correct attributes', :aggregate_failures do
       expected_texts = [
-        '© 2025 Joe Sharp. Some rights reserved.',
+        'MTG Card Maker by Joe Sharp',
         'Portions of the materials used are property of Wizards of the Coast.',
         '© Wizards of the Coast LLC'
       ]
