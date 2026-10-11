@@ -27,7 +27,7 @@ assignees: ['joe-sharp']
 ## 📋 Environment
 
 - **OS:** [e.g. macOS, Ubuntu, Windows]
-- **Ruby:** [e.g. 3.2.2]
+- **Ruby:** [e.g. 3.3.6]
 - **MTG Card Maker:** [e.g. 0.1.0]
 
 ## 📁 Configuration (if applicable)
