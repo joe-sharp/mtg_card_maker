@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mtg_card_maker (0.1.0)
+    mtg_card_maker (0.2.0)
       addressable (~> 2.8)
       nokogiri (~> 1.15)
       thor (~> 1.3)
