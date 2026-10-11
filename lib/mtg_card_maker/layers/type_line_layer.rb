@@ -5,6 +5,7 @@ module MtgCardMaker
   # This is the small area in the center of the card below the artwork
   class TypeLineLayer < BaseLayer
     include LayerInitializer
+
     attr_reader :type_line, :color_scheme
 
     def initialize(dimensions:, type_line:, color: nil, color_scheme: DEFAULT_COLOR_SCHEME)

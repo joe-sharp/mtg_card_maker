@@ -7,6 +7,7 @@ module MtgCardMaker
   # This is the area that surrounds the name and cost of the card
   class NameLayer < BaseLayer
     include LayerInitializer
+
     attr_reader :name, :cost, :color_scheme
 
     def initialize(dimensions:, name:, cost:, color: nil, color_scheme: DEFAULT_COLOR_SCHEME)

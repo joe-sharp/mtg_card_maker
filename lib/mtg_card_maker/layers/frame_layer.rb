@@ -9,6 +9,7 @@ module MtgCardMaker
   class FrameLayer < BaseLayer
     include MetallicRenderer
     include LayerInitializer
+
     attr_reader :color_scheme, :mask_id, :layer_config
 
     def initialize(dimensions:, color: nil, color_scheme: DEFAULT_COLOR_SCHEME, mask_id: 'artWindowMask')

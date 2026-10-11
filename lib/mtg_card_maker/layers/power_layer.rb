@@ -5,6 +5,7 @@ module MtgCardMaker
   # This is the area that surrounds the power and toughness of the card
   class PowerLayer < BaseLayer
     include LayerInitializer
+
     attr_reader :power, :toughness, :color_scheme
 
     def initialize(dimensions:, power:, toughness:, color: nil, color_scheme: DEFAULT_COLOR_SCHEME)
