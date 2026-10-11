@@ -9,7 +9,7 @@
 A Ruby gem for creating high quality fan-made Magic: The Gathering cards. This tool generates custom MTG cards with authentic formatting, comprehensive mana cost support, and precise card layouts. Perfect for game designers, content creators, and MTG enthusiasts.
 
 
-Please note this gem is for fan content creation only. **Using it commercially is a violation of the license.** If you have ideas for improvements, please create a feature request after reviewing the open issues here: https://github.com/joe-sharp/mtg_card_maker/issues
+Please note this gem is for fan content creation only. **Wizards of the Coast's Fan Content Policy does not permit commercial use of cards made with Magic: The Gathering materials.** If you have ideas for improvements, please create a feature request after reviewing the open issues here: https://github.com/joe-sharp/mtg_card_maker/issues
 
 ## Features
 #### 🎨 Card Customization
@@ -463,16 +463,21 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/joe-sh
 
 ## 🪪 License
 
-<a href="https://projects.joe-sharp.com/mtg_card_maker">MTG Card Maker</a> © 2025 by <a href="https://github.com/joe-sharp/mtg_card_maker">Joe Sharp</a> is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" width="20" valign=bottom><img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" width="20" valign=bottom>
+The code in this gem is available as open source under the terms of the [MIT License](LICENSE.txt).
 
-The gem is available as open source under the terms of this license.
+The MIT License does **not** cover:
+
+- **Wizards of the Coast materials** (the Magic: The Gathering name, mana and set symbols, card frame and layout designs). These are property of Wizards of the Coast and are used under the Fan Content Policy, which does not permit commercial use.
+- **The Goudy Mediaeval DemiBold font**, © Typographer Mediengestaltung, 2000, full character set by Dieter Steffmann. It remains under its original author's terms; see [fonts2u](https://fonts2u.com/goudy-mediaeval-demibold.font).
+
+See [LICENSE.txt](LICENSE.txt) for details.
 
 ## ©️ Copyright
 
-© 2025 Joe Sharp. Some rights reserved.
+© 2025 Joe Sharp.
 MTG Card Maker is unofficial Fan Content permitted under the [Fan Content Policy.](https://company.wizards.com/en/legal/fancontentpolicy) Not approved/endorsed by Wizards. Portions of the materials used are property of Wizards of the Coast. © Wizards of the Coast LLC.
 
-The removal or alteration of copyright notices, attributions, and/or QR codes from generated images constitutes a material breach of the license agreement. All copyright notices and identifying marks must remain intact and unmodified in accordance with the terms of use.
+Please keep the copyright notices, attributions, and QR code on generated cards intact.
 
 ## 🧙🏻 Code of Conduct
 

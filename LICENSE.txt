@@ -1,20 +1,55 @@
-Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International (CC BY-NC-ND 4.0)
+MIT License
 
-Copyright (c) 2025 joe-sharp
+Copyright (c) 2025 Joe Sharp
 
-This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-You are free to:
-Share — copy and redistribute the material in any medium or format
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-The licensor cannot revoke these freedoms as long as you follow the license terms.
-Under the following terms:
-- Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
-- NonCommercial — You may not use the material for commercial purposes.
-- NoDerivatives — If you remix, transform, or build upon the material, you may not distribute the modified material.
-No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-Notices:
-You do not have to comply with the license for elements of the material in the public domain or where your use is permitted by an applicable exception or limitation.
+--------------------------------------------------------------------------------
+Materials NOT covered by the MIT License above
+--------------------------------------------------------------------------------
 
-No warranties are given. The license may not give you all of the permissions necessary for your intended use. For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
+The MIT License applies only to the original code and original assets created
+by Joe Sharp. The following materials are owned by third parties, are not
+licensed to you by this project, and are excluded from the grant above:
+
+1. Wizards of the Coast materials
+
+   Magic: The Gathering, its name, mana symbols, set symbols, card frame and
+   layout designs, and related marks are property of Wizards of the Coast LLC.
+   MTG Card Maker is unofficial Fan Content permitted under the Fan Content
+   Policy (https://company.wizards.com/en/legal/fancontentpolicy). It is not
+   approved or endorsed by Wizards. Portions of the materials used are
+   property of Wizards of the Coast. (c) Wizards of the Coast LLC.
+
+   Use of these materials, including cards generated with this software, is
+   governed by the Fan Content Policy, which does not permit commercial use.
+   Nothing in the MIT License grants you any rights in them.
+
+2. Goudy Mediaeval DemiBold font
+
+   lib/mtg_card_maker/fonts/Goudy Mediaeval DemiBold.ttf, its base64 copy
+   (goudy_base64.txt), and the font as embedded in generated SVG files are:
+   Copyright (c) Typographer Mediengestaltung, 2000. All rights reserved.
+   Full character set added by Dieter Steffmann, Kreuztal.
+   The font remains under its original author's terms, not the MIT License.
+   See https://fonts2u.com/goudy-mediaeval-demibold.font. You are responsible
+   for confirming those terms permit your intended use, especially any
+   commercial use.
+
+Questions about the author's own original assets: joesharp13@gmail.com
