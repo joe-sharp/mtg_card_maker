@@ -10,9 +10,9 @@
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "MtgCardMaker::BaseCard";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -94,7 +96,8 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/mtg_card_maker/base_card.rb</dd>
+    <dd>lib/mtg_card_maker/base_card.rb
+</dd>
   </dl>
   
 </div>
@@ -730,6 +733,7 @@ using predefined dimensions and layouts.</p>
 
       
     </ul>
+    
   
 
 <div id="constructor_details" class="method_details_list">
@@ -785,7 +789,7 @@ using predefined dimensions and layouts.</p>
             
           </span>
           
-            &mdash; <div class='inline'><p>the card name</p>
+            &mdash; <div class='inline'><p>the card name (optional, warns when omitted)</p>
 </div>
           
         </li>
@@ -821,7 +825,7 @@ using predefined dimensions and layouts.</p>
             
           </span>
           
-            &mdash; <div class='inline'><p>the card rules text</p>
+            &mdash; <div class='inline'><p>the card rules text (optional)</p>
 </div>
           
         </li>
@@ -947,7 +951,7 @@ using predefined dimensions and layouts.</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_assign_attributes'>assign_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_config'>config</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_validate_required_fields'>validate_required_fields</span>
+  <span class='id identifier rubyid_warn_about_missing_fields'>warn_about_missing_fields</span>
   <span class='ivar'>@template</span> <span class='op'>=</span> <span class='const'>Template</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>embed_font:</span> <span class='id identifier rubyid_config'>config</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:embed_font</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add_layers'>add_layers</span>
 <span class='kw'>end</span></pre>
@@ -2120,9 +2124,9 @@ using predefined dimensions and layouts.</p>
 </div>
 
       <div id="footer">
-  Generated on Sat Aug  2 23:48:00 2025 by
+  Generated on Sun Oct 11 23:40:18 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.5).
+  0.9.45 (ruby-3.4.11).
 </div>
 
     </div>
