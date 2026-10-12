@@ -11,7 +11,7 @@ gem 'rspec', '~> 3.0'
 gem 'rubocop', '~> 1.21'
 gem 'rubocop-performance', '~> 1.25'
 gem 'rubocop-rspec', '~> 3.6'
-gem 'simplecov', '~> 0.22', require: false
+gem 'simplecov', '~> 1.3', require: false
 gem 'yard', '~> 0.9'
 
 group :development do
@@ -19,7 +19,7 @@ group :development do
   gem 'guard-rspec', '~> 4.7'
   gem 'guard-rubocop', '~> 1.5'
   gem 'guard-shell', '~> 0.7'
-  gem 'rack', '~> 2.2'
+  gem 'rack', '~> 3.2'
   gem 'redcarpet', '~> 3.6'
   gem 'webrick', '~> 1.9'
 end
