@@ -11,6 +11,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Ruby ${{ matrix.ruby }}
+    permissions:
+      contents: write
     strategy:
       matrix:
         ruby:
@@ -33,6 +35,20 @@ jobs:
         env:
           COVERAGE: true
         run: bundle exec rake
+      - name: Publish coverage badge
+        if: github.event_name == 'push' && matrix.ruby == '3.4'
+        run: |
+          pct=$(ruby -rjson -e 'puts JSON.parse(File.read("coverage/.last_run.json")).dig("result", "line")')
+          color=$(ruby -e 'p = ARGV[0].to_f; puts(p >= 90 ? "brightgreen" : p >= 80 ? "yellow" : "red")' "$pct")
+          dir=$(mktemp -d)
+          echo "{\"schemaVersion\":1,\"label\":\"coverage\",\"message\":\"${pct}%\",\"color\":\"${color}\"}" > "$dir/coverage.json"
+          cd "$dir"
+          git init -q -b badges
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add coverage.json
+          git commit -q -m "chore: update coverage badge"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git" badges
 
   docs:
     runs-on: ubuntu-latest
