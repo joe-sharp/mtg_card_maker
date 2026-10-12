@@ -69,7 +69,7 @@ and digital displays
 
 ### Prerequisites
 
-This gem requires Ruby 3.3 or higher. The version of Ruby included with macOS is typically outdated and won't work. You can install a newer version of Ruby using tools like [asdf](https://asdf-vm.com/) (with the [Ruby plugin](https://github.com/asdf-vm/asdf-ruby)), [rbenv](https://github.com/rbenv/rbenv) or [RVM](https://rvm.io/). Note: This gem seems to work just fine on Ruby 3.5.0 but cannot be tested in CI currently.
+This gem requires Ruby 3.3 or higher and is tested in CI on Ruby 3.3, 3.4 and 4.0. The version of Ruby included with macOS is typically outdated and won't work. You can install a newer version of Ruby using tools like [asdf](https://asdf-vm.com/) (with the [Ruby plugin](https://github.com/asdf-vm/asdf-ruby)), [rbenv](https://github.com/rbenv/rbenv) or [RVM](https://rvm.io/).
 
 Install the gem:
 ```bash
