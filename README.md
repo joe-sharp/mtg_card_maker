@@ -465,17 +465,17 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/joe-sh
 
 ## 🪪 License
 
-The code in this gem is available as open source under the terms of the [MIT License](LICENSE.txt).
+The code in this gem is available as open source under the terms of the [MIT License](https://github.com/joe-sharp/mtg_card_maker/blob/main/LICENSE.txt).
 
 The MIT License does **not** cover:
 
 - **Wizards of the Coast materials** (the Magic: The Gathering name, mana and set symbols, card frame and layout designs). These are property of Wizards of the Coast and are used under the Fan Content Policy, which does not permit commercial use.
-- **The Goudy Bookletter 1911 font**, © 2010 Barry Schwartz, licensed under the [SIL Open Font License 1.1](lib/mtg_card_maker/fonts/OFL.txt).
+- **The Goudy Bookletter 1911 font**, © 2010 Barry Schwartz, licensed under the [SIL Open Font License 1.1](https://github.com/joe-sharp/mtg_card_maker/blob/main/lib/mtg_card_maker/fonts/OFL.txt).
 - **The sample artwork and sample cards in `images/`**, which are AI-generated, are for illustration only and are not licensed for reuse. They are not part of the gem.
 
 Cards you generate, including their text and artwork, belong to you.
 
-See [LICENSE.txt](LICENSE.txt) for details.
+See [LICENSE.txt](https://github.com/joe-sharp/mtg_card_maker/blob/main/LICENSE.txt) for details.
 
 ## ©️ Copyright
 
