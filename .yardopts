@@ -6,3 +6,4 @@
 lib/mtg_card_maker/cli.rb
 lib/mtg_card_maker/base_card.rb
 bin/mtg_card_maker
+-e yard_ext.rb

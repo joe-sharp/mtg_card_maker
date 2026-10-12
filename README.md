@@ -1,5 +1,13 @@
 # MTG Card Maker
 
+<!-- badges:start -->
+<p align="center">
+  <a href="https://github.com/joe-sharp/mtg_card_maker/actions/workflows/main.yml"><img src="https://github.com/joe-sharp/mtg_card_maker/actions/workflows/main.yml/badge.svg" alt="CI" /></a>
+  <a href="https://rubygems.org/gems/mtg_card_maker"><img src="https://img.shields.io/gem/v/mtg_card_maker" alt="Gem Version" /></a>
+  <a href="https://github.com/joe-sharp/mtg_card_maker/actions/workflows/main.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/joe-sharp/mtg_card_maker/badges/coverage.json" alt="Code Coverage" /></a>
+</p>
+<!-- badges:end -->
+
 <p align=center>
   <img src="images/mtgcm_card.webp"
        alt="A card featuring artwork of a fiery dragon and anvil"
