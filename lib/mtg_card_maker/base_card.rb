@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'layers/art_layer'
-require_relative 'layers/text_box_layer'
-require_relative 'layers/frame_layer'
-require_relative 'layers/name_layer'
-require_relative 'layers/border_layer'
-require_relative 'layers/power_layer'
-require_relative 'layers/type_line_layer'
+require_relative "layers/art_layer"
+require_relative "layers/text_box_layer"
+require_relative "layers/frame_layer"
+require_relative "layers/name_layer"
+require_relative "layers/border_layer"
+require_relative "layers/power_layer"
+require_relative "layers/type_line_layer"
 
 module MtgCardMaker
   # Base class for all Magic: The Gathering card types that provides common
@@ -74,7 +74,7 @@ module MtgCardMaker
           height: 40
         }
       },
-      mask_id: 'artWindowMask',
+      mask_id: "artWindowMask",
       frame_stroke_width: 2
     }.freeze
 
@@ -188,23 +188,29 @@ module MtgCardMaker
     end
 
     def warn_about_missing_fields
-      missing = { name: 'name', type_line: 'type line' }.select { |field, _label| public_send(field).to_s.strip.empty? }
+      missing = { name: "name", type_line: "type line" }.select { |field, _label| public_send(field).to_s.strip.empty? }
       return if missing.empty?
 
-      Logger.new.warn("Card has no #{missing.values.join(' or ')}")
+      Logger.new.warn("Card has no #{missing.values.join(" or ")}")
     end
 
     def define_art_window_mask
       svg = @template.instance_variable_get(:@svg)
       svg.defs do
-        svg.mask id: DEFAULTS[:mask_id] do
+        svg.mask(id: DEFAULTS[:mask_id]) do
           # White rectangle covers the entire card (opaque)
-          svg.rect x: 0, y: 0, width: '100%', height: '100%', fill: '#FFF'
+          svg.rect(x: 0, y: 0, width: "100%", height: "100%", fill: "#FFF")
           # Black rectangle creates the transparent window at art position
           art_config = art_window_config
-          svg.rect x: art_config[:x], y: art_config[:y],
-                   width: art_config[:width], height: art_config[:height],
-                   fill: '#000', rx: art_config[:corner_radius][:x], ry: art_config[:corner_radius][:y]
+          svg.rect(
+            x: art_config[:x],
+            y: art_config[:y],
+            width: art_config[:width],
+            height: art_config[:height],
+            fill: "#000",
+            rx: art_config[:corner_radius][:x],
+            ry: art_config[:corner_radius][:y]
+          )
         end
       end
     end

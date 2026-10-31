@@ -30,28 +30,36 @@ module MtgCardMaker
       stroke_width = layer_config.stroke_width
       corners = layer_config.corner_radius(:type)
 
-      svg.rect x: x, y: y, width: width, height: height,
-               fill: "url(##{color_scheme.scheme_name}_name_gradient)",
-               stroke: ColorPalette::FRAME_STROKE_COLOR,
-               stroke_width: stroke_width,
-               rx: corners[:x], ry: corners[:y]
+      svg.rect(
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        fill: "url(##{color_scheme.scheme_name}_name_gradient)",
+        stroke: ColorPalette::FRAME_STROKE_COLOR,
+        stroke_width: stroke_width,
+        rx: corners[:x],
+        ry: corners[:y]
+      )
     end
 
     def render_type_icon
       layer_config = LayerConfig.default
       icon_config = layer_config.type_icon_config
 
-      svg.path stroke_width: 3,
-               d: jsharp_path_data,
-               fill: 'none',
-               stroke: ColorPalette::FRAME_STROKE_COLOR,
-               transform: build_icon_transform(icon_config),
-               'aria-label': 'J#'
+      svg.path(
+        stroke_width: 3,
+        d: jsharp_path_data,
+        fill: "none",
+        stroke: ColorPalette::FRAME_STROKE_COLOR,
+        transform: build_icon_transform(icon_config),
+        "aria-label": "J#"
+      )
     end
 
     def jsharp_path_data
       jsharp_svg = IconService.new.jsharp_svg
-      raise 'J# icon not found' unless jsharp_svg
+      raise "J# icon not found" unless jsharp_svg
 
       path_match = jsharp_svg.match(/<path[^>]*d="([^"]*)"[^>]*>/)
       path_match&.[](1)
@@ -77,7 +85,7 @@ module MtgCardMaker
         css_class: layer_config.css_class(:type_line)
       )
       text_service.wrapped_text_lines.each do |line, attrs|
-        svg.text line, attrs
+        svg.text(line, attrs)
       end
     end
   end

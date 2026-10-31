@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../mana_cost'
+require_relative "../mana_cost"
 
 module MtgCardMaker
   # NameLayer is a specialized layer
@@ -33,11 +33,18 @@ module MtgCardMaker
       stroke_width = layer_config.stroke_width
       corners = layer_config.corner_radius(:name)
 
-      svg.rect x: x, y: y, width: width, height: height,
-               fill: "url(##{SvgGradientService.name_gradient_id(color_scheme)})",
-               stroke: ColorPalette::FRAME_STROKE_COLOR,
-               stroke_width: stroke_width,
-               rx: corners[:x], ry: corners[:y], mask: "url(##{@mask_id})"
+      svg.rect(
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        fill: "url(##{SvgGradientService.name_gradient_id(color_scheme)})",
+        stroke: ColorPalette::FRAME_STROKE_COLOR,
+        stroke_width: stroke_width,
+        rx: corners[:x],
+        ry: corners[:y],
+        mask: "url(##{@mask_id})"
+      )
     end
 
     def layer_config
@@ -56,7 +63,7 @@ module MtgCardMaker
       )
       lines = text_service.wrapped_text_lines
       lines.each do |line, attrs|
-        svg.text line, attrs
+        svg.text(line, attrs)
       end
     end
 
@@ -72,7 +79,7 @@ module MtgCardMaker
       mana_cost = ManaCost.new(cost)
       cost_x = cost_position_x(mana_cost)
       cost_y = cost_position_y
-      svg.g transform: "translate(#{cost_x}, #{cost_y})" do
+      svg.g(transform: "translate(#{cost_x}, #{cost_y})") do
         svg << mana_cost.to_svg
       end
     end

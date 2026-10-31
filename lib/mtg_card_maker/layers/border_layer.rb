@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../metallic_renderer'
+require_relative "../metallic_renderer"
 
 module MtgCardMaker
   # BorderLayer is a specialized layer for the border of the card.
@@ -30,8 +30,8 @@ module MtgCardMaker
     # Supported colors for the border
     # @return [Hash] the supported color mappings
     SUPPORTED_COLORS = {
-      white: '#EEE',
-      black: '#000',
+      white: "#EEE",
+      black: "#000",
       silver: :silver,
       gold: :gold
     }.freeze
@@ -46,7 +46,7 @@ module MtgCardMaker
     # @param color [Symbol] the frame color (default: :white)
     # @param mask_id [String] the mask ID for art window (default: 'artWindowMask')
     # @raise [ArgumentError] if the color is not supported
-    def initialize(dimensions:, color: :white, mask_id: 'artWindowMask')
+    def initialize(dimensions:, color: :white, mask_id: "artWindowMask")
       @color = color.to_sym
       validate_color!
 
@@ -85,23 +85,42 @@ module MtgCardMaker
     end
 
     def render_white_frame(corners)
-      svg.rect x: x, y: y, width: width, height: height,
-               fill: SUPPORTED_COLORS[:white], rx: corners[:x], ry: corners[:y],
-               mask: "url(##{@mask_id})"
+      svg.rect(
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        fill: SUPPORTED_COLORS[:white],
+        rx: corners[:x],
+        ry: corners[:y],
+        mask: "url(##{@mask_id})"
+      )
     end
 
     def render_black_frame(corners)
-      svg.rect x: x, y: y, width: width, height: height,
-               fill: SUPPORTED_COLORS[:black], rx: corners[:x], ry: corners[:y],
-               mask: "url(##{@mask_id})"
+      svg.rect(
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        fill: SUPPORTED_COLORS[:black],
+        rx: corners[:x],
+        ry: corners[:y],
+        mask: "url(##{@mask_id})"
+      )
     end
 
     def render_metallic_frame(corners)
-      svg.rect x: x, y: y,
-               width: width, height: height,
-               rx: corners[:x], ry: corners[:y],
-               fill: '#EEE',
-               mask: "url(##{@mask_id})"
+      svg.rect(
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        rx: corners[:x],
+        ry: corners[:y],
+        fill: "#EEE",
+        mask: "url(##{@mask_id})"
+      )
       render_metallic_elements(
         mask: @mask_id,
         corners: corners,
@@ -125,26 +144,29 @@ module MtgCardMaker
     end
 
     def fill_color
-      @color == :black ? '#FFF' : '#111'
+      (@color == :black) ? "#FFF" : "#111"
     end
 
     def render_qr_code
       qr_svg_content = @icon_service.qr_code_svg
-      raise 'QR code SVG content is nil' unless qr_svg_content
+      raise "QR code SVG content is nil" unless qr_svg_content
 
       # Extract the path data from the SVG content
       path_match = qr_svg_content.match(/<path[^>]*d="([^"]*)"[^>]*>/)
-      raise 'No path element found in QR code SVG' unless path_match
+      raise "No path element found in QR code SVG" unless path_match
 
-      svg.path fill: fill_color, transform: 'translate(40,820) scale(1.1)',
-               d: path_match[1]
+      svg.path(
+        fill: fill_color,
+        transform: "translate(40,820) scale(1.1)",
+        d: path_match[1]
+      )
     end
 
     def render_copyright_texts(layer_config)
       copyright_texts = [
-        'MTG Card Maker by Joe Sharp',
-        'Portions of the materials used are property of Wizards of the Coast.',
-        '© Wizards of the Coast LLC'
+        "MTG Card Maker by Joe Sharp",
+        "Portions of the materials used are property of Wizards of the Coast.",
+        "© Wizards of the Coast LLC"
       ]
 
       copyright_config = layer_config.copyright_config
@@ -155,10 +177,10 @@ module MtgCardMaker
           y: copyright_config[:base_y] + (index * copyright_config[:line_spacing]),
           fill: fill_color,
           font_size: layer_config.font_size(:copyright),
-          text_anchor: 'start',
-          class: 'card-copyright'
+          text_anchor: "start",
+          class: "card-copyright"
         }
-        svg.text text, copyright_attrs
+        svg.text(text, copyright_attrs)
       end
     end
   end

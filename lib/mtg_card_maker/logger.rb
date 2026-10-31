@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'logger'
+require "logger"
 
 module MtgCardMaker
   # A logger wrapper around Ruby's standard Logger that adds emoji to output

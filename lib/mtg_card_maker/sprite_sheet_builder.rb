@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'nokogiri'
+require "nokogiri"
 
 module MtgCardMaker
   # Handles the core construction of sprite sheets from individual card files
@@ -34,10 +34,12 @@ module MtgCardMaker
     # @param embed_font [Boolean] whether to embed the font as base64 (default: true)
     def create_sprite_builder(width, height, card_files, assets, embed_font: true)
       Nokogiri::XML::Builder.new do |xml|
-        xml.svg(xmlns: 'http://www.w3.org/2000/svg',
-                viewBox: "0 0 #{width} #{height}",
-                width: width,
-                height: height) do
+        xml.svg(
+          xmlns: "http://www.w3.org/2000/svg",
+          viewBox: "0 0 #{width} #{height}",
+          width: width,
+          height: height
+        ) do
           assets.add_assets_to_sprite(xml, embed_font: embed_font)
           add_cards_to_sprite(xml, card_files, embed_font)
         end
@@ -60,15 +62,17 @@ module MtgCardMaker
     def add_card_to_sprite(xml, card_file, index, embed_font)
       position = calculate_card_position(index)
       doc = load_card_document(card_file)
-      svg_element = doc.at_css('svg')
+      svg_element = doc.at_css("svg")
 
       return unless svg_element
 
       xml.g(transform: "translate(#{position[:x]}, #{position[:y]})") do
         # Add the card with its own viewBox for proper scaling
-        xml.svg(viewBox: "0 0 #{CARD_WIDTH} #{CARD_HEIGHT}",
-                width: CARD_WIDTH,
-                height: CARD_HEIGHT) do
+        xml.svg(
+          viewBox: "0 0 #{CARD_WIDTH} #{CARD_HEIGHT}",
+          width: CARD_WIDTH,
+          height: CARD_HEIGHT
+        ) do
           add_card_children(xml, svg_element, embed_font)
         end
       end
@@ -89,11 +93,11 @@ module MtgCardMaker
     end
 
     def add_card_children(xml, svg_element, _embed_font)
-      excluded_elements = ['defs', 'style']
+      excluded_elements = ["defs", "style"]
 
       svg_element.children.each do |child|
         next if excluded_elements.include?(child.name)
-        next if child.name&.start_with?('linearGradient', 'radialGradient', 'pattern')
+        next if child.name&.start_with?("linearGradient", "radialGradient", "pattern")
 
         xml.parent.add_child(child.dup)
       end

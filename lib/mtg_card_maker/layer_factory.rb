@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'layers/art_layer'
-require_relative 'layers/text_box_layer'
-require_relative 'layers/frame_layer'
-require_relative 'layers/name_layer'
-require_relative 'layers/border_layer'
-require_relative 'layers/power_layer'
-require_relative 'layers/type_line_layer'
+require_relative "layers/art_layer"
+require_relative "layers/text_box_layer"
+require_relative "layers/frame_layer"
+require_relative "layers/name_layer"
+require_relative "layers/border_layer"
+require_relative "layers/power_layer"
+require_relative "layers/type_line_layer"
 
 module MtgCardMaker
   # Centralized factory for creating card layers that eliminates duplication

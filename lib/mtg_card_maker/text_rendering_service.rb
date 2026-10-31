@@ -57,7 +57,7 @@ module MtgCardMaker
     def initialize(**kwargs)
       # Set defaults
       defaults = {
-        text: '',
+        text: "",
         layer_config: LayerConfig.default,
         x: 0,
         y: 0,
@@ -125,7 +125,7 @@ module MtgCardMaker
     end
 
     def wrap_line(line)
-      return [''] if line.strip.empty?
+      return [""] if line.strip.empty?
 
       char_width = @font_size * @layer_config.char_width_multiplier
       words = line.split(/\s+/)
@@ -134,7 +134,7 @@ module MtgCardMaker
 
     def process_words(words, char_width)
       lines = []
-      current = ''
+      current = ""
 
       words.each do |word|
         current, completed_line = process_word(word, current, char_width)

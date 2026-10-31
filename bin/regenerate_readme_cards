@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'fileutils'
-require 'English'
+require "fileutils"
+require "English"
 
 # Script to regenerate the cards shown in the README
 # This script generates both the MTG Card Maker card and Joe Sharp card
@@ -10,13 +10,13 @@ require 'English'
 # Generates and converts README cards to SVG and WebP formats
 class ReadmeCardGenerator
   def initialize
-    @output_dir = 'images'
-    @docs_dir = 'docs/images'
-    @screenshot_file = 'screenshot.webp'
+    @output_dir = "images"
+    @docs_dir = "docs/images"
+    @screenshot_file = "screenshot.webp"
   end
 
   def generate_all_cards
-    puts '🪄 Regenerating README cards...'
+    puts "🪄 Regenerating README cards..."
 
     cards.each do |card|
       generate_card(card)
@@ -32,35 +32,35 @@ class ReadmeCardGenerator
   def cards
     [
       {
-        name: 'MTG Card Maker',
-        mana_cost: 'RRRRR',
-        type_line: 'Ruby - SVG - Shell',
-        rules_text: '{T}: Create a custom Magic: The Gathering card.',
-        flavor_text: 'Raw, untamed power and fiery creation, a testament to the passionate and dynamic nature of Ruby.',
+        name: "MTG Card Maker",
+        mana_cost: "RRRRR",
+        type_line: "Ruby - SVG - Shell",
+        rules_text: "{T}: Create a custom Magic: The Gathering card.",
+        flavor_text: "Raw, untamed power and fiery creation, a testament to the passionate and dynamic nature of Ruby.",
         power: 7,
         toughness: 12,
-        border_color: 'silver',
-        color: 'red',
-        art: 'mtgcm.webp',
-        output_svg: File.join(@output_dir, 'mtgcm_card.svg'),
-        output_webp: File.join(@output_dir, 'mtgcm_card.webp')
+        border_color: "silver",
+        color: "red",
+        art: "mtgcm.webp",
+        output_svg: File.join(@output_dir, "mtgcm_card.svg"),
+        output_webp: File.join(@output_dir, "mtgcm_card.webp")
       },
       {
-        name: 'Joe Sharp',
-        mana_cost: '3UR',
-        type_line: 'Engineer - Fullstack',
-        rules_text: 'When Joe Sharp enters the battlefield, ' \
+        name: "Joe Sharp",
+        mana_cost: "3UR",
+        type_line: "Engineer - Fullstack",
+        rules_text: "When Joe Sharp enters the battlefield, " \
                     'all malfunctioning computers begin working.\n' \
                     'Whenever you cast a Red spell, draw a card.\n\n' \
                     '{E}: Debug program. Ignore this cost, if a Coffee token is in play.\n\n',
         flavor_text: '\"Nothing is true, everything is a string.\"\n\t\t\t\t- The ENV Creed',
         power: 3,
         toughness: 3,
-        border_color: 'gold',
-        color: 'blue',
-        art: 'joe.webp',
-        output_svg: File.join(@output_dir, 'joe-sharp_card.svg'),
-        output_webp: File.join(@output_dir, 'joe-sharp_card.webp')
+        border_color: "gold",
+        color: "blue",
+        art: "joe.webp",
+        output_svg: File.join(@output_dir, "joe-sharp_card.svg"),
+        output_webp: File.join(@output_dir, "joe-sharp_card.webp")
       }
     ]
   end
@@ -74,7 +74,7 @@ class ReadmeCardGenerator
 
   def build_generate_command(card)
     [
-      'bin/mtg_card_maker generate_card',
+      "bin/mtg_card_maker generate_card",
       "--name=\"#{card[:name]}\"",
       "--mana-cost=#{card[:mana_cost]}",
       "--type-line=\"#{card[:type_line]}\"",
@@ -86,7 +86,7 @@ class ReadmeCardGenerator
       "--color=#{card[:color]}",
       "--output=#{card[:output_svg]}",
       "--art=#{card[:art]}"
-    ].join(' ')
+    ].join(" ")
   end
 
   def convert_card_to_webp(card)
@@ -95,23 +95,23 @@ class ReadmeCardGenerator
     chrome_path = find_chrome_path
     chrome_args = build_chrome_args(card)
 
-    puts "Running Chrome command: #{chrome_path} #{chrome_args.join(' ')}"
+    puts "Running Chrome command: #{chrome_path} #{chrome_args.join(" ")}"
 
     execute_chrome_conversion(card, chrome_path, chrome_args)
   end
 
   def find_chrome_path
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
   end
 
   def build_chrome_args(card)
     [
-      '--headless',
-      '--hide-scrollbars',
+      "--headless",
+      "--hide-scrollbars",
       "--screenshot=#{@screenshot_file}",
-      '--screenshot-format=webp',
-      '--window-size=630,1200',
-      '--default-background-color=00000000',
+      "--screenshot-format=webp",
+      "--window-size=630,1200",
+      "--default-background-color=00000000",
       "file://#{File.expand_path(card[:output_svg])}"
     ]
   end
@@ -124,7 +124,7 @@ class ReadmeCardGenerator
 
       result = system(chrome_path, *chrome_args)
       puts "Chrome command result: #{result}"
-      puts "Exit status: #{$CHILD_STATUS.exitstatus}" if $CHILD_STATUS
+      puts "Exit status: #{$?.exitstatus}" if $?
 
       crop(card)
     end
@@ -139,19 +139,19 @@ class ReadmeCardGenerator
       FileUtils.rm_f(@screenshot_file)
     else
       puts "⚠️  Chrome conversion failed for #{card[:name]} - no screenshot file found"
-      puts "Current directory contents: #{Dir.entries('.')}"
+      puts "Current directory contents: #{Dir.entries(".")}"
     end
   end
 
   def copy_to_docs(card)
     puts "Copying #{card[:name]} WebP to docs..."
-    FileUtils.cp(card[:output_webp], 'docs/images/')
+    FileUtils.cp(card[:output_webp], "docs/images/")
   end
 
   def display_card_results(cards)
     puts "\n✨ Cards generated!"
     cards.each do |card|
-      puts '📁 Generated files:'
+      puts "📁 Generated files:"
       puts "  - #{card[:output_svg]}"
       puts "  - #{card[:output_webp]}"
       puts "  - #{card[:output_webp].sub(@output_dir, @docs_dir)}\n\n"

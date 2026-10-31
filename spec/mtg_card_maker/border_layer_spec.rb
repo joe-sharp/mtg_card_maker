@@ -1,40 +1,40 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
-RSpec.describe MtgCardMaker::BorderLayer do
-  it 'inherits from BaseLayer' do
+RSpec.describe(MtgCardMaker::BorderLayer) do
+  it "inherits from BaseLayer" do
     expect(described_class).to be < MtgCardMaker::BaseLayer
   end
 
-  it 'uses correct default color' do
+  it "uses correct default color" do
     layer = described_class.new(dimensions: { x: 0, y: 0, width: 100, height: 100 })
     expect(layer.color).to eq(:white)
   end
 
-  it 'has correct default mask_id' do
+  it "has correct default mask_id" do
     layer = described_class.new(dimensions: { x: 0, y: 0, width: 100, height: 100 })
-    expect(layer.mask_id).to eq('artWindowMask')
+    expect(layer.mask_id).to eq("artWindowMask")
   end
 
-  it 'accepts custom mask_id' do
+  it "accepts custom mask_id" do
     layer = described_class.new(
       dimensions: { x: 0, y: 0, width: 100, height: 100 },
-      mask_id: 'customMask'
+      mask_id: "customMask"
     )
-    expect(layer.mask_id).to eq('customMask')
+    expect(layer.mask_id).to eq("customMask")
   end
 
-  it 'matches expected fixture output' do
+  it "matches expected fixture output" do
     fixture_layer = described_class.new(
       dimensions: { x: 0, y: 0, width: 630, height: 880 },
       color: :white
     )
-    expect_svg_to_match_fixture(fixture_layer, 'border_layer')
+    expect_svg_to_match_fixture(fixture_layer, "border_layer")
   end
 
-  describe 'color validation' do
-    it 'accepts white color' do
+  describe "color validation" do
+    it "accepts white color" do
       layer = described_class.new(
         dimensions: { x: 0, y: 0, width: 100, height: 100 },
         color: :white
@@ -42,7 +42,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
       expect(layer.color).to eq(:white)
     end
 
-    it 'accepts black color' do
+    it "accepts black color" do
       layer = described_class.new(
         dimensions: { x: 0, y: 0, width: 100, height: 100 },
         color: :black
@@ -50,7 +50,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
       expect(layer.color).to eq(:black)
     end
 
-    it 'accepts silver color' do
+    it "accepts silver color" do
       layer = described_class.new(
         dimensions: { x: 0, y: 0, width: 100, height: 100 },
         color: :silver
@@ -58,7 +58,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
       expect(layer.color).to eq(:silver)
     end
 
-    it 'accepts gold color' do
+    it "accepts gold color" do
       layer = described_class.new(
         dimensions: { x: 0, y: 0, width: 100, height: 100 },
         color: :gold
@@ -66,7 +66,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
       expect(layer.color).to eq(:gold)
     end
 
-    it 'raises error for unsupported color' do
+    it "raises error for unsupported color" do
       expect do
         described_class.new(
           dimensions: { x: 0, y: 0, width: 100, height: 100 },
@@ -75,45 +75,45 @@ RSpec.describe MtgCardMaker::BorderLayer do
       end.to raise_error(ArgumentError, /Unsupported border color: :blue. Supported: white, black, silver, gold/)
     end
 
-    it 'converts string colors to symbols' do
+    it "converts string colors to symbols" do
       layer = described_class.new(
         dimensions: { x: 0, y: 0, width: 100, height: 100 },
-        color: 'white'
+        color: "white"
       )
       expect(layer.color).to eq(:white)
     end
 
-    it 'validates supported colors correctly' do
+    it "validates supported colors correctly" do
       expect(described_class::SUPPORTED_COLORS).to eq({
-                                                        white:  '#EEE',
-                                                        black:  '#000',
-                                                        silver: :silver,
-                                                        gold:   :gold
-                                                      })
+        white: "#EEE",
+        black: "#000",
+        silver: :silver,
+        gold: :gold
+      })
     end
   end
 
-  describe '#color_key_for' do
+  describe "#color_key_for" do
     let(:layer) { described_class.new(dimensions: { x: 0, y: 0, width: 100, height: 100 }) }
 
-    it 'returns :silver for silver' do
+    it "returns :silver for silver" do
       expect(layer.send(:color_key_for, :silver)).to eq(:silver)
     end
 
-    it 'returns :gold for gold' do
+    it "returns :gold for gold" do
       expect(layer.send(:color_key_for, :gold)).to eq(:gold)
     end
 
-    it 'returns original color for white' do
+    it "returns original color for white" do
       expect(layer.send(:color_key_for, :white)).to eq(:white)
     end
 
-    it 'returns original color for black' do
+    it "returns original color for black" do
       expect(layer.send(:color_key_for, :black)).to eq(:black)
     end
   end
 
-  describe '#render_frame_by_color' do
+  describe "#render_frame_by_color" do
     let(:layer) { described_class.new(dimensions: { x: 0, y: 0, width: 100, height: 100 }) }
     let(:corners) { { x: 10, y: 10 } }
 
@@ -123,45 +123,47 @@ RSpec.describe MtgCardMaker::BorderLayer do
       allow(layer).to receive(:render_metallic_frame)
     end
 
-    context 'when color is :white' do
-      it 'calls render_white_frame' do
+    context "when color is :white" do
+      it "calls render_white_frame" do
         layer.send(:render_frame_by_color, :white, corners)
         expect(layer).to have_received(:render_white_frame).with(corners)
       end
     end
 
-    context 'when color is :black' do
-      it 'calls render_black_frame' do
+    context "when color is :black" do
+      it "calls render_black_frame" do
         layer.send(:render_frame_by_color, :black, corners)
         expect(layer).to have_received(:render_black_frame).with(corners)
       end
     end
 
-    context 'when color is :silver' do
-      it 'calls render_metallic_frame' do
+    context "when color is :silver" do
+      it "calls render_metallic_frame" do
         layer.send(:render_frame_by_color, :silver, corners)
         expect(layer).to have_received(:render_metallic_frame).with(corners)
       end
     end
 
-    context 'when color is :gold' do
-      it 'calls render_metallic_frame' do
+    context "when color is :gold" do
+      it "calls render_metallic_frame" do
         layer.send(:render_frame_by_color, :gold, corners)
         expect(layer).to have_received(:render_metallic_frame).with(corners)
       end
     end
 
-    context 'when color is unsupported' do
-      it 'raises ArgumentError with descriptive message' do
+    context "when color is unsupported" do
+      it "raises ArgumentError with descriptive message" do
         expect do
           layer.send(:render_frame_by_color, :unsupported, corners)
-        end.to raise_error(ArgumentError,
-                           'Unsupported border color: :unsupported. Supported: white, black, silver, gold.')
+        end.to raise_error(
+          ArgumentError,
+          "Unsupported border color: :unsupported. Supported: white, black, silver, gold."
+        )
       end
     end
   end
 
-  describe '#render_white_frame' do
+  describe "#render_white_frame" do
     let(:layer) { described_class.new(dimensions: { x: 10, y: 20, width: 100, height: 150 }) }
     let(:corners) { { x: 5, y: 5 } }
     let(:template) { MtgCardMaker::Template.new(width: 200, height: 200) }
@@ -170,7 +172,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
       layer.template = template
     end
 
-    it 'renders white frame with correct attributes', :aggregate_failures do
+    it "renders white frame with correct attributes", :aggregate_failures do
       layer.send(:render_white_frame, corners)
       # Verify the SVG contains the expected rect element with correct attributes
       svg_content = template.to_svg
@@ -181,7 +183,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
     end
   end
 
-  describe '#render_black_frame' do
+  describe "#render_black_frame" do
     let(:layer) { described_class.new(dimensions: { x: 10, y: 20, width: 100, height: 150 }) }
     let(:corners) { { x: 5, y: 5 } }
     let(:template) { MtgCardMaker::Template.new(width: 200, height: 200) }
@@ -190,7 +192,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
       layer.template = template
     end
 
-    it 'renders black frame with correct attributes', :aggregate_failures do
+    it "renders black frame with correct attributes", :aggregate_failures do
       layer.send(:render_black_frame, corners)
       # Verify the SVG contains the expected rect element with correct attributes
       svg_content = template.to_svg
@@ -201,7 +203,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
     end
   end
 
-  describe '#render_metallic_frame' do
+  describe "#render_metallic_frame" do
     let(:layer) { described_class.new(dimensions: { x: 10, y: 20, width: 100, height: 150 }) }
     let(:corners) { { x: 5, y: 5 } }
     let(:color_scheme) { instance_double(MtgCardMaker::ColorScheme) }
@@ -213,12 +215,12 @@ RSpec.describe MtgCardMaker::BorderLayer do
       allow(layer).to receive(:render_metallic_elements)
     end
 
-    it 'renders metallic elements without defining gradients', :aggregate_failures do
+    it "renders metallic elements without defining gradients", :aggregate_failures do
       layer.send(:render_metallic_frame, corners)
 
       # Gradients are now defined at BaseCard level, not in individual layers
       expect(layer).to have_received(:render_metallic_elements).with(
-        mask: 'artWindowMask',
+        mask: "artWindowMask",
         corners: corners,
         geometry: { x: 10, y: 20, width: 100, height: 150, padding: 0 },
         bottom_margin: 0,
@@ -227,7 +229,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
     end
   end
 
-  describe '#render_qr_code' do
+  describe "#render_qr_code" do
     let(:layer) { described_class.new(dimensions: { x: 0, y: 0, width: 630, height: 880 }) }
     let(:icon_service) { instance_double(MtgCardMaker::IconService) }
 
@@ -235,17 +237,17 @@ RSpec.describe MtgCardMaker::BorderLayer do
       allow(MtgCardMaker::IconService).to receive(:new).and_return(icon_service)
     end
 
-    context 'when QR code SVG content is nil' do
+    context "when QR code SVG content is nil" do
       before do
         allow(icon_service).to receive(:qr_code_svg).and_return(nil)
       end
 
-      it 'raises error for nil QR code SVG content' do
-        expect { layer.send(:render_qr_code) }.to raise_error('QR code SVG content is nil')
+      it "raises error for nil QR code SVG content" do
+        expect { layer.send(:render_qr_code) }.to raise_error("QR code SVG content is nil")
       end
     end
 
-    context 'when QR code SVG content does not contain path element' do
+    context "when QR code SVG content does not contain path element" do
       let(:qr_svg_content) do
         '<?xml version="1.0" standalone="yes"?><svg version="1.1" ' \
           'xmlns="http://www.w3.org/2000/svg" width="125.1" height="1685.1">' \
@@ -256,12 +258,12 @@ RSpec.describe MtgCardMaker::BorderLayer do
         allow(icon_service).to receive(:qr_code_svg).and_return(qr_svg_content)
       end
 
-      it 'raises error for no path element found' do
-        expect { layer.send(:render_qr_code) }.to raise_error('No path element found in QR code SVG')
+      it "raises error for no path element found" do
+        expect { layer.send(:render_qr_code) }.to raise_error("No path element found in QR code SVG")
       end
     end
 
-    context 'when QR code SVG content is valid' do
+    context "when QR code SVG content is valid" do
       let(:qr_svg_content) do
         '<?xml version="1.0" standalone="yes"?><svg version="1.1" ' \
           'xmlns="http://www.w3.org/2000/svg" width="125.1" height="1685.1">' \
@@ -274,7 +276,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
         layer.template = template
       end
 
-      it 'renders QR code path with correct attributes', :aggregate_failures do
+      it "renders QR code path with correct attributes", :aggregate_failures do
         layer.send(:render_qr_code)
         # Verify the SVG contains the expected path element with correct attributes
         svg_content = template.to_svg
@@ -285,7 +287,7 @@ RSpec.describe MtgCardMaker::BorderLayer do
     end
   end
 
-  describe '#render_copyright_texts' do
+  describe "#render_copyright_texts" do
     let(:layer) { described_class.new(dimensions: { x: 0, y: 0, width: 630, height: 880 }) }
     let(:layer_config) { instance_double(MtgCardMaker::LayerConfig) }
     let(:copyright_config) { { x_position: 40, base_y: 850, line_spacing: 15 } }
@@ -298,11 +300,11 @@ RSpec.describe MtgCardMaker::BorderLayer do
       layer.template = template
     end
 
-    it 'renders all copyright texts with correct attributes', :aggregate_failures do
+    it "renders all copyright texts with correct attributes", :aggregate_failures do
       expected_texts = [
-        'MTG Card Maker by Joe Sharp',
-        'Portions of the materials used are property of Wizards of the Coast.',
-        '© Wizards of the Coast LLC'
+        "MTG Card Maker by Joe Sharp",
+        "Portions of the materials used are property of Wizards of the Coast.",
+        "© Wizards of the Coast LLC"
       ]
 
       layer.send(:render_copyright_texts, layer_config)
@@ -319,20 +321,20 @@ RSpec.describe MtgCardMaker::BorderLayer do
     end
   end
 
-  describe '#fill_color' do
-    context 'when color is black' do
+  describe "#fill_color" do
+    context "when color is black" do
       let(:layer) { described_class.new(dimensions: { x: 0, y: 0, width: 100, height: 100 }, color: :black) }
 
-      it 'returns white fill color' do
-        expect(layer.send(:fill_color)).to eq('#FFF')
+      it "returns white fill color" do
+        expect(layer.send(:fill_color)).to eq("#FFF")
       end
     end
 
-    context 'when color is not black' do
+    context "when color is not black" do
       let(:layer) { described_class.new(dimensions: { x: 0, y: 0, width: 100, height: 100 }, color: :white) }
 
-      it 'returns dark fill color' do
-        expect(layer.send(:fill_color)).to eq('#111')
+      it "returns dark fill color" do
+        expect(layer.send(:fill_color)).to eq("#111")
       end
     end
   end

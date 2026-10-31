@@ -1,41 +1,41 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
-RSpec.describe MtgCardMaker::TextBoxLayer do
-  let(:rules_text) { 'Deal 3 damage to any target.' }
-  let(:flavor_text) { 'The spark of inspiration.' }
+RSpec.describe(MtgCardMaker::TextBoxLayer) do
+  let(:rules_text) { "Deal 3 damage to any target." }
+  let(:flavor_text) { "The spark of inspiration." }
 
-  it 'inherits from BaseLayer' do
+  it "inherits from BaseLayer" do
     expect(described_class).to be < MtgCardMaker::BaseLayer
   end
 
-  it 'uses correct default color' do
+  it "uses correct default color" do
     layer = described_class.new(
       dimensions: { x: 0, y: 0, width: 100, height: 100 },
       rules_text: rules_text
     )
-    expect(layer.color).to eq('#E8E8E8')
+    expect(layer.color).to eq("#E8E8E8")
   end
 
-  it 'matches expected fixture output' do
+  it "matches expected fixture output" do
     fixture_layer = described_class.new(
       dimensions: { x: 40, y: 545, width: 550, height: 265 },
-      rules_text: 'MTG Card Maker is unofficial Fan Content permitted ' \
-                  'under the Fan Content Policy. Not approved/endorsed ' \
-                  'by Wizards. Portions of the materials used are ' \
+      rules_text: "MTG Card Maker is unofficial Fan Content permitted " \
+                  "under the Fan Content Policy. Not approved/endorsed " \
+                  "by Wizards. Portions of the materials used are " \
                   "property of Wizards of the Coast.\n\n" \
-                  '©Wizards of the Coast LLC.',
+                  "©Wizards of the Coast LLC.",
       flavor_text: 'MTG Card Maker is a tool for creating fan-made MTG cards\t\t-- Joe Sharp'
     )
-    expect_svg_to_match_fixture(fixture_layer, 'text_box_layer')
+    expect_svg_to_match_fixture(fixture_layer, "text_box_layer")
   end
 
-  it 'applies correct CSS class to flavor text elements', :aggregate_failures do
+  it "applies correct CSS class to flavor text elements", :aggregate_failures do
     layer = described_class.new(
       dimensions: { x: 10, y: 10, width: 200, height: 100 },
-      rules_text: 'Short rules text.',
-      flavor_text: 'Short flavor text.'
+      rules_text: "Short rules text.",
+      flavor_text: "Short flavor text."
     )
 
     svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
@@ -47,35 +47,35 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
     expect(svg_content).to include('class="card-rules-text"')
   end
 
-  context 'with text wrapping behavior' do
-    it 'breaks long text into multiple lines' do
-      long_text = 'This is a very long piece of text that should be broken into multiple lines'
+  context "with text wrapping behavior" do
+    it "breaks long text into multiple lines" do
+      long_text = "This is a very long piece of text that should be broken into multiple lines"
       long_layer = described_class.new(dimensions: { x: 10, y: 10, width: 100, height: 100 }, rules_text: long_text)
 
       # Should have multiple text elements for wrapped lines
       svg_content = generate_svg_for_layer(long_layer, canvas_width: 200, canvas_height: 200)
-      text_count = svg_content.scan('<text').length
+      text_count = svg_content.scan("<text").length
       expect(text_count).to be > 3 # Should be broken into multiple lines
     end
 
-    it 'handles short text without unnecessary wrapping' do
-      short_text = 'Short text'
+    it "handles short text without unnecessary wrapping" do
+      short_text = "Short text"
       short_layer = described_class.new(dimensions: { x: 10, y: 10, width: 200, height: 50 }, rules_text: short_text)
 
       # Should have minimal text elements for short text
       svg_content = generate_svg_for_layer(short_layer, canvas_width: 300, canvas_height: 100)
-      text_count = svg_content.scan('<text').length
+      text_count = svg_content.scan("<text").length
       expect(text_count).to be >= 1 # At least one text element
     end
 
-    it 'handles empty rules text' do
-      empty_layer = described_class.new(dimensions: { x: 10, y: 10, width: 100, height: 50 }, rules_text: '')
+    it "handles empty rules text" do
+      empty_layer = described_class.new(dimensions: { x: 10, y: 10, width: 100, height: 50 }, rules_text: "")
 
       # Should still generate SVG structure even with empty text
-      expect_svg_to_have_elements(empty_layer, 'g', 'rect')
+      expect_svg_to_have_elements(empty_layer, "g", "rect")
     end
 
-    it 'respects manual line breaks' do
+    it "respects manual line breaks" do
       manual_breaks = "a very long line\nthat is manually broken\nup how the user wants"
       manual_breaks_layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 500, height: 100 },
@@ -84,11 +84,11 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
 
       # Count text elements to verify line wrapping
       svg_content = generate_svg_for_layer(manual_breaks_layer, canvas_width: 600, canvas_height: 200)
-      text_count = svg_content.scan('<text').length
+      text_count = svg_content.scan("<text").length
       expect(text_count).to eq(3) # One text element per line (due to manual breaks)
     end
 
-    it 'handles text with empty lines from consecutive newlines' do
+    it "handles text with empty lines from consecutive newlines" do
       # This tests the branch where current_line.empty? in build_lines_from_words
       text_with_empty_lines = "word1\n\nword2"
       layer = described_class.new(
@@ -97,17 +97,17 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       )
 
       # Should handle empty lines gracefully without adding them
-      expect_svg_to_have_text(layer, 'word1')
-      expect_svg_to_have_text(layer, 'word2')
+      expect_svg_to_have_text(layer, "word1")
+      expect_svg_to_have_text(layer, "word2")
 
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
-      text_count = svg_content.scan('<text').length
+      text_count = svg_content.scan("<text").length
       expect(text_count).to eq(2) # Should have 2 text elements; empty lines are not represented as text elements)
     end
 
-    it 'handles single word that starts a new line' do
+    it "handles single word that starts a new line" do
       # This tests the current_line.empty? ? word branch in append_word_to_line
-      very_long_word = 'Abracadabra-Alakazam-Expelliarmus-Stupefy'
+      very_long_word = "Abracadabra-Alakazam-Expelliarmus-Stupefy"
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 80, height: 100 }, # Very narrow width
         rules_text: very_long_word
@@ -117,13 +117,13 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect_svg_to_have_text(layer, very_long_word)
 
       svg_content = generate_svg_for_layer(layer, canvas_width: 200, canvas_height: 200)
-      text_count = svg_content.scan('<text').length
+      text_count = svg_content.scan("<text").length
       expect(text_count).to eq(1) # Should have exactly one text element
     end
   end
 
-  context 'with flavor text' do
-    it 'renders flavor text with separator line' do
+  context "with flavor text" do
+    it "renders flavor text with separator line" do
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 100, height: 100 },
         rules_text: rules_text,
@@ -137,7 +137,7 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect(separator_lines).to eq(1)
     end
 
-    it 'does not render separator line without flavor text' do
+    it "does not render separator line without flavor text" do
       layer_no_flavor = described_class.new(
         dimensions: { x: 10, y: 10, width: 100, height: 100 },
         rules_text: rules_text,
@@ -152,9 +152,9 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
     end
   end
 
-  context 'with symbol rendering' do
-    it 'renders text with mana symbols', :aggregate_failures do
-      text_with_symbols = 'Deal {R} damage to any target.'
+  context "with symbol rendering" do
+    it "renders text with mana symbols", :aggregate_failures do
+      text_with_symbols = "Deal {R} damage to any target."
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
         rules_text: text_with_symbols
@@ -163,14 +163,14 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
 
       # Should use foreignObject for symbol rendering
-      expect(svg_content).to include('<foreignObject')
-      expect(svg_content).to include('xmlns=\'http://www.w3.org/1999/xhtml\'')
-      expect(svg_content).to include('display: flex')
-      expect(svg_content).to include('align-items: center')
+      expect(svg_content).to include("<foreignObject")
+      expect(svg_content).to include("xmlns='http://www.w3.org/1999/xhtml'")
+      expect(svg_content).to include("display: flex")
+      expect(svg_content).to include("align-items: center")
     end
 
-    it 'renders text with numeric symbols', :aggregate_failures do
-      text_with_numeric = 'Add {1} to your mana pool.'
+    it "renders text with numeric symbols", :aggregate_failures do
+      text_with_numeric = "Add {1} to your mana pool."
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
         rules_text: text_with_numeric
@@ -179,12 +179,12 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
 
       # Should use foreignObject for numeric symbol rendering
-      expect(svg_content).to include('<foreignObject')
-      expect(svg_content).to include('xmlns=\'http://www.w3.org/1999/xhtml\'')
+      expect(svg_content).to include("<foreignObject")
+      expect(svg_content).to include("xmlns='http://www.w3.org/1999/xhtml'")
     end
 
-    it 'handles text with mixed symbols and regular text', :aggregate_failures do
-      mixed_text = 'Deal {R} damage to any target. {1}{U}'
+    it "handles text with mixed symbols and regular text", :aggregate_failures do
+      mixed_text = "Deal {R} damage to any target. {1}{U}"
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
         rules_text: mixed_text
@@ -193,12 +193,12 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
 
       # Should use foreignObject for mixed content
-      expect(svg_content).to include('<foreignObject')
-      expect(svg_content).to include('xmlns=\'http://www.w3.org/1999/xhtml\'')
+      expect(svg_content).to include("<foreignObject")
+      expect(svg_content).to include("xmlns='http://www.w3.org/1999/xhtml'")
     end
 
-    it 'handles text with unmatched braces gracefully' do
-      text_with_unmatched = 'Deal {R damage to any target.'
+    it "handles text with unmatched braces gracefully" do
+      text_with_unmatched = "Deal {R damage to any target."
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
         rules_text: text_with_unmatched
@@ -208,8 +208,8 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect { generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200) }.not_to raise_error
     end
 
-    it 'handles text ending with unmatched brace' do
-      text_ending_brace = 'Deal damage to any target {'
+    it "handles text ending with unmatched brace" do
+      text_ending_brace = "Deal damage to any target {"
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
         rules_text: text_ending_brace
@@ -219,8 +219,8 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect { generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200) }.not_to raise_error
     end
 
-    it 'handles text starting with closing brace' do
-      text_starting_brace = '} Deal damage to any target'
+    it "handles text starting with closing brace" do
+      text_starting_brace = "} Deal damage to any target"
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
         rules_text: text_starting_brace
@@ -230,8 +230,8 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect { generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200) }.not_to raise_error
     end
 
-    it 'handles text with empty braces' do
-      text_with_empty_braces = 'Deal {} damage to any target.'
+    it "handles text with empty braces" do
+      text_with_empty_braces = "Deal {} damage to any target."
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
         rules_text: text_with_empty_braces
@@ -241,8 +241,8 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect { generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200) }.not_to raise_error
     end
 
-    it 'renders text with Phyrexian symbols', :aggregate_failures do
-      text_with_phyrexian = 'Add {W/P} or {R/P} to your mana pool.'
+    it "renders text with Phyrexian symbols", :aggregate_failures do
+      text_with_phyrexian = "Add {W/P} or {R/P} to your mana pool."
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
         rules_text: text_with_phyrexian
@@ -251,14 +251,14 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
 
       # Should use foreignObject for Phyrexian symbol rendering
-      expect(svg_content).to include('<foreignObject')
-      expect(svg_content).to include('xmlns=\'http://www.w3.org/1999/xhtml\'')
-      expect(svg_content).to include('display: flex')
-      expect(svg_content).to include('align-items: center')
+      expect(svg_content).to include("<foreignObject")
+      expect(svg_content).to include("xmlns='http://www.w3.org/1999/xhtml'")
+      expect(svg_content).to include("display: flex")
+      expect(svg_content).to include("align-items: center")
     end
 
-    it 'renders text with mixed regular and Phyrexian symbols', :aggregate_failures do
-      mixed_phyrexian_text = '{T}: Add {W} or {W/P} to your mana pool.'
+    it "renders text with mixed regular and Phyrexian symbols", :aggregate_failures do
+      mixed_phyrexian_text = "{T}: Add {W} or {W/P} to your mana pool."
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
         rules_text: mixed_phyrexian_text
@@ -267,47 +267,47 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
 
       # Should use foreignObject for mixed Phyrexian content
-      expect(svg_content).to include('<foreignObject')
-      expect(svg_content).to include('xmlns=\'http://www.w3.org/1999/xhtml\'')
+      expect(svg_content).to include("<foreignObject")
+      expect(svg_content).to include("xmlns='http://www.w3.org/1999/xhtml'")
     end
   end
 
-  context 'with line placement logic' do
-    it 'handles bidirectional text placement with separator', :aggregate_failures do
+  context "with line placement logic" do
+    it "handles bidirectional text placement with separator", :aggregate_failures do
       # Test the upward and downward direction branches in calculate_line_number
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
-        rules_text: 'Short rules text.',
-        flavor_text: 'Short flavor text.'
+        rules_text: "Short rules text.",
+        flavor_text: "Short flavor text."
       )
 
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
 
       # Should render both rules and flavor text
-      expect(svg_content).to include('<text')
-      expect(svg_content).to include('<line') # Separator line
+      expect(svg_content).to include("<text")
+      expect(svg_content).to include("<line") # Separator line
     end
 
-    it 'handles forward direction placement', :aggregate_failures do
+    it "handles forward direction placement", :aggregate_failures do
       # Test the forward direction branch in calculate_line_number
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
-        rules_text: 'Short rules text only.'
+        rules_text: "Short rules text only."
       )
 
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
 
       # Should render rules text only
-      expect(svg_content).to include('<text')
+      expect(svg_content).to include("<text")
       # Should not have separator lines (only metallic pattern lines)
       separator_lines = svg_content.scan(/<line[^>]*stroke-width="1"[^>]*>/).length
       expect(separator_lines).to eq(0)
     end
 
-    it 'handles line number bounds checking', :aggregate_failures do
+    it "handles line number bounds checking", :aggregate_failures do
       # Test the break conditions in place_text_lines
-      very_long_text = 'This is a very long piece of text that will exceed the maximum ' \
-                       'number of lines allowed by the text box layer'
+      very_long_text = "This is a very long piece of text that will exceed the maximum " \
+                       "number of lines allowed by the text box layer"
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 50, height: 50 }, # Very narrow and short
         rules_text: very_long_text
@@ -316,30 +316,30 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       svg_content = generate_svg_for_layer(layer, canvas_width: 200, canvas_height: 200)
 
       # Should still render without crashing
-      expect(svg_content).to include('<text')
-      expect(svg_content).to include('<rect')
+      expect(svg_content).to include("<text")
+      expect(svg_content).to include("<rect")
     end
   end
 
-  context 'with separator positioning' do
-    it 'handles separator line positioning correctly', :aggregate_failures do
+  context "with separator positioning" do
+    it "handles separator line positioning correctly", :aggregate_failures do
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
-        rules_text: 'Short rules.',
-        flavor_text: 'Short flavor.'
+        rules_text: "Short rules.",
+        flavor_text: "Short flavor."
       )
 
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
 
       # Should have separator line with correct positioning
-      expect(svg_content).to include('<line')
+      expect(svg_content).to include("<line")
       expect(svg_content).to include('stroke-width="1"')
     end
 
-    it 'handles case where no separator exists', :aggregate_failures do
+    it "handles case where no separator exists", :aggregate_failures do
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 200, height: 100 },
-        rules_text: 'Rules only.'
+        rules_text: "Rules only."
       )
 
       svg_content = generate_svg_for_layer(layer, canvas_width: 300, canvas_height: 200)
@@ -350,8 +350,8 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
     end
   end
 
-  context 'with text box lines management' do
-    it 'handles text box lines initialization', :aggregate_failures do
+  context "with text box lines management" do
+    it "handles text box lines initialization", :aggregate_failures do
       text_box_lines = MtgCardMaker::TextBoxLines.new(x: 10, y: 10, width: 200, height: 100)
 
       expect(text_box_lines.x).to eq(10)
@@ -360,34 +360,34 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect(text_box_lines.height).to eq(100)
     end
 
-    it 'handles setting and getting lines', :aggregate_failures do
+    it "handles setting and getting lines", :aggregate_failures do
       text_box_lines = MtgCardMaker::TextBoxLines.new(x: 10, y: 10, width: 200, height: 100)
 
-      text_box_lines.set_line(0, text: 'Test text', type: :rules_text)
+      text_box_lines.set_line(0, text: "Test text", type: :rules_text)
       line_data = text_box_lines.get_line(0)
 
-      expect(line_data[:text]).to eq('Test text')
+      expect(line_data[:text]).to eq("Test text")
       expect(line_data[:type]).to eq(:rules_text)
       expect(line_data[:y_pos]).to be > 0
     end
 
-    it 'handles text lines filtering', :aggregate_failures do
+    it "handles text lines filtering", :aggregate_failures do
       text_box_lines = MtgCardMaker::TextBoxLines.new(x: 10, y: 10, width: 200, height: 100)
 
       # Set some lines with different types
-      text_box_lines.set_line(0, text: 'Rules text', type: :rules_text)
-      text_box_lines.set_line(1, text: '', type: :rules_text) # Empty text
+      text_box_lines.set_line(0, text: "Rules text", type: :rules_text)
+      text_box_lines.set_line(1, text: "", type: :rules_text) # Empty text
       text_box_lines.set_line(2, type: :separator) # Separator
-      text_box_lines.set_line(3, text: 'Flavor text', type: :flavor_text)
+      text_box_lines.set_line(3, text: "Flavor text", type: :flavor_text)
 
       text_lines = text_box_lines.text_lines
 
       # Should only include non-empty, non-separator lines
       expect(text_lines.length).to eq(2)
-      expect(text_lines.map { |line| line[:text] }).to contain_exactly('Rules text', 'Flavor text')
+      expect(text_lines.map { |line| line[:text] }).to contain_exactly("Rules text", "Flavor text")
     end
 
-    it 'handles separator line retrieval', :aggregate_failures do
+    it "handles separator line retrieval", :aggregate_failures do
       text_box_lines = MtgCardMaker::TextBoxLines.new(x: 10, y: 10, width: 200, height: 100)
 
       # Set a separator line
@@ -400,7 +400,7 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       expect(separator[:y_pos]).to be > 0
     end
 
-    it 'handles case where no separator exists', :aggregate_failures do
+    it "handles case where no separator exists", :aggregate_failures do
       text_box_lines = MtgCardMaker::TextBoxLines.new(x: 10, y: 10, width: 200, height: 100)
 
       separator = text_box_lines.separator_line
@@ -409,7 +409,7 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
     end
   end
 
-  describe 'with Gold color scheme' do
+  describe "with Gold color scheme" do
     let(:gold_color_scheme) { MtgCardMaker::ColorScheme.new(:gold) }
     let(:layer) do
       described_class.new(
@@ -420,17 +420,17 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       )
     end
 
-    it 'renders metallic rules text for Gold color scheme', :aggregate_failures do
+    it "renders metallic rules text for Gold color scheme", :aggregate_failures do
       template = MtgCardMaker::Template.new(width: 200, height: 200)
 
       template.add_layer(layer)
       svg_content = template.to_svg
 
       # Check that the text box gradient is used
-      expect(svg_content).to include('gold_text_box_gradient')
+      expect(svg_content).to include("gold_text_box_gradient")
     end
 
-    it 'renders metallic rules text without flavor text', :aggregate_failures do
+    it "renders metallic rules text without flavor text", :aggregate_failures do
       layer_no_flavor = described_class.new(
         dimensions: { x: 10, y: 10, width: 100, height: 100 },
         rules_text: rules_text,
@@ -443,29 +443,29 @@ RSpec.describe MtgCardMaker::TextBoxLayer do
       svg_content = template.to_svg
 
       # Check that the text box gradient is used
-      expect(svg_content).to include('gold_text_box_gradient')
+      expect(svg_content).to include("gold_text_box_gradient")
 
       # Check that rules text is rendered
-      expect_svg_to_have_text(template, 'Deal 3')
-      expect_svg_to_have_text(template, 'damage')
-      expect_svg_to_have_text(template, 'to any')
-      expect_svg_to_have_text(template, 'target.')
+      expect_svg_to_have_text(template, "Deal 3")
+      expect_svg_to_have_text(template, "damage")
+      expect_svg_to_have_text(template, "to any")
+      expect_svg_to_have_text(template, "target.")
 
       # Check that there are no flavor text lines (should be 0)
       line_count = svg_content.scan(%r{<text[^>]*>.*?</text>}m).count
       expect(line_count).to eq(4) # Only rules text lines, no flavor text
     end
 
-    it 'renders metallic rules text with empty rules text' do
+    it "renders metallic rules text with empty rules text" do
       layer = described_class.new(
         dimensions: { x: 10, y: 10, width: 100, height: 100 },
-        rules_text: '',
+        rules_text: "",
         color_scheme: gold_color_scheme
       )
 
       # Should still render metallic structure even with empty rules text
-      expect_svg_to_contain(layer, 'gold_text_box_gradient')
-      expect_svg_to_have_elements(layer, 'g')
+      expect_svg_to_contain(layer, "gold_text_box_gradient")
+      expect_svg_to_have_elements(layer, "g")
     end
   end
 end

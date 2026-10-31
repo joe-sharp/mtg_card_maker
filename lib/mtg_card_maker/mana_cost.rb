@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'icon_service'
+require_relative "icon_service"
 
 module MtgCardMaker
   # Mana cost class that generates SVG for the mana cost of a card.
@@ -63,7 +63,7 @@ module MtgCardMaker
     private
 
     def parse_mana_string(mana_string)
-      if mana_string.start_with?('X')
+      if mana_string.start_with?("X")
         parse_x_cost(mana_string)
       elsif mana_string.match?(/^\d+/)
         parse_numeric_cost(mana_string)
@@ -73,7 +73,7 @@ module MtgCardMaker
     end
 
     def parse_x_cost(mana_string)
-      @elements << '{X}'
+      @elements << "{X}"
       remaining_string = mana_string[1..]
 
       # Check if the remaining string starts with a number
@@ -89,7 +89,7 @@ module MtgCardMaker
 
       if numeric_value >= 100
         @int_val = nil
-        @elements << '{X}'
+        @elements << "{X}"
       else
         @int_val = numeric_value
         @elements << "{#{numeric_value}}"
@@ -102,7 +102,7 @@ module MtgCardMaker
       # Use regex to match symbols: single letters, 1-2 digits, or {anything between curly braces}
       mana_string.scan(/([A-Z]|\d{1,2}|\{[^}]+\})/).flatten.each do |symbol|
         # Add curly braces if not already present
-        formatted_symbol = symbol.start_with?('{') ? symbol : "{#{symbol}}"
+        formatted_symbol = symbol.start_with?("{") ? symbol : "{#{symbol}}"
 
         # Allow any symbol - IconService will handle validation
         @elements << formatted_symbol
@@ -116,10 +116,10 @@ module MtgCardMaker
 
     def render_mana_icon(x, y, symbol)
       icon_size = if symbol.match?(%r{\{.*/.*\}}) # Hybrid or phyrexian symbols
-                    layer_config.mana_cost_config[:hybrid_icon_size]
-                  else
-                    layer_config.mana_cost_config[:icon_size]
-                  end
+        layer_config.mana_cost_config[:hybrid_icon_size]
+      else
+        layer_config.mana_cost_config[:icon_size]
+      end
 
       icon_svg = @icon_service.symbol_svg(symbol, size: icon_size)
       return unless icon_svg

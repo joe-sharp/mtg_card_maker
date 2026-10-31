@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'addressable/uri'
-require_relative '../../mtg_card_maker'
+require "addressable/uri"
+require_relative "../../mtg_card_maker"
 
 module MtgCardMaker
   # ArtLayer is a specialized layer for card artwork.
@@ -11,7 +11,7 @@ module MtgCardMaker
     attr_reader :color_scheme, :art
 
     def initialize(dimensions:, color_scheme: DEFAULT_COLOR_SCHEME, art: nil)
-      super(dimensions: dimensions, color: '#000')
+      super(dimensions: dimensions, color: "#000")
       @color_scheme = color_scheme
       @art = parse_image_url(art)
     end
@@ -25,17 +25,30 @@ module MtgCardMaker
 
       svg.g do
         # Ornate art frame
-        svg.rect x: x - 3, y: y - 3,
-                 width: width + 6, height: height + 6,
-                 fill: 'none',
-                 stroke: color_scheme.primary_color,
-                 stroke_width: stroke_width,
-                 rx: outer_corners[:x], ry: outer_corners[:y]
+        svg.rect(
+          x: x - 3,
+          y: y - 3,
+          width: width + 6,
+          height: height + 6,
+          fill: "none",
+          stroke: color_scheme.primary_color,
+          stroke_width: stroke_width,
+          rx: outer_corners[:x],
+          ry: outer_corners[:y]
+        )
 
         # Frame border for the transparent window
-        svg.rect x: x, y: y, width: width, height: height, fill: 'none',
-                 stroke: ColorPalette::FRAME_STROKE_COLOR, stroke_width: stroke_width,
-                 rx: inner_corners[:x], ry: inner_corners[:y]
+        svg.rect(
+          x: x,
+          y: y,
+          width: width,
+          height: height,
+          fill: "none",
+          stroke: ColorPalette::FRAME_STROKE_COLOR,
+          stroke_width: stroke_width,
+          rx: inner_corners[:x],
+          ry: inner_corners[:y]
+        )
 
         # Render image if provided
         render_image if art
@@ -55,9 +68,14 @@ module MtgCardMaker
     end
 
     def render_image
-      svg.image href: art,
-                x: x, y: y, width: width, height: height,
-                preserveAspectRatio: 'xMidYMid slice'
+      svg.image(
+        href: art,
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        preserveAspectRatio: "xMidYMid slice"
+      )
     end
   end
 end

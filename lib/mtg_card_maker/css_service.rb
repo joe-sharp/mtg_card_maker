@@ -9,9 +9,9 @@ module MtgCardMaker
       # @param embed [Boolean] whether to embed the font as base64
       # @return [String] the font face CSS
       def font_face(embed: false)
-        return '' unless embed
+        return "" unless embed
 
-        font_path = File.join(__dir__, 'fonts', 'goudy_bookletter_base64.txt')
+        font_path = File.join(__dir__, "fonts", "goudy_bookletter_base64.txt")
         base64_font_data = File.read(font_path).strip
         <<~CSS
           @font-face {
@@ -53,11 +53,11 @@ module MtgCardMaker
       end
 
       def font_family(embed)
-        embed ? "'Goudy Bookletter 1911', serif" : 'serif'
+        embed ? "'Goudy Bookletter 1911', serif" : "serif"
       end
 
       def font_weight(embed)
-        embed ? 'normal' : 'bold'
+        embed ? "normal" : "bold"
       end
 
       # Generate complete CSS styles

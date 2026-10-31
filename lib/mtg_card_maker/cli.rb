@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'thor'
-require 'yaml'
-require 'fileutils'
+require "thor"
+require "yaml"
+require "fileutils"
 
 module MtgCardMaker
   # Thor-based command-line interface for MTG Card Maker.
@@ -22,13 +22,13 @@ module MtgCardMaker
   #
   # @since 0.1.0
   class CLI < Thor
-    package_name 'mtg_card_maker'
-    map 'a'  => :add_card
-    map 'ac' => :add_card
-    map 'g'  => :generate_card
-    map 'gc' => :generate_card
-    map 'gcs'=> :generate_sprite
-    map 'gs' => :generate_sprite
+    package_name "mtg_card_maker"
+    map "a"  => :add_card
+    map "ac" => :add_card
+    map "g"  => :generate_card
+    map "gc" => :generate_card
+    map "gcs"=> :generate_sprite
+    map "gs" => :generate_sprite
 
     # Fail on misspelled options (for example --nmae) instead of ignoring them
     check_unknown_options!
@@ -42,20 +42,20 @@ module MtgCardMaker
     # @return [Hash] the card option definitions for Thor
     def self.card_options
       {
-        name: { type: :string, desc: 'Card name (warns when omitted)' },
-        mana_cost: { type: :string, aliases: ['mana', 'cost'], desc: 'Mana cost (e.g., "2RR", "XG")' },
-        type_line: { type: :string, aliases: ['type'],
+        name: { type: :string, desc: "Card name (warns when omitted)" },
+        mana_cost: { type: :string, aliases: ["mana", "cost"], desc: 'Mana cost (e.g., "2RR", "XG")' },
+        type_line: { type: :string, aliases: ["type"],
                      desc: 'Card type & subtype (e.g., "Creature - Dragon", "Instant"; warns when omitted)' },
-        rules_text: { type: :string, aliases: ['rules'], desc: 'Card rules text (optional)' },
-        flavor_text: { type: :string, aliases: ['flavor'], desc: 'Flavor text (optional)' },
-        power: { type: :string, desc: 'Power (for creatures)' },
-        toughness: { type: :string, desc: 'Toughness (for creatures)' },
-        border_color: { type: :string, aliases: ['border'], desc: 'Border color (white, black, gold, silver)' },
+        rules_text: { type: :string, aliases: ["rules"], desc: "Card rules text (optional)" },
+        flavor_text: { type: :string, aliases: ["flavor"], desc: "Flavor text (optional)" },
+        power: { type: :string, desc: "Power (for creatures)" },
+        toughness: { type: :string, desc: "Toughness (for creatures)" },
+        border_color: { type: :string, aliases: ["border"], desc: "Border color (white, black, gold, silver)" },
         color: { type: :string,
-                 default: 'colorless',
-                 desc: 'Card color (white, blue, black, red, green, colorless)' },
-        art: { type: :string, aliases: ['artwork', 'image'], desc: 'Image URL or path for card artwork' },
-        embed_font: { type: :boolean, default: true, desc: 'Embed font as base64 in SVG' }
+                 default: "colorless",
+                 desc: "Card color (white, blue, black, red, green, colorless)" },
+        art: { type: :string, aliases: ["artwork", "image"], desc: "Image URL or path for card artwork" },
+        embed_font: { type: :boolean, default: true, desc: "Embed font as base64 in SVG" }
       }
     end
 
@@ -75,9 +75,9 @@ module MtgCardMaker
     # @return [void]
     # @!method generate_card
     #   Generate a single MTG card with specified parameters
-    desc 'generate_card [OPTIONS]', 'Generate a single MTG card with specified parameters'
+    desc "generate_card [OPTIONS]", "Generate a single MTG card with specified parameters"
     card_options.each { |option, config| option option, config }
-    option :output, type: :string, default: 'output_card.svg', desc: 'Output filename'
+    option :output, type: :string, default: "output_card.svg", desc: "Output filename"
     def generate_card
       config = build_card_config_from_options
       # Convert string keys to symbols for BaseCard compatibility
@@ -89,9 +89,9 @@ module MtgCardMaker
 
     # @!method generate_sprite(yaml_file, output_file)
     #   Generate a sprite sheet from YAML configuration
-    desc 'generate_sprite YAML_FILE OUTPUT_FILE [OPTIONS]', 'Generate a sprite sheet from YAML configuration'
-    option :cards_per_row, type: :numeric, default: 4, desc: 'Number of cards per row in sprite'
-    option :spacing, type: :numeric, default: 30, desc: 'Spacing between cards in pixels'
+    desc "generate_sprite YAML_FILE OUTPUT_FILE [OPTIONS]", "Generate a sprite sheet from YAML configuration"
+    option :cards_per_row, type: :numeric, default: 4, desc: "Number of cards per row in sprite"
+    option :spacing, type: :numeric, default: 30, desc: "Spacing between cards in pixels"
     def generate_sprite(yaml_file, output_file)
       abort "❌ YAML file not found: #{yaml_file}" unless File.exist?(yaml_file)
 
@@ -102,7 +102,7 @@ module MtgCardMaker
 
     # @!method add_card(yaml_file)
     #   Add a new card configuration to YAML file
-    desc 'add_card YAML_FILE [OPTIONS]', 'Add a new card configuration to YAML file'
+    desc "add_card YAML_FILE [OPTIONS]", "Add a new card configuration to YAML file"
     card_options.each { |option, config| option option, config }
     def add_card(yaml_file)
       # Create directory and load/validate config
@@ -133,7 +133,7 @@ module MtgCardMaker
       if sprite_service.create_sprite_sheet(config, output_file)
         display_success_message(config, sprite_service, output_file)
       else
-        logger.error('Failed to generate sprite sheet')
+        logger.error("Failed to generate sprite sheet")
         exit 1
       end
     end
@@ -167,7 +167,7 @@ module MtgCardMaker
     end
 
     def build_base_config
-      { 'name' => options[:name], 'type_line' => options[:type_line] }.compact
+      { "name" => options[:name], "type_line" => options[:type_line] }.compact
     end
 
     def add_optional_fields(config)
@@ -204,14 +204,14 @@ module MtgCardMaker
     rescue Psych::SyntaxError => e
       logger.error("Invalid YAML syntax: #{e.message}")
       exit 1
-    rescue StandardError => e
+    rescue => e
       logger.error("Error reading YAML file: #{e.message}")
       exit 1
     end
 
     def generate_card_key(name, config)
-      base_key = name.to_s.downcase.gsub(/[^a-z0-9]/, '_').squeeze('_').chomp('_')
-      base_key = 'card' if base_key.empty?
+      base_key = name.to_s.downcase.gsub(/[^a-z0-9]/, "_").squeeze("_").chomp("_")
+      base_key = "card" if base_key.empty?
 
       # If key already exists, append a number
       return base_key unless config.key?(base_key)

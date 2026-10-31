@@ -4,7 +4,7 @@
 # never appear in or cause changes to the generated docs.
 module YardReadmeBadgeStripper
   def contents
-    super.to_s.gsub(/<!-- badges:start -->.*?<!-- badges:end -->\n?/m, '')
+    super.to_s.gsub(/<!-- badges:start -->.*?<!-- badges:end -->\n?/m, "")
   end
 end
 

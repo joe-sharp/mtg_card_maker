@@ -1,73 +1,73 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
-RSpec.describe MtgCardMaker::BaseCard do
+RSpec.describe(MtgCardMaker::BaseCard) do
   let(:color_scheme) { MtgCardMaker::ColorScheme.new(:blue) }
 
-  describe '#initialize' do
-    it 'creates a basic card with default settings', :aggregate_failures do
+  describe "#initialize" do
+    it "creates a basic card with default settings", :aggregate_failures do
       card = described_class.new(
-        name: 'Test Card',
-        type_line: 'Instant',
-        rules_text: 'Test rules text'
+        name: "Test Card",
+        type_line: "Instant",
+        rules_text: "Test rules text"
       )
-      expect(card.name).to eq('Test Card')
+      expect(card.name).to eq("Test Card")
       expect(card.color_scheme).to eq(MtgCardMaker::DEFAULT_COLOR_SCHEME)
       expect(card.mana_cost).to be_nil
-      expect(card.type_line).to eq('Instant')
-      expect(card.rules_text).to eq('Test rules text')
+      expect(card.type_line).to eq("Instant")
+      expect(card.rules_text).to eq("Test rules text")
       expect(card.flavor_text).to be_nil
       expect(card.power).to be_nil
       expect(card.toughness).to be_nil
     end
 
-    it 'accepts custom color scheme', :aggregate_failures do
+    it "accepts custom color scheme", :aggregate_failures do
       card = described_class.new(
-        name: 'Test Card',
-        type_line: 'Instant',
-        rules_text: 'Test rules text',
+        name: "Test Card",
+        type_line: "Instant",
+        rules_text: "Test rules text",
         color: :blue
       )
       expect(card.color_scheme).to be_a(MtgCardMaker::ColorScheme)
       expect(card.color_scheme.primary_color).to eq(MtgCardMaker::ColorScheme.new(:blue).primary_color)
     end
 
-    it 'accepts custom name' do
+    it "accepts custom name" do
       card = described_class.new(
-        name: 'Custom Card',
-        type_line: 'Instant',
-        rules_text: 'Test rules text'
+        name: "Custom Card",
+        type_line: "Instant",
+        rules_text: "Test rules text"
       )
-      expect(card.name).to eq('Custom Card')
+      expect(card.name).to eq("Custom Card")
     end
 
-    it 'accepts all configurable parameters', :aggregate_failures do
+    it "accepts all configurable parameters", :aggregate_failures do
       card = described_class.new(
-        name: 'Test Card',
-        mana_cost: '2U',
-        type_line: 'Instant',
-        rules_text: 'Test rules text',
-        flavor_text: 'Test flavor text',
-        power: '3',
-        toughness: '3',
+        name: "Test Card",
+        mana_cost: "2U",
+        type_line: "Instant",
+        rules_text: "Test rules text",
+        flavor_text: "Test flavor text",
+        power: "3",
+        toughness: "3",
         color: :blue
       )
 
-      expect(card.name).to eq('Test Card')
-      expect(card.mana_cost).to eq('2U')
-      expect(card.type_line).to eq('Instant')
-      expect(card.rules_text).to eq('Test rules text')
-      expect(card.flavor_text).to eq('Test flavor text')
-      expect(card.power).to eq('3')
-      expect(card.toughness).to eq('3')
+      expect(card.name).to eq("Test Card")
+      expect(card.mana_cost).to eq("2U")
+      expect(card.type_line).to eq("Instant")
+      expect(card.rules_text).to eq("Test rules text")
+      expect(card.flavor_text).to eq("Test flavor text")
+      expect(card.power).to eq("3")
+      expect(card.toughness).to eq("3")
       expect(card.color_scheme).to be_a(MtgCardMaker::ColorScheme)
       expect(card.color_scheme.primary_color).to eq(MtgCardMaker::ColorScheme.new(:blue).primary_color)
     end
 
-    context 'with omitted fields' do
+    context "with omitted fields" do
       def render_to_string(card)
-        temp_file = Tempfile.new(['optional_fields', '.svg'])
+        temp_file = Tempfile.new(["optional_fields", ".svg"])
         card.save(temp_file.path)
         File.read(temp_file.path)
       ensure
@@ -75,72 +75,72 @@ RSpec.describe MtgCardMaker::BaseCard do
         temp_file&.unlink
       end
 
-      it 'warns when name is missing', :aggregate_failures, :logger_spec do
-        expect { described_class.new(type_line: 'Instant', rules_text: 'Test rules text') }
+      it "warns when name is missing", :aggregate_failures, :logger_spec do
+        expect { described_class.new(type_line: "Instant", rules_text: "Test rules text") }
           .to output(/Card has no name\n/).to_stderr
       end
 
-      it 'warns when type_line is missing', :aggregate_failures, :logger_spec do
-        expect { described_class.new(name: 'Test Card', rules_text: 'Test rules text') }
+      it "warns when type_line is missing", :aggregate_failures, :logger_spec do
+        expect { described_class.new(name: "Test Card", rules_text: "Test rules text") }
           .to output(/Card has no type line\n/).to_stderr
       end
 
-      it 'warns when both name and type_line are blank', :aggregate_failures, :logger_spec do
-        expect { described_class.new(name: '  ', type_line: '', rules_text: 'x') }
+      it "warns when both name and type_line are blank", :aggregate_failures, :logger_spec do
+        expect { described_class.new(name: "  ", type_line: "", rules_text: "x") }
           .to output(/Card has no name or type line/).to_stderr
       end
 
-      it 'does not warn when name and type_line are present', :logger_spec do
-        expect { described_class.new(name: 'Test Card', type_line: 'Instant') }.not_to output.to_stderr
+      it "does not warn when name and type_line are present", :logger_spec do
+        expect { described_class.new(name: "Test Card", type_line: "Instant") }.not_to output.to_stderr
       end
 
-      it 'does not require rules_text', :aggregate_failures, :logger_spec do
+      it "does not require rules_text", :aggregate_failures, :logger_spec do
         card = nil
 
-        expect { card = described_class.new(name: 'Test Card', type_line: 'Creature - Bear') }
+        expect { card = described_class.new(name: "Test Card", type_line: "Creature - Bear") }
           .not_to output.to_stderr
         expect(card.rules_text).to be_nil
-        expect(render_to_string(card)).to include('Test Card')
+        expect(render_to_string(card)).to include("Test Card")
       end
 
-      it 'accepts blank rules_text' do
-        expect { described_class.new(name: 'Test Card', type_line: 'Creature - Bear', rules_text: '') }
+      it "accepts blank rules_text" do
+        expect { described_class.new(name: "Test Card", type_line: "Creature - Bear", rules_text: "") }
           .not_to raise_error
       end
 
-      it 'renders a card with no text at all', :aggregate_failures, :logger_spec do
+      it "renders a card with no text at all", :aggregate_failures, :logger_spec do
         card = nil
 
         expect { card = described_class.new({}) }.to output(/Card has no name or type line/).to_stderr
-        expect(render_to_string(card)).to include('<svg')
+        expect(render_to_string(card)).to include("<svg")
       end
     end
 
-    context 'with color scheme handling' do
-      it 'uses default color scheme when color is nil', :aggregate_failures do
+    context "with color scheme handling" do
+      it "uses default color scheme when color is nil", :aggregate_failures do
         card = described_class.new(
-          name: 'Test Card',
-          type_line: 'Instant',
-          rules_text: 'Test rules text',
+          name: "Test Card",
+          type_line: "Instant",
+          rules_text: "Test rules text",
           color: nil
         )
         expect(card.color_scheme).to eq(MtgCardMaker::DEFAULT_COLOR_SCHEME)
       end
 
-      it 'uses default color scheme when color is not provided', :aggregate_failures do
+      it "uses default color scheme when color is not provided", :aggregate_failures do
         card = described_class.new(
-          name: 'Test Card',
-          type_line: 'Instant',
-          rules_text: 'Test rules text'
+          name: "Test Card",
+          type_line: "Instant",
+          rules_text: "Test rules text"
         )
         expect(card.color_scheme).to eq(MtgCardMaker::DEFAULT_COLOR_SCHEME)
       end
 
-      it 'creates custom color scheme when color is provided', :aggregate_failures do
+      it "creates custom color scheme when color is provided", :aggregate_failures do
         card = described_class.new(
-          name: 'Test Card',
-          type_line: 'Instant',
-          rules_text: 'Test rules text',
+          name: "Test Card",
+          type_line: "Instant",
+          rules_text: "Test rules text",
           color: :red
         )
         expect(card.color_scheme).to be_a(MtgCardMaker::ColorScheme)
@@ -149,33 +149,33 @@ RSpec.describe MtgCardMaker::BaseCard do
     end
   end
 
-  describe '#save' do
-    it 'saves the card to a file', :aggregate_failures do
+  describe "#save" do
+    it "saves the card to a file", :aggregate_failures do
       card = described_class.new(
-        name: 'Test Card',
-        type_line: 'Instant',
-        rules_text: 'Test rules text'
+        name: "Test Card",
+        type_line: "Instant",
+        rules_text: "Test rules text"
       )
-      temp_file = Tempfile.new(['test_card', '.svg'])
+      temp_file = Tempfile.new(["test_card", ".svg"])
 
       expect { card.save(temp_file.path) }.not_to raise_error
-      expect(File.exist?(temp_file.path)).to be true
+      expect(File.exist?(temp_file.path)).to be(true)
 
       temp_file.close
       temp_file.unlink
     end
   end
 
-  describe 'dimension methods' do
+  describe "dimension methods" do
     let(:card) do
       described_class.new(
-        name: 'Test Card',
-        type_line: 'Instant',
-        rules_text: 'Test rules text'
+        name: "Test Card",
+        type_line: "Instant",
+        rules_text: "Test rules text"
       )
     end
 
-    it 'provides layer dimensions', :aggregate_failures do
+    it "provides layer dimensions", :aggregate_failures do
       border = card.dimensions_for_layer(:border)
       expect(border[:x]).to eq(0)
       expect(border[:y]).to eq(0)
@@ -189,7 +189,7 @@ RSpec.describe MtgCardMaker::BaseCard do
       expect(frame[:height]).to eq(860)
     end
 
-    it 'provides art window configuration', :aggregate_failures do
+    it "provides art window configuration", :aggregate_failures do
       art_config = card.art_window_config
       expect(art_config[:x]).to eq(40)
       expect(art_config[:y]).to eq(95)
@@ -197,37 +197,38 @@ RSpec.describe MtgCardMaker::BaseCard do
       expect(art_config[:height]).to eq(400)
     end
 
-    it 'provides frame stroke width' do
+    it "provides frame stroke width" do
       expect(card.frame_stroke_width).to eq(2)
     end
 
-    it 'returns empty hash for unknown layer', :aggregate_failures do
+    it "returns empty hash for unknown layer", :aggregate_failures do
       unknown_layer = card.dimensions_for_layer(:unknown_layer)
       expect(unknown_layer).to eq({})
     end
 
-    it 'returns empty hash for string layer name', :aggregate_failures do
-      string_layer = card.dimensions_for_layer('unknown_layer')
+    it "returns empty hash for string layer name", :aggregate_failures do
+      string_layer = card.dimensions_for_layer("unknown_layer")
       expect(string_layer).to eq({})
     end
 
-    it 'raises error for nil layer name' do
+    it "raises error for nil layer name" do
       expect { card.dimensions_for_layer(nil) }.to raise_error(NoMethodError)
     end
   end
 
-  describe 'layer creation methods' do
+  describe "layer creation methods" do
     let(:card) do
       described_class.new(
-        name: 'Test Card',
-        type_line: 'Instant',
-        rules_text: 'Test rules text',
+        name: "Test Card",
+        type_line: "Instant",
+        rules_text: "Test rules text",
         color: :blue
       )
     end
 
-    it 'creates layers using LayerFactory with correct properties', :aggregate_failures do
-      layers = MtgCardMaker::LayerFactory.create_layers_for_card(card, 'artWindowMask', card)
+    # rubocop:disable-next RSpec/ExampleLength
+    it "creates layers using LayerFactory with correct properties", :aggregate_failures do
+      layers = MtgCardMaker::LayerFactory.create_layers_for_card(card, "artWindowMask", card)
 
       expect(layers.length).to eq(7)
 
@@ -251,7 +252,7 @@ RSpec.describe MtgCardMaker::BaseCard do
       # Test name area layer
       name_area = layers[2]
       expect(name_area).to be_a(MtgCardMaker::NameLayer)
-      expect(name_area.name).to eq('Test Card')
+      expect(name_area.name).to eq("Test Card")
       expect(name_area.color_scheme).to eq(card.color_scheme)
 
       # Test art layer
@@ -266,13 +267,13 @@ RSpec.describe MtgCardMaker::BaseCard do
       # Test type area layer
       type_area = layers[4]
       expect(type_area).to be_a(MtgCardMaker::TypeLineLayer)
-      expect(type_area.type_line).to eq('Instant')
+      expect(type_area.type_line).to eq("Instant")
       expect(type_area.color_scheme).to eq(card.color_scheme)
 
       # Test text box layer
       text_box_layer = layers[5]
       expect(text_box_layer).to be_a(MtgCardMaker::TextBoxLayer)
-      expect(text_box_layer.rules_text).to eq('Test rules text')
+      expect(text_box_layer.rules_text).to eq("Test rules text")
       expect(text_box_layer.color_scheme).to eq(card.color_scheme)
 
       # Test power area layer
@@ -286,12 +287,12 @@ RSpec.describe MtgCardMaker::BaseCard do
     end
   end
 
-  describe 'art window mask' do
-    it 'defines art window mask with correct dimensions', :aggregate_failures do
+  describe "art window mask" do
+    it "defines art window mask with correct dimensions", :aggregate_failures do
       card = described_class.new(
-        name: 'Test Card',
-        type_line: 'Instant',
-        rules_text: 'Test rules text'
+        name: "Test Card",
+        type_line: "Instant",
+        rules_text: "Test rules text"
       )
       template = card.instance_variable_get(:@template)
       svg = template.instance_variable_get(:@svg)
@@ -304,12 +305,12 @@ RSpec.describe MtgCardMaker::BaseCard do
     end
   end
 
-  describe 'template creation' do
-    it 'creates template with correct dimensions', :aggregate_failures do
+  describe "template creation" do
+    it "creates template with correct dimensions", :aggregate_failures do
       card = described_class.new(
-        name: 'Test Card',
-        type_line: 'Instant',
-        rules_text: 'Test rules text'
+        name: "Test Card",
+        type_line: "Instant",
+        rules_text: "Test rules text"
       )
       template = card.instance_variable_get(:@template)
 
@@ -318,15 +319,15 @@ RSpec.describe MtgCardMaker::BaseCard do
     end
   end
 
-  describe 'DEFAULTS constant' do
-    it 'defines layer dimensions', :aggregate_failures do
+  describe "DEFAULTS constant" do
+    it "defines layer dimensions", :aggregate_failures do
       expect(described_class::DEFAULTS[:layers][:border][:x]).to eq(0)
       expect(described_class::DEFAULTS[:layers][:border][:y]).to eq(0)
       expect(described_class::DEFAULTS[:layers][:border][:width]).to eq(630)
       expect(described_class::DEFAULTS[:layers][:border][:height]).to eq(880)
     end
 
-    it 'defines art window configuration', :aggregate_failures do
+    it "defines art window configuration", :aggregate_failures do
       expect(described_class::DEFAULTS[:layers][:art_layer][:x]).to eq(40)
       expect(described_class::DEFAULTS[:layers][:art_layer][:y]).to eq(95)
       expect(described_class::DEFAULTS[:layers][:art_layer][:width]).to eq(550)
@@ -334,8 +335,8 @@ RSpec.describe MtgCardMaker::BaseCard do
       expect(described_class::DEFAULTS[:layers][:art_layer][:corner_radius]).to eq({ x: 5, y: 5 })
     end
 
-    it 'defines mask ID and frame stroke width', :aggregate_failures do
-      expect(described_class::DEFAULTS[:mask_id]).to eq('artWindowMask')
+    it "defines mask ID and frame stroke width", :aggregate_failures do
+      expect(described_class::DEFAULTS[:mask_id]).to eq("artWindowMask")
       expect(described_class::DEFAULTS[:frame_stroke_width]).to eq(2)
     end
   end

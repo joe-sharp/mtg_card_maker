@@ -26,10 +26,17 @@ module MtgCardMaker
 
       svg.g do
         # P/T box with ornate frame
-        svg.rect x: x_position, y: y, width: dynamic_width, height: height,
-                 fill: "url(##{SvgGradientService.name_gradient_id(color_scheme)})",
-                 stroke: ColorPalette::FRAME_STROKE_COLOR,
-                 stroke_width: stroke_width, rx: corners[:x], ry: corners[:y]
+        svg.rect(
+          x: x_position,
+          y: y,
+          width: dynamic_width,
+          height: height,
+          fill: "url(##{SvgGradientService.name_gradient_id(color_scheme)})",
+          stroke: ColorPalette::FRAME_STROKE_COLOR,
+          stroke_width: stroke_width,
+          rx: corners[:x],
+          ry: corners[:y]
+        )
 
         # P/T text with bold styling
         cost_attrs = {
@@ -37,10 +44,10 @@ module MtgCardMaker
           y:           y + (height / 2) + layer_config.positioning(:power_area)[:y_offset],
           fill:        DEFAULT_TEXT_COLOR,
           font_size:   layer_config.font_size(:power_area),
-          text_anchor: 'middle',
-          class:       'card-power-toughness'
+          text_anchor: "middle",
+          class:       "card-power-toughness"
         }
-        svg.text "#{power}/#{toughness}", cost_attrs
+        svg.text("#{power}/#{toughness}", cost_attrs)
       end
     end
 

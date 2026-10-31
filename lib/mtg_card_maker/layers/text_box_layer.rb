@@ -39,10 +39,15 @@ module MtgCardMaker
     end
 
     def render_background
-      svg.rect x: x, y: y, width: width, height: height,
-               fill: "url(##{SvgGradientService.text_box_gradient_id(color_scheme)})",
-               stroke: color_scheme.primary_color,
-               stroke_width: layer_config.stroke_width
+      svg.rect(
+        x: x,
+        y: y,
+        width: width,
+        height: height,
+        fill: "url(##{SvgGradientService.text_box_gradient_id(color_scheme)})",
+        stroke: color_scheme.primary_color,
+        stroke_width: layer_config.stroke_width
+      )
     end
 
     def render_text_content
@@ -120,13 +125,16 @@ module MtgCardMaker
       if symbol_service.contains_symbols?(line)
         render_line_with_symbols(line, y_pos)
       else
-        svg.text line, {
-          x: layer_config.text_x_position(x),
-          y: y_pos,
-          fill: color_scheme.text_color,
-          font_size: font_size,
-          class: layer_config.css_class(text_type)
-        }
+        svg.text(
+          line,
+          {
+            x: layer_config.text_x_position(x),
+            y: y_pos,
+            fill: color_scheme.text_color,
+            font_size: font_size,
+            class: layer_config.css_class(text_type)
+          }
+        )
       end
     end
 
@@ -134,10 +142,12 @@ module MtgCardMaker
       html_content = symbol_service.render_line_with_symbols(line, text_width)
 
       # Use foreignObject with HTML for proper text/symbol alignment
-      svg.foreignObject x: layer_config.text_x_position(x),
-                        y: y_pos - font_size, # Ensure symbols don't throw off the line
-                        width: text_width,
-                        height: font_size * 2 do
+      svg.foreignObject(
+        x: layer_config.text_x_position(x),
+        y: y_pos - font_size, # Ensure symbols don't throw off the line
+        width: text_width,
+        height: font_size * 2
+      ) do
         svg << html_content
       end
     end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'fileutils'
-require 'nokogiri'
-require_relative 'icon_filename_service'
+require "fileutils"
+require "nokogiri"
+require_relative "icon_filename_service"
 
 module MtgCardMaker
   # IconService loads and renders SVG icons for mana costs.
@@ -17,11 +17,11 @@ module MtgCardMaker
   #
   # @since 0.1.0
   class IconService
-    ICONS_DIR = File.join(__dir__, 'icons')
-    QR_CODE_PATH = File.join(ICONS_DIR, 'qrcode.svg')
-    JSHARP_PATH = File.join(ICONS_DIR, 'jsharp.svg')
-    SINGLE_DIGIT_PATH = File.join(ICONS_DIR, 'single-digit.svg')
-    DOUBLE_DIGIT_PATH = File.join(ICONS_DIR, 'double-digit.svg')
+    ICONS_DIR = File.join(__dir__, "icons")
+    QR_CODE_PATH = File.join(ICONS_DIR, "qrcode.svg")
+    JSHARP_PATH = File.join(ICONS_DIR, "jsharp.svg")
+    SINGLE_DIGIT_PATH = File.join(ICONS_DIR, "single-digit.svg")
+    DOUBLE_DIGIT_PATH = File.join(ICONS_DIR, "double-digit.svg")
 
     attr_reader :icon_set
 
@@ -59,7 +59,7 @@ module MtgCardMaker
       return nil unless number.is_a?(Integer) && number >= 0
 
       # Determine which template to use based on digit count
-      template_path = number.to_s.length == 1 ? SINGLE_DIGIT_PATH : DOUBLE_DIGIT_PATH
+      template_path = (number.to_s.length == 1) ? SINGLE_DIGIT_PATH : DOUBLE_DIGIT_PATH
       return nil unless File.exist?(template_path)
 
       svg_content = load_icon(template_path)
@@ -84,8 +84,8 @@ module MtgCardMaker
     # Returns a list of available icon types for the current icon set
     def available_icon_types
       # Scan the icons directory for available SVG files
-      Dir.glob(File.join(ICONS_DIR, '*.svg')).map do |path|
-        File.basename(path, '.svg').to_sym
+      Dir.glob(File.join(ICONS_DIR, "*.svg")).map do |path|
+        File.basename(path, ".svg").to_sym
       end
     end
 
@@ -104,7 +104,7 @@ module MtgCardMaker
     def extract_number_from_symbol(symbol_string)
       # Extract the number from symbols like "{2}", "{42}", etc.
       match = symbol_string.match(/\{(\d{1,2})\}/)
-      return 'X' unless match
+      return "X" unless match
 
       match[1].to_i
     end
@@ -141,17 +141,17 @@ module MtgCardMaker
     def resize_svg(svg_content, size)
       # Replace the width and height attributes with the new size
       svg_content.gsub(/width="[^"]*"/, "width=\"#{size}px\"")
-                 .gsub(/height="[^"]*"/, "height=\"#{size}px\"")
+        .gsub(/height="[^"]*"/, "height=\"#{size}px\"")
     end
 
     def update_numeric_content(svg_content, number)
       doc = Nokogiri::XML(svg_content)
-      text_element = doc.at_css('text')
+      text_element = doc.at_css("text")
 
       text_element.content = number.to_s if text_element
 
       # Return just the SVG element content without XML declaration
-      doc.at_css('svg').to_xml
+      doc.at_css("svg").to_xml
     end
   end
 end

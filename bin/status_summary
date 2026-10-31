@@ -1,25 +1,25 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-QUIET = ENV.fetch('QUIET', false)
-SUPPRESS_OUTPUT = QUIET ? '> /dev/null 2>&1' : ''
+QUIET = ENV.fetch("QUIET", false)
+SUPPRESS_OUTPUT = QUIET ? "> /dev/null 2>&1" : ""
 
 single_card = {
-  name:        'MTG Card Maker',
-  mana_cost:   'X3RGUBW',
-  type_line:   'Ruby - SVG - Shell',
-  rules_text:  'MTG Card Maker is unofficial Fan Content permitted ' \
-               'under the Fan Content Policy. Not approved/endorsed ' \
-               'by Wizards. Portions of the materials used are ' \
+  name:        "MTG Card Maker",
+  mana_cost:   "X3RGUBW",
+  type_line:   "Ruby - SVG - Shell",
+  rules_text:  "MTG Card Maker is unofficial Fan Content permitted " \
+               "under the Fan Content Policy. Not approved/endorsed " \
+               "by Wizards. Portions of the materials used are " \
                'property of Wizards of the Coast.\n\n' \
-               '©Wizards of the Coast LLC.',
+               "©Wizards of the Coast LLC.",
   flavor_text: 'MTG Card Maker is a tool for creating fan-made MTG cards\t\t-- Joe Sharp',
-  power:       '9999',
-  toughness:   '9999'
+  power:       "9999",
+  toughness:   "9999"
 }
 
 def card_args(config)
-  config.map { |key, value| "--#{key.to_s.tr('_', '-')}=\"#{value}\"" }.join(' ')
+  config.map { |key, value| "--#{key.to_s.tr("_", "-")}=\"#{value}\"" }.join(" ")
 end
 
 # Card and sprite diff (suppress output)
@@ -37,15 +37,15 @@ unless QUIET
 end
 
 # Read status files with defaults
-rubocop_status = File.exist?('tmp/rubocop_status.txt') ? File.read('tmp/rubocop_status.txt') : ''
-rspec_status = File.exist?('tmp/rspec_status.txt') ? File.read('tmp/rspec_status.txt') : ''
+rubocop_status = File.exist?("tmp/rubocop_status.txt") ? File.read("tmp/rubocop_status.txt") : ""
+rspec_status = File.exist?("tmp/rspec_status.txt") ? File.read("tmp/rspec_status.txt") : ""
 
 # Extract RuboCop offense count
 rubocop_offenses = 0
-if rubocop_status.downcase.include?('no offenses detected')
-  rubo = '✅'
+if rubocop_status.downcase.include?("no offenses detected")
+  rubo = "✅"
 else
-  rubo = '⚠️ '
+  rubo = "⚠️ "
   # Extract number of offenses from RuboCop output
   offense_match = rubocop_status.match(/(\d+) offense/)
   rubocop_offenses = offense_match ? offense_match[1].to_i : 0
@@ -54,17 +54,17 @@ end
 # Extract test failure count
 test_failures = 0
 rspec_failure_line = rspec_status.lines.grep(/failure/i).last.to_s.strip
-if rspec_failure_line.downcase.include?(', 0 failures')
-  test = '✅'
+if rspec_failure_line.downcase.include?(", 0 failures")
+  test = "✅"
 else
-  test = '❌ '
+  test = "❌ "
   # Extract number of failures from RSpec output
   failure_match = rspec_failure_line.match(/(\d+) failure/)
   test_failures = failure_match ? failure_match[1].to_i : 0
 end
 
-card = card_changed ? '🔄' : '✅'
-sprite = sprite_changed ? '🔄' : '✅'
+card = card_changed ? "🔄" : "✅"
+sprite = sprite_changed ? "🔄" : "✅"
 
 # Display counts only when there are issues
 rubo_display = rubocop_offenses.positive? ? "#{rubo}(#{rubocop_offenses})" : rubo

@@ -21,8 +21,8 @@ module MtgCardMaker
 
     def add_sprite_styles(xml, embed_font)
       xml.defs do
-        xml.style(type: 'text/css') do
-          xml.cdata CssService.complete_styles(embed: embed_font)
+        xml.style(type: "text/css") do
+          xml.cdata(CssService.complete_styles(embed: embed_font))
         end
       end
     end
@@ -30,14 +30,20 @@ module MtgCardMaker
     def add_sprite_masks(xml)
       xml.defs do
         # Define the art window mask once for the entire sprite sheet
-        xml.mask(id: 'artWindowMask') do
+        xml.mask(id: "artWindowMask") do
           # White rectangle covers the entire card (opaque)
-          xml.rect(x: 0, y: 0, width: '100%', height: '100%', fill: '#FFF')
+          xml.rect(x: 0, y: 0, width: "100%", height: "100%", fill: "#FFF")
           # Black rectangle creates the transparent window at art position
           art_config = BaseCard::DEFAULTS[:layers][:art_layer]
-          xml.rect(x: art_config[:x], y: art_config[:y],
-                   width: art_config[:width], height: art_config[:height],
-                   fill: '#000', rx: art_config[:corner_radius][:x], ry: art_config[:corner_radius][:y])
+          xml.rect(
+            x: art_config[:x],
+            y: art_config[:y],
+            width: art_config[:width],
+            height: art_config[:height],
+            fill: "#000",
+            rx: art_config[:corner_radius][:x],
+            ry: art_config[:corner_radius][:y]
+          )
         end
       end
     end
@@ -47,8 +53,10 @@ module MtgCardMaker
       @color_schemes.each do |color_scheme|
         SvgGradientService.define_standard_gradients(xml, color_scheme)
         if SvgGradientService.metallic_properties?(color_scheme)
-          SvgGradientService.define_metallic_gradients(xml,
-                                                       color_scheme)
+          SvgGradientService.define_metallic_gradients(
+            xml,
+            color_scheme
+          )
         end
       end
     end
@@ -56,13 +64,13 @@ module MtgCardMaker
     # Test compatibility methods - delegate to SvgGradientService
     def define_gradient(xml, color_scheme, scheme_name, gradient_type, _color_methods)
       case gradient_type
-      when 'card'
+      when "card"
         SvgGradientService.define_card_gradient(xml, color_scheme, scheme_name)
-      when 'frame'
+      when "frame"
         SvgGradientService.define_frame_gradient(xml, color_scheme, scheme_name)
-      when 'name'
+      when "name"
         SvgGradientService.define_name_gradient(xml, color_scheme, scheme_name)
-      when 'text_box'
+      when "text_box"
         SvgGradientService.define_text_box_gradient(xml, color_scheme, scheme_name)
       end
     end

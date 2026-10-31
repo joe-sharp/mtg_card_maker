@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'cgi'
+require "cgi"
 
 module MtgCardMaker
   # SymbolReplacementService handles the parsing and rendering of MTG symbols in text
@@ -54,7 +54,7 @@ module MtgCardMaker
     # @return [String] HTML string with proper styling
     def render_html_line_with_symbols(parts, _text_width)
       html_parts = parts.map do |part|
-        if part.start_with?('{') && part.end_with?('}')
+        if part.start_with?("{") && part.end_with?("}")
           # Render symbol as inline SVG
           render_symbol_html(part)
         else
@@ -85,8 +85,8 @@ module MtgCardMaker
 
       # Use the SVG content directly with proper styling
       icon_svg.gsub(/width="[^"]*"/, "width='#{icon_size}'")
-              .gsub(/height="[^"]*"/, "height='#{icon_size}'")
-              .gsub('<svg', '<svg style="vertical-align: middle; margin: 0 5px;"')
+        .gsub(/height="[^"]*"/, "height='#{icon_size}'")
+        .gsub("<svg", '<svg style="vertical-align: middle; margin: 0 5px;"')
     end
 
     def get_icon_size_for_symbol(symbol)
