@@ -1,21 +1,5 @@
-plugins:
-  - rubocop-performance
-  - rubocop-rspec
-
-AllCops:
-  NewCops: enable
-  ExtraDetails: true
-
-Layout/EndOfLine:
-  EnforcedStyle: lf
-
-Layout/HashAlignment:
-  EnforcedHashRocketStyle:
-    - key
-    - table
-  EnforcedColonStyle:
-    - table
-    - key
+inherit_gem:
+  sharp_style_rubocop: config/default.yml
 
 Lint/AmbiguousBlockAssociation:
   AllowedPatterns:
@@ -25,88 +9,26 @@ Metrics/AbcSize:
   AllowedMethods:
     - render
 
-Metrics/BlockLength:
-  CountAsOne:
-    - array
-    - hash
-    - heredoc
-    - method_call
-
-Metrics/ClassLength:
-  Max: 116 # Default is 100, after disabling in 4+ files I felt this is a better temporary measure
-  CountAsOne:
-    - array
-    - hash
-    - heredoc
-    - method_call
-
-Metrics/MethodLength:
-  CountAsOne:
-    - array
-    - hash
-    - heredoc
-    - method_call
-
-Metrics/ModuleLength:
-  CountAsOne:
-    - array
-    - hash
-    - heredoc
-    - method_call
-
-# Allow underscore to indicate private variable.
-Naming/MemoizedInstanceVariableName:
-  EnforcedStyleForLeadingUnderscores: optional
-
 Naming/MethodParameterName:
   AllowedNames:
     - 'x'
     - 'y'
     - 'r'
 
-Performance/RedundantMerge:
-  MaxKeyValuePairs: 1
-
 RSpec/ExampleLength:
-  Enabled: false
-  # CountAsOne:
-    # - array
-    # - hash
-    # - heredoc
-    # - method_call
-
-RSpec/NestedGroups:
-  Max: 4
-
-RSpec/MultipleMemoizedHelpers:
-  Enabled: false
+  Max: 15
+  CountAsOne:
+    - array
+    - hash
+    - heredoc
+    - method_call
 
 RSpec/AnyInstance:
   Exclude:
     - 'spec/mtg_card_maker/svg_gradient_service_spec.rb'
-
-# Fixture generator is a script that reports progress on purpose.
-RSpec/Output:
-  Exclude:
-    - 'spec/fixtures/generate_fixtures.rb'
 
 RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/mtg_card_maker/frame_layer_spec.rb'
     - 'spec/mtg_card_maker/name_layer_spec.rb'
     - 'spec/mtg_card_maker/svg_gradient_service_spec.rb'
-
-Style/Alias:
-  EnforcedStyle: prefer_alias_method
-
-Style/FormatStringToken:
-  Enabled: false
-
-Style/Lambda:
-  Enabled: false
-
-Style/SymbolArray:
-  MinSize: 3
-
-Style/WordArray:
-  MinSize: 3

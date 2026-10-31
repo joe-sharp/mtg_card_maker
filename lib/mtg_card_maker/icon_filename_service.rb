@@ -13,21 +13,21 @@ module MtgCardMaker
   class IconFilenameService
     # Basic mana colors and their symbols
     BASIC_COLORS = {
-      '{W}' => :white,
-      '{B}' => :black,
-      '{R}' => :red,
-      '{G}' => :green,
-      '{U}' => :blue,
-      '{C}' => :colorless
+      "{W}" => :white,
+      "{B}" => :black,
+      "{R}" => :red,
+      "{G}" => :green,
+      "{U}" => :blue,
+      "{C}" => :colorless
     }.freeze
 
     # Special symbols, cannot be combined with other symbols
     SPECIAL_SYMBOLS = {
-      '{S}' => :snow,
-      '{X}' => :x,
-      '{T}' => :tap,
-      '{Q}' => :untap,
-      '{E}' => :energy
+      "{S}" => :snow,
+      "{X}" => :x,
+      "{T}" => :tap,
+      "{Q}" => :untap,
+      "{E}" => :energy
     }.freeze
 
     # Get the complete symbol map
@@ -64,8 +64,8 @@ module MtgCardMaker
 
     # Generate phyrexian mana symbols
     def generate_phyrexian_symbols
-      BASIC_COLORS.transform_keys { |symbol| symbol.gsub('}', '/P}') }
-                  .transform_values { |color| :"phyrexian-#{color}" }
+      BASIC_COLORS.transform_keys { |symbol| symbol.gsub("}", "/P}") }
+        .transform_values { |color| :"phyrexian-#{color}" }
     end
 
     # Generate hybrid mana symbols
@@ -92,7 +92,7 @@ module MtgCardMaker
     # Generate 2/color symbols (twobrid)
     def generate_twobrid_symbols
       BASIC_COLORS.transform_keys { |symbol| "{2/#{strip_braces(symbol)}}" }
-                  .transform_values { |color| :"hybrid-2-#{color}" }
+        .transform_values { |color| :"hybrid-2-#{color}" }
     end
 
     # Generate phyrexian hybrid mana symbols
@@ -112,7 +112,7 @@ module MtgCardMaker
     end
 
     def strip_braces(symbol)
-      symbol.gsub(/[{}]/, '')
+      symbol.gsub(/[{}]/, "")
     end
   end
 end

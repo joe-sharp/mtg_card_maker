@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative 'mtg_card_maker/version'
-require 'victor'
+require_relative "mtg_card_maker/version"
+require "victor"
 
 # MTG Card Maker is a Ruby gem for creating Magic: The Gathering card templates.
 # It uses the Victor SVG library to generate layered card designs with customizable
@@ -37,9 +37,9 @@ module MtgCardMaker
   CARD_HEIGHT = 880
 
   # Load unified color scheme system
-  require_relative 'mtg_card_maker/color_scheme'
-  require_relative 'mtg_card_maker/color_palette'
-  require_relative 'mtg_card_maker/layer_config'
+  require_relative "mtg_card_maker/color_scheme"
+  require_relative "mtg_card_maker/color_palette"
+  require_relative "mtg_card_maker/layer_config"
 
   # Default color scheme using colorless colors
   # @return [ColorScheme] the default colorless color scheme
@@ -51,7 +51,7 @@ module MtgCardMaker
 
   # White color constant for border compatibility
   # @return [String] the white color hex value
-  WHITE = '#EEE'
+  WHITE = "#EEE"
 
   # Custom error class for MTG Card Maker specific errors
   class Error < StandardError; end
@@ -89,7 +89,7 @@ module MtgCardMaker
     # @option dimensions [Integer] :width the width
     # @option dimensions [Integer] :height the height
     # @param color [String] the color of the layer (default: 'white')
-    def initialize(dimensions:, color: 'white')
+    def initialize(dimensions:, color: "white")
       @x = dimensions[:x]
       @y = dimensions[:y]
       @width = dimensions[:width]
@@ -114,26 +114,26 @@ module MtgCardMaker
     end
   end
 
-  require_relative 'mtg_card_maker/layer_initializer'
-  require_relative 'mtg_card_maker/base_card'
-  require_relative 'mtg_card_maker/layer_factory'
-  require_relative 'mtg_card_maker/svg_gradient_service'
-  require_relative 'mtg_card_maker/text_rendering_service'
-  require_relative 'mtg_card_maker/symbol_replacement_service'
-  require_relative 'mtg_card_maker/icon_filename_service'
-  require_relative 'mtg_card_maker/css_service'
-  require_relative 'mtg_card_maker/sprite_sheet_assets'
-  require_relative 'mtg_card_maker/sprite_sheet_builder'
-  require_relative 'mtg_card_maker/sprite_sheet_service'
-  require_relative 'mtg_card_maker/logger'
-  require_relative 'mtg_card_maker/layers/border_layer'
-  require_relative 'mtg_card_maker/layers/frame_layer'
-  require_relative 'mtg_card_maker/layers/name_layer'
-  require_relative 'mtg_card_maker/layers/art_layer'
-  require_relative 'mtg_card_maker/layers/type_line_layer'
-  require_relative 'mtg_card_maker/layers/text_box_layer'
-  require_relative 'mtg_card_maker/layers/power_layer'
-  require_relative 'mtg_card_maker/cli'
+  require_relative "mtg_card_maker/layer_initializer"
+  require_relative "mtg_card_maker/base_card"
+  require_relative "mtg_card_maker/layer_factory"
+  require_relative "mtg_card_maker/svg_gradient_service"
+  require_relative "mtg_card_maker/text_rendering_service"
+  require_relative "mtg_card_maker/symbol_replacement_service"
+  require_relative "mtg_card_maker/icon_filename_service"
+  require_relative "mtg_card_maker/css_service"
+  require_relative "mtg_card_maker/sprite_sheet_assets"
+  require_relative "mtg_card_maker/sprite_sheet_builder"
+  require_relative "mtg_card_maker/sprite_sheet_service"
+  require_relative "mtg_card_maker/logger"
+  require_relative "mtg_card_maker/layers/border_layer"
+  require_relative "mtg_card_maker/layers/frame_layer"
+  require_relative "mtg_card_maker/layers/name_layer"
+  require_relative "mtg_card_maker/layers/art_layer"
+  require_relative "mtg_card_maker/layers/type_line_layer"
+  require_relative "mtg_card_maker/layers/text_box_layer"
+  require_relative "mtg_card_maker/layers/power_layer"
+  require_relative "mtg_card_maker/cli"
 
   # Main template class that manages the SVG canvas and layer composition.
   # This class handles creating the SVG canvas, adding layers, and saving
@@ -161,7 +161,7 @@ module MtgCardMaker
     def initialize(width: CARD_WIDTH, height: CARD_HEIGHT, embed_font: false)
       @width = width
       @height = height
-      @svg = Victor::SVG.new width: width, height: height, viewBox: "0 0 #{width} #{height}"
+      @svg = Victor::SVG.new(width: width, height: height, viewBox: "0 0 #{width} #{height}")
       embed_font(embed: embed_font)
     end
 
@@ -193,7 +193,7 @@ module MtgCardMaker
 
     def embed_font(embed: false)
       css_content = CssService.complete_styles(embed: embed)
-      @svg.style css_content
+      @svg.style(css_content)
     end
   end
 end

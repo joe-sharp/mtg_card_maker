@@ -38,7 +38,7 @@ module MtgCardMaker
 
     # Default frame stroke color used across the application
     # @return [String] the default frame stroke color
-    FRAME_STROKE_COLOR = '#111'
+    FRAME_STROKE_COLOR = "#111"
 
     # Initialize a new color palette
     #
@@ -47,8 +47,13 @@ module MtgCardMaker
     # @param border_color [String, nil] the border color (default: from default color scheme)
     # @param frame_stroke_color [String] the frame stroke color (default: FRAME_STROKE_COLOR)
     # @param accent_color [String, nil] the accent color (default: from default color scheme)
-    def initialize(primary_color: nil, background_color: nil, border_color: nil,
-                   frame_stroke_color: FRAME_STROKE_COLOR, accent_color: nil)
+    def initialize(
+      primary_color: nil,
+      background_color: nil,
+      border_color: nil,
+      frame_stroke_color: FRAME_STROKE_COLOR,
+      accent_color: nil
+    )
       @primary_color = primary_color || DEFAULT_COLOR_SCHEME.primary_color
       @background_color = background_color || DEFAULT_COLOR_SCHEME.background_color
       @border_color = border_color || DEFAULT_COLOR_SCHEME.border_color
@@ -81,11 +86,11 @@ module MtgCardMaker
     # @return [ColorPalette] a dark theme color palette
     def self.dark
       new(
-        primary_color: '#2A2A2A',
-        background_color: '#1A1A1A',
-        border_color: '#4A4A4A',
-        frame_stroke_color: '#333',
-        accent_color: '#6B6B6B'
+        primary_color: "#2A2A2A",
+        background_color: "#1A1A1A",
+        border_color: "#4A4A4A",
+        frame_stroke_color: "#333",
+        accent_color: "#6B6B6B"
       )
     end
 
@@ -94,11 +99,11 @@ module MtgCardMaker
     # @return [ColorPalette] a light theme color palette
     def self.light
       new(
-        primary_color: '#E8E8E8',
-        background_color: '#F5F5F5',
-        border_color: '#D4D4D4',
-        frame_stroke_color: '#666',
-        accent_color: '#8B8B8B'
+        primary_color: "#E8E8E8",
+        background_color: "#F5F5F5",
+        border_color: "#D4D4D4",
+        frame_stroke_color: "#666",
+        accent_color: "#8B8B8B"
       )
     end
 

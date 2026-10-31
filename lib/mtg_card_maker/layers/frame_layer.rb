@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../metallic_renderer'
+require_relative "../metallic_renderer"
 
 module MtgCardMaker
   # FrameLayer is a specialized layer for the colored frame of the card
@@ -12,7 +12,7 @@ module MtgCardMaker
 
     attr_reader :color_scheme, :mask_id, :layer_config
 
-    def initialize(dimensions:, color: nil, color_scheme: DEFAULT_COLOR_SCHEME, mask_id: 'artWindowMask')
+    def initialize(dimensions:, color: nil, color_scheme: DEFAULT_COLOR_SCHEME, mask_id: "artWindowMask")
       frame_color = initialize_layer_color(color, color_scheme, :primary_color)
       super(dimensions: dimensions, color: frame_color)
       @color_scheme = color_scheme
@@ -51,12 +51,18 @@ module MtgCardMaker
       bottom_margin = layer_config.frame_bottom_margin # Space for type line and power/toughness
 
       # Inner decorative frame with mask for transparent window
-      svg.rect x: x + padding, y: y + padding,
-               width: width - (padding * 2), height: height - bottom_margin,
-               fill: "url(##{SvgGradientService.frame_gradient_id(color_scheme)})",
-               stroke: color_scheme.primary_color,
-               stroke_width: stroke_width,
-               rx: corners[:x], ry: corners[:y], mask: "url(##{@mask_id})"
+      svg.rect(
+        x: x + padding,
+        y: y + padding,
+        width: width - (padding * 2),
+        height: height - bottom_margin,
+        fill: "url(##{SvgGradientService.frame_gradient_id(color_scheme)})",
+        stroke: color_scheme.primary_color,
+        stroke_width: stroke_width,
+        rx: corners[:x],
+        ry: corners[:y],
+        mask: "url(##{@mask_id})"
+      )
     end
   end
 end

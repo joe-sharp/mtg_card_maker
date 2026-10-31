@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'core_ext/deep_merge'
+require_relative "core_ext/deep_merge"
 
 module MtgCardMaker
   # Configuration class for layer-specific styling and positioning that centralizes
@@ -37,16 +37,16 @@ module MtgCardMaker
       # Text rendering configuration
       text_rendering: {
         default_font_size: 16,
-        default_color: '#111',
+        default_color: "#111",
         default_line_height_multiplier: 1.2,
         char_width_multiplier: 0.42,
         css_classes: {
-          card_name: 'card-name',
-          type_line: 'card-type',
-          rules_text: 'card-rules-text',
-          flavor_text: 'card-flavor-text',
-          power_area: 'card-power-toughness',
-          copyright: 'card-copyright'
+          card_name: "card-name",
+          type_line: "card-type",
+          rules_text: "card-rules-text",
+          flavor_text: "card-flavor-text",
+          power_area: "card-power-toughness",
+          copyright: "card-copyright"
         }
       },
 

@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
-RSpec.describe MtgCardMaker::CssService do
-  describe '.css_classes' do
-    it 'generates CSS classes for all card elements', :aggregate_failures do
+RSpec.describe(MtgCardMaker::CssService) do
+  describe ".css_classes" do
+    it "generates CSS classes for all card elements", :aggregate_failures do
       css = described_class.css_classes
 
-      expect(css).to include('.card-name')
-      expect(css).to include('.card-type')
-      expect(css).to include('.card-rules-text')
-      expect(css).to include('.card-flavor-text')
-      expect(css).to include('.card-power-toughness')
-      expect(css).to include('.card-copyright')
-      expect(css).to include('.mana-cost-text')
+      expect(css).to include(".card-name")
+      expect(css).to include(".card-type")
+      expect(css).to include(".card-rules-text")
+      expect(css).to include(".card-flavor-text")
+      expect(css).to include(".card-power-toughness")
+      expect(css).to include(".card-copyright")
+      expect(css).to include(".mana-cost-text")
     end
 
-    it 'applies correct font styling to flavor text', :aggregate_failures do
+    it "applies correct font styling to flavor text", :aggregate_failures do
       css = described_class.css_classes
 
       # Extract the flavor text CSS block
@@ -24,11 +24,11 @@ RSpec.describe MtgCardMaker::CssService do
       expect(flavor_css_match).not_to be_nil
 
       flavor_css = flavor_css_match[0]
-      expect(flavor_css).to include('font-family: serif')
-      expect(flavor_css).to include('font-style: italic')
+      expect(flavor_css).to include("font-family: serif")
+      expect(flavor_css).to include("font-style: italic")
     end
 
-    it 'applies correct font styling to name and type elements', :aggregate_failures do
+    it "applies correct font styling to name and type elements", :aggregate_failures do
       css = described_class.css_classes
 
       # Extract the name/type CSS block
@@ -36,11 +36,11 @@ RSpec.describe MtgCardMaker::CssService do
       expect(name_type_css_match).not_to be_nil
 
       name_type_css = name_type_css_match[0]
-      expect(name_type_css).to include('font-family: serif')
-      expect(name_type_css).to include('font-weight: bold') # Default when embed is false
+      expect(name_type_css).to include("font-family: serif")
+      expect(name_type_css).to include("font-weight: bold") # Default when embed is false
     end
 
-    it 'applies correct font styling to power/toughness', :aggregate_failures do
+    it "applies correct font styling to power/toughness", :aggregate_failures do
       css = described_class.css_classes
 
       # Extract the power/toughness CSS block
@@ -48,11 +48,11 @@ RSpec.describe MtgCardMaker::CssService do
       expect(power_css_match).not_to be_nil
 
       power_css = power_css_match[0]
-      expect(power_css).to include('font-family: serif')
-      expect(power_css).to include('font-weight: bold')
+      expect(power_css).to include("font-family: serif")
+      expect(power_css).to include("font-weight: bold")
     end
 
-    it 'applies correct font styling to rules text', :aggregate_failures do
+    it "applies correct font styling to rules text", :aggregate_failures do
       css = described_class.css_classes
 
       # Extract the rules text CSS block
@@ -60,10 +60,10 @@ RSpec.describe MtgCardMaker::CssService do
       expect(rules_css_match).not_to be_nil
 
       rules_css = rules_css_match[0]
-      expect(rules_css).to include('font-family: serif')
+      expect(rules_css).to include("font-family: serif")
     end
 
-    it 'applies correct font styling to copyright', :aggregate_failures do
+    it "applies correct font styling to copyright", :aggregate_failures do
       css = described_class.css_classes
 
       # Extract the copyright CSS block
@@ -71,11 +71,11 @@ RSpec.describe MtgCardMaker::CssService do
       expect(copyright_css_match).not_to be_nil
 
       copyright_css = copyright_css_match[0]
-      expect(copyright_css).to include('font-family: sans-serif')
+      expect(copyright_css).to include("font-family: sans-serif")
     end
 
-    context 'with embedded fonts' do
-      it 'uses embedded font family when embed is true', :aggregate_failures do
+    context "with embedded fonts" do
+      it "uses embedded font family when embed is true", :aggregate_failures do
         css = described_class.css_classes(embed: true)
 
         name_type_css_match = css.match(/\.card-name,\s*\.card-type\s*\{[^}]*\}/m)
@@ -83,82 +83,82 @@ RSpec.describe MtgCardMaker::CssService do
 
         name_type_css = name_type_css_match[0]
         expect(name_type_css).to include("font-family: 'Goudy Bookletter 1911', serif")
-        expect(name_type_css).to include('font-weight: normal')
+        expect(name_type_css).to include("font-weight: normal")
       end
 
-      it 'uses fallback font family when embed is false', :aggregate_failures do
+      it "uses fallback font family when embed is false", :aggregate_failures do
         css = described_class.css_classes(embed: false)
 
         name_type_css_match = css.match(/\.card-name,\s*\.card-type\s*\{[^}]*\}/m)
         expect(name_type_css_match).not_to be_nil
 
         name_type_css = name_type_css_match[0]
-        expect(name_type_css).to include('font-family: serif')
-        expect(name_type_css).to include('font-weight: bold')
+        expect(name_type_css).to include("font-family: serif")
+        expect(name_type_css).to include("font-weight: bold")
       end
     end
   end
 
-  describe '.font_face' do
-    it 'returns empty string when embed is false' do
+  describe ".font_face" do
+    it "returns empty string when embed is false" do
       result = described_class.font_face(embed: false)
-      expect(result).to eq('')
+      expect(result).to eq("")
     end
 
-    it 'generates font face declaration when embed is true', :aggregate_failures do
+    it "generates font face declaration when embed is true", :aggregate_failures do
       result = described_class.font_face(embed: true)
 
-      expect(result).to include('@font-face')
+      expect(result).to include("@font-face")
       expect(result).to include("font-family: 'Goudy Bookletter 1911'")
-      expect(result).to include('src: url(data:font/truetype')
-      expect(result).to include('format(\'truetype\')')
+      expect(result).to include("src: url(data:font/truetype")
+      expect(result).to include("format('truetype')")
     end
 
-    it 'reads font data from correct file' do
-      font_path = File.join(File.dirname(__FILE__), '../../lib/mtg_card_maker/fonts/goudy_bookletter_base64.txt')
-      expect(File.exist?(font_path)).to be true
+    it "reads font data from correct file" do
+      font_path = File.join(File.dirname(__FILE__), "../../lib/mtg_card_maker/fonts/goudy_bookletter_base64.txt")
+      expect(File.exist?(font_path)).to be(true)
     end
   end
 
-  describe '.complete_styles' do
-    it 'combines font face and CSS classes when embed is true', :aggregate_failures do
+  describe ".complete_styles" do
+    it "combines font face and CSS classes when embed is true", :aggregate_failures do
       result = described_class.complete_styles(embed: true)
 
-      expect(result).to include('@font-face')
-      expect(result).to include('.card-name')
-      expect(result).to include('.card-flavor-text')
+      expect(result).to include("@font-face")
+      expect(result).to include(".card-name")
+      expect(result).to include(".card-flavor-text")
     end
 
-    it 'includes only CSS classes when embed is false', :aggregate_failures do
+    it "includes only CSS classes when embed is false", :aggregate_failures do
       result = described_class.complete_styles(embed: false)
 
-      expect(result).not_to include('@font-face')
-      expect(result).to include('.card-name')
-      expect(result).to include('.card-flavor-text')
+      expect(result).not_to include("@font-face")
+      expect(result).to include(".card-name")
+      expect(result).to include(".card-flavor-text")
     end
   end
 
-  describe '.font_family' do
-    it 'returns embedded font family when embed is true' do
+  describe ".font_family" do
+    it "returns embedded font family when embed is true" do
       result = described_class.font_family(true)
       expect(result).to eq("'Goudy Bookletter 1911', serif")
     end
 
-    it 'returns fallback font family when embed is false' do
+    it "returns fallback font family when embed is false" do
       result = described_class.font_family(false)
-      expect(result).to eq('serif')
+      expect(result).to eq("serif")
     end
   end
 
-  describe '.font_weight' do
-    it 'returns normal weight when embed is true' do
+  describe ".font_weight" do
+    it "returns normal weight when embed is true" do
       result = described_class.font_weight(true)
-      expect(result).to eq('normal')
+      expect(result).to eq("normal")
     end
 
-    it 'returns bold weight when embed is false' do
+    it "returns bold weight when embed is false" do
       result = described_class.font_weight(false)
-      expect(result).to eq('bold')
+      expect(result).to eq("bold")
     end
   end
 end

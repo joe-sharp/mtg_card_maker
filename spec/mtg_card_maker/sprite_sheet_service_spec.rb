@@ -1,71 +1,73 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
-require 'fileutils'
+require "spec_helper"
+require "fileutils"
 
-RSpec.describe MtgCardMaker::SpriteSheetService do
+RSpec.describe(MtgCardMaker::SpriteSheetService) do
   let(:service) { described_class.new }
   let(:card_configs) do
     {
-      'white' => {
-        'name' => 'Test Card 1',
-        'type_line' => 'Creature',
-        'rules_text' => 'A test creature',
-        'color' => 'white'
+      "white" => {
+        "name" => "Test Card 1",
+        "type_line" => "Creature",
+        "rules_text" => "A test creature",
+        "color" => "white"
       },
-      'blue' => {
-        'name' => 'Test Card 2',
-        'type_line' => 'Instant',
-        'rules_text' => 'A test instant',
-        'color' => 'blue'
+      "blue" => {
+        "name" => "Test Card 2",
+        "type_line" => "Instant",
+        "rules_text" => "A test instant",
+        "color" => "blue"
       }
     }
   end
 
-  describe '#initialize' do
-    it 'uses default values', :aggregate_failures do
+  describe "#initialize" do
+    it "uses default values", :aggregate_failures do
       service = described_class.new
       expect(service.cards_per_row).to eq(5)
       expect(service.spacing).to eq(30)
     end
 
-    it 'accepts custom values', :aggregate_failures do
+    it "accepts custom values", :aggregate_failures do
       service = described_class.new(cards_per_row: 3, spacing: 20)
       expect(service.cards_per_row).to eq(3)
       expect(service.spacing).to eq(20)
     end
   end
 
-  describe '#create_sprite_sheet' do
-    let(:output_file) { 'tmp/test_sprite.svg' }
+  describe "#create_sprite_sheet" do
+    let(:output_file) { "tmp/test_sprite.svg" }
 
     after do
       FileUtils.rm_f(output_file)
     end
 
-    it 'returns false for empty card_configs' do
+    it "returns false for empty card_configs" do
       result = service.create_sprite_sheet({}, output_file)
-      expect(result).to be false
+      expect(result).to be(false)
     end
 
-    it 'creates a sprite sheet successfully', :aggregate_failures do
+    it "creates a sprite sheet successfully", :aggregate_failures do
       result = service.create_sprite_sheet(card_configs, output_file)
-      expect(result).to be true
-      expect(File.exist?(output_file)).to be true
+      expect(result).to be(true)
+      expect(File.exist?(output_file)).to be(true)
     end
 
-    it 'handles error during sprite creation', :aggregate_failures do
-      allow(service.instance_variable_get(:@builder)).to receive(:create_sprite_builder).and_raise(StandardError,
-                                                                                                   'Test error')
+    it "handles error during sprite creation", :aggregate_failures do
+      allow(service.instance_variable_get(:@builder)).to receive(:create_sprite_builder).and_raise(
+        StandardError,
+        "Test error"
+      )
 
       expect do
         service.create_sprite_sheet(card_configs, output_file)
       end.to raise_error(RuntimeError, /❌ Error creating sprite sheet: Test error/)
     end
 
-    it 'handles card generation error and raises exception', :aggregate_failures do
+    it "handles card generation error and raises exception", :aggregate_failures do
       # Mock BaseCard.new to raise an error for the first card
-      allow(MtgCardMaker::BaseCard).to receive(:new).and_raise(StandardError, 'Card generation failed')
+      allow(MtgCardMaker::BaseCard).to receive(:new).and_raise(StandardError, "Card generation failed")
 
       expect do
         service.create_sprite_sheet(card_configs, output_file)
@@ -73,34 +75,34 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
     end
   end
 
-  describe '#sprite_dimensions' do
-    it 'returns [0, 0] for zero card_count' do
+  describe "#sprite_dimensions" do
+    it "returns [0, 0] for zero card_count" do
       dimensions = service.sprite_dimensions(0)
       expect(dimensions).to eq([0, 0])
     end
 
-    it 'calculates dimensions for single card', :aggregate_failures do
+    it "calculates dimensions for single card", :aggregate_failures do
       dimensions = service.sprite_dimensions(1)
       expected_width = MtgCardMaker::CARD_WIDTH
       expected_height = MtgCardMaker::CARD_HEIGHT
       expect(dimensions).to eq([expected_width, expected_height])
     end
 
-    it 'calculates dimensions for multiple cards in one row', :aggregate_failures do
+    it "calculates dimensions for multiple cards in one row", :aggregate_failures do
       dimensions = service.sprite_dimensions(3)
       expected_width = (3 * MtgCardMaker::CARD_WIDTH) + (2 * 30)
       expected_height = MtgCardMaker::CARD_HEIGHT
       expect(dimensions).to eq([expected_width, expected_height])
     end
 
-    it 'calculates dimensions for multiple rows', :aggregate_failures do
+    it "calculates dimensions for multiple rows", :aggregate_failures do
       dimensions = service.sprite_dimensions(7)
       expected_width = (5 * MtgCardMaker::CARD_WIDTH) + (4 * 30)
       expected_height = (2 * MtgCardMaker::CARD_HEIGHT) + (1 * 30)
       expect(dimensions).to eq([expected_width, expected_height])
     end
 
-    it 'handles card count exceeding cards_per_row', :aggregate_failures do
+    it "handles card count exceeding cards_per_row", :aggregate_failures do
       service = described_class.new(cards_per_row: 3)
       dimensions = service.sprite_dimensions(5)
       expected_width = (3 * MtgCardMaker::CARD_WIDTH) + (2 * 30)
@@ -109,9 +111,9 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
     end
   end
 
-  describe 'private methods' do
-    describe '#generate_individual_cards' do
-      it 'generates individual card files', :aggregate_failures do
+  describe "private methods" do
+    describe "#generate_individual_cards" do
+      it "generates individual card files", :aggregate_failures do
         card_files = service.send(:generate_individual_cards, card_configs, false)
 
         expect(card_files).to be_an(Array)
@@ -125,9 +127,9 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
         end
       end
 
-      it 'handles card generation error and raises exception', :aggregate_failures do
+      it "handles card generation error and raises exception", :aggregate_failures do
         # Mock BaseCard.new to raise an error
-        allow(MtgCardMaker::BaseCard).to receive(:new).and_raise(StandardError, 'Card generation failed')
+        allow(MtgCardMaker::BaseCard).to receive(:new).and_raise(StandardError, "Card generation failed")
 
         expect do
           service.send(:generate_individual_cards, card_configs, false)
@@ -135,44 +137,44 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
       end
     end
 
-    describe '#card_from_config' do
-      it 'handles complete card configuration', :aggregate_failures do
+    describe "#card_from_config" do
+      it "handles complete card configuration", :aggregate_failures do
         complete_config = {
-          'name' => 'Complete Card',
-          'mana_cost' => '2U',
-          'type_line' => 'Instant',
-          'rules_text' => 'Test rules',
-          'flavor_text' => 'Test flavor',
-          'power' => '3',
-          'toughness' => '3',
-          'color' => 'blue',
-          'border_color' => 'gold',
-          'art' => 'https://example.com/art.jpg'
+          "name" => "Complete Card",
+          "mana_cost" => "2U",
+          "type_line" => "Instant",
+          "rules_text" => "Test rules",
+          "flavor_text" => "Test flavor",
+          "power" => "3",
+          "toughness" => "3",
+          "color" => "blue",
+          "border_color" => "gold",
+          "art" => "https://example.com/art.jpg"
         }
 
         card = service.send(:card_from_config, complete_config, false)
-        expect(card.name).to eq('Complete Card')
-        expect(card.mana_cost).to eq('2U')
-        expect(card.type_line).to eq('Instant')
-        expect(card.rules_text).to eq('Test rules')
-        expect(card.flavor_text).to eq('Test flavor')
-        expect(card.power).to eq('3')
-        expect(card.toughness).to eq('3')
+        expect(card.name).to eq("Complete Card")
+        expect(card.mana_cost).to eq("2U")
+        expect(card.type_line).to eq("Instant")
+        expect(card.rules_text).to eq("Test rules")
+        expect(card.flavor_text).to eq("Test flavor")
+        expect(card.power).to eq("3")
+        expect(card.toughness).to eq("3")
         expect(card.color_scheme.primary_color).to eq(MtgCardMaker::ColorScheme.new(:blue).primary_color)
       end
 
-      it 'handles minimal card configuration', :aggregate_failures do
+      it "handles minimal card configuration", :aggregate_failures do
         minimal_config = {
-          'name' => 'Minimal Card',
-          'type_line' => 'Creature',
-          'rules_text' => 'Test rules'
+          "name" => "Minimal Card",
+          "type_line" => "Creature",
+          "rules_text" => "Test rules"
         }
 
         card = service.send(:card_from_config, minimal_config, false)
-        expect(card.name).to eq('Minimal Card')
+        expect(card.name).to eq("Minimal Card")
         expect(card.mana_cost).to be_nil
-        expect(card.type_line).to eq('Creature')
-        expect(card.rules_text).to eq('Test rules')
+        expect(card.type_line).to eq("Creature")
+        expect(card.rules_text).to eq("Test rules")
         expect(card.flavor_text).to be_nil
         expect(card.power).to be_nil
         expect(card.toughness).to be_nil
@@ -180,11 +182,11 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
       end
     end
 
-    describe '#stitch_cards_into_sprite' do
+    describe "#stitch_cards_into_sprite" do
       let(:card_files) do
         files = []
         2.times do |_i|
-          file = Tempfile.new(['test_card_', '.svg'])
+          file = Tempfile.new(["test_card_", ".svg"])
           file.write('<svg><rect width="100" height="140"/></svg>')
           file.close
           files << file
@@ -198,20 +200,22 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
         end
       end
 
-      it 'raises error during sprite creation error' do
-        allow(service.instance_variable_get(:@builder)).to receive(:create_sprite_builder).and_raise(StandardError,
-                                                                                                     'Test error')
+      it "raises error during sprite creation error" do
+        allow(service.instance_variable_get(:@builder)).to receive(:create_sprite_builder).and_raise(
+          StandardError,
+          "Test error"
+        )
         expect do
-          service.send(:stitch_cards_into_sprite, card_files, 'test_sprite.svg', false)
+          service.send(:stitch_cards_into_sprite, card_files, "test_sprite.svg", false)
         end.to raise_error(RuntimeError, /❌ Error creating sprite sheet: Test error/)
       end
     end
 
-    describe '#cleanup_temp_files' do
+    describe "#cleanup_temp_files" do
       let(:card_files) do
         files = []
         2.times do |_i|
-          file = Tempfile.new(['test_card_', '.svg'])
+          file = Tempfile.new(["test_card_", ".svg"])
           file.write('<svg><rect width="100" height="140"/></svg>')
           file.close
           files << file
@@ -219,13 +223,13 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
         files
       end
 
-      it 'handles nil card_files gracefully' do
+      it "handles nil card_files gracefully" do
         expect { service.send(:cleanup_temp_files, nil) }.not_to raise_error
       end
 
-      it 'logs warning during cleanup error' do
+      it "logs warning during cleanup error" do
         card_files.each do |file|
-          allow(file).to receive(:unlink).and_raise(StandardError, 'Cleanup error')
+          allow(file).to receive(:unlink).and_raise(StandardError, "Cleanup error")
         end
 
         # Allow the logger to receive calls and verify after
@@ -238,10 +242,10 @@ RSpec.describe MtgCardMaker::SpriteSheetService do
           .with(/Could not clean up temp file .*: Cleanup error/).twice
       end
 
-      it 'handles mixed cleanup success and failure', :aggregate_failures do
+      it "handles mixed cleanup success and failure", :aggregate_failures do
         # First file cleanup succeeds, second fails
         allow(card_files[0]).to receive(:unlink).and_call_original
-        allow(card_files[1]).to receive(:unlink).and_raise(StandardError, 'Cleanup error')
+        allow(card_files[1]).to receive(:unlink).and_raise(StandardError, "Cleanup error")
 
         allow(service.send(:logger)).to receive(:warn)
 

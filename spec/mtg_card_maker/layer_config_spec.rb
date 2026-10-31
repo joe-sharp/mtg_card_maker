@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
-RSpec.describe MtgCardMaker::LayerConfig do
-  describe '.default' do
-    it 'returns a new instance with default configuration', :aggregate_failures do
+RSpec.describe(MtgCardMaker::LayerConfig) do
+  describe ".default" do
+    it "returns a new instance with default configuration", :aggregate_failures do
       config = described_class.default
       expect(config).to be_a(described_class)
       expect(config.config).to eq(described_class::DEFAULT_CONFIG)
     end
   end
 
-  describe '#initialize' do
-    it 'uses default configuration when no custom config provided' do
+  describe "#initialize" do
+    it "uses default configuration when no custom config provided" do
       config = described_class.new
       expect(config.config).to eq(described_class::DEFAULT_CONFIG)
     end
 
-    it 'merges custom configuration with defaults', :aggregate_failures do
+    it "merges custom configuration with defaults", :aggregate_failures do
       custom_config = {
         font_sizes: { name: 40 },
         padding: { horizontal: 20 }
@@ -29,7 +29,7 @@ RSpec.describe MtgCardMaker::LayerConfig do
       expect(config.font_size(:type)).to eq(22) # Should still be default
     end
 
-    it 'deep merges nested configurations', :aggregate_failures do
+    it "deep merges nested configurations", :aggregate_failures do
       custom_config = {
         font_sizes: { name: 40 },
         positioning: {
@@ -44,8 +44,8 @@ RSpec.describe MtgCardMaker::LayerConfig do
     end
   end
 
-  describe '#font_size' do
-    it 'returns correct font sizes for different layer types', :aggregate_failures do
+  describe "#font_size" do
+    it "returns correct font sizes for different layer types", :aggregate_failures do
       config = described_class.default
 
       expect(config.font_size(:name)).to eq(36)
@@ -56,22 +56,22 @@ RSpec.describe MtgCardMaker::LayerConfig do
     end
   end
 
-  describe '#horizontal_padding' do
-    it 'returns the horizontal padding value' do
+  describe "#horizontal_padding" do
+    it "returns the horizontal padding value" do
       config = described_class.default
       expect(config.horizontal_padding).to eq(15)
     end
   end
 
-  describe '#vertical_padding' do
-    it 'returns the vertical padding value' do
+  describe "#vertical_padding" do
+    it "returns the vertical padding value" do
       config = described_class.default
       expect(config.vertical_padding).to eq(30)
     end
   end
 
-  describe '#positioning' do
-    it 'returns positioning config for known layer types', :aggregate_failures do
+  describe "#positioning" do
+    it "returns positioning config for known layer types", :aggregate_failures do
       config = described_class.default
 
       name_area_pos = config.positioning(:name_area)
@@ -83,21 +83,21 @@ RSpec.describe MtgCardMaker::LayerConfig do
       expect(flavor_text_pos[:separator_offset]).to eq(70)
     end
 
-    it 'returns empty hash for unknown layer types' do
+    it "returns empty hash for unknown layer types" do
       config = described_class.default
       expect(config.positioning(:unknown)).to eq({})
     end
   end
 
-  describe '#stroke_width' do
-    it 'returns the stroke width value' do
+  describe "#stroke_width" do
+    it "returns the stroke width value" do
       config = described_class.default
       expect(config.stroke_width).to eq(2)
     end
   end
 
-  describe '#corner_radius' do
-    it 'returns corner radius for known layer types', :aggregate_failures do
+  describe "#corner_radius" do
+    it "returns corner radius for known layer types", :aggregate_failures do
       config = described_class.default
 
       name_radius = config.corner_radius(:name)
@@ -109,7 +109,7 @@ RSpec.describe MtgCardMaker::LayerConfig do
       expect(art_radius[:y]).to eq(8)
     end
 
-    it 'returns default corner radius for unknown layer types', :aggregate_failures do
+    it "returns default corner radius for unknown layer types", :aggregate_failures do
       config = described_class.default
       default_radius = config.corner_radius(:unknown)
       expect(default_radius[:x]).to eq(5)
@@ -117,8 +117,8 @@ RSpec.describe MtgCardMaker::LayerConfig do
     end
   end
 
-  describe '#mana_cost_config' do
-    it 'returns the mana cost configuration', :aggregate_failures do
+  describe "#mana_cost_config" do
+    it "returns the mana cost configuration", :aggregate_failures do
       config = described_class.default
       mana_config = config.mana_cost_config
 
@@ -128,8 +128,8 @@ RSpec.describe MtgCardMaker::LayerConfig do
     end
   end
 
-  describe '#copyright_config' do
-    it 'returns the copyright configuration', :aggregate_failures do
+  describe "#copyright_config" do
+    it "returns the copyright configuration", :aggregate_failures do
       config = described_class.default
       copyright_config = config.copyright_config
 
@@ -139,50 +139,50 @@ RSpec.describe MtgCardMaker::LayerConfig do
     end
   end
 
-  describe '#text_width' do
-    it 'calculates text width without layer type' do
+  describe "#text_width" do
+    it "calculates text width without layer type" do
       config = described_class.default
       width = config.text_width(100)
       expect(width).to eq(70) # 100 - (15 * 2)
     end
 
-    it 'calculates text width with layer type width ratio' do
+    it "calculates text width with layer type width ratio" do
       config = described_class.default
       width = config.text_width(100, :name_area)
       expect(width).to eq(45) # (100 * 0.75) - (15 * 2)
     end
   end
 
-  describe '#text_x_position' do
-    it 'calculates text x position with horizontal padding' do
+  describe "#text_x_position" do
+    it "calculates text x position with horizontal padding" do
       config = described_class.default
       x_pos = config.text_x_position(50)
       expect(x_pos).to eq(65) # 50 + 15
     end
   end
 
-  describe '#text_y_position' do
-    it 'calculates text y position without height' do
+  describe "#text_y_position" do
+    it "calculates text y position without height" do
       config = described_class.default
       y_pos = config.text_y_position(100, :rules_text)
       expect(y_pos).to eq(130) # 100 + 30
     end
 
-    it 'calculates text y position with height' do
+    it "calculates text y position with height" do
       config = described_class.default
       y_pos = config.text_y_position(100, :name_area, 50)
       expect(y_pos).to eq(135) # 100 + (50/2) + 10
     end
 
-    it 'handles layer types without y_offset' do
+    it "handles layer types without y_offset" do
       config = described_class.default
       y_pos = config.text_y_position(100, :unknown, 50)
       expect(y_pos).to eq(125) # 100 + (50/2) + 0
     end
   end
 
-  describe '#default_font_size' do
-    it 'returns the default font size from text rendering config' do
+  describe "#default_font_size" do
+    it "returns the default font size from text rendering config" do
       config = described_class.default
       expect(config.default_font_size).to eq(16)
     end

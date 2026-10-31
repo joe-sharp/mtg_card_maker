@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'tempfile'
-require 'fileutils'
+require "tempfile"
+require "fileutils"
 
 # Simple canvas class for managing dimensions
 class TestCanvas
@@ -27,10 +27,10 @@ module SVGFixtureHelper
   # Generate an SVG for a given layer and return the SVG content
   def generate_svg_for_layer(layer, canvas_width: nil, canvas_height: nil, embed_font: false)
     canvas = if canvas_width && canvas_height
-               custom_canvas(width: canvas_width, height: canvas_height)
-             else
-               default_canvas
-             end
+      custom_canvas(width: canvas_width, height: canvas_height)
+    else
+      default_canvas
+    end
 
     template = MtgCardMaker::Template.new(width: canvas.width, height: canvas.height, embed_font: embed_font)
     template.add_layer(layer)
@@ -40,7 +40,7 @@ module SVGFixtureHelper
 
   # Load expected SVG content from fixtures
   def load_fixture_svg(fixture_name)
-    fixture_path = File.join(File.dirname(__FILE__), '..', 'fixtures', "#{fixture_name}.svg")
+    fixture_path = File.join(File.dirname(__FILE__), "..", "fixtures", "#{fixture_name}.svg")
     raise "Fixture not found: #{fixture_path}" unless File.exist?(fixture_path)
 
     File.read(fixture_path)
@@ -48,14 +48,14 @@ module SVGFixtureHelper
 
   # Normalize SVG content for comparison (remove whitespace differences)
   def normalize_svg(svg_content)
-    svg_content.gsub(/\s+/, ' ').strip
+    svg_content.gsub(/\s+/, " ").strip
   end
 
   # Get SVG content from various input types
-  def get_svg_content(layer_or_template_or_path) # rubocop:disable Metrics/MethodLength
+  def get_svg_content(layer_or_template_or_path)
     case layer_or_template_or_path
     when String
-      if layer_or_template_or_path.include?('<svg') || layer_or_template_or_path.include?('<?xml')
+      if layer_or_template_or_path.include?("<svg") || layer_or_template_or_path.include?("<?xml")
         layer_or_template_or_path
       else
         get_svg_from_file_path(layer_or_template_or_path)
@@ -83,7 +83,7 @@ module SVGFixtureHelper
   private
 
   def capture_svg_output(template)
-    Tempfile.create(['test_svg', '.svg']) do |temp_file|
+    Tempfile.create(["test_svg", ".svg"]) do |temp_file|
       template.save(temp_file.path)
       File.read(temp_file.path)
     end
@@ -107,7 +107,7 @@ module SVGFixtureHelper
   end
 
   def get_svg_from_card_object(card_object)
-    Tempfile.create(['card', '.svg']) do |file|
+    Tempfile.create(["card", ".svg"]) do |file|
       card_object.save(file.path)
       File.read(file.path)
     end

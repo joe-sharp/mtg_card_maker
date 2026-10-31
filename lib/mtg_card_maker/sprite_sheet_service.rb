@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'tempfile'
+require "tempfile"
 
 module MtgCardMaker
   # Service for creating sprite sheets by generating individual cards
@@ -71,7 +71,7 @@ module MtgCardMaker
     end
 
     def should_embed_font?(card_configs)
-      card_configs.values.any? { |config| config['embed_font'] == true }
+      card_configs.values.any? { |config| config["embed_font"] == true }
     end
 
     def generate_individual_cards(card_configs, embed_font)
@@ -81,7 +81,7 @@ module MtgCardMaker
         card = card_from_config(config, embed_font)
         temp_file = save_card_to_temp_file(card, index)
         card_files << temp_file
-      rescue StandardError => e
+      rescue => e
         handle_card_generation_error(e, index, card_files)
       end
 
@@ -96,22 +96,22 @@ module MtgCardMaker
     def card_from_config(config, _embed_font)
       # Never embed font in individual cards when creating sprite sheets
       BaseCard.new(
-        name: config['name'],
-        mana_cost: config['mana_cost'],
-        type_line: config['type_line'],
-        rules_text: config['rules_text'],
-        flavor_text: config['flavor_text'],
-        power: config['power'],
-        toughness: config['toughness'],
-        color: config['color'],
-        border_color: config['border_color'],
-        art: config['art'],
+        name: config["name"],
+        mana_cost: config["mana_cost"],
+        type_line: config["type_line"],
+        rules_text: config["rules_text"],
+        flavor_text: config["flavor_text"],
+        power: config["power"],
+        toughness: config["toughness"],
+        color: config["color"],
+        border_color: config["border_color"],
+        art: config["art"],
         embed_font: false
       )
     end
 
     def save_card_to_temp_file(card, index)
-      temp_file = Tempfile.new(["card_#{index}", '.svg'])
+      temp_file = Tempfile.new(["card_#{index}", ".svg"])
       card.save(temp_file.path)
       temp_file
     end
@@ -121,7 +121,7 @@ module MtgCardMaker
       builder = @builder.create_sprite_builder(width, height, card_files, @assets, embed_font: embed_font)
       @builder.write_sprite_file(output_file, builder)
       true
-    rescue StandardError => e
+    rescue => e
       raise "❌ Error creating sprite sheet: #{e.message}"
     end
 
@@ -131,7 +131,7 @@ module MtgCardMaker
       card_files.each do |file|
         file.close
         file.unlink
-      rescue StandardError => e
+      rescue => e
         logger.warn("Could not clean up temp file #{file.path}: #{e.message}")
       end
     end

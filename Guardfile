@@ -2,16 +2,20 @@
 
 # More info at https://github.com/guard/guard#readme
 
-guard :rubocop, cli: '--format progress --out tmp/rubocop_status.txt ',
-                all_on_start: true, all_after_pass: true do
+guard :rubocop,
+  cli: "--format progress --out tmp/rubocop_status.txt ",
+  all_on_start: true,
+  all_after_pass: true do
   watch(/.+\.rb$/)
   watch(/bin/)
   watch(%r{(?:.+/)?\.rubocop(?:_todo)?\.yml$}) { |m| File.dirname(m[0]) }
 end
 
-guard :rspec, cmd: 'bundle exec rspec --format progress --out tmp/rspec_status.txt --format progress 2> /dev/null',
-              all_on_start: true, all_after_pass: true do
-  require 'guard/rspec/dsl'
+guard :rspec,
+  cmd: "bundle exec rspec --format progress --out tmp/rspec_status.txt --format progress 2> /dev/null",
+  all_on_start: true,
+  all_after_pass: true do
+  require "guard/rspec/dsl"
   dsl = Guard::RSpec::Dsl.new(self)
 
   # RSpec files

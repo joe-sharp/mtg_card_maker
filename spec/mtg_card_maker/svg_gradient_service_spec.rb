@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
-RSpec.describe MtgCardMaker::SvgGradientService do
-  let(:svg) { double('SVG') }
+RSpec.describe(MtgCardMaker::SvgGradientService) do
+  let(:svg) { double("SVG") }
   let(:colorless_scheme) { MtgCardMaker::ColorScheme.new(:colorless) }
   let(:gold_scheme) { MtgCardMaker::ColorScheme.new(:gold) }
 
-  describe '.define_all_gradients' do
-    it 'defines all expected gradients in SVG defs section' do
+  describe ".define_all_gradients" do
+    it "defines all expected gradients in SVG defs section" do
       template = MtgCardMaker::Template.new(width: 100, height: 100)
 
       # Create a mock SVG object to capture the gradient definitions
       allow_any_instance_of(Victor::SVG).to receive(:defs) do |&block|
         # Capture the block execution by creating a mock context
-        mock_svg = double('svg')
+        mock_svg = double("svg")
         allow(mock_svg).to receive(:linearGradient).and_yield
         allow(mock_svg).to receive(:stop)
 
@@ -25,7 +25,7 @@ RSpec.describe MtgCardMaker::SvgGradientService do
       expect { described_class.define_all_gradients(template.instance_variable_get(:@svg)) }.not_to raise_error
     end
 
-    it 'generates SVG with gradient definitions when used directly', :aggregate_failures do
+    it "generates SVG with gradient definitions when used directly", :aggregate_failures do
       # Test the service directly since layers no longer define gradients
       template = MtgCardMaker::Template.new(width: 200, height: 200)
       svg = template.instance_variable_get(:@svg)
@@ -41,12 +41,12 @@ RSpec.describe MtgCardMaker::SvgGradientService do
       expect(svg_content).to include('id="colorless_name_gradient"')
 
       # Verify gradient structure
-      expect(svg_content).to include('<linearGradient')
-      expect(svg_content).to include('<stop')
-      expect(svg_content).to include('stop-color')
+      expect(svg_content).to include("<linearGradient")
+      expect(svg_content).to include("<stop")
+      expect(svg_content).to include("stop-color")
     end
 
-    it 'defines metallic gradients for gold color scheme', :aggregate_failures do
+    it "defines metallic gradients for gold color scheme", :aggregate_failures do
       allow(svg).to receive(:defs).and_yield
       allow(svg).to receive(:linearGradient).and_yield
       allow(svg).to receive(:radialGradient).and_yield
@@ -58,7 +58,7 @@ RSpec.describe MtgCardMaker::SvgGradientService do
       expect { described_class.define_all_gradients(svg, gold_scheme) }.not_to raise_error
     end
 
-    it 'does not define metallic gradients for non-gold, non-colorless color scheme', :aggregate_failures do
+    it "does not define metallic gradients for non-gold, non-colorless color scheme", :aggregate_failures do
       non_metallic_scheme = MtgCardMaker::ColorScheme.new(:white)
       allow(svg).to receive(:defs).and_yield
       allow(svg).to receive(:linearGradient).and_yield
@@ -72,7 +72,7 @@ RSpec.describe MtgCardMaker::SvgGradientService do
       expect(svg).not_to have_received(:pattern)
     end
 
-    it 'defines metallic gradients for colorless color scheme', :aggregate_failures do
+    it "defines metallic gradients for colorless color scheme", :aggregate_failures do
       allow(svg).to receive(:defs).and_yield
       allow(svg).to receive(:linearGradient).and_yield
       allow(svg).to receive(:radialGradient).and_yield
@@ -85,29 +85,29 @@ RSpec.describe MtgCardMaker::SvgGradientService do
     end
   end
 
-  describe 'gradient ID methods' do
-    it 'returns correct gradient IDs for colorless scheme', :aggregate_failures do
-      expect(described_class.card_gradient_id(colorless_scheme)).to eq('colorless_card_gradient')
-      expect(described_class.frame_gradient_id(colorless_scheme)).to eq('colorless_frame_gradient')
-      expect(described_class.name_gradient_id(colorless_scheme)).to eq('colorless_name_gradient')
-      expect(described_class.text_box_gradient_id(colorless_scheme)).to eq('colorless_text_box_gradient')
+  describe "gradient ID methods" do
+    it "returns correct gradient IDs for colorless scheme", :aggregate_failures do
+      expect(described_class.card_gradient_id(colorless_scheme)).to eq("colorless_card_gradient")
+      expect(described_class.frame_gradient_id(colorless_scheme)).to eq("colorless_frame_gradient")
+      expect(described_class.name_gradient_id(colorless_scheme)).to eq("colorless_name_gradient")
+      expect(described_class.text_box_gradient_id(colorless_scheme)).to eq("colorless_text_box_gradient")
     end
 
-    it 'returns correct gradient IDs for gold scheme', :aggregate_failures do
-      expect(described_class.card_gradient_id(gold_scheme)).to eq('gold_card_gradient')
-      expect(described_class.frame_gradient_id(gold_scheme)).to eq('gold_frame_gradient')
-      expect(described_class.name_gradient_id(gold_scheme)).to eq('gold_name_gradient')
-      expect(described_class.text_box_gradient_id(gold_scheme)).to eq('gold_text_box_gradient')
+    it "returns correct gradient IDs for gold scheme", :aggregate_failures do
+      expect(described_class.card_gradient_id(gold_scheme)).to eq("gold_card_gradient")
+      expect(described_class.frame_gradient_id(gold_scheme)).to eq("gold_frame_gradient")
+      expect(described_class.name_gradient_id(gold_scheme)).to eq("gold_name_gradient")
+      expect(described_class.text_box_gradient_id(gold_scheme)).to eq("gold_text_box_gradient")
     end
 
-    it 'returns correct metallic gradient IDs for gold scheme', :aggregate_failures do
-      expect(described_class.metallic_highlight_gradient_id(gold_scheme)).to eq('gold_metallic_highlight_gradient')
-      expect(described_class.metallic_shadow_gradient_id(gold_scheme)).to eq('gold_metallic_shadow_gradient')
-      expect(described_class.metallic_pattern_id(gold_scheme)).to eq('gold_metallic_pattern')
+    it "returns correct metallic gradient IDs for gold scheme", :aggregate_failures do
+      expect(described_class.metallic_highlight_gradient_id(gold_scheme)).to eq("gold_metallic_highlight_gradient")
+      expect(described_class.metallic_shadow_gradient_id(gold_scheme)).to eq("gold_metallic_shadow_gradient")
+      expect(described_class.metallic_pattern_id(gold_scheme)).to eq("gold_metallic_pattern")
     end
   end
 
-  describe 'private gradient definition methods' do
+  describe "private gradient definition methods" do
     before do
       allow(svg).to receive(:linearGradient).and_yield
       allow(svg).to receive(:radialGradient).and_yield
@@ -117,11 +117,11 @@ RSpec.describe MtgCardMaker::SvgGradientService do
       allow(svg).to receive(:circle)
     end
 
-    it 'defines standard gradients without error' do
+    it "defines standard gradients without error" do
       expect { described_class.send(:define_standard_gradients, svg, colorless_scheme) }.not_to raise_error
     end
 
-    it 'defines metallic gradients without error' do
+    it "defines metallic gradients without error" do
       expect { described_class.send(:define_metallic_gradients, svg, gold_scheme) }.not_to raise_error
     end
   end
