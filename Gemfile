@@ -23,3 +23,5 @@ group :development do
   gem 'redcarpet', '~> 3.6'
   gem 'webrick', '~> 1.9'
 end
+
+gem "sharp_style_rubocop", "~> 0.1.5"
