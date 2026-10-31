@@ -2,7 +2,6 @@
 # frozen_string_literal: true
 
 require "fileutils"
-require "English"
 
 # Script to regenerate the cards shown in the README
 # This script generates both the MTG Card Maker card and Joe Sharp card
