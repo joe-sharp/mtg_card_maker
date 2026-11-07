@@ -117,7 +117,7 @@ class ReadmeCardGenerator
 
   def execute_chrome_conversion(card, chrome_path, chrome_args)
     # Change to the output directory for Chrome's screenshot
-    Dir.chdir(File.dirname(card[:output_webp])) do
+    Dir.chdir(File.dirname(card[:output_webp])) do # rubocop:disable ThreadSafety/DirChdir -- single-process script, nothing runs concurrently
       puts "Current working directory: #{Dir.pwd}"
       puts "SVG file exists: #{File.exist?(File.basename(card[:output_svg]))}"
 
